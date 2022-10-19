@@ -1,0 +1,347 @@
+
+@import '../variables.scss';
+.home{
+    background-color: $second-color;
+    .big-banner{
+        height: 450px;
+        .banner{
+            img{
+                width: 100%;
+                position: relative;
+            }
+
+            .sliders{
+                position: absolute;
+                transform: translate(50%,-80px);
+                right: 50%;
+                .slick-slider{
+                    width: 1000px;
+                    img{
+                        border-radius: 10px;
+                        width: 98%;
+                        margin-left: 10px;
+                    }
+                
+
+                .slick-arrow{
+                    &::before{
+                        
+                        color: white;
+                        font-size: 50px;
+                        position: absolute;
+                        transform: translate(50%, 50%);
+                        right: 50%;
+                        bottom: 50%;
+                        
+                    }
+                }
+
+            }
+
+            }
+        }
+    }
+
+    .container{
+
+        .option-promote{
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            .item{
+                width: 22%;
+                height: 80px;
+                background-color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                padding: 0 20px;
+                span{
+                    font-size: 23px;
+                    padding-left: 15px;
+                    text-align: center;
+                }
+            }
+        }
+
+        .banner-home{
+            .banner{
+                margin: 100px 0px 20px 0px;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+            
+        .flash-sales{
+            height: 1040px;
+            background-color: white;
+            margin-top: 60px;
+            border-radius: 20px;
+            padding: 20px 50px;
+            .title-flash{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .title{
+                    span{
+                        font-size: 50px;
+                        color: #CE1212;
+                        .icon{
+                            font-weight: bold;
+                        }
+                    }
+                }
+                .time-sale{
+                    width: 60%;
+                    ul{
+                        display: flex;
+                        justify-content: space-between;
+                        
+                        li{
+                            text-align: center;
+                            .time-line{
+                                font-size: 20px;
+                                padding-top: 5px;
+                                font-weight: bold;
+                                position: relative;
+                                &::before{
+                                    content: '';
+                                    width: 30%;
+                                    position: absolute;
+                                    border: 1px solid black;
+                                    bottom: -5px;
+                                    right: 50%;
+                                    transform: translateX(50%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .end-sale{
+                display: flex;
+                align-items: center;
+                padding-top: 20px;
+                p{
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+                .count-down{
+                    padding-left: 10px;
+                    span{
+                        background-color: #F0A500;
+                        padding: 5px;
+                        border-radius: 5px;
+                        margin: 0 5px;
+                    }
+                }
+            }
+
+            .list-product{
+                padding-top: 40px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                .item-product{
+                    margin-top: 20px;
+                }
+            }
+
+        }
+
+        .menu-options{
+            padding-top: 50px;
+            // padding-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            .option{
+                width: 32%;
+                border-radius: 5px;
+                overflow: hidden;
+                cursor: pointer;
+                min-height: 1px;
+                position: relative;
+                clear: both;
+                &:hover{
+                    &::before{
+                        content: '';
+                        z-index: 5;
+                        width: 92%;
+                        height: 85%;
+                        border: 1px solid white;
+                        position: absolute;
+                        transform: translate(50%,50%);
+                        right:50%;  
+                        bottom: 50%;
+                        // transition: all 0.4s;
+    
+                    }
+                    img{
+                        transform: scale(1.1);
+                    }
+                }
+               
+                img{
+                    width: 100%;
+                    height: 100%;
+                    transform: scale(1);
+                    transition: all 0.4s;
+            
+                }
+                .title-watches{
+                    
+                    width: 150px;
+                    color: white;
+                    position: absolute;
+                    transform: translate(-380px,90px);
+                    font-size: 30px;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .list-watches{
+            height: auto;
+            display: flex;
+            // margin-bottom: 100px;
+            padding-top: 70px;
+            padding-bottom: 60px;
+            .banner{
+                width: 50%;
+                height: 100%;
+                img{
+                    width: 100%;
+                }
+            }
+            .list-product-watches{
+                width: 65%;
+                height: 796px;
+                padding-left: 30px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                // margin-top: 70px;
+                .item-product{
+                    background-color: white;
+                    margin-bottom: 28px;
+                    height: 385px;
+                }
+            }
+
+          
+
+        }
+
+        .banner-galaxy{
+            width: 100%;
+            .banner{
+                width: 100%;
+                padding-top:0px;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+
+        .shopping-trends{
+            margin: 30px auto;
+            .banner{
+                img{
+                    width: 49%;
+                }
+            }
+            h3{
+                color: red;
+               // margin-bottom: 10px;
+                font-size: 25px;
+            }
+
+            .list-product{
+                padding-top: 30px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                .item-product{
+                    width: 19%;
+                    margin-bottom: 20px;
+                    background: white;
+                    border-radius: 4px;
+                   
+                }
+            }
+            
+        }
+
+        .great-deals{
+            h3{
+              
+                margin-bottom: 10px;
+                font-size: 25px;
+            }
+
+            .banner_deals{
+               
+                img{
+                    width: 32%;
+                    border-radius: 10px;
+
+                }
+            }
+        }
+
+        .recommend-today{
+            margin: 30px auto;
+            h3{
+                font-size: 28px;
+               // margin-bottom: 10px;
+            }
+            
+            .list-product{
+                padding-top: 30px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                .item-product{
+                    width: 19%;
+                    margin-bottom: 20px;
+                    background: white;
+                    border-radius: 4px;
+                }
+            }
+        }
+
+        .tech24h{
+            margin: 20px auto;
+            padding-bottom: 20px;
+            h3{
+                font-size: 28px;
+                //margin-bottom: 10px;
+
+            }
+            .list-news{
+                
+                .news{
+                    margin: 20px 0;
+                    
+                    img{
+                        width: 100%;
+                        
+                    }
+                    width: 30%;
+                    p{
+                        //width: 75%;
+                       // margin: auto 5px;
+                        overflow: hidden;
+                        white-space: nowrap; 
+                        text-overflow: ellipsis;
+                        line-clamp: 2;
+                        margin-top: 5px;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}

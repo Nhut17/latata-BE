@@ -1,0 +1,30 @@
+[
+    {
+        "name": "iPhone 11",
+        "price": 11790000,
+        "description":"Thông tin sản phẩm Apple đã chính thức trình làng bộ 3 siêu phẩm iPhone 11, trong đó phiên bản iPhone 11 64GB có mức giá rẻ nhất nhưng vẫn được nâng cấp mạnh mẽ như iPhone Xr ra mắt trước đó. Nâng cấp mạnh mẽ về camera Nói về nâng cấp thì camera chính là điểm có nhiều cải tiến nhất trên thế hệ iPhone mới.",
+        "ratings" : 4.5,
+        "images": [{
+            "public_id" : "iphone-11-trang-1-2-org.jpg",
+            "url" : "https://cdn.tgdd.vn/Products/Images/42/153856/iphone-11-trang-1-2-org.jpg"
+        }],
+        "category": "Phone",
+        "stock": 50,
+        "numOfReviews":10,
+        "reviews": []
+    },
+    {
+        "name": "iPhone 13 Pro Max",
+        "price": 28290000,
+        "description":"Thông tin sản phẩm Apple đã chính thức trình làng bộ 3 siêu phẩm iPhone 11, trong đó phiên bản iPhone 11 64GB có mức giá rẻ nhất nhưng vẫn được nâng cấp mạnh mẽ như iPhone Xr ra mắt trước đó. Nâng cấp mạnh mẽ về camera Nói về nâng cấp thì camera chính là điểm có nhiều cải tiến nhất trên thế hệ iPhone mới.",
+        "ratings" : 4.5,
+        "images": [{
+            "public_id" : "iphone-13-pro-xanh-xa-1.jpg",
+            "url" : "https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-xanh-xa-1.jpg"
+        }],
+        "category": "Phone",
+        "stock": 50,
+        "numOfReviews":10,
+        "reviews": []
+    }
+]
