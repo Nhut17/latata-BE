@@ -98,6 +98,7 @@ export const list_product= [
         promotion:10,
         rating:5,
         imgUrl:'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg',
+        url:'/product-detail'
     },
     {
         id: password.randomPassword({length:10}),
@@ -107,6 +108,7 @@ export const list_product= [
         promotion:10,
         rating:5,
         imgUrl:'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg',
+        url:'/product-detail'
     },
     {
         id: password.randomPassword({length:10}),
@@ -116,6 +118,7 @@ export const list_product= [
         promotion:10,
         rating:5,
         imgUrl:'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg',
+        url:'/product-detail'
     },
     {
         id: password.randomPassword({length:10}),
@@ -125,6 +128,7 @@ export const list_product= [
         promotion:10,
         rating:5,
         imgUrl:'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg',
+        url:'/product-detail'
     },
     {
         id: password.randomPassword({length:10}),
@@ -134,6 +138,7 @@ export const list_product= [
         promotion:10,
         rating:5,
         imgUrl:'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg',
+        url:'/product-detail'
     },
     {
         id: password.randomPassword({length:10}),
@@ -143,6 +148,7 @@ export const list_product= [
         promotion:10,
         rating:5,
         imgUrl:'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg',
+        url:'/product-detail'
     },
     {
         id: password.randomPassword({length:10}),
@@ -152,6 +158,7 @@ export const list_product= [
         promotion:10,
         rating:5,
         imgUrl:'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg',
+        url:'/product-detail'
     },
     {
         id: password.randomPassword({length:10}),
@@ -161,6 +168,7 @@ export const list_product= [
         promotion:10,
         rating:5,
         imgUrl:'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg',
+        url:'/product-detail'
     },
     {
         id: password.randomPassword({length:10}),
@@ -170,6 +178,7 @@ export const list_product= [
         promotion:10,
         rating:5,
         imgUrl:'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg',
+        url:'/product-detail'
     },
     {
         id: password.randomPassword({length:10}),
@@ -179,6 +188,7 @@ export const list_product= [
         promotion:10,
         rating:5,
         imgUrl:'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg',
+        url:'/product-detail'
     },
 ]
 

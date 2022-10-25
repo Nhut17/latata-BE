@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import StarRating from './StarRating';
 
 const Product = ({data}) =>{
     return (
+     
         <div className="item-product" key={data.id}>
 
         <div className="image">
@@ -35,7 +37,8 @@ const Product = ({data}) =>{
 
         <StarRating rating={data.rating} />
 
-      </div>
+        </div>
+        
     )
 }
 

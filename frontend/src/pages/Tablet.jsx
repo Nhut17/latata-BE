@@ -8,13 +8,13 @@ import { list_product } from '../components/data'
 const Tablet = () => {
   return (
     <div className='tablet bd-bottom'>
-        <div className="container">
+       
           <MainSub list_product={list_product}
                   parentCate={'Tablet'}
                   childCate={'Tablet'}
                   sliders={sliderTablet}
                   banners={bannerTablet} />
-        </div>
+        
     </div>
   )
 }
