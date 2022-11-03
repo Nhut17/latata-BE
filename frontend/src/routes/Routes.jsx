@@ -20,6 +20,15 @@ import Acessories from "../pages/Acessories"
 import Laptop from "../pages/Laptop";
 import SmartHome from "../pages/SmartHome";
 import ProductDetail from "../pages/ProductDetail";
+import Admin from "../pages/Admin";
+import AdminCreate from "../components/Admin/components/AdminProduct/AdminCreate";
+import DataFilterProduct from "../components/Admin/components/AdminProduct/DataFilterProduct/DataFilterProduct";
+import AdminUpdate from "../components/Admin/components/AdminProduct/AdminUpdate";
+import ReviewProduct from "../components/Admin/components/AdminProduct/ReviewProduct/ReviewProduct";
+import AdminProduct from "../components/Admin/components/AdminProduct/AdminProduct";
+import AdminOrder from "../components/Admin/components/AdminOrder/AdminOrder";
+import Dashboard from "../components/Admin/pages/Dashboard";
+// import Orders from "../components/Admin/Orders/Orders"
 
 
 const Routes = () => {
@@ -71,6 +80,25 @@ const Routes = () => {
 
       {/* PRODUCT DETAIL */}
       <Route path='/product-detail' exact component={ProductDetail} />
+
+
+      {/* ADMIN */}
+      <Route path='/admin' exact component={Admin} />
+
+      {/* <Route path="/admin/orders" exact component={Orders} /> */}
+
+
+      <Route path='/admin/' exact component={Dashboard}/>
+            {/* <Route path='/admin/customer' component={AdminUser}/> */}
+
+      <Route path='/admin/product/create' component={AdminCreate}/>
+      <Route path='/admin/product/update/info' component={DataFilterProduct}/>
+      <Route path='/admin/product/update/:id' component={AdminUpdate}/>
+      <Route path='/admin/product/reviewProduct/:id' component={ReviewProduct}/>
+      <Route path='/admin/product/' component={AdminProduct}/>
+
+      <Route path='/admin/order' component={AdminOrder}/>
+            {/* <Route path='/admin/chat' component={AppChat}/> */}
 
 
     </Switch>

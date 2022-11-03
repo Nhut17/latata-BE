@@ -1,0 +1,47 @@
+@import '../variables.scss';
+
+.bg-admin{
+    position: absolute;
+    background: white;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    .cart{
+        img{
+            display: none;
+        }
+    }
+
+    .header-content{
+        display: none;
+    }
+
+    .sidebar{
+        height: 100%;
+        width: 13%;
+        .list-menu{
+          //  width: 20%;
+            background: $primary-color;
+            
+            ul{
+                li{
+                    color: white;
+                    font-size: 20px;
+                    padding: 10px 10px;
+                    cursor: pointer;
+                    transition: all .5s;
+                    span{
+                        margin-left: 10px;
+                    }
+                    &:hover{
+                        background: rgba(#fff,0.3);
+                    }
+                }
+            }
+        }
+        
+    }
+
+}
