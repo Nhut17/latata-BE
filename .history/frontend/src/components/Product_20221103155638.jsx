@@ -14,7 +14,7 @@ const Product = ({data}) =>{
         <div className="item-product" key={data._id}>
 
         <div className="image">
-          <img src={data?.images[0].url} alt="" />
+          <img src={data.images[0].url} alt="" />
         </div>
 
         <div className="name-product">
