@@ -4,7 +4,7 @@ import MainProductDetail from '../components/ProductDetail/MainProductDetail'
 
 const ProductDetail = () => {
   return (
-   <div className="main">
+   <div className="main-product-detail">
     <MainProductDetail/>
    </div>
   )

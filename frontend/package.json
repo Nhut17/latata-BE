@@ -1,5 +1,6 @@
 {
   "name": "latata-shopping",
+  "proxy": "http://127.0.0.1:4000/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -84,7 +85,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.18.10",
+    "@babel/core": "^7.19.6",
     "@babel/preset-env": "^7.18.10",
     "@types/dropzone": "^5.7.4",
     "autoprefixer": "^10.4.7",
