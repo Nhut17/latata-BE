@@ -61,7 +61,7 @@ function Sidebar(props) {
           <p>
             Order
             <div className="admin-order-new">
-                {'totalNewOrder'}
+                10
               </div>
           </p>
         </Link>
