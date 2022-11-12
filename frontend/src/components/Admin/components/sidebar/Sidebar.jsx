@@ -11,29 +11,16 @@ import {
   WechatOutlined,
 } from "@ant-design/icons";
 
-import logo from '../../../../assets/images/logo_color.png'
+// import logo from '../../../../assets/images/logo_color.png'
 
 function Sidebar(props) {
-  // const dispatch = useDispatch();
-  // const location = useLocation()
-  // const { orderPendding } = useSelector((state) => state.allOrder);
-  // let totalNewOrder
+ 
   
-  // if(orderPendding){
-  //   totalNewOrder = orderPendding.length
-  // }
-
-  // useEffect(() => {
-  //   const getNewOrder = () => {
-  //     dispatch(GetAllOrderPendding());
-  //   }
-  //   getNewOrder()
-  // }, [dispatch]);
 
   return (
     <div className="sidebar">
       <div className="sidebar-top">
-        <img src={logo}></img>
+        {/* <img src={logo}></img> */}
       </div>
       <div className="sidebar-list">
         <Link to="/admin" className={'sidebar-list-item'}>
