@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes , BrowserRouter} from 'react-router-dom'
 import DashBoard from './DashBoard/DashBoard';
 import AdminProduct from './AdminProduct/AdminProduct';
 import AdminCreate from './AdminProduct/AdminCreate'

@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./MainAdmin.css";
-import { BrowserRouter, Route } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 import Routess from './components/Routess'
 import Sidebar from "./components/sidebar/Sidebar";
+import AdminNavBar from "./components/AdminNavBar/AdminNavBar";
+
 // import Routes from "../../routes/Routes";
 
 function MainAdmin (props) {
@@ -11,23 +13,15 @@ function MainAdmin (props) {
   return (
     
 
-    <BrowserRouter>
+    <div className="admin">
             
-      <Route
-        render={(props) => (
-          <div className={`layout-admin`}>
-            <Sidebar {...props}/>
+      <AdminNavBar>
+        <Outlet />
+      </AdminNavBar>
 
-            <div className="layout__content">
-              <div className="layout__content-main">
-                  <Routess/>
-              </div>
-            </div>
-          </div>
 
-        )}
-      />
-  </BrowserRouter>
+      
+    </div>
     
   );
 }
