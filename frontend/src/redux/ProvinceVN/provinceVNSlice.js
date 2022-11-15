@@ -9,7 +9,7 @@ const initialState={
 export const getProvince = createAsyncThunk('province', 
             async(data,thunkAPI) => {
                 try{
-                    const res = await axios.get('https://provinces.open-api.vn/api/depth==2')
+                    const res = await axios.get('https://provinces.open-api.vn/api/depth==3')
 
                     console.log('res: ' + res.data)
 

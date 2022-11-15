@@ -4,6 +4,8 @@ import ProvinceSelect from './ProvinceSelect'
 import CitySelect from './CitySelect'
 import WardSelect from './WardSelect'
 import StreetSelect from './StreetSelect'
+import { useDispatch } from 'react-redux'
+import { getProvince } from '../../redux/ProvinceVN/provinceVNSlice'
 
 
 
@@ -19,19 +21,21 @@ const AddressSelect = () => {
     const [listCity,setListCity] = useState([])
     const [listWard,setListWard] = useState([])
 
+    const dispatch = useDispatch()
 
     useEffect(() => {
 
-        fetch('https://provinces.open-api.vn/api/?depth=3')
+        fetch('https://provinces.open-api.vn/api/d?depth=2')
             .then(res => res.json())
             .then(province => {
-                setProvinces(province)
-                
-                setListCity([province[0]])
+                // setProvinces(province)
+                // setListCity([province[0]])
                 // setListWard([province[0]])
+                console.log(province)
             })
 
-        
+
+        dispatch(getProvince())
 
     },[])
 
