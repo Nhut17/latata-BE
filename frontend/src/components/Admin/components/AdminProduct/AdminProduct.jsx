@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 // } from "../../../../actions/ProductAction";
 import { Link } from "react-router-dom";
 import ListProduct from "./ListProduct";
-import "./AdminProduct.css";
-import { AppstoreAddOutlined, ToolOutlined } from "@ant-design/icons";
+import "./AdminProduct.scss";
+import { AppstoreAddOutlined, PlusOutlined, ToolOutlined } from "@ant-design/icons";
 
 function AdminProduct(props) {
   // const dispatch = useDispatch();
@@ -22,14 +22,19 @@ function AdminProduct(props) {
   return (
     <div className="admin-product">
       <div className="admin-product-link">
-        <Link to="/admin/product/create" className="add-product">
+        {/* <Link to="/admin/product/create" className="add-product">
           <AppstoreAddOutlined />
         </Link>
         <Link to="/admin/product/update/info" className="add-product">
           <ToolOutlined></ToolOutlined>
+        </Link> */}
+        <Link to="/admin/product/create"> 
+          <button >
+            + Add Product
+          </button>
         </Link>
       </div>
-
+      
       {products ? (
         <ListProduct ></ListProduct>
       ) : (

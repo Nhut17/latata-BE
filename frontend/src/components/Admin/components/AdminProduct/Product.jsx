@@ -21,13 +21,18 @@ function Product(props) {
 
   return (
     <tr>
-      <td>1</td>
+      <td w>1</td>
       <td>
         <img src='https://res.cloudinary.com/dx8xengfd/image/upload/v1667458148/avatars/iPhone_14_Pro_Max-Pur1_sfdzzu.jpg'></img>
       </td>
       <td>{'product.name'}</td>
       <td>10000</td>
-      <td>{'product.type'}</td>
+      <td>Danh mục</td>
+      <td>Loại</td>
+      <td>100</td>
+      <td>20</td>
+      <td>20</td>
+
       <td
         className="delete-product"
        

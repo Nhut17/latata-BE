@@ -7,14 +7,20 @@ import StarRating from './StarRating';
 const Product = ({data}) =>{
 
   const [priceDeal,setPriceDeal] = useState(data.price - data.price*(data.promotion/100))
+  
 
 
     return (
-     
+
+     <Link to={`/product/${data._id}`} reloadDocument>
         <div className="item-product" key={data._id}>
 
         <div className="image">
-          <img src={data.url} alt="" />
+
+          {/* <img src={data.url} alt="" /> */}
+          <img src={data?.images[0].url} alt="" />
+          {/* <img src='https://cdn.tgdd.vn/Products/Images/42/247508/iphone-14-pro-bac-thumb-600x600.jpg' alt="" /> */}
+
         </div>
 
         <div className="name-product">
@@ -43,6 +49,7 @@ const Product = ({data}) =>{
         <StarRating rating={data.ratings} />
 
         </div>
+     </Link>
         
     )
 }
