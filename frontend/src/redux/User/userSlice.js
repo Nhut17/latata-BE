@@ -19,7 +19,7 @@ export const registerUser = createAsyncThunk('user/register',
                         'Content-Type': 'application/json'
                     }
                 }
-                const res = await axios.post('/api/v1/register',data,config)
+                const res = await axios.post('http://localhost:4000/api/v1/register',data,config)
 
                 console.log(res.data)
                 return res.data

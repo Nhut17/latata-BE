@@ -13,7 +13,7 @@ const initialState = {
 export const getProduct = createAsyncThunk('product/getProduct' , 
         async(data,thunkAPI) => {
             try{
-                const res = await axios.get('/api/v1/products') 
+                const res = await axios.get('http://localhost:4000/api/v1/products') 
 
                 return res.data?.products
             }
