@@ -1,8 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import "./MainAdmin.css";
+import "./MainAdmin.scss";
 import {  Outlet } from "react-router-dom";
-import Routess from './components/Routess'
 import Sidebar from "./components/sidebar/Sidebar";
 import AdminNavBar from "./components/AdminNavBar/AdminNavBar";
 

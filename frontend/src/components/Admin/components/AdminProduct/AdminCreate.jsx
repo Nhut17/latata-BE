@@ -82,18 +82,30 @@ function AdminCreate(props) {
         onSubmit={handleSubmit()}
         encType="multipart/form-data"
       >
-        <input {...register("name")} placeholder="Name"></input>
+        <span>Tên sản phẩm</span>
+        <input {...register("name")} placeholder=""></input>
+
+        <span>Danh mục</span>
         <input
-          {...register("amount")}
-          placeholder="Amount"
+          {...register("category")}
+          placeholder=""
           type="number"
         ></input>
-        <input {...register("price")} placeholder="Price" type="number"></input>
+
+        <span>Loại</span>
         <input
-          {...register("salePrice")}
-          placeholder="SalePrice"
+          {...register("type")}
+          placeholder=""
           type="number"
         ></input>
+
+        <span>Giá</span>
+        <input {...register("price")} placeholder="" type="number"></input>
+
+        <span>Số lượng</span>
+        <input {...register("quantity")} placeholder="" type="number"></input>
+
+
 
         <div className="filter-menu-firm">
           {/* {
@@ -101,18 +113,17 @@ function AdminCreate(props) {
           } */}
         </div>
 
-              <div className="select-type">
-                <select {...register(`${'item.property'}`)}>
-                  <option>{'item.name'}</option>
-                  <option value={'x'}>{'x'}</option>
-                </select>
-              </div>
+           
 
         <input
           type="file"
           {...register("image")}
           
         ></input>
+
+          <span>Chi tiết sản phẩm</span>
+          <textarea name="" id="" cols="30" rows="10"></textarea>
+
         <button type="submit">Add Product</button>
       </form>
     </div>

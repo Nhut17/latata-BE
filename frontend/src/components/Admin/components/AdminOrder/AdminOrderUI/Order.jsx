@@ -50,8 +50,8 @@ function Order(props) {
               <span className="img">
                 <img src='https://res.cloudinary.com/dx8xengfd/image/upload/v1667458148/avatars/iPhone_14_Pro_Max-Pur1_sfdzzu.jpg' alt="image"></img>
               </span>
-              <span className="qty">Qty: {'item.qty'}</span>
-              <span className="name">{'item.name'}</span>
+              <span className="qty">Số lượng: 10</span>
+              <span className="name">Iphone 14 promax</span>
               <span className="price">100000</span>
             </div>
           {/* ))} */}
@@ -62,10 +62,10 @@ function Order(props) {
         <div className="order-info">
           <div className="order-info-address">
             <b>Địa chỉ : </b> {"  "}
-            {'shippingAddress.name'},{""}
-            {'shippingAddress.province'}, {'shippingAddress.district'},{"  "}
-            {'shippingAddress.ward'}, {'shippingAddress.detail'},{" "}
-            {'shippingAddress.phone'}
+            {'bichtram'},{""}
+            {'Long An'}, {'Cần Giuộc'},{"  "}
+            {'Truong Binh'}, {'300'},{" "}
+            {'0909xxxx'}
           </div>
         </div>
 

@@ -1,6 +1,5 @@
 {
   "name": "latata-shopping",
-  "proxy": "http://127.0.0.1:4000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -37,7 +36,7 @@
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.2",
     "react-helmet": "^6.1.0",
-    "react-hook-form": "^7.39.3",
+    "react-hook-form": "^7.39.5",
     "react-icons": "^4.6.0",
     "react-icons-md": "^1.1.0",
     "react-lazy-load-image-component": "^1.5.4",

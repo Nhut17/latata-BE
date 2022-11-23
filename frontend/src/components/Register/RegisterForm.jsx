@@ -3,11 +3,14 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from 'react-redux'
 import { getUser, registerUser, loginUser } from '../../redux/User/userSlice';
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const RegisterForm = () => {
 
     const dispatch = useDispatch()
     const state = useSelector(state => state.user)
     const navigate = useNavigate()
+    const success = useSelector(state => state.user.successRegister)
 
     const {
         register,
@@ -16,6 +19,21 @@ const RegisterForm = () => {
         formState: { errors }
      } = useForm()
 
+
+    //  useEffect(() =>{
+    //     if(success)
+    //     {
+    //       const nav = setTimeout(() => {
+    //         navigate('/')
+    //         navigate(0)
+    //       },2000)
+    
+    //       return () => {
+    //         clearTimeout(nav)
+    //       }
+      
+    //     }
+    //   },[success])
 
 
     
@@ -29,11 +47,26 @@ const RegisterForm = () => {
             password: password
        }
         dispatch(registerUser(data)) 
-        
+        toast('Đăng ký thành công', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+
+        setTimeout(() =>{
+            navigate('/')
+            navigate(0)
+        },2000)
      }
 
   return (
     <form className='main' onSubmit={handleSubmit(onHandleSubmit)}>
+            <ToastContainer />
             <div className="container">
                 <div className='form'>
                    <div className="main-form">

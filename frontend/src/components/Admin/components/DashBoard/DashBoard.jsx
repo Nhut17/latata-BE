@@ -6,8 +6,10 @@ import {
   ShoppingOutlined,
   DollarCircleOutlined,
   FileTextOutlined,
+  UsergroupDeleteOutlined,
+  SkinOutlined,
 } from "@ant-design/icons";
-import "./DashBoard.css";
+import "./DashBoard.scss";
 import ChartDashBoard from "./ChartDashBoard";
 
 export default function DashBoard() {
@@ -15,79 +17,64 @@ export default function DashBoard() {
     <section id="dashboard">
       <div className="dashboard">
         <div className="dashboard-top">
-          <div className="dashboard-top-search">
-            <form>
-              <input placeholder="Search ..."></input>
-              <span>
-                <SearchOutlined></SearchOutlined>
-              </span>
-            </form>
-          </div>
-          <div className="dashboard-top-content">
-            <li className="dashboard-top-content-avatar">
-              <img src="https://res.cloudinary.com/dx8xengfd/image/upload/v1666243178/avatars/avatar-gau-cute_1_bkhh1v.jpg"></img>
-              <span>Cao Kha Hieu</span>
-            </li>
-            <li className="dashboard-top-content-bell">
-              <BellOutlined></BellOutlined>
-            </li>
-          </div>
+          
+         
         </div>
 
         <div className="dashboard-middle">
           <div className="dashboard-middle-statistic">
-            <div className="dashboard-middle-statistic-content">
-              <li>
+            <div className="dashboard-middle-statistic-content" >
+              <li style={{background : '#990000'}}>
                 <div className="dashboard-middle-statistic-icon">
-                  <ShoppingOutlined></ShoppingOutlined>
+                  <UsergroupDeleteOutlined />
                 </div>
                 <div className="dashboard-middle-statistic-title">
                   <span className="total">1666</span>
-                  <span className="title">Total Sales</span>
+                  <span className="title">Người dùng</span>
                 </div>
               </li>
             </div>
             <div className="dashboard-middle-statistic-content">
-              <li>
+              <li style={{background : '#2B7A0B'}}>
                 <div className="dashboard-middle-statistic-icon">
-                  <ShoppingCartOutlined></ShoppingCartOutlined>
+                <DollarCircleOutlined/>
+
                 </div>
                 <div className="dashboard-middle-statistic-title">
                   <span className="total">25</span>
-                  <span className="title">Daily Visits</span>
+                  <span className="title">Sản phẩm</span>
                 </div>
               </li>
             </div>
+
             <div className="dashboard-middle-statistic-content">
-              <li>
+              <li style={{background : '#000957'}}>
                 <div className="dashboard-middle-statistic-icon">
-                  <DollarCircleOutlined></DollarCircleOutlined>
-                </div>
-                <div className="dashboard-middle-statistic-title">
-                  <span className="total">2000</span>
-                  <span className="title">Total Income</span>
-                </div>
-              </li>
-            </div>
-            <div className="dashboard-middle-statistic-content">
-              <li>
-                <div className="dashboard-middle-statistic-icon">
-                  <FileTextOutlined></FileTextOutlined>
+                  <SkinOutlined />
                 </div>
                 <div className="dashboard-middle-statistic-title">
                   <span className="total">1208</span>
-                  <span className="title">Total Orders</span>
+                  <span className="title">Danh mục</span>
                 </div>
               </li>
             </div>
+            <div className="dashboard-middle-statistic-content">
+              <li style={{background : '#D4AC2B'}}>
+                <div className="dashboard-middle-statistic-icon">
+                  <ShoppingCartOutlined />
+                </div>
+                <div className="dashboard-middle-statistic-title">
+                  <span className="total">2000</span>
+                  <span className="title">Đơn hàng</span>
+                </div>
+              </li>
+            </div>
+            
           </div>
-          <ChartDashBoard></ChartDashBoard>
+          {/* <ChartDashBoard></ChartDashBoard> */}
         </div>
 
-        <div className="dashboard-new">
-          <div className="dashboard"></div>
-          <div className="dashboard"></div>
-        </div>
+       
       </div>
     </section>
   );

@@ -18,17 +18,18 @@ import bannerGalaxy from '../assets/images/home/banner_galaxy.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 
 const Home = () => {
-
+  const navigate = useNavigate()
   const success = useSelector(state => state.user.successLogin)
   const user = useSelector(state => state.user.user)
 
   useEffect(() =>{
     if(success)
     {
-        toast(`Xin chào ${user.name}`, {
+        toast(`Xin chào ${user?.name}`, {
           position: "top-right",
           autoClose: 1000,
           hideProgressBar: false,
@@ -40,6 +41,17 @@ const Home = () => {
           });
     }
   },[success])
+
+  useEffect(() => {
+    if(!user){
+      navigate('/')
+    }  
+    if(user && user.role === 'admin'){
+        navigate('/admin')
+      }
+      
+
+  },[user])
 
   return (
     <div className="home">

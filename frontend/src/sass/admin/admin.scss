@@ -24,6 +24,22 @@
             display: flex;
             .nav-bar-content{
                 width: 100%;
+
+                .dashboard-top-content{
+                    .dashboard-top-content-avatar{
+                        cursor: pointer;
+                        margin-right: 8%;
+                        margin-top: 20px;
+                        span{
+                            font-size: 18px;
+                        }
+                        img{
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                        }
+                    }
+                }
             }
         }
     }

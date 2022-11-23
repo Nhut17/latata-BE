@@ -6,19 +6,7 @@ const orderSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        city:{
-            type: String,
-            required: true
-        },
         phoneNo:{
-            type: String,
-            required: true
-        },
-        postalCode:{
-            type: String,
-            required: true
-        },
-        country:{
             type: String,
             required: true
         },
@@ -45,7 +33,7 @@ const orderSchema = mongoose.Schema({
             type: Number,
             required: true
         },
-        product:{
+        productId:{
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: 'Product'
@@ -61,16 +49,6 @@ const orderSchema = mongoose.Schema({
     },
     paidAt: {
         type: Date
-    },
-    itemsPrice: {
-        type: Number,
-        required:true,
-        default: 0.0
-    },
-    taxPrice: {
-        type: Number,
-        required:true,
-        default: 0.0
     },
     shippingPrice: {
         type: Number,

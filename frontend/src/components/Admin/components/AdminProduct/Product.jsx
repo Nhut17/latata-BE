@@ -1,15 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import {
-//   DeleteProduct,
-//   paginationProduct,
-// } from "../../../../actions/ProductAction";
 import { useHistory, Link } from "react-router-dom";
-// import { formatPrice } from "../../../../untils/index";
 import { DeleteOutlined, EditOutlined, FormOutlined } from "@ant-design/icons";
 
 
-function Product(props) {
+function Product({data,stt}) {
   // const { product, number } = props;
   // const dispatch = useDispatch();
   // const currentPage = useSelector((state) => state.allProduct.currentPage);
@@ -19,15 +14,24 @@ function Product(props) {
   //   dispatch(paginationProduct(currentPage));
   // };
 
+  const dispatch = useDispatch()
+
   return (
     <tr>
-      <td>1</td>
+      <td>{stt + 1}</td>
       <td>
-        <img src='https://res.cloudinary.com/dx8xengfd/image/upload/v1667458148/avatars/iPhone_14_Pro_Max-Pur1_sfdzzu.jpg'></img>
+        <div className="image">
+          <img src={data.images}></img>
+        </div>
       </td>
-      <td>{'product.name'}</td>
-      <td>10000</td>
-      <td>{'product.type'}</td>
+      <td>{data.name}</td>
+      <td>{data.price}</td>
+      <td>{data.name}</td>
+      <td>{data.price}</td>
+      <td>{data.price}</td>
+      <td>{data.price}</td>
+      <td>{data.price}</td>
+
       <td
         className="delete-product"
        

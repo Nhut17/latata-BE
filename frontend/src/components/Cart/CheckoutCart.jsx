@@ -5,23 +5,25 @@ import { Link } from 'react-router-dom'
 import InfoCustomer from './InfoCustomer'
 import Voucher from './Voucher'
 import FinalTotal from './FinalTotal'
-
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import ActiveCart from './ActiveCart'
+import EmptyCart from './EmptyCart'
 
 const CheckoutCart = () => {
-  return (
-    <div className='container container-cart'>
-        <div className="title">
-            <Link to='/' className="buy-another">Mua thêm sản phẩm khác</Link>
-            <span >Giỏ hàng của bạn</span>
-        </div>
 
-        <form className='checkout-cart'>
-            <ListingCart />
-            <InfoCustomer />
-            <Voucher />
-            <FinalTotal />
-        </form>
-    </div>
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+
+
+  },[])
+
+  return (
+    <>
+        <ActiveCart />
+        
+    </>
   )
 }
 

@@ -12,6 +12,8 @@ import {
     REGISTER,
   } from 'redux-persist'
   import storage from 'redux-persist/lib/storage'
+import provinceVNSlice from './redux/ProvinceVN/provinceVNSlice'
+import adminSlice from './redux/Admin/adminSlice'
 
   const persistConfig = {
     key: 'root',
@@ -21,7 +23,9 @@ import {
 
 const rootReducer = combineReducers({
     product: productSlice,
-    user: userSlice
+    user: userSlice,
+    province: provinceVNSlice,
+    admin: adminSlice
 
   })
 

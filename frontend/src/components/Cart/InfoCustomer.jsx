@@ -13,7 +13,7 @@ const InfoCustomer = () => {
 
        <InfoGender />
        <InfoNameNumber />
-       <AddressSelect />
+       
 
         <div className="note">
             <p>Yêu cầu khác</p>

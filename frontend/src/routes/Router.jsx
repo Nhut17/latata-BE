@@ -28,6 +28,10 @@ import ReviewProduct from "../components/Admin/components/AdminProduct/ReviewPro
 import AdminProduct from "../components/Admin/components/AdminProduct/AdminProduct";
 import AdminOrder from "../components/Admin/components/AdminOrder/AdminOrder";
 import Dashboard from "../components/Admin/pages/Dashboard";
+import AdminUser from "../components/Admin/components/AdminUser/AdminUser";
+import Profile from "../components/Profile/Profile";
+import AdminCate from "../components/Admin/components/AdminCate/AdminCate";
+import AdminCreateCate from "../components/Admin/components/AdminCate/AdminCreateCate";
 // import Orders from "../components/Admin/Orders/Orders"
 
 
@@ -40,6 +44,9 @@ const Router = () => {
 
       {/* LOGIN */}
       <Route path='/dang-nhap'  element={<Login />}/>
+
+      <Route path='/profile'  element={<Profile />}/>
+
 
       {/* TABLET */}
       <Route path='/tablet'  element={<Tablet />} />
@@ -89,14 +96,25 @@ const Router = () => {
 
           <Route path="product" element={<AdminProduct />} />
           <Route path="product/create" element={<AdminCreate />} />
-          <Route path="product/update" element={<AdminUpdate />} />
+          <Route path="product/update/info" element={<AdminUpdate />} />
   
           {/* <Route path="customers" element={<AdminCustomer />} /> */}
           <Route path="order" element={<AdminOrder />} />
+          <Route path="customer" element={<AdminUser />} />
+
+          <Route path="category" element={<AdminCate />} />
+          <Route path="category/create" element={<AdminCreateCate />} />
+
+          
+          
 
       </Route>
 
       <Route path="*" element={<Navigate to="/" />} />
+
+
+
+
 
 
 
