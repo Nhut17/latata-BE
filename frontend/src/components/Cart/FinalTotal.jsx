@@ -8,7 +8,7 @@ const FinalTotal = () => {
             <span className="price">100000đ</span>
         </div>
 
-        <button className='order'>ĐẶT HÀNG</button>
+        <button className='order' type='submit'>ĐẶT HÀNG</button>
 
     </div>
   )

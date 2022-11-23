@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { GetAllOrderPendding } from "../../../../actions/OrderAction";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Sidebar.scss";
 import {
   AppstoreOutlined,
@@ -9,13 +9,23 @@ import {
   ShopOutlined,
   OrderedListOutlined,
   WechatOutlined,
+  LogoutOutlined,
+  ProfileOutlined
 } from "@ant-design/icons";
 
 import logo from '../../../../assets/images/logo_color.png'
+import { useDispatch } from "react-redux";
+import { logout } from "../../../../redux/User/userSlice";
 
 function Sidebar(props) {
- 
-  
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const handleLogout = () => {
+        dispatch(logout())
+        localStorage.clear()
+        navigate('/')
+        navigate(0)
+    }
 
   return (
     <>
@@ -54,6 +64,28 @@ function Sidebar(props) {
                 </div> */}
             </p>
           </Link>
+
+
+          <Link to="/admin/category" className={'sidebar-list-item'}>
+            <span>
+              <ProfileOutlined/>
+            </span>
+            <p>
+              Danh mục
+            
+            </p>  
+          </Link>
+
+          
+          <div className="sidebar-list-item" onClick={handleLogout}>
+            <span >
+            <LogoutOutlined />
+            </span>
+            <p>
+             Đăng xuất
+            
+            </p>  
+          </div>
           {/* <Link to="/admin/chat" className={location.pathname === '/admin/chat' ? 'sidebar-list-item active': 'sidebar-list-item'}>
             <span>
               <WechatOutlined></WechatOutlined>

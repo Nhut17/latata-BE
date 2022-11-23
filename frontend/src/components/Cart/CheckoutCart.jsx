@@ -5,9 +5,19 @@ import { Link } from 'react-router-dom'
 import InfoCustomer from './InfoCustomer'
 import Voucher from './Voucher'
 import FinalTotal from './FinalTotal'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 
 
 const CheckoutCart = () => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+
+
+  },[])
+
   return (
     <div className='container container-cart'>
         <div className="title">
@@ -15,12 +25,12 @@ const CheckoutCart = () => {
             <span >Giỏ hàng của bạn</span>
         </div>
 
-        <form className='checkout-cart'>
+        <div className='checkout-cart'>
             <ListingCart />
             <InfoCustomer />
             <Voucher />
             <FinalTotal />
-        </form>
+        </div>
     </div>
   )
 }

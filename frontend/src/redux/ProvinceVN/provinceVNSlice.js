@@ -11,7 +11,7 @@ export const getProvince = createAsyncThunk('province',
                 try{
                     const res = await axios.get('https://provinces.open-api.vn/api/depth==2')
 
-                    console.log('res: ' + res.data)
+                    console.log('res: ' + JSON.stringify(res.data))
 
                     return res.data
                 }
@@ -25,7 +25,9 @@ const provinceVNSlice = createSlice({
     name: 'province',
     initialState,
     extraReducers: {
-
+        [getProvince.fulfilled]: (state,action) => {
+            state.province = action.payload
+        }
     }
 })
 

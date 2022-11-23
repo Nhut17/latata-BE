@@ -1,25 +1,31 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-// import { deleteUser, getAllUser } from '../../../../actions/UserAction';
+import { deleteUser } from '../../../../redux/Admin/adminSlice';
 import { DeleteOutlined} from '@ant-design/icons';
 
-function User(props) {
+function User({ data, stt }) {
     // const {user, number} = props
-    // const dispatch = useDispatch()
-    // const handleDeleteUser = async (user) => {
-    //     await dispatch(deleteUser(user._id))
-    //     dispatch(getAllUser())
-    // }
+    const dispatch = useDispatch()
+    const handleOnDeleteCate = () => {
+        dispatch(deleteUser(data.id))   
+    }
 
     return (
         <tr>
-            <td>1</td>
-            <td>{'user.name'}</td>
-            <td>{'user.email'}</td>
-            <td>{'user.address'}</td>
-            <td>{'user.phone'}</td>
-            <td className="delete-user"><DeleteOutlined /></td>
+            <td>{stt + 1}</td>
+            <td>{data?.name}</td>
+            <td>{data?.email}</td>
+            <td>{data?.email}</td>
+            <td>{data?.phone}</td>
+            
+
+            <div onClick={handleOnDeleteCate} 
+                className='delete-user'
+                >
+                    <DeleteOutlined />
+                </div>
         </tr>
+        
     );
 }
 

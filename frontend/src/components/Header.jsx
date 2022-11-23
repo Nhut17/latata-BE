@@ -1,22 +1,35 @@
 import '../sass/header/header.scss'
 import logo from '../assets/images/logo.png'
 import cart from '../assets/images/cart.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {categories} from './data'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
   
 const Header = () => {
 
   const user = useSelector(state => state.user.user)
   const success = useSelector(state => state.user.successLogin)
-  
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+      localStorage.clear()
+      // dispatch(logout())
+      navigate('/')
+      navigate(0)
+  }
 
   return (
     <header>
       <div className="container">
         <div className="top-header">
           {
-            success ? <p className="success-login"><span>Xin chào {user.name}</span></p> : (
+            success ? 
+            <>
+            <p className="success-login"><span>Xin chào {user?.name}</span></p> 
+            <p className="success-login" onClick={handleLogout}><span>Đăng xuất</span></p> 
+            </>
+            : (
               <p
               className='login'>
                 <Link to='/dang-nhap'>

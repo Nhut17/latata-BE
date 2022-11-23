@@ -30,6 +30,8 @@ import AdminOrder from "../components/Admin/components/AdminOrder/AdminOrder";
 import Dashboard from "../components/Admin/pages/Dashboard";
 import AdminUser from "../components/Admin/components/AdminUser/AdminUser";
 import Profile from "../components/Profile/Profile";
+import AdminCate from "../components/Admin/components/AdminCate/AdminCate";
+import AdminCreateCate from "../components/Admin/components/AdminCate/AdminCreateCate";
 // import Orders from "../components/Admin/Orders/Orders"
 
 
@@ -99,6 +101,9 @@ const Router = () => {
           {/* <Route path="customers" element={<AdminCustomer />} /> */}
           <Route path="order" element={<AdminOrder />} />
           <Route path="customer" element={<AdminUser />} />
+
+          <Route path="category" element={<AdminCate />} />
+          <Route path="category/create" element={<AdminCreateCate />} />
 
           
           
