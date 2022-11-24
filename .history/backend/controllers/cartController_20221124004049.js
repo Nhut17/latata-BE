@@ -1,0 +1,72 @@
+const Cart = require('../models/cart')
+const Product = require('../models/products')
+const ErrorHandler = require('../utils/errorHandler')
+const catchAsyncError = require('../middlewares/catchAsyncErrors')
+const APIFeatures = require('../utils/apiFeatures')
+
+
+// add to cart
+exports.addToCart = catchAsyncError( async (req,res,next) => {
+
+    const {
+        productId,
+        price,
+        quantity
+    } = req.body
+
+    const config = {
+        new: true,
+        runValidators: true,
+        useFindAndModify: true
+    }
+
+    const productCart = await Product.findById(product)
+
+    console.log(productCart)
+
+
+    const cartOld = await Cart.findOne({
+        product: product
+        
+    })
+
+
+   
+    if(cartOld)
+    {
+        if(product == cartOld.product) 
+        {
+            const updateCart = {
+                product: cartOld.product,
+                price: cartOld.price,
+                quantity: cartOld.quantity + quantity,
+                user: req.user._id
+            }
+
+
+            await Cart.findByIdAndUpdate(cartOld._id,updateCart,config)
+        }
+    }
+    else{
+   
+         await Cart.create({
+            product,
+            price,
+            quantity,
+            user: req.user._id
+        })
+    }
+
+
+    res.status(201).json({
+        success: true
+    })
+
+})
+
+
+// exports.getCart = catchAsyncError( async (req, res, next) => {
+
+
+
+// })

@@ -24,7 +24,6 @@ exports.newProduct = catchAsyncError( async ( req, res, next ) => {
 // get all products => api/v1/products?keyword=apple
 exports.getProducts = catchAsyncError( async (req,res,next) => {
 
-    const resPerPage = 10
     const productCount = await Product.countDocuments()
 
     const apiFeatures = new APIFeatures(Product.find(), req.query )
@@ -46,7 +45,7 @@ exports.getProducts = catchAsyncError( async (req,res,next) => {
 // Get single product details => /api/v1/product/:id
 exports.getSingleProduct = catchAsyncError( async ( req, res, next) => {
 
-    const product = await Product.findById(req.params.id)
+    const product = await Product.findById(req.params.id).populate('category')
 
     if(!product){
         return next(new ErrorHandler('Product not found', 404))
@@ -73,7 +72,7 @@ exports.updateProduct = catchAsyncError( async ( req, res, next) => {
         new: true,
         runValidators: true,
         useFindAndModify: false,
-    })
+    }).populate('category')
 
     res.status(200).json({
         success: true,

@@ -42,20 +42,7 @@ const productSchema = new mongoose.Schema({
     category: {
         type: String,
         required: [true, ' Please select category for this product'],
-        enum: {
-            values: [
-                'Phone',
-                'Laptop',
-                'Tablet',
-                'Accessories',
-                'SmartWatch',
-                'Watch',
-                'TV',
-                'SmartHome',
-                'Home'
-            ],
-            message: 'Please enter correct category for product'
-        }
+        ref: 'Category'
     },
     stock: {
         type: Number,

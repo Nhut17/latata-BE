@@ -1,56 +1,18 @@
 const mongoose = require('mongoose');
 
+
+const { ObjectId } = mongoose.Schema
+
+
 const orderSchema = mongoose.Schema({
-    shippingInfo: {
-        address:{
-            type: String,
-            required: true
-        },
-        phoneNo:{
-            type: String,
-            required: true
-        },
-    },
-    user:{
+    orderItems: [{
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User'
-    },
-    orderItems: [{
-        name:{
-            type: String,
-            required: true
-        },
-        quantity:{
-            type: Number,
-            required: true
-        },
-        image:{
-            type: String,
-            required: true
-        },
-        price:{
-            type: Number,
-            required: true
-        },
-        productId:{
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-            ref: 'Product'
-        },
+        ref: 'Cart'
     }],
-    paymentInfo: {
-        id: {
-            type: String
-        },
-        status: {
-            type: String
-        }
-    },
-    paidAt: {
-        type: Date
-    },
-    shippingPrice: {
+    address: String,
+    quantity: { type: Number  },
+    shippingFee: {
         type: Number,
         required:true,
         default: 0.0
@@ -60,10 +22,23 @@ const orderSchema = mongoose.Schema({
         required:true,
         default: 0.0
     },
-    orderStatus: {
+    status: {
         type: String,
-        required: true,
-        default: 'Processing'
+        default: 'PROCESSING',
+        enum: [
+          'PROCESSING',
+          'DELIVERING',
+          'DONE',
+          'CANCEL',
+        ],
+      },
+    payment: {
+        type: String,
+        default: 'COD',
+        enum: [
+          'COD',
+          'PAYPAL'
+        ],
     },
     deliveredAt:{
         type: Date
@@ -71,8 +46,17 @@ const orderSchema = mongoose.Schema({
     createAt: {
         type: Date,
         default: Date.now()
+    },
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
     }
+
 
 })
 
-module.exports = mongoose.model('Order', orderSchema)
+const order = mongoose.model('Order',orderSchema)
+
+
+module.exports = { order }

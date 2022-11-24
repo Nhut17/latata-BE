@@ -10,22 +10,24 @@ const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 exports.newOrder = catchAsyncErrors( async(req, res, next) => {
     const {
         orderItems,
-        shippingInfo,
-        shippingPrice,
-        paymentInfo
+        address,
+        quantity,
+        shippingFee,
+        totalPrice,
+        status,
+        payment,
     } = req.body;
 
 
 
     const order = await Order.create({
         orderItems,
-        shippingInfo,
-        shippingPrice,
-        totalPrice: orderItems.reduce((acc,val) => {
-                return acc + val.price*val.quantity
-        },0),
-        paymentInfo,    
-        paidAt: Date.now(),
+        address,
+        quantity,
+        shippingFee,
+        totalPrice,
+        status,
+        payment, 
         user: req.user._id
     })
 
@@ -85,7 +87,7 @@ exports.allOrders = catchAsyncErrors( async (req, res, next) => {
 exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
     const order = await Order.findById(req.params.id)
 
-    if(order.orderStatus === 'Delivered')
+    if(order.status === 'DONE')
     {
         return next(new ErrorHandler('You have already delivered this order',400))
     }
