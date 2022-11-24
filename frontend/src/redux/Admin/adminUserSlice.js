@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const initialState = {
+    token: localStorage.getItem("token"),
     error: false,
     loading: false,
     success: false,
@@ -14,20 +15,24 @@ const initialState = {
 // Get Delete User
 export const deleteUser = createAsyncThunk('user/delete', async(id,thunkAPI) =>{
     try{
-        const token = localStorage.getItem('auth',res.data.authenticated)
+   
         const headers = {
-            Authorization: 'Bearer ' + token,
+            
+            // Authorization: 'Bearer ' + token,
+            "x-auth-token": localStorage.getItem("token"),
         }
         const res = await axios.delete(`http://localhost:4000/api/v1/user/${id}`,{
                 headers: headers,
         })
 
+
+        localStorage.setItem("token", res.data);
         thunkAPI.dispatch(getAllUser())
 
         return res.data
     }
     catch(e){
-        // return e.message
+        return thunkAPI.rejectWithValue('e.response.data');
     }
 })
 
@@ -39,7 +44,10 @@ export const getAllUser = createAsyncThunk('user/getAllUser', async(data,thunkAP
         const headers = {
             Authorization: 'Bearer ' + token,
         }
-        const res = await axios.get(`http://localhost:4000/api/v1/admin/users`)
+        console.log(token)
+        const res = await axios.get(`http://localhost:4000/api/v1/admin/users`,{
+            headers: headers
+        })
         console.log(res.data)
         return res.data
     }
@@ -49,8 +57,8 @@ export const getAllUser = createAsyncThunk('user/getAllUser', async(data,thunkAP
 })
 
 
-const adminSlice = createSlice({
-    name: 'admin',
+const adminUserSlice = createSlice({
+    name: 'adminUser',
     initialState,
     reducers: {
        
@@ -64,6 +72,6 @@ const adminSlice = createSlice({
     }
 })
 
-export const {} = adminSlice.actions
+export const {} = adminUserSlice.actions
 
-export default adminSlice.reducer
+export default adminUserSlice.reducer

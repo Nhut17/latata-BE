@@ -13,8 +13,8 @@ function Cate({ data, stt }) {
         // dispatch(deleteCate(data.id))
     }
     return (
-        <tr key={data.id}>
-            <td w>{data.id}</td>
+        <tr key={data?.id}>
+            <td w>{data?.id}</td>
             <td>{data?.catParent}</td>
             <td>{data?.catName}</td>
             <td

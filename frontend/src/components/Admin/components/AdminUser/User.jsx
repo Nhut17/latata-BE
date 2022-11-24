@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteUser } from '../../../../redux/Admin/adminSlice';
+import { deleteUser } from '../../../../redux/Admin/adminUserSlice';
 import { DeleteOutlined} from '@ant-design/icons';
 
 function User({ data, stt }) {

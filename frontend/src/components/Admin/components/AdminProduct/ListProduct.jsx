@@ -1,10 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 // import { editCurrentPage, paginationProduct } from '../../../../actions/ProductAction';
 import Product from './Product';
-import { Pagination } from 'antd';
 
-function ListProduct(props) {
+
+function ListProduct({listProduct}) {
     // const dispatch = useDispatch()
     // const {listProducts} = props;
     // const currentPage = useSelector(state => state.allProduct.currentPage)
@@ -19,10 +19,10 @@ function ListProduct(props) {
        <div className="admin-product-list">
            <table>
                 <tr>
-                    <th style={{width : '5%'}}>STT</th>
-                    <th style={{width : '15%'}}>Hình ảnh</th>
-                    <th style={{width : '10%'}}>Tên</th>
-                    <th style={{width : '10%'}}>Giá</th>
+                    <th>STT</th>
+                    <th>Hình ảnh</th>
+                    <th>Tên</th>
+                    <th>Giá</th>
                     <th>Danh mục</th>
                     <th>Loại</th>
                     <th>Số lượng</th>
@@ -31,8 +31,10 @@ function ListProduct(props) {
 
                 </tr>
                 {
-                    // listProducts ? listProducts.map((item, index) => (<Product product={item} key={item._id} update={item._id} number={index}></Product>)) : ''
-                    <Product/>
+                    listProduct &&
+                    listProduct.map((data, index) => (
+                        <Product data={data} stt={index} />
+                    ))
                 }
             </table>
             
@@ -41,7 +43,7 @@ function ListProduct(props) {
             </div> */}
 
        </div>
-    );
+    )
 }
 
 export default ListProduct;

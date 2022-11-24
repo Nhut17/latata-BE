@@ -7,8 +7,9 @@ import { Link } from "react-router-dom";
 import ListProduct from "./ListProduct";
 import "./AdminProduct.scss";
 import { AppstoreAddOutlined, PlusOutlined, ToolOutlined } from "@ant-design/icons";
+import {getAllProducts} from '../../../../redux/Admin/adminProductSlice'
 
-function AdminProduct(props) {
+function AdminProduct() {
   // const dispatch = useDispatch();
   // const currentPage = useSelector((state) => state.allProduct.currentPage);
   // const { products } = useSelector((state) => state.allProduct.product);
@@ -16,8 +17,13 @@ function AdminProduct(props) {
   // useEffect(() => {
   //   dispatch(paginationProduct(currentPage));
   // }, [dispatch, currentPage]);
+  const dispatch = useDispatch();
+  const listProduct = useSelector(state => state.adminProduct.listProductAdmin)
 
-  let products = true
+  useEffect(()=> {
+    dispatch(getAllProducts())
+  },[dispatch])
+  
 
   return (
     <div className="admin-product">
@@ -35,11 +41,9 @@ function AdminProduct(props) {
         </Link>
       </div>
       
-      {products ? (
-        <ListProduct ></ListProduct>
-      ) : (
-        "Loading"
-      )}
+      
+      <ListProduct listProduct={listProduct} />
+      
     </div>
   );
 }

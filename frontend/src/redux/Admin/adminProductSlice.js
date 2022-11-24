@@ -11,9 +11,16 @@ const initialState = {
     listProductAdmin: []
 }
 
-export const getProducts = createAsyncThunk('product/getAll', async (data,thunkAPI) => {
+export const getAllProducts = createAsyncThunk('product/getAll', async (data,thunkAPI) => {
     try{
-        const res = await axios.get('http://localhost:4000/api/v1/products')
+        const token = localStorage.getItem('token')
+        const headers = {
+            Authorization: 'Bearer ' + token,
+           
+        }
+        const res = await axios.get('http://localhost:4000/api/v1/products',{
+            headers: headers,
+        })
         return res.data
     }
     catch(e)
@@ -36,7 +43,7 @@ export const deleteProduct = createAsyncThunk('product/delete',
                         headers: headers
                 })
 
-                thunkAPI.dispatch(getAllProduct())
+                thunkAPI.dispatch(getAllProducts())
                 return res.data
 
             }
@@ -44,3 +51,22 @@ export const deleteProduct = createAsyncThunk('product/delete',
                 return thunkAPI.rejectWithValue('Error with get product detail')
             }
         })
+
+
+
+    const adminProductSlice = createSlice(
+        {
+            name:'adminProduct',
+            initialState,
+            extraReducers:
+            {
+                [getAllProducts.fulfilled] : (state,action) => {
+                    state.listProductAdmin = action.payload
+                }
+            }
+        }
+    )
+        
+        export const {}  = adminProductSlice.actions; 
+        
+        export default adminProductSlice.reducer

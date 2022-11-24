@@ -14,25 +14,25 @@ function Product({data,stt}) {
   //   dispatch(paginationProduct(currentPage));
   // };
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   return (
     <tr>
       <td>{stt + 1}</td>
       <td>
         <div className="image">
-          <img src={data.images}></img>
+          <img src={data?.images}></img>
         </div>
       </td>
-      <td>{data.name}</td>
-      <td>{data.price}</td>
-      <td>{data.name}</td>
-      <td>{data.price}</td>
-      <td>{data.price}</td>
-      <td>{data.price}</td>
-      <td>{data.price}</td>
+      <td>{data?.name}</td>
+      <td>{data?.price}</td>
+      <td>{data?.name}</td>
+      <td>{data?.price}</td>
+      <td>{data?.price}</td>
+      <td>{data?.price}</td>
+      <td>{data?.price}</td>
 
-      <td
+      {/* <td
         className="delete-product"
        
       >
@@ -47,7 +47,7 @@ function Product({data,stt}) {
         <Link to={`/admin/product/reviewProduct/${'product._id'}`} >
           <FormOutlined></FormOutlined>
         </Link>
-      </td>
+      </td> */}
     </tr>
   );
 }
