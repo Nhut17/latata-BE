@@ -7,6 +7,8 @@ const initialState = {
     loading: false,
     successRegister: false,
     successLogin: false,
+    userDetail : {},
+
 }
 
 
@@ -66,19 +68,19 @@ export const logoutUser = createAsyncThunk('user/logout',
             }
         })
 
-// Get User
-export const getUser = createAsyncThunk('user/register', 
-        async(data,thunkAPI) => {
-            try{
-                
-                const res = await axios.get('http://localhost:4000/api/v1/register')
+
+
+export const getUserDetail = createAsyncThunk('user/userDetail',
+        async(id, thunkAPI) => {
+            try {
+                const res = await axios.get(`http://localhost:4000/api/v1/user/${id}`)
 
                 return res.data
+            } catch (error) {
+                return thunkAPI.rejectWithValue('can not get user detail')
             }
-            catch(e){
-                return thunkAPI.rejectWithValue('Register Failed!')
-            }
-        })
+        }
+)
 
 const userSlice = createSlice({
     name: 'user',
@@ -97,9 +99,14 @@ const userSlice = createSlice({
             state.user = action.payload.user
             state.successLogin = true
         },
+
         [logoutUser.fulfilled]: (state,action) => {
             state.user = null
-        }
+        },
+        [getUserDetail.fulfilled] : (state, action) => {
+            state.userDetail = action.payload
+        },
+       
     }
 })
 export const { logout } = userSlice.actions

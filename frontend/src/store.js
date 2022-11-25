@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import productSlice from './redux/Product/productSlice'
 import userSlice from './redux/User/userSlice'
 import provinceVNSlice from './redux/ProvinceVN/provinceVNSlice'
-import adminSlice from './redux/Admin/adminSlice'
+
 
 import {
     persistStore,
@@ -16,6 +16,9 @@ import {
   } from 'redux-persist'
   import storage from 'redux-persist/lib/storage'
 import cartSlice from './redux/Cart/cartSlice'
+import adminSlice from './redux/Admin/adminSlice'
+
+
   const persistConfig = {
     key: 'root',
     version: 1,
@@ -26,8 +29,8 @@ const rootReducer = combineReducers({
     product: productSlice,
     user: userSlice,
     province: provinceVNSlice,
-    admin: adminSlice,
     cart: cartSlice,
+    admin: adminSlice,
 
   })
 
