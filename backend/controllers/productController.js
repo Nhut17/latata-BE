@@ -45,7 +45,7 @@ exports.getProducts = catchAsyncError( async (req,res,next) => {
 // Get single product details => /api/v1/product/:id
 exports.getSingleProduct = catchAsyncError( async ( req, res, next) => {
 
-    const product = await Product.findById(req.params.id).populate('category')
+    const product = await Product.findById(req.params.id)
 
     if(!product){
         return next(new ErrorHandler('Product not found', 404))

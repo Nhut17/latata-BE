@@ -6,6 +6,8 @@ const sendToken= (user,statusCode,res) => {
     // create jwt token
     const token = user.getJwtToken();
 
+    
+
     // options for cookie
     const options = {
         expires: new Date(
@@ -13,6 +15,8 @@ const sendToken= (user,statusCode,res) => {
         ),
         httpOnly: true
     }
+
+   
 
 
 

@@ -33,15 +33,17 @@ export const registerUser = createAsyncThunk('user/register',
 export const loginUser = createAsyncThunk('user/login', 
         async(data,thunkAPI) => {
             try{
+                
                 const headers = {
                     'Content-Type': 'application/json'
                 }
                 const res = await axios.post('http://localhost:4000/api/v1/login',data,{
                     headers: headers
                 })
-
+                
                 const token = res.data.token
                 localStorage.setItem('token', token)
+
 
                 return res.data
             }
@@ -50,6 +52,19 @@ export const loginUser = createAsyncThunk('user/login',
             }
         })
 
+// Logout 
+export const logoutUser = createAsyncThunk('user/logout', 
+        async(data,thunkAPI) => {
+            try{
+        
+                const res = await axios.get('http://localhost:4000/api/v1/logout')
+
+                return res.data
+            }
+            catch(e){
+                return thunkAPI.rejectWithValue('logout Failed!')
+            }
+        })
 
 // Get User
 export const getUser = createAsyncThunk('user/register', 
@@ -81,6 +96,9 @@ const userSlice = createSlice({
         [loginUser.fulfilled]: (state,action) => {
             state.user = action.payload.user
             state.successLogin = true
+        },
+        [logoutUser.fulfilled]: (state,action) => {
+            state.user = null
         }
     }
 })

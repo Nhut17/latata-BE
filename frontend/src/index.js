@@ -7,15 +7,18 @@ import './components/GlobalStyles/GlobalStyles.scss'
 import Layout from "./components/Layout";
 import {Provider} from 'react-redux'
 import { PersistGate } from "redux-persist/lib/integration/react";
+// import store from "./store";
 import { persistor, store } from "./store";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
     <Provider store={store} >
-      <PersistGate loading={null} persistor={persistor}>
-        <Layout />
-      </PersistGate>
+    <PersistGate loading={null} persistor={persistor}>
+    <Layout />
+
+    </PersistGate>
     </Provider>
   </React.StrictMode>
 );
