@@ -8,9 +8,11 @@ import 'react-toastify/dist/ReactToastify.css';
 const RegisterForm = () => {
 
     const dispatch = useDispatch()
-    const state = useSelector(state => state.user)
     const navigate = useNavigate()
-    const success = useSelector(state => state.user.successRegister)
+    const {successRegister , message} = useSelector(state => state.user)
+
+    console.log(successRegister)
+    console.log(message)
 
     const {
         register,
@@ -18,22 +20,6 @@ const RegisterForm = () => {
         getValues    ,
         formState: { errors }
      } = useForm()
-
-
-    //  useEffect(() =>{
-    //     if(success)
-    //     {
-    //       const nav = setTimeout(() => {
-    //         navigate('/')
-    //         navigate(0)
-    //       },2000)
-    
-    //       return () => {
-    //         clearTimeout(nav)
-    //       }
-      
-    //     }
-    //   },[success])
 
 
     
@@ -47,6 +33,9 @@ const RegisterForm = () => {
             password: password
        }
         dispatch(registerUser(data)) 
+        if(successRegister)
+        {
+
         toast('Đăng ký thành công', {
             position: "top-right",
             autoClose: 1000,
@@ -62,6 +51,8 @@ const RegisterForm = () => {
             navigate('/')
             navigate(0)
         },2000)
+        }
+
      }
 
   return (
@@ -183,6 +174,9 @@ const RegisterForm = () => {
                         </div>
 
                         <button className='btn-sign-up'>ĐĂNG KÝ</button>
+                        {
+                            !successRegister && message && <span className='err-msg'>Email đã tồn tại</span>
+                        }
 
                    </div>
                    <div className="img">
