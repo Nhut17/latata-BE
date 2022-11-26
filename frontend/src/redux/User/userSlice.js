@@ -3,11 +3,12 @@ import axios from 'axios'
 
 const initialState = {
     user : null,
-    success: false,
+    success: true,
     loading: false,
     successRegister: false,
     successLogin: false,
     userDetail : {},
+    message: null
 
 }
 
@@ -94,6 +95,11 @@ const userSlice = createSlice({
         [registerUser.fulfilled]: (state,action) => {
             state.success = true
             state.successRegister = true
+            state.message = null
+        },
+        [registerUser.rejected]: (state,action) => {
+            state.successRegister = false
+            state.message = action.payload.message
         },
         [loginUser.fulfilled]: (state,action) => {
             state.user = action.payload.user

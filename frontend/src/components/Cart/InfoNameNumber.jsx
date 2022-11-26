@@ -7,13 +7,17 @@ const InfoNameNumber = () => {
     const [changeStyleName,setChangeStyleName] = useState(false)
     const [changeStyleNumber,setChangeStyleNumber] = useState(false)
 
+
+    console.log(changeStyleName)
+
     const handleOnChange = (e) => {
-        setChangeStyleName(true)
      
-        if(e.target.value === '')
+        if(e.target.value)
         {
-            setChangeStyleName(false)   
+            setChangeStyleName(true)   
             
+        } else{
+            setChangeStyleName(false)
         }
     }
     const handleOnChangeNumber = (e) => {
@@ -30,21 +34,22 @@ const InfoNameNumber = () => {
     <div className="name-and-number">
     <div className="name input"  >
         <input type="text" name='name' onChange={handleOnChange}
-            {...register('name')} />
-        <span htmlFor='name' style={changeStyleName ? {transform: 'translate(15px,-15px)',
+            />
+        <span htmlFor='name' style={changeStyleName ? {
+                                                    transform: 'translate(15px,-15px)',
                                                    fontSize: 14,
                                                    backgroundColor:'white',
                                                    padding: '0 3px' } : {}}>Họ và Tên</span>
     </div>
     <div className="number input">
         <input type="text"  name='number' onChange={handleOnChangeNumber}
-            {...register('phone')} />
+             />
         <span htmlFor='number' style={changeStyleNumber ? {transform: 'translate(15px,-15px)',
                                                    fontSize: 14,
                                                    backgroundColor:'white',
                                                    padding: '0 3px' } : {}}>Số điện thoại</span>
     </div>
-</div>
+    </div>
   )
 }
 
