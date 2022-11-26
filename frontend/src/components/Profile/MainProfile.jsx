@@ -9,7 +9,7 @@ const MainProfile = ({data}) => {
     <div className='bg-profile'>
       <div className="container-profile">
         <div className="profile-avatar">
-            <img src={data?.avatar.ulr} alt="" /> <br />
+            <img src={data?.avatar?.url} alt="" /> <br />
             <span>Username</span>
         </div>
         <div className="profile-content">

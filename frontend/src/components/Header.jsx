@@ -1,7 +1,7 @@
 import '../sass/header/header.scss'
 import logo from '../assets/images/logo.png'
 import cart from '../assets/images/cart.png'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate , NavLink} from 'react-router-dom'
 import {categories} from './data'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutUser } from '../redux/User/userSlice'
@@ -26,7 +26,9 @@ const Header = () => {
           {
             user ? 
             <>
-            <p className="success-login"><span>Xin chào {user?.name}</span></p> 
+            <Link to='/profile'>
+              <p className="success-login" ><span>Xin chào {user?.name}</span></p>             
+            </Link>
             <p className="success-login" onClick={handleLogout}><span>Đăng xuất</span></p> 
             </>
             : (

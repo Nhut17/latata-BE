@@ -10,9 +10,9 @@ function ListCate({ listCate }) {
         <div className="admin-cate-list">
             <table>
                 <tr>
-                    <th style={{ width: '5%' }}>ID</th>
-                    <th style={{ width: '40%' }}>Cate cha</th>
-                    <th style={{ width: '50%' }}>Tên</th>
+                    <th style={{ width: '30%' }}>STT</th>
+                    <th style={{ width: '70%' }}>Danh mục</th>
+                    {/* <th style={{ width: '50%' }}>Tên</th> */}
                 </tr>
                 {
                     listCate.map((data, index) => (

@@ -25,15 +25,15 @@ router.route('/password/reset/:token').put(resetPassword)
 
 router.route('/logout').get(logout)
 
-router.route('/profile').get(isAuthenticatedUser,getUserProfile)
-router.route('/password/update').put(isAuthenticatedUser,updatePassword)
-router.route('/profile/update').put(isAuthenticatedUser,updateProfile)
+router.route('/profile').get(getUserProfile)
+router.route('/password/update').put(updatePassword)
+router.route('/profile/update').put(updateProfile)
 
 router.route('/admin/users').get(allUsers)
 
 router.route('/admin/user/:id')
-        .get(isAuthenticatedUser,authorizeRoles('admin'),getUserDetails)
-        .put(isAuthenticatedUser,authorizeRoles('admin'),updateUser)
+        .get(getUserDetails)
+        .put(updateUser)
         .delete(deleteUser)
 
 module.exports = router;

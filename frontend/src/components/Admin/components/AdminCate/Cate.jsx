@@ -14,9 +14,9 @@ function Cate({ data, stt }) {
     }
     return (
         <tr key={data?.id}>
-            <td w>{data?.id}</td>
-            <td>{data?.catParent}</td>
-            <td>{data?.catName}</td>
+            <td w>{stt + 1}</td>
+            <td>{data?.name}</td>
+            {/* <td>{data?.catName}</td> */}
             <td
                 className="delete-cate"
             >
