@@ -163,13 +163,23 @@ const RegisterForm = () => {
                                     })}/>
                                      {
                                         errors.rePasword?.type === 'required' &&  <span className='err-msg'>Mời bạn nhập lại mật khẩu</span>
-                                        }
+                                    }
+                                     {
+                                        errors.rePasword?.type === 'pattern' &&  <span className='err-msg'>{errors.rePasword.message}</span>
+                                    }
                         </div>
                         </div>
 
                         <div className="policy">
-                            <input type="checkbox" />
+                            <input type="checkbox" {
+                                ...register('policy',{
+                                    required: true
+                                })
+                            } />
                             <span>Tôi đồng ý với <u>Dịch vụ chính sách</u> </span>
+                            {
+                                errors.policy?.type === 'required' &&  <span className='err-msg' style={{paddingLeft: 0}}>Hãy đồng ý với chính sách của chúng tôi</span>
+                                }
                         </div>
 
                         <button className='btn-sign-up'>ĐĂNG KÝ</button>
