@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+import api from '../../api/api'
 
 const initialState = {
     user : null,
@@ -22,7 +23,7 @@ export const registerUser = createAsyncThunk('user/register',
                         'Content-Type': 'application/json'
                     }
                 }
-                const res = await axios.post('http://localhost:4000/api/v1/register',data,config)
+                const res = await api.post('/api/v1/register',data,config)
 
                 console.log(res.data)
                 return res.data
@@ -40,11 +41,13 @@ export const loginUser = createAsyncThunk('user/login',
                 const headers = {
                     'Content-Type': 'application/json'
                 }
-                const res = await axios.post('http://localhost:4000/api/v1/login',data,{
+                const res = await api.post('/api/v1/login',data,{
                     headers: headers
                 })
                 
                 const token = res.data.token
+
+                api.defaults.headers.common["Authorization"] = token
                 localStorage.setItem('token', token)
 
 
@@ -60,7 +63,7 @@ export const logoutUser = createAsyncThunk('user/logout',
         async(data,thunkAPI) => {
             try{
         
-                const res = await axios.get('http://localhost:4000/api/v1/logout')
+                const res = await api.get('/api/v1/logout')
 
                 return res.data
             }
@@ -74,7 +77,7 @@ export const logoutUser = createAsyncThunk('user/logout',
 export const getUserDetail = createAsyncThunk('user/userDetail',
         async(id, thunkAPI) => {
             try {
-                const res = await axios.get(`http://localhost:4000/api/v1/user/${id}`)
+                const res = await api.get(`/api/v1/user/${id}`)
 
                 return res.data
             } catch (error) {
@@ -93,7 +96,6 @@ const userSlice = createSlice({
     },
     extraReducers: {
         [registerUser.fulfilled]: (state,action) => {
-            state.success = true
             state.successRegister = true
             state.message = null
         },

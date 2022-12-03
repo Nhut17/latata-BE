@@ -26,6 +26,9 @@ exports.getProducts = catchAsyncError( async (req,res,next) => {
 
     const productCount = await Product.countDocuments()
 
+    // const token = req.headers.authentication
+    // console.log(token)
+
     const apiFeatures = new APIFeatures(Product.find(), req.query )
                             .search()
                             .filter()

@@ -25,17 +25,11 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
         phone,
         password,
         avatar: {
-            public_id: 'jujutsu-kaisen-0-1024x592',
             url: 'https://cdn.oneesports.vn/cdn-data/sites/4/2022/02/jujutsu-kaisen-0-1024x592.jpg'
         }
     })
 
-    // const token = user.getJwtToken()
-
-    // res.status(201).json({
-    //     success: true,
-    //     token
-    // })
+   
     
     sendToken(user, 200, res);
 
