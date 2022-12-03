@@ -10,11 +10,30 @@ const sendToken = async (user,statusCode,res) => {
     },
     process.env.JWT_SECRET,
     {
-        expiresIn: process.env.JWT_EXPIRES_TIME
+        expiresIn: "7d"
     }
     )
 
-    console.log(token)
+    // create refresh token
+    const refreshToken = await jwt.sign({
+        email: user.email,
+        username: user.username
+    },
+    process.env.JWT_REFRESH,
+    {
+        expiresIn: "2d"
+    }
+    )
+
+
+    // res refresh token to cookie
+    res.cookie('refresh_token', refreshToken,{
+        httpOnly: true,
+        secure: false,
+        path:'/',
+        sameSite: "strict",
+    })
+
 
     res.status(statusCode).json({
         success: true,

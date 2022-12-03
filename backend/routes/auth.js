@@ -12,6 +12,7 @@ const { registerUser,
     allUsers,logout,
     getUserDetails, 
     updateUser, 
+    refreshToken,
     deleteUser } = require('../controllers/authController')
 
 
@@ -35,5 +36,7 @@ router.route('/admin/user/:id')
         .get(isAuthenticatedUser,authorizeRoles('admin'),getUserDetails)
         .put(isAuthenticatedUser,authorizeRoles('admin'),updateUser)
         .delete(deleteUser)
+
+router.route('/refresh-token').post(refreshToken)
 
 module.exports = router;

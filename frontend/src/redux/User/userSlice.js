@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import api from '../../api/api'
+import { setAuthHeader } from '../../api/setHeader'
 
 const initialState = {
     user : null,
@@ -45,11 +46,9 @@ export const loginUser = createAsyncThunk('user/login',
                     headers: headers
                 })
                 
-                const token = res.data.token
-
-                api.defaults.headers.common["Authorization"] = token
-                localStorage.setItem('token', token)
-
+                setAuthHeader(res.data.token)
+                console.log(res.data.token)
+                
 
                 return res.data
             }
@@ -114,7 +113,9 @@ const userSlice = createSlice({
         [getUserDetail.fulfilled] : (state, action) => {
             state.userDetail = action.payload
         },
-       
+       [logoutUser.fulfilled]: (state,action) => {
+            state.user = null
+       }
     }
 })
 export const { logout } = userSlice.actions

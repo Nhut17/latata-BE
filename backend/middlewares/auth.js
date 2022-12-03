@@ -11,7 +11,7 @@ exports.isAuthenticatedUser = catchAsyncError( async ( req, res, next) => {
 
 
     const token = req.headers.authorization
-
+    
     if(!token){
         return res.status(403).json({
             success: false,
@@ -19,12 +19,14 @@ exports.isAuthenticatedUser = catchAsyncError( async ( req, res, next) => {
         })
     }
 
-
-    const accessToken = token.split(" ")[1]
-    
-    const decoded = jwt.verify(accessToken,process.env.JWT_SECRET)
+    const accessToken = token;
+  
     
 
+    const newt = accessToken.split(" ")[1]
+  
+    const decoded = jwt.verify(accessToken.includes('Bearer') ? newt : accessToken ,process.env.JWT_SECRET)
+    
 
     req.user = await User.find({email: decoded.email})  
   
