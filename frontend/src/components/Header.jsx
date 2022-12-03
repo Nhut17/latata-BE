@@ -8,7 +8,7 @@ import { logoutUser } from '../redux/User/userSlice'
 
 const Header = () => {
 
-  const user = useSelector(state => state.user.user)
+  const {currentUser} = useSelector(state => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -24,9 +24,9 @@ const Header = () => {
       <div className="container">
         <div className="top-header">
           {
-            user ? 
+            currentUser ? 
             <>
-            <p className="success-login"><span>Xin chào {user?.name}</span></p> 
+            <p className="success-login"><span>Xin chào {currentUser?.user?.name}</span></p> 
             <p className="success-login" onClick={handleLogout}><span>Đăng xuất</span></p> 
             </>
             : (

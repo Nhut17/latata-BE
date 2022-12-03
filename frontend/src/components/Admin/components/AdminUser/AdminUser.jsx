@@ -6,11 +6,13 @@ import './AdminUser.scss'
 import { getAllUser } from '../../../../redux/Admin/adminSlice';
 
 
+
 function AdminUser() {
     const dispatch = useDispatch()
     const { listUser } = useSelector(state => state.admin)
+    const { currentUser } = useSelector(state => state.user)
 
-  
+   
 
     useEffect(() => {
         dispatch(getAllUser())

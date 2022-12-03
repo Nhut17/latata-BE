@@ -21,7 +21,7 @@ function Sidebar(props) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
-    const {user} = useSelector(state => state.user)
+    const {currentUser} = useSelector(state => state.user)
 
     const handleLogout = () => {
         dispatch(logoutUser())
@@ -30,7 +30,7 @@ function Sidebar(props) {
     }
 
     useEffect(() => {
-      if(!user){
+      if(!currentUser){
         navigate('/')
       }
     },[])

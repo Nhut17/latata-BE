@@ -17,46 +17,69 @@ import bannerGalaxy from '../assets/images/home/banner_galaxy.png'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
+import { getProduct } from '../redux/Product/productSlice'
+import jwt_decode from 'jwt-decode'
+import { logoutUser } from '../redux/User/userSlice'
 
 const Home = () => {
   const navigate = useNavigate()
   const success = useSelector(state => state.user.successLogin)
-  const user = useSelector(state => state.user.user)
+  const { currentUser} = useSelector(state => state.user)
 
-  console.log(user)
+  const dispatch = useDispatch()
 
-  useEffect(() =>{
-    if(success)
-    {
-        toast(`Xin chào ${user?.name}`, {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          });
-    }
-  },[success])
+  // useEffect(() =>{
+  //   if(success)
+  //   {
+  //       toast(`Xin chào ${user?.name}`, {
+  //         position: "top-right",
+  //         autoClose: 1000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: false,
+  //         draggable: true,
+  //         progress: undefined,
+  //         theme: "light",
+  //         });
+  //   }
+  // },[success])
 
   useEffect(() => {
-    if(user === null){
+    try{
+
+      const date = new Date();
+      const decodeToken = jwt_decode(currentUser?.token)
+      if(decodeToken.exp < date.getTime() / 1000 ){
+          dispatch(logoutUser())
+          navigate(0)
+      }
+    }
+    catch(e){
+
+    }
+  },[])
+  
+
+  useEffect(() => {
+    if(!currentUser){
       navigate('/')
     }
    
-    if(user?.role === 'admin'){
+    if(currentUser?.user?.role === 'admin'){
+      console.log('home redirect to admin')
         navigate('/admin')
       }
-    if(user?.role === 'user'){
+    if(currentUser?.user?.role === 'user'){
       navigate('/')
     }
 
   },[])
+
+  useEffect(() => {
+    dispatch(getProduct())
+},[])
 
   return (
     <div className="home">

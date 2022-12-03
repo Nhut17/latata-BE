@@ -9,11 +9,7 @@ import ListProduct from '../ListProduct'
 const ListWatchesSeries = () => {
 
     const listProduct = useSelector(state => state.product.listProduct)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getProduct())
-    },[])
+    
 
   return (
     <div className='list-watches'>

@@ -8,24 +8,25 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
 
   const navigate = useNavigate()
-    const { user } = useSelector(state => state.user)
+    const { currentUser } = useSelector(state => state.user)
 
+    // console.log(currentUser?.user?.role)
     
 
     useEffect(() => {
 
-      console.log(user?.role)
 
-        if(user?.role == "admin")
+        if(currentUser?.user?.role === "admin")
           {
+            console.log('login redirect to admin')
                 navigate('/admin')
           } 
-        if(user?.role == "user"){
+        if(currentUser?.user?.role === "user"){
                 navigate('/')
           }
             
         
-    },[user])
+    },[currentUser])
   return (
     <div className='bg-login'>
 

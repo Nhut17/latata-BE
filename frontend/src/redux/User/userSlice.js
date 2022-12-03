@@ -1,16 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import api from '../../api/api'
-import { setAuthHeader } from '../../api/setHeader'
+import { clearAuthHeader, setAuthHeader } from '../../api/setHeader'
 
 const initialState = {
-    user : null,
     success: true,
     loading: false,
     successRegister: false,
     successLogin: false,
     userDetail : {},
-    message: null
+    message: null,
+    currentUser: null,
 
 }
 
@@ -47,7 +47,7 @@ export const loginUser = createAsyncThunk('user/login',
                 })
                 
                 setAuthHeader(res.data.token)
-                console.log(res.data.token)
+
                 
 
                 return res.data
@@ -63,7 +63,7 @@ export const logoutUser = createAsyncThunk('user/logout',
             try{
         
                 const res = await api.get('/api/v1/logout')
-
+          
                 return res.data
             }
             catch(e){
@@ -90,7 +90,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         logout: (state,action) => {
-            state.user = null
+           
         }
     },
     extraReducers: {
@@ -103,18 +103,14 @@ const userSlice = createSlice({
             state.message = action.payload.message
         },
         [loginUser.fulfilled]: (state,action) => {
-            state.user = action.payload.user
+            state.currentUser = action.payload
             state.successLogin = true
-        },
-
-        [logoutUser.fulfilled]: (state,action) => {
-            state.user = null
         },
         [getUserDetail.fulfilled] : (state, action) => {
             state.userDetail = action.payload
         },
        [logoutUser.fulfilled]: (state,action) => {
-            state.user = null
+            state.currentUser = null
        }
     }
 })
