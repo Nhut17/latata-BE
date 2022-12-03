@@ -7,13 +7,15 @@ import { getUserDetail } from '../../redux/User/userSlice';
 import { useEffect } from 'react';
 import MainProfile from './MainProfile';
 const Profile = () => {
-  const { id } = useParams()
+  // const { id } = useParams()
+
   const dispatch = useDispatch()
-  const data = useSelector(state => state.user.userDetail)
+  const data = useSelector(state => state.user)
 
   useEffect(()=> {
-    dispatch(getUserDetail(id));
+    dispatch(getUserDetail(data.user._id));
   },[])
+  console.log(data.user._id)
   return (
     <MainProfile data={data}/>
   )

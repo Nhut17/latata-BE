@@ -3,12 +3,11 @@ import axios from 'axios'
 
 const initialState = {
     user : null,
-    success: true,
+    success: false,
     loading: false,
     successRegister: false,
     successLogin: false,
     userDetail : {},
-    message: null
 
 }
 
@@ -75,7 +74,6 @@ export const getUserDetail = createAsyncThunk('user/userDetail',
         async(id, thunkAPI) => {
             try {
                 const res = await axios.get(`http://localhost:4000/api/v1/admin/user/${id}`)
-
                 return res.data.user
             } catch (error) {
                 return thunkAPI.rejectWithValue('can not get user detail')
@@ -95,11 +93,6 @@ const userSlice = createSlice({
         [registerUser.fulfilled]: (state,action) => {
             state.success = true
             state.successRegister = true
-            state.message = null
-        },
-        [registerUser.rejected]: (state,action) => {
-            state.successRegister = false
-            state.message = action.payload.message
         },
         [loginUser.fulfilled]: (state,action) => {
             state.user = action.payload.user
@@ -111,6 +104,7 @@ const userSlice = createSlice({
         },
         [getUserDetail.fulfilled] : (state, action) => {
             state.userDetail = action.payload
+
         },
        
     }

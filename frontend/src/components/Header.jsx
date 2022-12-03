@@ -26,10 +26,26 @@ const Header = () => {
           {
             user ? 
             <>
-            <Link to='/profile'>
-              <p className="success-login" ><span>Xin chào {user?.name}</span></p>             
+            <Link>
+            <div className="profile">
+              <div className="login-complete">
+                <div className="avatar">
+                    <img src={user?.avatar.url} alt="" />
+
+                  </div>
+                  <p className="success-login" ><span>{user?.name}</span></p> 
+                </div>    
+
+                <div className="dropdown-profile">
+                  <ul>
+                    <Link to='/profile'><li>Thông tin cá nhân</li></Link>
+                    <Link to='/myOrder'><li>Lịch sử mua hàng</li></Link>           
+                    <li onClick={handleLogout}>Đăng xuất</li>
+                  </ul>  
+                </div>  
+            </div>      
             </Link>
-            <p className="success-login" onClick={handleLogout}><span>Đăng xuất</span></p> 
+            {/* <p className="success-login" onClick={handleLogout}><span>Đăng xuất</span></p>  */}
             </>
             : (
               <p

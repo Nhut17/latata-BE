@@ -9,8 +9,8 @@ const MainProfile = ({data}) => {
     <div className='bg-profile'>
       <div className="container-profile">
         <div className="profile-avatar">
-            <img src={data?.avatar?.url} alt="" /> <br />
-            <span>Username</span>
+            <img src={data?.user.avatar.url} alt="" /> <br />
+            <span>{data?.user.name}</span>
         </div>
         <div className="profile-content">
             <div className="profile-title">
@@ -20,17 +20,17 @@ const MainProfile = ({data}) => {
             <div className="profile-detail">
                 <form action="">
                     <span>Tên đăng nhâp</span>
-                    <input {...register("username")} value={data?.name} disabled />
+                    <input {...register("username")} value={data?.user.name} disabled />
 
 
                     {/* <span>Tên</span>
                     <input {...register("name")}/> */}
 
                     <span>Email</span>
-                    <input {...register("email")} value={data?.email}/>
+                    <input {...register("email")} value={data?.user.email}/>
 
                     <span>Số điện thoại</span>
-                    <input {...register("phone")} value={data?.phone}/>
+                    <input {...register("phone")} value={data?.user.phone}/>
 
                    
                     {/* <input type='file' {...register("image")} value={data.email}/> */}
