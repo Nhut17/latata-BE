@@ -48,8 +48,6 @@ export const loginUser = createAsyncThunk('user/login',
                 
                 setAuthHeader(res.data.token)
 
-                
-
                 return res.data
             }
             catch(e){

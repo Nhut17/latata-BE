@@ -1,0 +1,1 @@
+const subCategory = require('../models/')
