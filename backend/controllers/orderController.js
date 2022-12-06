@@ -10,29 +10,34 @@ const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 exports.newOrder = catchAsyncErrors( async(req, res, next) => {
     const {
         orderItems,
+        name,
         address,
-        quantity,
-        shippingFee,
+        phoneNo,
         totalPrice,
         status,
         payment,
     } = req.body;
 
 
+    const quantity = orderItems.reduce((acc,val) => { return acc + val.quantity },0)
+    const shippingFee = totalPrice >= 5000000 ? 0 : 30000
 
     const order = await Order.create({
         orderItems,
+        name,
         address,
+        phoneNo,
         quantity,
         shippingFee,
         totalPrice,
         status,
         payment, 
-        user: req.user._id
+        user: req.user[0]._id
     })
 
 
-    res.status(200).json({
+
+    res.status(201).json({
         success: true,
         order
     })
@@ -42,7 +47,8 @@ exports.newOrder = catchAsyncErrors( async(req, res, next) => {
 
 // get single order => api/v1/order/:id
 exports.getSingleOrder = catchAsyncErrors( async (req, res, next) => {
-    const order = await Order.findById(req.params.id).populate('user', 'name email')
+
+    const order = await Order.findById(req.params.id)
 
 
     if (!order)
@@ -83,6 +89,22 @@ exports.allOrders = catchAsyncErrors( async (req, res, next) => {
 })
 
 
+// cancel orders - ADMIN  => api/v1/admin/order/cancel/:id
+exports.cancelOrder = catchAsyncErrors( async (req, res, next) => {
+    const order = await Order.findById(req.params.id)
+
+    if(order.status === 'PENDING')
+    {
+       order.status =  'CANCELLED'
+    }
+
+    await order.save()
+
+    res.status(200).json({
+        success:true
+    })
+})
+
 // Update / Process orders - ADMIN  => api/v1/admin/order/:id
 exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
     const order = await Order.findById(req.params.id)
@@ -92,23 +114,45 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
         return next(new ErrorHandler('You have already delivered this order',400))
     }
 
-    order.orderItems.forEach( async item => {
-        await updateStock(item.product,item.quantity)
-    })
+    if(order.status === 'CANCELLED'){
+        return next(new ErrorHandler('The order was cancelled',400))
+    }
 
-    order.orderStatus = req.body.status,
-    order.deliveredAt = Date.now()
+    if(order.status === 'DELIVERING'){
+        order.orderItems.forEach( async item => {
+            await updateStock(item.productId,item.quantity)
+        })
 
+        const date = new Date()
+        // const uct_offset = date.getTimezoneOffset();
+        // date.setMinutes(date.getMinutes() + uct_offset);
+
+        // const vietnam_offset = 7*60
+        // date.setMinutes(date.getMinutes() + vietnam_offset)
+
+        // console.log(o)
+     
+        order.deliveredAt = date.getTime()
+    }
+   
+
+    order.status = req.body.status,
+    
     await order.save()
 
     res.status(200).json({
-        success:true
+        success:true,
+        order
     })
 })
 
 async function updateStock(id,quantity) {
     const product = await Product.findById(id);
 
+    if(product.stock <= 0)
+    {
+        return next(new ErrorHandler('Product is out of stock',400))
+    }
     product.stock = product.stock - quantity ;
 
     await product.save({validateBeforeSave: false})
