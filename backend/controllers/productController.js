@@ -8,9 +8,17 @@ const APIFeatures = require('../utils/apiFeatures')
 //create new product => /api/v1/admin/product/new
 exports.newProduct = catchAsyncError( async ( req, res, next ) => {
     
-    // req.body.user = req.user._id    
+    // req.body.user = req.user._id   
+    const pro = req.body
+    const { price,promotion} = req.body
     
-    const product =  await Product.create(req.body)
+    const priceDeal = promotion > 0 ? price - (price* (promotion/100)) : price
+    console.log(pro)
+    
+    const product =  await Product.create({
+        ...pro,
+        priceDeal
+    })
 
 
     res.status(201).json({

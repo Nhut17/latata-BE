@@ -3,23 +3,32 @@ const Product = require('../models/products');
 
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
+const Cart = require('../models/cart');
 
 
 /// Create a new order => api/v1/order/new
 
 exports.newOrder = catchAsyncErrors( async(req, res, next) => {
+
+    const userId = req.user[0]._id
+
+    const cart = await Cart.findOne({userId: userId})
+
+    const orderItems = cart.products
+    const totalPrice = cart.totalPrice
+
     const {
-        orderItems,
         name,
         address,
         phoneNo,
-        totalPrice,
+        note,
         status,
         payment,
     } = req.body;
 
 
     const quantity = orderItems.reduce((acc,val) => { return acc + val.quantity },0)
+
     const shippingFee = totalPrice >= 5000000 ? 0 : 30000
 
     const order = await Order.create({
@@ -27,16 +36,17 @@ exports.newOrder = catchAsyncErrors( async(req, res, next) => {
         name,
         address,
         phoneNo,
+        note,
         quantity,
         shippingFee,
         totalPrice,
         status,
         payment, 
-        user: req.user[0]._id
+        user: userId
     })
 
 
-
+    await cart.remove()
     res.status(201).json({
         success: true,
         order

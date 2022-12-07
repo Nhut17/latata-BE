@@ -28,6 +28,9 @@ const orderSchema = mongoose.Schema({
     phoneNo: {
         type: String,
     },
+    note: {
+        type: String
+    },
     quantity: { type: Number  },
     shippingFee: {
         type: Number,

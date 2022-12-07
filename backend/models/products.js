@@ -40,6 +40,10 @@ const productSchema = new mongoose.Schema({
         required: [true, ' Please select category for this product'],
         ref: 'Category'
     },
+    priceDeal: {
+        type: Number,
+        default: 0.0
+    },
     stock: {
         type: Number,
         required: [true, ' Please enter product stock '],

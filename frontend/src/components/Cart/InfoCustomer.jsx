@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
-import AddressSelect from './AddressSelect'
-import InfoGender from './InfoGender'
-import InfoNameNumber from './InfoNameNumber'
 
-const InfoCustomer = () => {
+
+const InfoCustomer = ({totalPrice}) => {
+
+//   const {
+
+//   } = useForm
 
   const [changeStyleName,setChangeStyleName] = useState(false)
   const [changeStyleNumber,setChangeStyleNumber] = useState(false)
 
 
-  console.log(changeStyleName)
+ 
 
   const handleOnChange = (e) => {
    
@@ -66,6 +68,24 @@ const InfoCustomer = () => {
         <p>Yêu cầu khác</p>
         <textarea name="" id="" cols="30" rows="3"></textarea>
         </div>
+
+        <div className='voucher'>
+        <i class="fa-solid fa-tag ic"></i>
+        <div className="input">
+         <input type="text" placeholder='Sử dụng mã giảm giá' />
+        </div>
+
+    </div>
+    <div className='final-total'>
+    <div className="total">
+        <span className="tt-price">Tổng tiền:</span>
+        <span className="price">{totalPrice.toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}<span className='currency'>&#8363;</span></span>
+    </div>
+
+    <button className='order' type='submit'>ĐẶT HÀNG</button>
+
+    </div>
         
         </form>
     </div>

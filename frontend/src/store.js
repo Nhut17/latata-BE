@@ -31,7 +31,7 @@ const rootReducer = combineReducers({
     province: provinceVNSlice,
     cart: cartSlice,
     admin: adminSlice,
-
+  
   })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
