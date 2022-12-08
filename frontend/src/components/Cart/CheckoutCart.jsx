@@ -24,6 +24,7 @@ const CheckoutCart = () => {
   return (
     <React.Fragment>
       {
+        listCartUser?.products &&
         listCartUser?.products.length > 0 ? <ActiveCart listCartUser={listCartUser} /> : <EmptyCart />
       }
         

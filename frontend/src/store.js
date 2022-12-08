@@ -17,6 +17,7 @@ import {
   import storage from 'redux-persist/lib/storage'
 import cartSlice from './redux/Cart/cartSlice'
 import adminSlice from './redux/Admin/adminSlice'
+import orderSlice from './redux/Order/orderSlice'
 
 
   const persistConfig = {
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
     province: provinceVNSlice,
     cart: cartSlice,
     admin: adminSlice,
+    order: orderSlice,
   
   })
 
