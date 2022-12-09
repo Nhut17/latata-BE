@@ -12,6 +12,8 @@ exports.isAuthenticatedUser = catchAsyncError( async ( req, res, next) => {
 
     const token = req.headers.authorization
     
+    console.log(req.headers)
+    
     if(!token){
         return res.status(403).json({
             success: false,
@@ -42,10 +44,12 @@ exports.isAuthenticatedUser = catchAsyncError( async ( req, res, next) => {
 // Handling users roles
 exports.authorizeRoles = (...roles) => {
 
-
+ 
     return (req,res,next) => {
+        console.log(req.user[0])
         if(!req.user[0].role.includes(roles))
         {   
+            console.log("User")
             return next(
                 new ErrorHandler(`Role (${req.user.role}) is not allowed to access this resource`,403)
                 )

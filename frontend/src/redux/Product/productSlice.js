@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import api from '../../api/api'
+import { getCartUser } from "../Cart/cartSlice";
 
 
 const initialState = {
@@ -16,6 +17,7 @@ export const getProduct = createAsyncThunk('product/getProduct' ,
             try{
                 const res = await api.get('/api/v1/products') 
 
+                // thunkAPI.dispatch(getCartUser())
                 return res.data?.products
             }
             catch (e){

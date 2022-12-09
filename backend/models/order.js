@@ -6,30 +6,48 @@ const { ObjectId } = mongoose.Schema
 
 const orderSchema = mongoose.Schema({
     orderItems: [{
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Cart'
+        productId: {
+            type: ObjectId
+        },
+        name: {
+            type: String
+        },
+        price: {
+            type: Number
+        },
+        image: {
+            type: String
+        },
+        quantity: {
+            type: Number
+        },  
+        
     }],
+    name: String,
     address: String,
+    phoneNo: {
+        type: String,
+    },
+    note: {
+        type: String
+    },
     quantity: { type: Number  },
     shippingFee: {
         type: Number,
-        required:true,
         default: 0.0
     },
     totalPrice: {
         type: Number,
-        required:true,
         default: 0.0
     },
     status: {
         type: String,
-        default: 'PROCESSING',
+        default: 'PENDING',
         enum: [
-          'PROCESSING',
+          'PENDING',
           'DELIVERING',
           'DONE',
-          'CANCEL',
+          'CANCELLED',
         ],
       },
     payment: {
@@ -49,14 +67,11 @@ const orderSchema = mongoose.Schema({
     },
     user:{
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref: 'User'
-    }
-
-
+    },
+    
 })
 
-const order = mongoose.model('Order',orderSchema)
+module.exports = mongoose.model('Order',orderSchema)
 
 
-module.exports = { order }

@@ -114,7 +114,22 @@ header{
             }
 
             .cart{
+                position: relative;
                 margin-right: 30px;
+                span{
+                    position: absolute;
+                    width: 28px;
+                    height: 28px;
+                    border: 1px solid black;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: white;
+                    color: black;
+                    top: -13px;
+                    right: -12px;
+                }
             }
         }
 

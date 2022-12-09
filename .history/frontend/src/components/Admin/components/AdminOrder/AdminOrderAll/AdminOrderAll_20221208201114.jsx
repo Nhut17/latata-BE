@@ -1,0 +1,20 @@
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
+// import { getAllOrder } from "../../../../../actions/OrderAction";
+
+
+import ListOrder from "../AdminOrderUI/ListOrder";
+
+function AdminOrderAll(props) {
+
+
+  return (
+    <div>
+
+      <ListOrder />>
+    </div>
+  );
+}
+
+export default AdminOrderAll;

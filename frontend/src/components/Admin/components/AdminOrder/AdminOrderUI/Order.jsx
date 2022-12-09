@@ -1,140 +1,92 @@
-import React from "react";
+import React, {useState} from "react";
+import ReactDOM from 'react-dom';
 import { useDispatch } from "react-redux";
-// import {
-//   createOrderGhn,
-//   PrintOrderGhn,
-// } from "../../../../../actions/GhnAction";
-// import { deleteOrder, getAllOrder, ShippingOrder } from "../../../../../actions/OrderAction";
+import Modal from 'react-modal';
+import ModalCart from "./ModalCart";
 
 
-function Order(props) {
-  // const { order } = props;
-  // const dispatch = useDispatch();
 
-  // const {
-  //   orderItems,
-  //   totalPrice,
-  //   paymentMethod,
-  //   cancelOrder,
-  //   shippingAddress,
-  //   status,
-  //   paymentResult,
-  // } = order;
+function Order({data}) {
 
-  // const handleShippingOrder = async (order) => {
-  //   await dispatch(createOrderGhn(order._id)); // create order in giaohangnhanh
-  //   await dispatch(ShippingOrder(order._id));
+  const handleConfirm = () => {
+    console.log('data:', data)
+  
+  }
 
-  //   dispatch(getAllOrder());
-  // };
+  const handleCancel = () =>{
+    
+  }
+  const handleClickOrderDetail = () => {
+    setShowOrderDetail(true)
+  }
 
-  // const handlePrintOrder = (order) => {
-  //   dispatch(PrintOrderGhn(order._id));
-  // };
+  const [showOrderDetail, setShowOrderDetail] = useState(false)
 
-  // const handleDeleteOrder = async (order) => {
-  //   await dispatch(deleteOrder(order._id))
-  //   dispatch(getAllOrder())
-  // }
-  let status  = 'shipping'
-  let paymentResult = true
-  let paymentMethod = 'payOnline'
-  let cancelOrder = false
+
+  
+
+  
+
+  // Modal.setAppElement('#root');
 
   return (
     
-      <div className="order-list">
-        <div className="order-list-items">
-          {/* {orderItems.map((item) => ( */}
-            <div className="order-items-item">
-              <span className="img">
-                <img src='https://res.cloudinary.com/dx8xengfd/image/upload/v1667458148/avatars/iPhone_14_Pro_Max-Pur1_sfdzzu.jpg' alt="image"></img>
-              </span>
-              <span className="qty">Số lượng: 10</span>
-              <span className="name">Iphone 14 promax</span>
-              <span className="price">100000</span>
-            </div>
-          {/* ))} */}
-        </div>
-        <div className="toatalPrice">
-          <span>Tổng tiền: 100000</span>
-        </div>
-        <div className="order-info">
-          <div className="order-info-address">
-            <b>Địa chỉ : </b> {"  "}
-            {'bichtram'},{""}
-            {'Long An'}, {'Cần Giuộc'},{"  "}
-            {'Truong Binh'}, {'300'},{" "}
-            {'0909xxxx'}
-          </div>
-        </div>
+    <React.Fragment>
 
-        {paymentResult ? (
-          <div className="order-payment-check">
-            Paid : 10/10/2022
-          </div>
-        ) : (
-          ""
-        )}
+    <tr>
+    <td className="id-order">#{data._id.slice(0,5)}</td>
+    <td className="product-name" >{data.name}</td>
+    <td className="quantity">{data.quantity}</td>
+    <td className="total-price"><span className="price-old">{data.totalPrice?.toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+      <span className='currency'>&#8363;</span></span></td>
+    <td className="date-buy">{data.createAt}</td>
+ 
+    {
+      data.status === 'PENDING' &&
+      <td><span className="status pending">{data.status}</span></td>
+    }
+    {
+      data.status === 'DONE' &&
+      <td><span className="status done">{data.status}</span></td>
+    }
+    {
+      data.status === 'CANCELED' &&
+      <td><span className="status cancel">{data.status}</span></td>
+    }
+    
+    <td className="btn-group"
+      style={{
 
-        <div className="order-bottom">
-          {status === "shipping" ? (
-            <div className="order-status">
-              <span>
-                Đã xác nhận{" "}
-                {paymentMethod === "payOnline" ? (
-                  <span>& Đã thanh toán</span>
-                ) : (
-                  ""
-                )}
-              </span>
-            </div>
-          ) : (
-            ""
-          )}
+      }} >
+      <button className={data.status === 'PENDING' ? "confirm btn" : "confirm btn disable"}
+        onClick={handleConfirm} >
+        {/* <i class="fas fa-check"></i> */}
+        <span className="action done">Xác nhận đơn</span>
+      </button>
+      <button className={data.status === 'PENDING' ? "cancel btn" : "cancel disable btn"} onClick={handleCancel}>
+        {/* <i class="fas fa-window-close"></i> */}
+        <span className="action cancel"> Hủy đơn</span>
+      </button>
 
-          <div className="order-button">
-            {status === "pendding" && cancelOrder === false ? (
-              <>
-                <button
-                  className="shipping"
-                  
-                >
-                  Xác nhận đơn hàng
-                </button>
+      <button className="detail btn" onClick={handleClickOrderDetail}
+      >
+        {/* <i class="fas fa-eye"> </i> */}
+        
+        <span className="action pending">Xem chi tiết</span>
+        
+        
+      </button>
+    </td>
+  </tr>
 
-              </>
-            ) : (''
-            )}
+    <ModalCart showOrderDetail={showOrderDetail} setShowOrderDetail={setShowOrderDetail} data={data} />
 
-            {
-              cancelOrder === true ? (<>
-              <span> Khách yêu cầu hủy đơn </span>
-                <button
-                  className="shipping"
-                  
-                >
-                  Hủy đơn
-                </button>
-
-              </>) : ''
-            }
-
-            {/* {status === "shipping" ? (
-              <button
-                className="shipping"
-                onClick={() => handlePrintOrder(order)}
-              >
-                In đơn hàng
-              </button>
-            ) : (
-              ""
-            )} */}
-          </div>
-        </div>
-      </div>
+    </React.Fragment>
     
   );
+
 }
+
 
 export default Order;

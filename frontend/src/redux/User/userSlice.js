@@ -14,14 +14,17 @@ const initialState = {
     userDetail : {},
     message: null,
     currentUser: null,
-
-
+    accessToken: null,
 }
+
+
 
 
 // Register 
 export const registerUser = createAsyncThunk('user/register', 
         async(data,thunkAPI) => {
+
+            
             try{
                 const config = {
                     headers: {
@@ -29,7 +32,7 @@ export const registerUser = createAsyncThunk('user/register',
                     }
                 }
                 const res = await api.post('/api/v1/register',data,config)
-
+                
                 console.log(res.data)
                 return res.data
             }
@@ -43,16 +46,11 @@ export const loginUser = createAsyncThunk('user/login',
         async(data,thunkAPI) => {
             try{
                 
-                const headers = {
-                    'Content-Type': 'application/json'
-                }
-                const res = await api.post('/api/v1/login',data,{
-                    headers: headers
-                })
-                
+               
+                const res = await api.post('/api/v1/login',data)
                 setAuthHeader(res.data.token)
-
-                
+  
+                localStorage.setItem('token', res.data.token)
 
                 return res.data
             }
@@ -82,7 +80,9 @@ export const getUserDetail = createAsyncThunk('user/userDetail',
             try {
 
                 const res = await axios.get(`http://localhost:4000/api/v1/admin/user/${id}`)
+                
                 return res.data.user
+                
 
                 // const res = await api.get(`/api/v1/user/${id}`)
 
@@ -109,9 +109,11 @@ const userSlice = createSlice({
         [loginUser.fulfilled]: (state,action) => {
             state.currentUser = action.payload
             state.successLogin = true
+            state.accessToken = action.payload.token
         },
         [getUserDetail.fulfilled] : (state, action) => {
-            state.userDetail = action.payload
+            state.currentUser = action.payload
+            state.accessToken = action.payload.token
 
         },
        [logoutUser.fulfilled]: (state,action) => {

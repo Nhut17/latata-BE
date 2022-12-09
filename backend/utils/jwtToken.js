@@ -14,25 +14,25 @@ const sendToken = async (user,statusCode,res) => {
     }
     )
 
-    // create refresh token
-    const refreshToken = await jwt.sign({
-        email: user.email,
-        username: user.username
-    },
-    process.env.JWT_REFRESH,
-    {
-        expiresIn: "2d"
-    }
-    )
+    // // create refresh token
+    // const refreshToken = await jwt.sign({
+    //     email: user.email,
+    //     username: user.username
+    // },
+    // process.env.JWT_REFRESH,
+    // {
+    //     expiresIn: "2d"
+    // }
+    // )
 
 
-    // res refresh token to cookie
-    res.cookie('refresh_token', refreshToken,{
-        httpOnly: true,
-        secure: false,
-        path:'/',
-        sameSite: "strict",
-    })
+    // // res refresh token to cookie
+    // res.cookie('refresh_token', refreshToken,{
+    //     httpOnly: true,
+    //     secure: false,
+    //     path:'/',
+    //     sameSite: "strict",
+    // })
 
 
     res.status(statusCode).json({

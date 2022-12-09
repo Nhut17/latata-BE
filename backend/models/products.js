@@ -29,6 +29,7 @@ const productSchema = new mongoose.Schema({
     },
     images:[
         {
+            url_id: String,
             url: {
                 type: String,
                 required: true
@@ -39,6 +40,10 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: [true, ' Please select category for this product'],
         ref: 'Category'
+    },
+    priceDeal: {
+        type: Number,
+        default: 0.0
     },
     stock: {
         type: Number,
@@ -80,7 +85,8 @@ const productSchema = new mongoose.Schema({
     createdAt: {
         type:Date,
         default: Date.now
-    }
+    },
+    
 
 
 })

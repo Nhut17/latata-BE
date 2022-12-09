@@ -9,8 +9,11 @@ import { logoutUser } from '../redux/User/userSlice'
 const Header = () => {
 
   const {currentUser} = useSelector(state => state.user)
+  const {listCartUser } = useSelector(state => state.cart)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  console.log('curent'+ JSON.stringify(currentUser))
 
   const handleLogout = () => {
     dispatch(logoutUser())
@@ -80,6 +83,9 @@ const Header = () => {
             <Link to='/cart'>
               <img src= {cart} alt="" />
             </Link>
+            <span>{
+              listCartUser ? listCartUser.products.length : 0
+            }</span>
           </div>
         </div>
 

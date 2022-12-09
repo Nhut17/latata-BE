@@ -6,6 +6,8 @@ const sendToken = require('../utils/jwtToken')
 const sendEmail = require('../utils/sendEmail')
 const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
+const cloudinary = require('../utils/cloudinary')
+
 
 // Register a user => /api/v1/register
 exports.registerUser = catchAsyncError(async (req, res, next) => {
@@ -15,23 +17,37 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
         name,
         email,
         phone,
-        password
+        password,
+        avatar
     } = req.body;
 
-    const user = await User.create({
-        username,
-        name,
-        email,
-        phone,
-        password,
-        avatar: {
-            url: 'https://cdn.oneesports.vn/cdn-data/sites/4/2022/02/jujutsu-kaisen-0-1024x592.jpg'
-        }
-    })
-
-   
+    try{
+       
+        const ret = cloudinary.uploader.upload(avatar,{
+            folder: 'avatars',
+            width: 300,
+            crop:"scale"
+        })
+        const user = await User.create({
+            username,
+            name,
+            email,
+            phone,
+            password,
+            avatar: {
+                url_id:  ret.public_id,
+                url: ret.secure_url
+            }
+        })
     
-    sendToken(user, 200, res);
+       
+        
+        sendToken(user, 200, res);
+    }
+    catch(e){
+
+    }
+ 
 
 })
 
@@ -66,6 +82,7 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
     }
 
 
+    
     sendToken(user, 200, res);
 
 })

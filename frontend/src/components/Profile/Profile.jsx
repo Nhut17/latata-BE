@@ -10,14 +10,14 @@ const Profile = () => {
   // const { id } = useParams()
 
   const dispatch = useDispatch()
-  const data = useSelector(state => state.user)
+  const {currentUser} = useSelector(state => state.user)
 
   useEffect(()=> {
-    dispatch(getUserDetail(data.user._id));
+    dispatch(getUserDetail(currentUser?.user?._id));
   },[])
-  console.log(data.user._id)
+  // console.log(currentUser?._id)
   return (
-    <MainProfile data={data}/>
+    <MainProfile currentUser={currentUser.user}/>
   )
 }
 
