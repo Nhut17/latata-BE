@@ -14,19 +14,26 @@ import {
 } from "@ant-design/icons";
 
 import logo from '../../../../assets/images/logo_color.png'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout, logoutUser } from "../../../../redux/User/userSlice";
 
 function Sidebar(props) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
+    const {currentUser} = useSelector(state => state.user)
+
     const handleLogout = () => {
         dispatch(logoutUser())
         localStorage.clear()
-        navigate('/')
         navigate(0)
     }
+
+    useEffect(() => {
+      if(!currentUser){
+        navigate('/')
+      }
+    },[])
 
   return (
     <>

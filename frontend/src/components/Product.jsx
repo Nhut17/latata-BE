@@ -17,9 +17,12 @@ const Product = ({data}) =>{
 
         <div className="image">
 
-          
+          {
+            data?.images?.slice(0,1).map(val => (
+              <img src={val.url} alt="" />
+            ))
+          }
            
-              <img src={data.images[0].url} alt="" />
 
           
 

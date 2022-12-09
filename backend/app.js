@@ -10,18 +10,6 @@ app.use(cookieParser());
 app.use(cors());
 
 
-//  // To parse the incoming cookies
-// const corsOptions = {
-//     credentials: true,
-//     origin: "http://localhost:3000" // Add your frontend origin here (Don't add '/' at the end)
-// };
-// app.use("*", cors(corsOptions));
-
-
-
-
-
-
 // import all routes
 const products = require('./routes/product')
 const auth = require('./routes/auth')

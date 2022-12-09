@@ -1,13 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+import api from '../../api/api'
+import { clearAuthHeader, setAuthHeader } from '../../api/setHeader'
 
 const initialState = {
+
     user : null,
     success: false,
+    success: true,
     loading: false,
     successRegister: false,
     successLogin: false,
     userDetail : {},
+    message: null,
+    currentUser: null,
+
 
 }
 
@@ -21,7 +28,7 @@ export const registerUser = createAsyncThunk('user/register',
                         'Content-Type': 'application/json'
                     }
                 }
-                const res = await axios.post('http://localhost:4000/api/v1/register',data,config)
+                const res = await api.post('/api/v1/register',data,config)
 
                 console.log(res.data)
                 return res.data
@@ -39,13 +46,13 @@ export const loginUser = createAsyncThunk('user/login',
                 const headers = {
                     'Content-Type': 'application/json'
                 }
-                const res = await axios.post('http://localhost:4000/api/v1/login',data,{
+                const res = await api.post('/api/v1/login',data,{
                     headers: headers
                 })
                 
-                const token = res.data.token
-                localStorage.setItem('token', token)
+                setAuthHeader(res.data.token)
 
+                
 
                 return res.data
             }
@@ -59,8 +66,8 @@ export const logoutUser = createAsyncThunk('user/logout',
         async(data,thunkAPI) => {
             try{
         
-                const res = await axios.get('http://localhost:4000/api/v1/logout')
-
+                const res = await api.get('/api/v1/logout')
+          
                 return res.data
             }
             catch(e){
@@ -73,8 +80,14 @@ export const logoutUser = createAsyncThunk('user/logout',
 export const getUserDetail = createAsyncThunk('user/userDetail',
         async(id, thunkAPI) => {
             try {
+
                 const res = await axios.get(`http://localhost:4000/api/v1/admin/user/${id}`)
                 return res.data.user
+
+                // const res = await api.get(`/api/v1/user/${id}`)
+
+                // return res.data
+
             } catch (error) {
                 return thunkAPI.rejectWithValue('can not get user detail')
             }
@@ -86,27 +99,24 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         logout: (state,action) => {
-            state.user = null
+           
         }
     },
     extraReducers: {
         [registerUser.fulfilled]: (state,action) => {
-            state.success = true
             state.successRegister = true
         },
         [loginUser.fulfilled]: (state,action) => {
-            state.user = action.payload.user
+            state.currentUser = action.payload
             state.successLogin = true
-        },
-
-        [logoutUser.fulfilled]: (state,action) => {
-            state.user = null
         },
         [getUserDetail.fulfilled] : (state, action) => {
             state.userDetail = action.payload
 
         },
-       
+       [logoutUser.fulfilled]: (state,action) => {
+            state.currentUser = null
+       }
     }
 })
 export const { logout } = userSlice.actions

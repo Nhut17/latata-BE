@@ -4,7 +4,7 @@ const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncError = require('../middlewares/catchAsyncErrors');
 const sendToken = require('../utils/jwtToken')
 const sendEmail = require('../utils/sendEmail')
-
+const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
 
 // Register a user => /api/v1/register
@@ -25,17 +25,11 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
         phone,
         password,
         avatar: {
-            public_id: 'jujutsu-kaisen-0-1024x592',
             url: 'https://cdn.oneesports.vn/cdn-data/sites/4/2022/02/jujutsu-kaisen-0-1024x592.jpg'
         }
     })
 
-    // const token = user.getJwtToken()
-
-    // res.status(201).json({
-    //     success: true,
-    //     token
-    // })
+   
     
     sendToken(user, 200, res);
 
@@ -212,12 +206,8 @@ exports.updateProfile = catchAsyncError(async (req, res, next) => {
 
 // Logout user => /api/v1/logout
 exports.logout = catchAsyncError(async (req, res, next) => {
-    res.cookie('token', null, {
-        expires: new Date(Date.now()),
-        httpOnly: true
-    })
 
-    console.log('logout success')
+   res.clearCookie("refresh_token")
 
     res.status(200).json({
         success: true,
@@ -293,5 +283,63 @@ exports.deleteUser = catchAsyncError(async (req, res, next) => {
     res.status(200).json({
         success: true,
         user
+    })
+})
+
+
+// refresh token
+exports.refreshToken = catchAsyncError(async (req, res, next) => {
+   
+    const refreshToken = req.cookies.refresh_token;
+
+
+
+    if(!refreshToken){
+        return res.status(401).json("You're not Authenticated")
+    }
+
+
+    jwt.verify(refreshToken,process.env.JWT_REFRESH,(err,user) => {
+        if(err){
+              return res.status(403).json({ message: 'Unauthorized' });
+        }
+
+        const newAccessToken = jwt.sign({
+            email: user.email,
+            username: user.username
+        },
+        process.env.JWT_SECRET,
+        {
+            expiresIn: process.env.JWT_EXPIRES_TIME
+        }
+        )
+
+        const newRefreshToken = jwt.sign({
+            email: user.email,
+            username: user.username
+        },
+        process.env.JWT_REFRESH,
+        {
+            expiresIn: "365d"
+        }
+        )
+
+        res.cookie('refresh_token', newRefreshToken,{
+            httpOnly: true,
+            secure: false,
+            path:'/',
+            sameSite: "strict",
+        });
+
+
+        res.status(200).json({
+            accessToken: newAccessToken,
+        })
+    
+    })
+
+    res.status(200).json({
+        success: true,
+        refreshToken
     })
 })

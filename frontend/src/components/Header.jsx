@@ -8,13 +8,13 @@ import { logoutUser } from '../redux/User/userSlice'
 
 const Header = () => {
 
-  const user = useSelector(state => state.user.user)
+  const {currentUser} = useSelector(state => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const handleLogout = () => {
+    dispatch(logoutUser())
       localStorage.clear()
-      dispatch(logoutUser())
       navigate('/')
       navigate(0)
   }
@@ -24,16 +24,17 @@ const Header = () => {
       <div className="container">
         <div className="top-header">
           {
-            user ? 
+            currentUser ? 
             <>
+
             <Link>
             <div className="profile">
               <div className="login-complete">
                 <div className="avatar">
-                    <img src={user?.avatar.url} alt="" />
+                    <img src={currentUser?.user?.avatar.url} alt="" />
 
                   </div>
-                  <p className="success-login" ><span>{user?.name}</span></p> 
+                  <p className="success-login" ><span>{currentUser?.user?.name}</span></p> 
                 </div>    
 
                 <div className="dropdown-profile">
@@ -46,6 +47,7 @@ const Header = () => {
             </div>      
             </Link>
             {/* <p className="success-login" onClick={handleLogout}><span>Đăng xuất</span></p>  */}
+
             </>
             : (
               <p

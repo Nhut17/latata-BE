@@ -6,12 +6,16 @@ import { useSelector } from 'react-redux'
 const Admin = () => {
 
   const navigate = useNavigate()
-  const user = useSelector(state => state.user.user)
+  const {currentUser} = useSelector(state => state.user)
+
+  console.log('welcome to admin')
 
   useEffect(() =>{
-    if(user && user.role === 'user'){
+ 
+    if(!currentUser || currentUser?.user?.role === 'user'){
+      console.log('admin redirect to home')
       navigate('/')
-    }
+  }
   },[])
 
   return (  
