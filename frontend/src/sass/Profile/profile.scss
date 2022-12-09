@@ -16,10 +16,10 @@
         .profile-avatar{
             .upload-avatar{
                 text-align: center;
-                input{
-                    display: block;
-                    
-                }
+                margin: 20px auto 10px 35%;
+                input[type='file'] {
+                    color: rgba(0, 0, 0, 0);   
+                  }
             }
             .avatar{
                 img{

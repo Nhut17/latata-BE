@@ -10,7 +10,7 @@ const MainProfile = ({currentUser}) => {
       <div className="container-profile">
         <div className="profile-avatar">
             <div className="avatar">
-              <img src={currentUser?.avatar?.url} alt="" /> <br />
+              <img src={currentUser?.avatar.url} alt="" /> <br />
             </div>
 
             <div className="upload-avatar">

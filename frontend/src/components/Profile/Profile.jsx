@@ -17,7 +17,7 @@ const Profile = () => {
   },[])
   // console.log(currentUser?._id)
   return (
-    <MainProfile currentUser={currentUser.user}/>
+    <MainProfile currentUser={currentUser}/>
   )
 }
 
