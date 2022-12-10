@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-
+const moment = require('moment-timezone');
 
 const { ObjectId } = mongoose.Schema
 
 
 const orderSchema = mongoose.Schema({
+    
     orderItems: [{
         productId: {
             type: ObjectId
@@ -59,11 +60,11 @@ const orderSchema = mongoose.Schema({
         ],
     },
     deliveredAt:{
-        type: Date
+        type: String
     },
     createAt: {
-        type: Date,
-        default: Date.now()
+        type: String,
+        default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:mA d-MM-YYYY')
     },
     user:{
         type: mongoose.Schema.Types.ObjectId,

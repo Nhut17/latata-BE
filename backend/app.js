@@ -5,6 +5,7 @@ const errorMiddleware = require('./middlewares/errors')
 
 const cookieParser = require('cookie-parser')
 
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
@@ -17,6 +18,7 @@ const order = require('./routes/order')
 const category = require('./routes/category')
 const cart = require('./routes/cart')
 const subCategory = require('./routes/subCategory')
+const cloudinary = require('./routes/cloudinary')
 
 
 
@@ -26,6 +28,7 @@ app.use('/api/v1',order)
 app.use('/api/v1',category)
 app.use('/api/v1',cart)
 app.use('/api/v1',subCategory)
+app.use('/api/v1',cloudinary)
 
 
 // Middleware to handle errors

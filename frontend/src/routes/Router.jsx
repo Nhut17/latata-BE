@@ -37,6 +37,9 @@ import PenddingOrder from "../components/MyOrder/components/PenddingOrder/Penddi
 import ShippingOrder from "../components/MyOrder/components/ShippingOrder/ShippingOrder";
 import PaidOrder from "../components/MyOrder/components/PaidOrder/PaidOrder";
 import AllOrder from "../components/MyOrder/components/AllOrder/AllOrder";
+import ForgotPassword from "../pages/ForgotPassword";
+import GmailOTP from "../components/ForgotPassword/GmailOTP";
+import ChangePassword from "../components/ForgotPassword/ChangePassword";
 // import Orders from "../components/Admin/Orders/Orders"
 
 
@@ -49,6 +52,12 @@ const Router = () => {
 
       {/* LOGIN */}
       <Route path='/dang-nhap'  element={<Login />}/>
+      <Route path='/quen-mat-khau'  element={<ForgotPassword />}/>
+      <Route path='/sendOTP'  element={<GmailOTP />}/>
+      <Route path='/change-password'  element={<ChangePassword />}/>
+
+
+
 
       <Route path='/profile'  element={<Profile />}/>
 

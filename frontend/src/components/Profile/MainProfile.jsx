@@ -16,7 +16,7 @@ const MainProfile = ({currentUser}) => {
             <div className="upload-avatar">
               <input type="file" name="" id="" />
             </div>
-            <span>{currentUser?.name}</span>
+            
         </div>
         <div className="profile-content">
             <div className="profile-title">
@@ -36,7 +36,18 @@ const MainProfile = ({currentUser}) => {
                     <input {...register("email")} value={currentUser?.email}/>
 
                     <span>Số điện thoại</span>
-                    <input {...register("phone")} value={currentUser?.phone}/>
+                    <input  {...register("phone")} value={currentUser?.phone}/>
+
+
+                    
+                    <span>Mật khẩu hiện tại</span>
+                    <input type="password" {...register("password")} />
+
+                    <span>Mật khẩu mới</span>
+                    <input type="password" {...register("new-password")} />
+
+                    <span>Xác nhận mật khẩu</span>
+                    <input type="password" {...register("comfirm-password")} />
 
                    
                     {/* <input type='file' {...register("image")} value={data.email}/> */}

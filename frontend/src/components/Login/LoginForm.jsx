@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import login from '../../assets/images/login.png'
 import { loginUser } from '../../redux/User/userSlice'
 const LoginForm = () => {
@@ -78,6 +78,8 @@ const LoginForm = () => {
                                      errors.password?.type === 'required' && <span className='err-msg'>Mời bạn nhập password</span>
                                     }
                         </div>
+
+                        <Link to="/quen-mat-khau"><p><u>Quên mật khẩu</u></p></Link>
                     </div>
                    
                     

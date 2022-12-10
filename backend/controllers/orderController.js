@@ -4,6 +4,7 @@ const Product = require('../models/products');
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const Cart = require('../models/cart');
+const moment = require('moment-timezone');
 
 
 /// Create a new order => api/v1/order/new
@@ -107,6 +108,9 @@ exports.cancelOrder = catchAsyncErrors( async (req, res, next) => {
     {
        order.status =  'CANCELLED'
     }
+    else{
+        return next(new ErrorHandler('You cannot cancel this order',400))
+    }
 
     await order.save()
 
@@ -118,7 +122,7 @@ exports.cancelOrder = catchAsyncErrors( async (req, res, next) => {
 // Update / Process orders - ADMIN  => api/v1/admin/order/:id
 exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
     const order = await Order.findById(req.params.id)
-
+    
     if(order.status === 'DONE')
     {
         return next(new ErrorHandler('You have already delivered this order',400))
@@ -134,15 +138,7 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
         })
 
         const date = new Date()
-        // const uct_offset = date.getTimezoneOffset();
-        // date.setMinutes(date.getMinutes() + uct_offset);
-
-        // const vietnam_offset = 7*60
-        // date.setMinutes(date.getMinutes() + vietnam_offset)
-
-        // console.log(o)
-     
-        order.deliveredAt = date.getTime()
+        order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format('HH:mA d-MM-YYYY')
     }
    
 
@@ -164,6 +160,8 @@ async function updateStock(id,quantity) {
         return next(new ErrorHandler('Product is out of stock',400))
     }
     product.stock = product.stock - quantity ;
+
+    console.log('stock: ' + product.stock)
 
     await product.save({validateBeforeSave: false})
 }
