@@ -9,6 +9,9 @@ const APIFeatures = require('../utils/apiFeatures')
 exports.newProduct = catchAsyncError( async ( req, res, next ) => {
     
     // req.body.user = req.user._id   
+    const fileData = req.file
+
+
     const pro = req.body
     const { price,promotion} = req.body
     

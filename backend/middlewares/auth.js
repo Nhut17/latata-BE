@@ -45,7 +45,6 @@ exports.authorizeRoles = (...roles) => {
 
  
     return (req,res,next) => {
-        console.log(req.user[0])
         if(!req.user[0].role.includes(roles))
         {   
             console.log("User")
