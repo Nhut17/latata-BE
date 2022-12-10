@@ -34,7 +34,7 @@ const Header = () => {
             <div className="profile">
               <div className="login-complete">
                 <div className="avatar">
-                    <img src={currentUser?.avatar.url} alt="" />
+                    <img src={currentUser?.avatar?.url} alt="" />
 
                   </div>
                   <p className="success-login" ><span>{currentUser?.name}</span></p> 
