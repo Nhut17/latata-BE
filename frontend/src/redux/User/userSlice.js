@@ -74,8 +74,28 @@ export const logoutUser = createAsyncThunk('user/logout',
         })
 
 
-
+// detail User
 export const getUserDetail = createAsyncThunk('user/userDetail',
+        async(id, thunkAPI) => {
+            try {
+
+                const res = await axios.get(`http://localhost:4000/api/v1/admin/user/${id}`)
+                
+                return res.data.user
+                
+
+                // const res = await api.get(`/api/v1/user/${id}`)
+
+                // return res.data
+
+            } catch (error) {
+                return thunkAPI.rejectWithValue('can not get user detail')
+            }
+        }
+)
+
+// get al User
+export const getAllUser = createAsyncThunk('user/getAll',
         async(id, thunkAPI) => {
             try {
 

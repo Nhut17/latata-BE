@@ -7,6 +7,7 @@ const sendEmail = require('../utils/sendEmail')
 const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
 const cloudinary = require('../utils/cloudinary')
+var moment = require('moment-timezone');
 
 
 // Register a user => /api/v1/register
@@ -169,7 +170,7 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
 
 // Get currently logged in usr details => /api/v1/me
 exports.getUserProfile = catchAsyncError(async (req, res, next) => {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user[0]._id);
 
     res.status(200).json({
         success: true,
