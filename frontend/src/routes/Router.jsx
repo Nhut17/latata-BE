@@ -32,6 +32,11 @@ import AdminUser from "../components/Admin/components/AdminUser/AdminUser";
 import Profile from "../components/Profile/Profile";
 import AdminCate from "../components/Admin/components/AdminCate/AdminCate";
 import AdminCreateCate from "../components/Admin/components/AdminCate/AdminCreateCate";
+import MyOrders from "../pages/MyOrders";
+import PenddingOrder from "../components/MyOrder/components/PenddingOrder/PenddingOrder";
+import ShippingOrder from "../components/MyOrder/components/ShippingOrder/ShippingOrder";
+import PaidOrder from "../components/MyOrder/components/PaidOrder/PaidOrder";
+import AllOrder from "../components/MyOrder/components/AllOrder/AllOrder";
 // import Orders from "../components/Admin/Orders/Orders"
 
 
@@ -86,6 +91,15 @@ const Router = () => {
 
       {/* PRODUCT DETAIL */}
       <Route path='/product/:id'  element={<ProductDetail />} />
+
+      {/* ORDER */}
+
+      <Route path='/myOrder' element={<MyOrders/>}>
+        <Route index element={<AllOrder/>}/>
+        <Route path="pendding" element={<PenddingOrder/>}/>
+        <Route path="shipping" element={<ShippingOrder/>}/>
+        <Route path="paid" element={<PaidOrder/>}/>
+      </Route>
 
 
       {/* ADMIN */}

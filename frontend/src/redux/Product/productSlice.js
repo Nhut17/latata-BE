@@ -17,7 +17,7 @@ export const getProduct = createAsyncThunk('product/getProduct' ,
             try{
                 const res = await api.get('/api/v1/products') 
 
-                thunkAPI.dispatch(getCartUser())
+                // thunkAPI.dispatch(getCartUser())
                 return res.data?.products
             }
             catch (e){

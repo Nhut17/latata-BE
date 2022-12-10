@@ -1,7 +1,7 @@
 import '../sass/header/header.scss'
 import logo from '../assets/images/logo.png'
 import cart from '../assets/images/cart.png'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate , NavLink} from 'react-router-dom'
 import {categories} from './data'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutUser } from '../redux/User/userSlice'
@@ -12,6 +12,8 @@ const Header = () => {
   const {listCartUser } = useSelector(state => state.cart)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  console.log('curent'+ JSON.stringify(currentUser))
 
   const handleLogout = () => {
     dispatch(logoutUser())
@@ -27,8 +29,28 @@ const Header = () => {
           {
             currentUser ? 
             <>
-            <p className="success-login"><span>Xin chào {currentUser?.user?.name}</span></p> 
-            <p className="success-login" onClick={handleLogout}><span>Đăng xuất</span></p> 
+
+            <Link>
+            <div className="profile">
+              <div className="login-complete">
+                <div className="avatar">
+                    <img src={currentUser?.avatar.url} alt="" />
+
+                  </div>
+                  <p className="success-login" ><span>{currentUser?.name}</span></p> 
+                </div>    
+
+                <div className="dropdown-profile">
+                  <ul>
+                    <Link to='/profile'><li>Thông tin cá nhân</li></Link>
+                    <Link to='/myOrder'><li>Lịch sử mua hàng</li></Link>           
+                    <li onClick={handleLogout}>Đăng xuất</li>
+                  </ul>  
+                </div>  
+            </div>      
+            </Link>
+            {/* <p className="success-login" onClick={handleLogout}><span>Đăng xuất</span></p>  */}
+
             </>
             : (
               <p

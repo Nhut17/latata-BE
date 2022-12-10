@@ -8,18 +8,78 @@ header{
     // z-index: 5;
     .container{
         .top-header{
+            // display: flex;
+            .profile{
+                position: relative;
+                transition: all .5s;
+                // width: auto;
+                padding-bottom: 10px;
+                &:hover {
+                    transition: all .3s;
+                    .dropdown-profile{
+                        display: block;
+                    }
+                }
+                .login-complete{
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    transition: all .3s;
+                    
+                    
+                }
+                .dropdown-profile{
+                    // padding: 10px;
+                    z-index: 99;
+                    width: 200px;
+                    position: absolute;
+                    right: 0;
+                    margin-top: 10px;
+                    display: none;
+                    background: white;
+                   
+                    ul{
+                        
+                        li{
+                            padding: 10px 15px;
+                            color: #000;
+                            // background: white;
+                            border: 1px solid rgba(#333, 0.1);
+                            transition: all .3s;
+                            &:hover{
+                                background:rgb(200, 199, 216);
+                            } 
+                        }
+                    }
+                }
+
+            }
+            
+            .avatar{
+
+                img{
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    overflow: hidden;
+
+                }
+                margin-right: 10px;
+            }
             .success-login{
-                text-align: end;
+                // text-align: end;
                 cursor: pointer;
                 span{
                     transition: all .2s;
                     color: white;
-                    &:hover{
-                        text-decoration: underline;
+                    // &:hover{
+                    //     text-decoration: underline;
 
-                    }
+                    // }
                 }
             }
+
+        
             .login{
                 text-align: end;
                 cursor: pointer;

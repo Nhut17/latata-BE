@@ -4,6 +4,9 @@ import api from '../../api/api'
 import { clearAuthHeader, setAuthHeader } from '../../api/setHeader'
 
 const initialState = {
+
+    user : null,
+    success: false,
     success: true,
     loading: false,
     successRegister: false,
@@ -13,6 +16,8 @@ const initialState = {
     currentUser: null,
     accessToken: null,
 }
+
+
 
 
 // Register 
@@ -73,9 +78,16 @@ export const logoutUser = createAsyncThunk('user/logout',
 export const getUserDetail = createAsyncThunk('user/userDetail',
         async(id, thunkAPI) => {
             try {
-                const res = await api.get(`/api/v1/user/${id}`)
 
-                return res.data
+                const res = await axios.get(`http://localhost:4000/api/v1/admin/user/${id}`)
+                
+                return res.data.user
+                
+
+                // const res = await api.get(`/api/v1/user/${id}`)
+
+                // return res.data
+
             } catch (error) {
                 return thunkAPI.rejectWithValue('can not get user detail')
             }
@@ -93,11 +105,6 @@ const userSlice = createSlice({
     extraReducers: {
         [registerUser.fulfilled]: (state,action) => {
             state.successRegister = true
-            state.message = null
-        },
-        [registerUser.rejected]: (state,action) => {
-            state.successRegister = false
-            state.message = action.payload.message
         },
         [loginUser.fulfilled]: (state,action) => {
             state.currentUser = action.payload
@@ -105,7 +112,9 @@ const userSlice = createSlice({
             state.accessToken = action.payload.token
         },
         [getUserDetail.fulfilled] : (state, action) => {
-            state.userDetail = action.payload
+            state.currentUser = action.payload
+            state.accessToken = action.payload.token
+
         },
        [logoutUser.fulfilled]: (state,action) => {
             state.currentUser = null
