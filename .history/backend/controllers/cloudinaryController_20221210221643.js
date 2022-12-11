@@ -10,7 +10,7 @@ exports.uploadImage = async(req, res) => {
     }
 
     res.json({
-        fileData
+        req.file
     });
     // try{
 

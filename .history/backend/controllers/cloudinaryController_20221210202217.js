@@ -3,15 +3,8 @@ const ErrorHandler = require("../utils/errorHandler");
 
 exports.uploadImage = async(req, res) => {
 
-    const fileData = req.file
-    console.log(fileData);
-    if(!req.file){
-        return 'Not found file'
-    }
-
-    res.json({
-        fileData
-    });
+    const fileData = req.files
+    console.log('file: ' + fileData);
     // try{
 
         

@@ -5,7 +5,7 @@ const { uploadImage } = require('../controllers/cloudinaryController')
 const fileUploader  = require('../utils/cloudinary')
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
-router.route('/upload/image').post(isAuthenticatedUser,uploadImage)
+router.route('/upload-image').post(isAuthenticatedUser,fileUploader.single('image'),uploadImage)
 
 
 module.exports = router

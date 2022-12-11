@@ -159,6 +159,9 @@ const RegisterForm = () => {
                                         errors.rePasword?.type === 'pattern' &&  <span className='err-msg'>{errors.rePasword.message}</span>
                                     }
                         </div>
+
+                        <input  type='file' />
+
                         </div>
 
                         <div className="policy">

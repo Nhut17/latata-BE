@@ -9,9 +9,6 @@ exports.uploadImage = async(req, res) => {
         return 'Not found file'
     }
 
-    res.json({
-        fileData
-    });
     // try{
 
         
