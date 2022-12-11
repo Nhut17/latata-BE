@@ -34,10 +34,13 @@ const Header = () => {
             <div className="profile">
               <div className="login-complete">
                 <div className="avatar">
-                    <img src={currentUser?.user?.avatar?.url} alt="" />
+
+                    <img src={currentUser?.user.avatar?.url} alt="" />
+
+                   
 
                   </div>
-                  <p className="success-login" ><span>{currentUser?.name}</span></p> 
+                  <p className="success-login" ><span>{currentUser?.user.name}</span></p> 
                 </div>    
 
                 <div className="dropdown-profile">

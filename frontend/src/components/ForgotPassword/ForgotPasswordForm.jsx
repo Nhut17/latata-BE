@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import login from '../../assets/images/login.png'
 import { loginUser } from '../../redux/User/userSlice'
-const LoginForm = () => {
+const ForgotPasswordForm = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -40,10 +40,11 @@ const LoginForm = () => {
         <div className="container">
             <div className='form'>
                 <div className="main-form">
-                    <span className="sign-up">Đăng Nhập</span>
+                    <span className="sign-up">Quên mật khẩu</span>
 
     
                     <div className="input-group">
+                        <span className='instructions'>Nhập địa chỉ email của bạn và chúng tôi sẽ <br/> gửi cho bạn hướng dẫn để đặt lại mật khẩu của bạn.</span>
                         <div className="input-name">
                             <i class="fa-solid fa-envelope ic"></i>
                             <input 
@@ -66,27 +67,16 @@ const LoginForm = () => {
                             }
 
                         </div>
-                        <div className="input-password">
-                            <i class="fa-solid fa-lock ic"></i>
-                            <input 
-                                    type="password" 
-                                    placeholder='Mật Khẩu'
-                                    {...register('password',{
-                                        required: true
-                                    })} />
-                                    {
-                                     errors.password?.type === 'required' && <span className='err-msg'>Mời bạn nhập password</span>
-                                    }
-                        </div>
+                        
 
-                        <Link to="/quen-mat-khau"><p><u>Quên mật khẩu</u></p></Link>
+                        {/* <Link to="/quen-mat-khau"><p><u>Quên mật khẩu</u></p></Link> */}
                     </div>
                    
                     
                    
 
-                    <button className='btn-sign-up'>ĐĂNG NHẬP</button>
-
+                    
+                    <Link to='/sendOTP'><button className='btn-sign-up'>TIẾP TỤC</button></Link>
                 </div>
                 <div className="img">
                     <img src={login} alt="" />
@@ -98,4 +88,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+export default ForgotPasswordForm
