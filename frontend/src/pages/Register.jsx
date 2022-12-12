@@ -14,7 +14,7 @@ const Register = () => {
 
         
 
-        <div className="header-signUp">
+        {/* <div className="header-signUp">
            <div className="container">
            <div className="logo">
             <Link to='/'>
@@ -23,7 +23,7 @@ const Register = () => {
             </div>
             <span>ĐĂNG KÝ</span>
            </div>
-        </div>
+        </div> */}
 
        <RegisterForm />
 

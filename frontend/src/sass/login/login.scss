@@ -1,13 +1,13 @@
 @import '../variables.scss';
 
 .bg-login{
-    position: absolute;
-    background: white;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
+    // position: absolute;
+    // background: white;
+    // top: 0;
+    // left: 0;
+    // width: 100%;
+    // height: 100%;
+    // z-index: 5;
     
     .header-login{
         z-index: 10;
@@ -127,6 +127,39 @@
                     width: 25%;
                 }
             }
+        }
+    }
+}
+
+.bg-thanks{
+     position: absolute;
+    background: white;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    .bg-image{
+        position: absolute;
+        right: 50%;
+        bottom: 50%;
+        transform: translate(50%, 50%);
+        text-align: center;
+        button{
+            margin-left: 10%;
+            width: 500px;
+            color: #288ad6ed;
+            border: 1px solid #288ad6;
+            padding: 15px 0;
+            border-radius: 7px;
+            font-size:18px;
+            margin-top: 15px;
+            transition: all 0.3s;
+            &:hover{
+                background-color: #288ad6;
+                color: white;
+        }
+            
         }
     }
 }

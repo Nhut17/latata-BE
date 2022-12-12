@@ -32,8 +32,9 @@ const ForgotPassword = () => {
     <div className='bg-login'>
 
       
-      <HeaderLogin/>
+      {/* <HeaderLogin/> */}
       <ForgotPasswordForm/>
+      
     </div>
   )
 }
