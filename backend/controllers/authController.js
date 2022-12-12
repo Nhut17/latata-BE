@@ -198,6 +198,7 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
         }
     }
     else{
+        await Otp.remove()
        return next(new ErrorHandler('OTP existed', 500))
     }
 
@@ -230,7 +231,6 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
     await user.save();
     await Otp.remove();
 
-    sendToken(user, 200, res)
 
 })
 

@@ -15,6 +15,10 @@ const initialState = {
     currentUser: null,
     accessToken: null,
     errRegister: false,
+    errorResetPassword: false,
+    successSendOTP: false,
+    successResetPassword: false,
+    emailOtp: null,
 }
 
 
@@ -113,15 +117,63 @@ export const getAllUser = createAsyncThunk('user/getAll',
         }
 )
 
+
+// Forgot password 
+export const forgotPassword = createAsyncThunk('password/forgot', 
+        async(email,thunkAPI) => {
+            try{
+                const config = {
+                    headers:{
+                        "Content-Type": "application/json"
+                    }
+                }
+        
+                const res = await api.post('/api/v1/password/forgot',email,config)
+          
+                return res.data
+            }
+            catch(e){
+                return thunkAPI.rejectWithValue('logout Failed!')
+            }
+        })
+
+// Forgot password 
+export const resetPassword = createAsyncThunk('password/reset', 
+        async(data,thunkAPI) => {
+            try{
+                const config = {
+                    headers:{
+                        "Content-Type": "application/json"
+                    }
+                }
+                console.log(data);
+                const res = await api.put('/api/v1/password/reset',data,config)
+          
+                return res.data
+            }
+            catch(e){
+                return thunkAPI.rejectWithValue(e)
+            }
+        })
+
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        resetActionRegister: (state,action) => {
+        resetActionUser: (state,action) => {
             state.message =''
             state.successRegister = false
             state.errorRegister = false
-        }
+            state.errorResetPassword = false
+            state.successSendOTP= false
+            state.successResetPassword= false
+          
+
+        },
+        sendEmail: (state,action) => {
+            state.emailOtp = action.payload
+        },
+       
     },
     extraReducers: {
         [registerUser.fulfilled]: (state,action) => {
@@ -144,9 +196,21 @@ const userSlice = createSlice({
         },
        [logoutUser.fulfilled]: (state,action) => {
             state.currentUser = null
-       }
+       },
+       [forgotPassword.fulfilled] : (state,action) => {
+            state.successSendOTP = true
+       },
+       [resetPassword.fulfilled] : (state,action) => {
+            state.successResetPassword = true
+            state.errorResetPassword = false
+       },
+       [resetPassword.rejected] : (state,action) => {
+            state.errorResetPassword = true
+            state.message = 'Mã OTP nhập không đúng hoặc đã hết hiệu lực'
+       },
+
     }
 })
-export const { resetActionRegister } = userSlice.actions
+export const { resetActionUser,sendEmail } = userSlice.actions
 
 export default userSlice.reducer
