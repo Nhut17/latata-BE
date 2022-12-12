@@ -33,13 +33,10 @@ import Profile from "../components/Profile/Profile";
 import AdminCate from "../components/Admin/components/AdminCate/AdminCate";
 import AdminCreateCate from "../components/Admin/components/AdminCate/AdminCreateCate";
 import MyOrders from "../pages/MyOrders";
-import PenddingOrder from "../components/MyOrder/components/PenddingOrder/PenddingOrder";
-import ShippingOrder from "../components/MyOrder/components/ShippingOrder/ShippingOrder";
-import PaidOrder from "../components/MyOrder/components/PaidOrder/PaidOrder";
-import AllOrder from "../components/MyOrder/components/AllOrder/AllOrder";
 import ForgotPassword from "../pages/ForgotPassword";
-import GmailOTP from "../components/ForgotPassword/GmailOTP";
+// import GmailOTP from "../components/ForgotPassword/GmailOTP";
 import ChangePassword from "../components/ForgotPassword/ChangePassword";
+import Thankyou from "../pages/Thankyou";
 // import Orders from "../components/Admin/Orders/Orders"
 
 
@@ -53,7 +50,7 @@ const Router = () => {
       {/* LOGIN */}
       <Route path='/dang-nhap'  element={<Login />}/>
       <Route path='/quen-mat-khau'  element={<ForgotPassword />}/>
-      <Route path='/sendOTP'  element={<GmailOTP />}/>
+      {/* <Route path='/sendOTP'  element={<GmailOTP />}/> */}
       <Route path='/change-password'  element={<ChangePassword />}/>
 
 
@@ -103,12 +100,8 @@ const Router = () => {
 
       {/* ORDER */}
 
-      <Route path='/myOrder' element={<MyOrders/>}>
-        <Route index element={<AllOrder/>}/>
-        <Route path="pendding" element={<PenddingOrder/>}/>
-        <Route path="shipping" element={<ShippingOrder/>}/>
-        <Route path="paid" element={<PaidOrder/>}/>
-      </Route>
+      <Route path='/myOrder' element={<MyOrders/>}/>
+       
 
 
       {/* ADMIN */}
@@ -136,7 +129,8 @@ const Router = () => {
       <Route path="*" element={<Navigate to="/" />} />
 
 
-
+      <Route path="/thanks" element={<Thankyou />} />
+      
 
 
 

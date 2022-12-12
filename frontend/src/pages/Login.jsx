@@ -31,7 +31,7 @@ const Login = () => {
     <div className='bg-login'>
 
       
-      <HeaderLogin/>
+      {/* <HeaderLogin/> */}
       <LoginForm/>
     </div>
   )

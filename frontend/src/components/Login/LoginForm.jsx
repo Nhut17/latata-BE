@@ -79,7 +79,7 @@ const LoginForm = () => {
                                     }
                         </div>
 
-                        <Link to="/quen-mat-khau"><p><u>Quên mật khẩu</u></p></Link>
+                        <Link to="/quen-mat-khau"><p>Quên mật khẩu</p></Link>
                     </div>
                    
                     

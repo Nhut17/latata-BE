@@ -26,7 +26,7 @@ const onHandleSubmit = (formData) => {
     <div className='bg-login'>
 
       
-      <HeaderLogin/>
+      {/* <HeaderLogin/> */}
       <form className='login-form' onSubmit={handleSubmit(onHandleSubmit)}>
         <div className="container">
             <div className='form'>

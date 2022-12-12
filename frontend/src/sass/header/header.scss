@@ -118,17 +118,18 @@ header{
                 margin-right: 30px;
                 span{
                     position: absolute;
-                    width: 28px;
-                    height: 28px;
+                    width: auto;
+                    padding: 5px 7px;
+                    height: 20px;
                     border: 1px solid black;
-                    border-radius: 50%;
+                    border-radius: 50px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     background-color: white;
-                    color: black;
-                    top: -13px;
-                    right: -12px;
+                    color: $primaryColor;
+                    top: -10px;
+                    right: -15px;
                 }
             }
         }
