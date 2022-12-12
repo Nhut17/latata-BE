@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from 'react-redux'
-import { getUser, registerUser, loginUser } from '../../redux/User/userSlice';
+import { getUser, registerUser, loginUser, resetActionRegister } from '../../redux/User/userSlice';
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,10 +9,39 @@ const RegisterForm = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {successRegister , message} = useSelector(state => state.user)
+    const {successRegister , message , errRegister} = useSelector(state => state.user)
 
-    console.log(successRegister)
-    console.log(message)
+    // useEffect(() => {
+    //     dispatch(resetActionRegister())
+    // },[])
+
+    useEffect(() => {
+       if(successRegister)
+        {
+
+        toast('Đăng ký thành công', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+
+        const succ = setTimeout(() =>{
+            navigate('/')
+            navigate(0)
+        },2000)
+
+        return () => {
+            clearTimeout(succ)
+        }
+
+        }
+
+    },[successRegister])
 
     const {
         register,
@@ -33,25 +62,7 @@ const RegisterForm = () => {
             password: password
        }
         dispatch(registerUser(data)) 
-        if(successRegister)
-        {
-
-        toast('Đăng ký thành công', {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });
-
-        setTimeout(() =>{
-            navigate('/')
-            navigate(0)
-        },2000)
-        }
+       
 
      }
 
@@ -160,8 +171,6 @@ const RegisterForm = () => {
                                     }
                         </div>
 
-                        <input  type='file' />
-
                         </div>
 
                         <div className="policy">
@@ -178,7 +187,7 @@ const RegisterForm = () => {
 
                         <button className='btn-sign-up'>ĐĂNG KÝ</button>
                         {
-                            !successRegister && message && <span className='err-msg'>Email đã tồn tại</span>
+                            errRegister && <span className='err-msg'>{message}</span>
                         }
 
                    </div>

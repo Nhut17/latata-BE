@@ -3,6 +3,7 @@ const Product = require('../models/products')
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncError = require('../middlewares/catchAsyncErrors')
 const APIFeatures = require('../utils/apiFeatures')
+const cloudinary = require('cloudinary')
 
 
 //create new product => /api/v1/admin/product/new
@@ -12,28 +13,70 @@ exports.newProduct = catchAsyncError( async ( req, res, next ) => {
 
 
     const pro = req.body
-    const { price,promotion} = req.body
+    const { price,promotion, images} = req.body
+    console.log(images)
     
     const priceDeal = promotion > 0 ? price - (price* (promotion/100)) : price
-    console.log(pro)
     
-    const product =  await Product.create({
-        ...pro,
-        priceDeal
-    })
+    try{
 
+        const ret = await cloudinary.uploader.upload(images,{
+            folder: "Product",
+            // width: 300,
+            // crop: "scale"
+        })
 
-    res.status(201).json({
-        success: true,
-        product
-    })
+        console.log('ret: ' + ret)
+        const product =  await Product.create({
+            ...pro,
+            priceDeal,
+            images: [{
+                url_id: ret.public_id,
+                url: ret.secure_url
+            }]
+        })
+        
+        
+        res.status(201).json({
+            success: true,
+            product
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
 
 })
 
 
+exports.uploadImg = catchAsyncError( async ( req, res, next ) => {
+    
+    try{
+        const {  images} = req.body
+        console.log(images)
+        const ret = await cloudinary.uploader.upload(images,{
+            folder: "Product",
+            width: 200,
+            crop: "scale"
+        })
+
+        console.log('ret: ' + ret)
+    
+        res.status(201).json({
+            success: true,
+            ret
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
+
+})
+
 // get all products => api/v1/products?keyword=apple
 exports.getProducts = catchAsyncError( async (req,res,next) => {
 
+    
     const productCount = await Product.countDocuments()
 
     // const token = req.headers.authentication

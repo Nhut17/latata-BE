@@ -7,7 +7,6 @@ const initialState = {
 
     user : null,
     success: false,
-    success: true,
     loading: false,
     successRegister: false,
     successLogin: false,
@@ -15,6 +14,7 @@ const initialState = {
     message: null,
     currentUser: null,
     accessToken: null,
+    errRegister: false,
 }
 
 
@@ -33,11 +33,10 @@ export const registerUser = createAsyncThunk('user/register',
                 }
                 const res = await api.post('/api/v1/register',data,config)
                 
-                console.log(res.data)
                 return res.data
             }
-            catch(e){
-                return thunkAPI.rejectWithValue('Register Failed!')
+            catch(err){
+                return thunkAPI.rejectWithValue(err.message)
             }
         })
 
@@ -118,13 +117,20 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        logout: (state,action) => {
-           
+        resetActionRegister: (state,action) => {
+            state.message =''
+            state.successRegister = false
+            state.errorRegister = false
         }
     },
     extraReducers: {
         [registerUser.fulfilled]: (state,action) => {
             state.successRegister = true
+        },
+        [registerUser.rejected]: (state,action) => {
+            state.message = 'Email đã tồn tại!'
+            state.successRegister = false
+            state.errRegister = true
         },
         [loginUser.fulfilled]: (state,action) => {
             state.currentUser = action.payload
@@ -141,6 +147,6 @@ const userSlice = createSlice({
        }
     }
 })
-export const { logout } = userSlice.actions
+export const { resetActionRegister } = userSlice.actions
 
 export default userSlice.reducer

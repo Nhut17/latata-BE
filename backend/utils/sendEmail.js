@@ -1,25 +1,38 @@
 const nodemailer = require('nodemailer')
+require('dotenv').config();
 
 const sendEmail = async options => {
 
-    var transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: process.env.SMTP_PORT,
-        auth: {
-          user: process.env.SMTP_EMAIL,
-          pass: process.env.SMTP_PASSWORD
-        }
-      });
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure:false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
+      }
+    });
+
+      const html = `
+    
+      <p>Mã OTP: <b>${options.message}</b></p>
+  
+      <p>Mọi chi tiết thắc mắc, vui lòng liên hệ với chúng tôi: <a href="mailto:latatashoping@gmail.com">latatashoping@gmail.com</a></p>
+      `
 
       const message = {
-        from: `${process.env.SMTP_FROM_NAME} <${process.env.SMTP_FROM_EMAIL}>`,
+        from: '"LATATA Shop" <quynhnhutg6@gmail.com>',
         to: options.email,
-        subject:options.subject,
-        text:options.message
+        subject: options.subject,
+        html: html
       }
-
+      console.log(options.message)
       await transporter.sendMail(message)
 
 }
+
+
+
+
 
 module.exports = sendEmail;

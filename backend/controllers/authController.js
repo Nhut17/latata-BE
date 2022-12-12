@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const OTP = require('../models/otp')
 
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncError = require('../middlewares/catchAsyncErrors');
@@ -7,7 +8,6 @@ const sendEmail = require('../utils/sendEmail')
 const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
 const cloudinary = require('../utils/cloudinary')
-var moment = require('moment-timezone');
 
 
 // Register a user => /api/v1/register
@@ -22,13 +22,18 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
         avatar
     } = req.body;
 
+    const checkAccount = await User.findOne({
+        email: email
+    })
+
+
+    if(checkAccount){
+        return next(new ErrorHandler('Email đã tồn tại', 404))
+    }
+
     try{
        
-        const ret = cloudinary.uploader.upload(avatar,{
-            folder: 'avatars',
-            width: 300,
-            crop:"scale"
-        })
+       
         const user = await User.create({
             username,
             name,
@@ -36,8 +41,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
             phone,
             password,
             avatar: {
-                url_id:  ret.public_id,
-                url: ret.secure_url
+                url: "https://images.unsplash.com/photo-1571757767119-68b8dbed8c97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
             }
         })
     
@@ -94,28 +98,33 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
     const user = await User.findOne({
         email: req.body.email
     });
+
     if (!user) {
         return next(new ErrorHandler('User not found with this mail', 404))
     }
 
-    // Get reset token
-    const resetToken = user.getResetPasswordToken();
+     // Get reset token
+     const resetToken = user.getResetPasswordToken();
+
+    // generate otp
+    const otp = Math.floor((Math.random() * 100000) + 1)
+    const optData = await OTP.create({
+        email: req.body.email,
+        otp: otp,
+        resetToken: resetToken,
+        expireIn: new Date().getTime() + 180*1000
+    })
+
 
     await user.save({
         validateBeforeSave: false
     })
 
-    // create reset password url
-    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
-
-
-    const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, the ignore it`
-
     try {
         await sendEmail({
             email: user.email,
-            subject: 'Latata Password Recovery',
-            message
+            subject: 'RESET PASSWORD',
+            message: otp
         })
         res.status(200).json({
             success: true,
@@ -134,11 +143,67 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
     }
 })
 
+exports.verifyOtp = catchAsyncError(async (req, res, next) => {
+
+    const { otp } = req.body
+
+    const Otp = await OTP.findOne({
+        otp: otp
+    })
+
+    if(Otp){
+        const currentTime = new Date()
+        const diff = Otp.expireIn - currentTime.getTime()
+        if(diff < 0){
+            res.status(400).json({
+                message: 'OTP expired'
+            })
+        }
+        else{
+            res.status(200).json({
+                success: true,
+            })
+        }
+    }
+    else{
+
+       return next(new ErrorHandler('OTP existed', 500))
+
+    }
+
+    console.log(Otp)
+
+})
+
 // Reset password
 exports.resetPassword = catchAsyncError(async (req, res, next) => {
 
+    // check otp
+    const { otp } = req.body
+    const Otp = await OTP.findOne({
+        otp: otp
+    })
+    if(Otp){
+        const currentTime = new Date()
+        const diff = Otp.expireIn - currentTime.getTime()
+        if(diff < 0){
+            res.status(400).json({
+                message: 'OTP expired'
+            })
+        }
+        else{
+            res.status(200).json({
+                success: true,
+            })
+        }
+    }
+    else{
+       return next(new ErrorHandler('OTP existed', 500))
+    }
+
     // Hash URL token
-    const resetPasswordToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
+    const resetPasswordToken = crypto.createHash('sha256').update(Otp.resetToken).digest('hex');
+
 
     const user = await User.findOne({
         resetPasswordToken,
@@ -163,6 +228,7 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
     user.resetPasswordExpire = undefined;
 
     await user.save();
+    await Otp.remove();
 
     sendToken(user, 200, res)
 
@@ -177,7 +243,6 @@ exports.getUserProfile = catchAsyncError(async (req, res, next) => {
         user
     })
 })
-
 
 // Update / Change Password => api/v1/password/update
 exports.updatePassword = catchAsyncError(async (req, res, next) => {
@@ -197,7 +262,6 @@ exports.updatePassword = catchAsyncError(async (req, res, next) => {
 
 
 })
-
 
 // Update user profile => api/v1/profile/update
 exports.updateProfile = catchAsyncError(async (req, res, next) => {
@@ -232,9 +296,6 @@ exports.logout = catchAsyncError(async (req, res, next) => {
         message: 'Logged out'
     })
 })
-
-
-// Admin Routes
 
 
 // Get all users => api/v1/admin/users
