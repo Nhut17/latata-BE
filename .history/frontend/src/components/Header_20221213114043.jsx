@@ -14,7 +14,7 @@ const Header = () => {
   
   const {currentUser} = useSelector(state => state.user)
   const {listCartUser } = useSelector(state => state.cart)
-  const {listProduct } = useSelector(state => state.product)
+  const {listCartUser } = useSelector(state => state.product)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -31,12 +31,10 @@ const Header = () => {
       setSearch(e.target.value)
     }
 
-    console.log(search)
-
       // Search Product
   const searchProducts = (data) => {
 
-    return data.filter(val => val.name?.toLowerCase().includes(search.toLowerCase()))
+    return data.filter(val => val.proName?.toLowerCase().includes(search.toLowerCase()))
   }
 
   return (
@@ -95,10 +93,7 @@ const Header = () => {
             </Link>
           </div>
           <div className="group-search">
-            <input type="text" 
-                    placeholder='Bạn tìm gì...'
-                    value={search}
-                    onChange={handleSearchProduct} />
+            <input type="text" placeholder='Bạn tìm gì...' />
             {
               search.length > 0 && <SearchProduct listProduct={searchProducts(listProduct)} />
             }

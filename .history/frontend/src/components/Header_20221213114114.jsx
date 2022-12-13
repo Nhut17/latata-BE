@@ -31,12 +31,10 @@ const Header = () => {
       setSearch(e.target.value)
     }
 
-    console.log(search)
-
       // Search Product
   const searchProducts = (data) => {
 
-    return data.filter(val => val.name?.toLowerCase().includes(search.toLowerCase()))
+    return data.filter(val => val.proName?.toLowerCase().includes(search.toLowerCase()))
   }
 
   return (
@@ -97,8 +95,7 @@ const Header = () => {
           <div className="group-search">
             <input type="text" 
                     placeholder='Bạn tìm gì...'
-                    value={search}
-                    onChange={handleSearchProduct} />
+                    value={search} />
             {
               search.length > 0 && <SearchProduct listProduct={searchProducts(listProduct)} />
             }

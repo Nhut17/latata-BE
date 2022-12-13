@@ -6,37 +6,21 @@ import {categories} from './data'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutUser } from '../redux/User/userSlice'
 import SearchProduct from './Home/SearchProduct'
-import { useState } from 'react'
 
 const Header = () => {
 
-  const [search, setSearch] = useState('')
-  
   const {currentUser} = useSelector(state => state.user)
   const {listCartUser } = useSelector(state => state.cart)
-  const {listProduct } = useSelector(state => state.product)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  console.log('curent'+ JSON.stringify(currentUser))
 
   const handleLogout = () => {
     dispatch(logoutUser())
       localStorage.clear()
       navigate('/')
       navigate(0)
-  }
-
-    // Text search product
-    const handleSearchProduct = (e) => {
-      setSearch(e.target.value)
-    }
-
-    console.log(search)
-
-      // Search Product
-  const searchProducts = (data) => {
-
-    return data.filter(val => val.name?.toLowerCase().includes(search.toLowerCase()))
   }
 
   return (
@@ -95,13 +79,7 @@ const Header = () => {
             </Link>
           </div>
           <div className="group-search">
-            <input type="text" 
-                    placeholder='Bạn tìm gì...'
-                    value={search}
-                    onChange={handleSearchProduct} />
-            {
-              search.length > 0 && <SearchProduct listProduct={searchProducts(listProduct)} />
-            }
+            <input type="text" placeholder='Bạn tìm gì...' />
           </div>
 
           <div className="cart">

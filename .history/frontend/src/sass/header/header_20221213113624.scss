@@ -1,4 +1,4 @@
-@import '../variables.scss';
+
 $primaryColor: #000B49;
 
 header{
@@ -104,84 +104,12 @@ header{
             }
 
             .group-search{
-                width: 50%;
-                display: flex;
-                margin-right: 30px;
-                position: relative;
+                background: white;
+                padding: 10px 10px;
+                border-radius: 3px;
                 input{
-                    background-color: #f3f3f3;
-                    flex-grow: 1;
-                    padding: 11px 50px;
-                    border: 1px solid rgba($color: #000000, $alpha: 0.3);
-                    border-radius: 20px;
-                    width: 100%;
+                    width: 500px;
 
-                }
-                .search-product{
-                    z-index: 100;
-                    left: 15px;
-                    width: 95%;
-                    height: auto;
-                    background-color: white;
-                    position: absolute;
-                    box-shadow: 0 10px 10px rgba($color: #000000, $alpha: 0.3);
-                    transform: translate(1px,40px);
-                    // border: 1px solid rgba($color: #000000, $alpha: 0.3);
-                    .item-search-product{
-                        cursor: pointer;
-                        width: 100%;
-                        display: flex;
-                        position: relative;
-                        padding-bottom: 10px;
-                        transition: all 0.4s;
-                        &:hover{
-                        // background-color: rgba($color: $primary-color, $alpha: 0.5);
-                        background-color: #A0E4CB;
-                    }
-         
-                       .flex{
-                        display: flex;
-                        margin-top: 10px;
-                        margin-left: 20px;
-                       }
-                        .image{
-                            width: 60px;
-                            height: 60px;
-                            img{
-                                width: 100%;
-                                height: 100%;
-                            }
-                        }
-                        .content-item{
-                            padding-left: 10px;
-                            display: flex;
-                            align-items: center;
-                            .a-center{
-                            .name{
-                                display: block;
-                                font-size: 12px;
-                                font-weight: bold;
-                            }
-                            .author{
-                                display: block;
-                                font-size: 11px;
-                                padding-top: 5px;
-                                // padding-bottom: 10px;
-                            }
-                            .priceDeal{
-                                font-size: 13px;
-                                color: $red;
-                            }
-                            .priceOld{
-                                font-size: 13px;
-                                color: rgba($color: #000000, $alpha: 0.7);
-                                padding-left: 15px;
-                                text-decoration: line-through;
-                            }
-                        }
-
-                        }
-                    }
                 }
             }
 
