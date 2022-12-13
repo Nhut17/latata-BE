@@ -85,12 +85,32 @@ const ForgotPasswordForm = () => {
                         </div>
 
 
-  
+
+                        {/* <div className="input-OTP">
+                            <i class="fa-brands fa-codepen ic"></i>
+                            <input 
+                                    type="text" 
+                                    placeholder='Nhập mã OTP'
+                                    
+                                     />
+                          
+                            
+
+                        </div> */}
+                        
+
+                        {/* <Link to="/quen-mat-khau"><p><u>Quên mật khẩu</u></p></Link> */}
+
                     </div>
                    
                     
                     <button className='btn-sign-up'>TIẾP TỤC</button>
-                   
+
+
+
+                    
+                    {/* <Link to='/sendOTP'><button className='btn-sign-up'>TIẾP TỤC</button></Link> */}
+
                 </div>
                 <div className="img">
                     <img src={login} alt="" />

@@ -34,7 +34,7 @@ import AdminCate from "../components/Admin/components/AdminCate/AdminCate";
 import AdminCreateCate from "../components/Admin/components/AdminCate/AdminCreateCate";
 import MyOrders from "../pages/MyOrders";
 import ForgotPassword from "../pages/ForgotPassword";
-// import GmailOTP from "../components/ForgotPassword/GmailOTP";
+import GmailOTP from "../components/ForgotPassword/GmailOTP";
 import ChangePassword from "../components/ForgotPassword/ChangePassword";
 import Thankyou from "../pages/Thankyou";
 // import Orders from "../components/Admin/Orders/Orders"
@@ -50,7 +50,7 @@ const Router = () => {
       {/* LOGIN */}
       <Route path='/dang-nhap'  element={<Login />}/>
       <Route path='/quen-mat-khau'  element={<ForgotPassword />}/>
-      {/* <Route path='/sendOTP'  element={<GmailOTP />}/> */}
+      <Route path='/sendOTP'  element={<GmailOTP />}/>
       <Route path='/change-password'  element={<ChangePassword />}/>
 
 

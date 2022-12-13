@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import EachTransaction from './EachTransaction'
 const OrderList = ({ data }) => {
     const [evaluated, setEvaluated] = useState(
-        data.status === 'DONE' ? true : false
+        data?.status === 'DONE' ? true : false
     )
     // const dispatch = useDispatch()
 
@@ -15,29 +15,45 @@ const OrderList = ({ data }) => {
     // }
     return (
         <div className='order-detail'>
-            {/* {data.transactionMapper.map((item, index) => (
-                <EachTransaction key={index} orderDetail={item} evaluated={evaluated} />
-            ))} */}
-            <div className='summary-order'>
-                <span className='summary-address'>Địa chỉ: {data?.address}</span>
-                <span className='summary-date'>{data?.createAt}</span>
-                <span className='summary-phone'>Số điện thoại: {data?.phoneNo}</span>
-                {data.ordStatus === 'PENDING' &&
-                    <span className='summary-status-pending'><i class="fa-solid fa-circle icon"></i> {data?.status}</span>
+             
+         
+            <EachTransaction evaluated={evaluated} />
+           
+          
+            <div className='summary-order flex j-between'>
+                
+                <p className='summary-address'>Địa chỉ: Long An</p>
+                <p className='summary-date'>10/12/2022</p>
+                <p className='summary-phone'>Số điện thoại: 0999999</p>
+                {/* {data?.status === 'PENDING' &&
+                    <p className='summary-status-pending'><i class="fa-solid fa-circle icon"></i> {data?.status}</p>
                 }
-                {data.ordStatus === 'DONE' &&
-                    <span className='summary-status-done'><i class="fa-solid fa-circle icon"></i> {data?.status}</span>
+                {data?.status === 'DONE' &&
+                    <p className='summary-status-done'><i class="fa-solid fa-circle icon"></i> {data?.status}</p>
                 }
-                {data.ordStatus === 'CANCELED' &&
-                    <span className='summary-status-cancel'><i class="fa-solid fa-circle icon"></i> {data.ordStatus}</span>
-                }
-                <span className='summary-total-price'>Tổng tiền: {data?.price?.toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}<span className='currency'>&#8363;</span></span>
+                {data?.status === 'CANCELED' &&
+                    <p className='summary-status-cancel'><i class="fa-solid fa-circle icon"></i> {data?.status}</p>
+                } */}
+
+                <p className='summary-total-price'>Tổng tiền: {'100000'.toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}<span className='currency'>&#8363;</span></p>
             </div>
-            <div className='cancel-order' hidden={data?.status === 'PENDING' ? false : true}>
+            {/* <div className='cancel-order' hidden={data?.status === 'PENDING' ? false : true}>
                 <button>Hủy đơn hàng </button>
+            </div> */}
+
+            <div className="action flex ">
+                <div className='btn-action '>
+                    <button>Hủy đơn hàng </button>
+                </div>
+
+                <div className='btn-action '>
+                    <button>Đánh giá</button>
+                </div>
             </div>
-        </div>
+
+            
+     </div>
     )
 }
 export default OrderList
