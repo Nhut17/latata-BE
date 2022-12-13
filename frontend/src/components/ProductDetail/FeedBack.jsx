@@ -1,5 +1,6 @@
 import React from 'react'
-import { product_detail } from './data'
+// import { product_detail } from './data'
+import StarRating from '../../components/StarRating'
 const FeedBack = () => {
   return (
     <div className='product-feedback flex j-between bd-bottom'>
@@ -10,83 +11,49 @@ const FeedBack = () => {
         
         <div className="product-review-statistics ">
             
-            <div className='flex j-between'>
+            <div>
                 <div className="product-review-statistic-star">
                     <div className="product-review-statistic-star-header flex j-between">
-                            <span>0</span>
-                            <div className="rate">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <span>Tổng: 0 đánh giá</span>
+                            <p className='star-average'>
+                                <span className='star-number'>0/5</span>
+                                <StarRating rating={4.5}/>
+                            </p>
+                            
+                            <p className='star-sum'>Tổng: 0 đánh giá</p>
                     </div>                
-                    <div className="product-review-statistic-star-list">
-                    {/* <div className="product-review-statistic-star-item flex">
-                    <span className="flex-10-width">5</span>
-                    <i className="fa-solid fa-star icon-black flex-10-width"></i>
-                    <div className="product-review-statistic-star-item-bar flex">
-                        <div className="flex-70-width review-star"></div>
-                        <div className="flex-30-width no-review"></div>
+                    <div className="product-review-list flex">
+                        <div className="review-detail flex">
+                            <div className="review-avatar">
+                                <img src="https://khoinguonsangtao.vn/wp-content/uploads/2022/07/avatar-gau-cute.jpg" alt="" />
+                            </div>
+                            <div className="review-content">
+                                <span>bichtram</span> <br />
+                                <StarRating rating={4}/> <br />
+                                <p className='time-review'>2022-11-30 09:07</p>
+                                <p className='content'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe quia eveniet nulla alias, tempore molestias repudiandae quam dolorem suscipit assumenda soluta praesentium aliquam, autem sapiente necessitatibus modi laborum asperiores temporibus.</p>
+                            </div>
+                        </div>
+                        
+                   
                     </div>
-                    <span className="percent flex-10-width">70%</span>
-                    </div>
-                    <div className="product-review-statistic-star-item flex">
-                    <span className="flex-10-width">4</span>
-                    <i className="fa-solid fa-star icon-black flex-10-width"></i>
-                    <div className="product-review-statistic-star-item-bar flex">
-                        <div className="flex-80-width review-star"></div>
-                        <div className="flex-20-width no-review"></div>
-                    </div>
-                    <span className="percent flex-10-width">20%</span>
-                    </div>
-                    <div className="product-review-statistic-star-item flex">
-                    <span className="flex-10-width">3</span>
-                    <i className="fa-solid fa-star icon-black flex-10-width"></i>
-                    <div className="product-review-statistic-star-item-bar flex">
-                        <div className="flex-90-width review-star"></div>
-                        <div className="flex-10-width no-review"></div>
-                    </div>
-                    <span className="percent flex-10-width">10%</span>
-                    </div>
-                    <div className="product-review-statistic-star-item flex">
-                    <span className="flex-10-width">2</span>
-                    <i className="fa-solid fa-star icon-black flex-10-width"></i>
-                    <div className="product-review-statistic-star-item-bar flex">
-                        <div className="flex-0-width review-star"></div>
-                        <div className="flex-100-width no-review"></div>
-                    </div>
-                    <span className="percent flex-10-width">0%</span>
-                    </div>
-                    <div className="product-review-statistic-star-item flex">
-                    <span className="flex-10-width">1</span>
-                    <i className="fa-solid fa-star icon-black flex-10-width"></i>
-                    <div className="product-review-statistic-star-item-bar flex">
-                        <div className="flex-0-width review-star"></div>
-                        <div className="flex-100-width no-review"></div>
-                    </div>
-                    
-                    <span className="percent flex-10-width">0%</span>
-                    </div> */}
-                </div>
                 </div>
                 <div className="product-review-statistic-image flex">
-                    {product_detail.map(img => (
+                    {/* {product_detail.map(img => (
                         <img src={img.url} alt="" />
-                    ))}
+                    ))} */}
                 </div>
             </div>
             
         </div>
         
         <div className="btn-review flex j-center">
-            <button className='btn-write-review'><i class="fas fa-comment-dots"></i>Viết đánh giá</button>
+            {/* <button className='btn-write-review'><i class="fas fa-comment-dots"></i>Viết đánh giá</button> */}
+
+           
             <button className='btn-see-more-review'>Xem thêm đánh giá</button>
         </div>
       </div>
-      <div className="product-ask">
+      {/* <div className="product-ask">
             <h3>Hỏi và đáp</h3>
             <div className="product-ask-input">
                 <input type="text" placeholder='Xin mời đặt câu hỏi' />
@@ -97,7 +64,7 @@ const FeedBack = () => {
 
             </div>
             
-      </div>
+      </div> */}
 
     </div>
   )

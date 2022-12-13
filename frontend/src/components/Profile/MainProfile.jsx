@@ -2,6 +2,7 @@ import React from 'react'
 import '../../sass/Profile/profile.scss'
 import {useParams} from 'react-router-dom'
 import { useForm } from "react-hook-form";
+import ChangePassword from './ChangePassword';
 const MainProfile = ({currentUser}) => {
   const { register, handleSubmit} = useForm();
 
@@ -40,14 +41,7 @@ const MainProfile = ({currentUser}) => {
 
 
                     
-                    <span>Mật khẩu hiện tại</span>
-                    <input type="password" {...register("password")} />
-
-                    <span>Mật khẩu mới</span>
-                    <input type="password" {...register("new-password")} />
-
-                    <span>Xác nhận mật khẩu</span>
-                    <input type="password" {...register("comfirm-password")} />
+                    <ChangePassword/>
 
                    
                     {/* <input type='file' {...register("image")} value={data.email}/> */}

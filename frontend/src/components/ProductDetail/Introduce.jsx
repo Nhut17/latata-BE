@@ -72,7 +72,7 @@ const Introduce = ({data}) => {
                     ))}
                 </Slider>
 
-                <div class="product-introduce-expand flex">
+                {/* <div class="product-introduce-expand flex">
                     <div class="product-introduce-expand-item flex">
                         <div class="expand-item-logo flex">
                             <i class="fa-solid fa-medal text-3xl"></i>
@@ -122,7 +122,7 @@ const Introduce = ({data}) => {
                         Thông tin <br /> sản phẩm
                         </span>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <div className="product-detail-content">
@@ -171,7 +171,7 @@ const Introduce = ({data}) => {
                     Khuyến mãi
                     </p>
                     <p style={{ padding: "0 0 5px 0" }}>
-                    Giá và khuyến mãi áp dụng đến hết 23:59 17/07
+                    Giá và khuyến mãi áp dụng đến hết 23:59 31/12
                     </p>
                 </div>
                 <div class="product-introduce-promotion-list ">
@@ -212,7 +212,7 @@ const Introduce = ({data}) => {
                 </div>
                 </div>
 
-                <div class="product-introduce-payment">
+                {/* <div class="product-introduce-payment">
                     <h3 class="product-introduce-payment-title">Ưu đãi khi thanh toán</h3>
                     <div class="product-introduce-payment-main flex j-between">
                         <div class="product-introduce-payment tpbank border">
@@ -236,7 +236,7 @@ const Introduce = ({data}) => {
                         <p>Sản phẩm từ 5tr</p>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <button className='btn-buy-now' onClick={handleBuy}>MUA NGAY</button>
             </div>
         </div>

@@ -22,7 +22,8 @@
         .product-introduce{
             margin: 30px auto;
            .product-detail-image{
-             width: 48%;
+             width: 500px;
+             height: 500px;
                 img{
                     &:focus{
                         outline: none;
@@ -226,7 +227,7 @@
         .product-feedback{
             margin: 20px auto;
             .product-review{
-                width: 48%;
+                // width: 48%;
                 border: 1px solid #999;
                 border-radius: 10px;
                 padding: 10px;
@@ -264,8 +265,45 @@
             .product-review-statistics{
                 margin: 10px auto;
                 .product-review-statistic-star{
-                    width: 50%;
+                    // width: 50%;
                     //margin-top: 20px;
+
+                    .star-average{
+                        margin-left: 10px;
+                        .star-number{
+                            margin-right: 15px;
+
+                        }
+                        
+                    }
+                    .star-sum{
+                        margin-right: 55px;
+                    }
+
+                    .product-review-list{
+                        margin-top: 20px;
+                        .review-avatar{
+                            width: 45px;
+                            height: 40px;
+                            img{
+                                width: 100%;
+                            }
+                        }
+
+                        .review-content{
+                            margin-bottom: 10px;
+
+                            .content{
+                                margin-top: 10px;
+                            }
+                            .time-review{
+                                margin-top: 10px;
+                                font-size: 14px;
+                                color: #999;
+                            }
+                        }
+                       
+                    }
                 }
                 .product-review-statistic-image{
                     width: 40%;

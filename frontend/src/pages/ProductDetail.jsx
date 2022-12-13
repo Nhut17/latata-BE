@@ -19,7 +19,10 @@ const ProductDetail = () => {
   
   return (
    <div className="main-product-detail">
+    <div className="container">
       <MainProductDetail data={data}/>
+
+    </div>
    </div>
   )
 }

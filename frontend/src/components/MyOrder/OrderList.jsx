@@ -7,6 +7,8 @@ const OrderList = ({ data }) => {
     const [evaluated, setEvaluated] = useState(
         data?.status === 'DONE' ? true : false
     )
+
+   
     // const dispatch = useDispatch()
 
     // const handleCancel = (id) => {
@@ -16,7 +18,8 @@ const OrderList = ({ data }) => {
     return (
         <div className='order-detail'>
              
-         
+            <p className='summary-status-pending'><i class="fa-solid fa-circle icon"></i> PENDING</p>
+        
             <EachTransaction evaluated={evaluated} />
            
           
@@ -47,13 +50,13 @@ const OrderList = ({ data }) => {
                     <button>Hủy đơn hàng </button>
                 </div>
 
-                <div className='btn-action '>
-                    <button>Đánh giá</button>
-                </div>
+                
             </div>
 
             
-     </div>
+
+            
+         </div>
     )
 }
 export default OrderList

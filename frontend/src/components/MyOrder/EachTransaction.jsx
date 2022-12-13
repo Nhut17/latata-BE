@@ -1,6 +1,7 @@
 // import ModalCommentProduct from './ModalCommentProduct'
 import { React, useState } from 'react'
 import { Link } from 'react-router-dom'
+import ModalCommentProduct from './ModalCommentProduct'
 
 const EachTransaction = ({  evaluated }) => {
 
@@ -11,7 +12,6 @@ const EachTransaction = ({  evaluated }) => {
     // const totalPrice=orderDetail.tranUnitPrice * orderDetail.tranQuantity
     return (
         <>
-            <p className='summary-status-pending'><i class="fa-solid fa-circle icon"></i> PENDING</p>
             <div className='each-transaction'>
             <Link reloadDocument>
                 <div className="img">
@@ -36,11 +36,13 @@ const EachTransaction = ({  evaluated }) => {
                         {/* <span className='product-author'>{orderDetail.productAuthor}</span> */}
                         <button
                             onClick={handleComment}
-                            hidden={evaluated && evaluated === true ? false : true}
-                            className={evaluated && evaluated === true ? ' btn-review-product active' : 'btn-review-product'}>Đánh giá sản phẩm</button>
+                            // hidden={evaluated && evaluated === true ? false : true}
+                            // className={evaluated && evaluated === true ? ' btn-review-product active' : 'btn-review-product'}>Đánh giá sản phẩm</button>
+                            className='btn-review-product active'>Đánh giá sản phẩm</button>
+                            
                     </div>
                 </div>
-                {/* <ModalCommentProduct openModalComment={openModalComment} setOpenModalComment={setOpenModalComment} data={orderDetail}/> */}
+                <ModalCommentProduct openModalComment={openModalComment} setOpenModalComment={setOpenModalComment} />
             </div >
         </>
     )

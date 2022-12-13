@@ -17,7 +17,31 @@ header{
                 &:hover {
                     transition: all .3s;
                     .dropdown-profile{
+                        z-index: 9;
                         display: block;
+                        // position: relative;
+                        &::before,
+                        &::after{
+                            content: '';
+                            position: absolute;
+                            right: 22.5px;
+                            top: -6px;
+                            width: 12px;
+                            height: 12px;
+                            transform: rotate(45deg);
+                            z-index: -1;
+                            background: white;
+                            border-top: 1px solid white;
+                            border-left: 1px solid white ;
+                            border-bottom: 1px solid transparent;
+                            border-right: 1px solid transparent ;
+                        }
+
+                        &::after{
+                            z-index: 2;
+                            right: 22.5px;
+                            top: -6px;
+                        }
                     }
                 }
                 .login-complete{
@@ -47,7 +71,8 @@ header{
                             border: 1px solid rgba(#333, 0.1);
                             transition: all .3s;
                             &:hover{
-                                background:rgb(200, 199, 216);
+                                // background:rgb(200, 199, 216);
+                                color: rgb(44,172,218);
                             } 
                         }
                     }
@@ -110,17 +135,17 @@ header{
                 position: relative;
                 input{
                     background-color: #f3f3f3;
-                    flex-grow: 1;
-                    padding: 11px 50px;
+                    // flex-grow: 1;
+                    padding: 10px 15px;
                     border: 1px solid rgba($color: #000000, $alpha: 0.3);
-                    border-radius: 20px;
+                    border-radius: 5px;
                     width: 100%;
 
                 }
                 .search-product{
                     z-index: 100;
-                    left: 15px;
-                    width: 95%;
+                    // left: 15px;
+                    width: 99.7%;
                     height: auto;
                     background-color: white;
                     position: absolute;
@@ -136,7 +161,7 @@ header{
                         transition: all 0.4s;
                         &:hover{
                         // background-color: rgba($color: $primary-color, $alpha: 0.5);
-                        background-color: #A0E4CB;
+                        background-color: #e7ebfd;
                     }
          
                        .flex{

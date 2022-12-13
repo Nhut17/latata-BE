@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import "./MainAdmin.scss";
+import "././MainAdmin.scss";
 import {  Outlet } from "react-router-dom";
 import Sidebar from "./components/sidebar/Sidebar";
 import AdminNavBar from "./components/AdminNavBar/AdminNavBar";
