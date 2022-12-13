@@ -51,7 +51,7 @@ export const getAllOrder = createAsyncThunk('order/getAll',
 
                         const res = await api.get('/api/v1/admin/orders',config)
 
-                        return res.data.orders
+                        return res.data
 
                     }
                     catch(err){
@@ -134,7 +134,7 @@ const orderSlice = createSlice({
             state.successOrder = false
         },
         [getAllOrder.fulfilled]: (state,action) =>{
-            state.listOrder = action.payload
+            state.listOrder = action.payload.
         },
         [reviewProduct.fulfilled]: (state,action) =>{
              state.successReview = true

@@ -1,9 +1,7 @@
-import { React, useState ,useEffect} from 'react'
+import { React, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { updateOrder } from '../../redux/Order/orderSlice';
 // import { cancelByUser } from '../../redux/reducer/orderSlice'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import EachTransaction from './EachTransaction'
 const OrderList = ({ data }) => {
@@ -13,24 +11,6 @@ const OrderList = ({ data }) => {
 
     const dispatch= useDispatch()
     const {successUpdateOrder} = useSelector(state => state.order)
-    
-    // toastify success cancel order
-    useEffect(() => {
-      if(successUpdateOrder){
-          toast('Hủy đơn hàng thành công!', {
-              position: "top-right",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              });
-      }
-      
-    }, [successUpdateOrder]);
-
 
     const cancelOrder = () => {
         const cancel = {
@@ -43,20 +23,10 @@ const OrderList = ({ data }) => {
 
     return (
         <div className='order-detail'>
-            <ToastContainer />
 
         {data?.status === 'DONE' &&
         <p className='summary-status-done'><i class="fa-solid fa-circle icon"></i> Giao hàng thành công</p>
-        }
-        {data?.status === 'PENDING' &&
-        <p className='summary-status-pending'><i class="fa-solid fa-circle icon"></i> Chờ xác nhận</p>
-        }
-        {data?.status === 'CANCELLED' &&
-        <p className='summary-status-done'><i class="fa-solid fa-circle icon"></i> Đơn hàng đã hủy</p>
-        }
-
-
-
+    }
          {
             data.orderItems.map(orders => (
 
@@ -85,22 +55,14 @@ const OrderList = ({ data }) => {
                 <p className='summary-total-price'>Tổng tiền: {data.totalPrice.toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}<span className='currency'>&#8363;</span></p>
             </div>
-
             {/* <div className='cancel-order' hidden={data?.status === 'PENDING' ? false : true}>
                 <button>Hủy đơn hàng </button>
             </div> */}
-           
-
 
             <div className="action flex ">
-                {
-                    data?.status === 'PENDING' &&
-                    <div className='btn-action '
-                    >
-                   <button onClick={cancelOrder}>Hủy đơn hàng </button>
-               </div>
-                }
-               
+                <div className='btn-action '>
+                    <button onClick={cancelOrder}>Hủy đơn hàng </button>
+            </div>
 
             <div className='btn-action '>
                 <button>Đánh giá</button>

@@ -98,10 +98,10 @@ function Order({data}) {
                 }}  >{data.status}</span></td>
     }
 
-    {
+    {/* {
       data.status === 'CANCELLED' &&
       <td><span className="status cancel">{data.status}</span></td>
-    }
+    } */}
     
     <td className="btn-group"
       style={{
@@ -117,15 +117,14 @@ function Order({data}) {
   
         <span className="action done">Xác nhận đơn</span>
       </button>
-      
-      {/* <button className={data.status === 'PENDING' ? "cancel btn" : "cancel disable btn"} onClick={handleCancel}
+      <button className={data.status === 'PENDING' ? "cancel btn" : "cancel disable btn"} onClick={handleCancel}
       style={data.status === 'PENDING' ? {} : {
         cursor: 'not-allowed',
         opacity: 0.5
       }} >
  
         <span className="action cancel"> Hủy đơn</span>
-      </button> */}
+      </button>
 
       <button className="detail btn" onClick={handleClickOrderDetail}
       >

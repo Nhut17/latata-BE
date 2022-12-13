@@ -117,7 +117,6 @@ function Order({data}) {
   
         <span className="action done">Xác nhận đơn</span>
       </button>
-      
       {/* <button className={data.status === 'PENDING' ? "cancel btn" : "cancel disable btn"} onClick={handleCancel}
       style={data.status === 'PENDING' ? {} : {
         cursor: 'not-allowed',

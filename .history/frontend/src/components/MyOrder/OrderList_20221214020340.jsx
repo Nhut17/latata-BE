@@ -95,10 +95,6 @@ const OrderList = ({ data }) => {
             <div className="action flex ">
                 {
                     data?.status === 'PENDING' &&
-                    <div className='btn-action '
-                    >
-                   <button onClick={cancelOrder}>Hủy đơn hàng </button>
-               </div>
                 }
                
 

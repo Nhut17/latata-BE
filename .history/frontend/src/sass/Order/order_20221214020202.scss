@@ -98,13 +98,17 @@
             border-radius: 10px;
             padding: 10px;
             margin-bottom: 20px;
-            // .summary-status-pending{
-            //     color: #ffa800;
+            .summary-status-pending{
+                color: #ffa800;
+                font-size: 17px;
+                font-weight: 500;
+          
+    
         
-            // }
+            }
             .summary-status-cancel{
                 color: $red;
-       
+                font-weight: 500;
     
             }
             .summary-status-done{

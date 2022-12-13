@@ -21,70 +21,7 @@
         // border-radius: 5px;
         font-size: 40px;
     }
-    .summary-status-pending{
-        color: #ffa800;
-        font-size: 17px;
-        font-weight: 500;
-        // float: right;
-        // padding-left: 100px;
-        text-align: end;
-        margin-right: 7px;
-        margin-top: 10px;
-
-    }
-    .summary-order{
-        // border: 1px solid #ddd;
-        // grid-gap: 15px;
-        align-items: center;
-        text-align: left;
-        // background-color: #cbd0ff;
-        border-top: 1px solid #dbdbdb;
-        // display: grid;
-        gap: 15px;
-        grid-template-columns: 400px 300px 350px 150px auto;
-        padding: 40px ;
-        margin-bottom: 10px;
-
-        .summary-address{
-            color: #999;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .summary-date{
-            color: #999;
-        }
-        .summary-phone{
-            font-weight: 500;
-            text-align: left;
-        }
-        .summary-status-done{
-            color: #42d542;
-            // margin-right: 20px;
-
-
-        }
-        .summary-status-cancel{
-            color: $red;
-            font-weight: 500;
-
-        }
-        
-        // p{
-        //     text-align: center;
-        // }
-        .summary-status-delivering{
-            color: rgb(41, 146, 238);
-            font-weight: 500;
-            float: left;
-
-        }
-
-        .summary-total-price{
-
-            font-weight: 500;
-          
-        }
-    }
+   
     .my-order-list{
         display: flex;
         flex-direction: column;
@@ -98,20 +35,69 @@
             border-radius: 10px;
             padding: 10px;
             margin-bottom: 20px;
-            // .summary-status-pending{
-            //     color: #ffa800;
+            .summary-status-pending{
+                color: #ffa800;
+                font-size: 17px;
+                font-weight: 500;
+                // float: right;
+                // padding-left: 100px;
+                text-align: end;
+                margin-right: 7px;
+                margin-top: 10px;
         
-            // }
-            .summary-status-cancel{
-                color: $red;
-       
-    
             }
-            .summary-status-done{
-                color: #42d542;
-                // margin-right: 20px;
-    
-    
+            .summary-order{
+                // border: 1px solid #ddd;
+                // grid-gap: 15px;
+                align-items: center;
+                text-align: left;
+                // background-color: #cbd0ff;
+                border-top: 1px solid #dbdbdb;
+                // display: grid;
+                gap: 15px;
+                grid-template-columns: 400px 300px 350px 150px auto;
+                padding: 40px ;
+                margin-bottom: 10px;
+        
+                .summary-address{
+                    color: #999;
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+                .summary-date{
+                    color: #999;
+                }
+                .summary-phone{
+                    font-weight: 500;
+                    text-align: left;
+                }
+                .summary-status-done{
+                    color: #42d542;
+                    // margin-right: 20px;
+        
+        
+                }
+                .summary-status-cancel{
+                    color: $red;
+                    font-weight: 500;
+        
+                }
+                
+                // p{
+                //     text-align: center;
+                // }
+                .summary-status-delivering{
+                    color: rgb(41, 146, 238);
+                    font-weight: 500;
+                    float: left;
+        
+                }
+        
+                .summary-total-price{
+        
+                    font-weight: 500;
+                  
+                }
             }
             .each-transaction{
                     background-color: white;

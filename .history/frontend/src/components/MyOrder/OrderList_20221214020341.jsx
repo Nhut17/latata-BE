@@ -96,7 +96,7 @@ const OrderList = ({ data }) => {
                 {
                     data?.status === 'PENDING' &&
                     <div className='btn-action '
-                    >
+                    hidden={data?.status === 'PENDING' ? false : true}>
                    <button onClick={cancelOrder}>Hủy đơn hàng </button>
                </div>
                 }

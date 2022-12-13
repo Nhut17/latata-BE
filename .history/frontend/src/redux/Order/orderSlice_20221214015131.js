@@ -134,7 +134,7 @@ const orderSlice = createSlice({
             state.successOrder = false
         },
         [getAllOrder.fulfilled]: (state,action) =>{
-            state.listOrder = action.payload
+            state.listOrder = action.payload.
         },
         [reviewProduct.fulfilled]: (state,action) =>{
              state.successReview = true

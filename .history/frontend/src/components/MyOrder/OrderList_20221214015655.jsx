@@ -48,15 +48,9 @@ const OrderList = ({ data }) => {
         {data?.status === 'DONE' &&
         <p className='summary-status-done'><i class="fa-solid fa-circle icon"></i> Giao hàng thành công</p>
         }
-        {data?.status === 'PENDING' &&
-        <p className='summary-status-pending'><i class="fa-solid fa-circle icon"></i> Chờ xác nhận</p>
-        }
-        {data?.status === 'CANCELLED' &&
-        <p className='summary-status-done'><i class="fa-solid fa-circle icon"></i> Đơn hàng đã hủy</p>
-        }
 
 
-
+        
          {
             data.orderItems.map(orders => (
 
@@ -93,14 +87,10 @@ const OrderList = ({ data }) => {
 
 
             <div className="action flex ">
-                {
-                    data?.status === 'PENDING' &&
-                    <div className='btn-action '
-                    >
-                   <button onClick={cancelOrder}>Hủy đơn hàng </button>
-               </div>
-                }
-               
+                <div className='btn-action '
+                     hidden={data?.status === 'PENDING' ? false : true}>
+                    <button onClick={cancelOrder}>Hủy đơn hàng </button>
+                </div>
 
             <div className='btn-action '>
                 <button>Đánh giá</button>
