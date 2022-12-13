@@ -31,12 +31,12 @@ const Header = () => {
       setSearch(e.target.value)
     }
 
-    console.log(search)
+    
 
       // Search Product
   const searchProducts = (data) => {
 
-    return data.filter(val => val.name?.toLowerCase().includes(search.toLowerCase()))
+    return data.filter(val => val.proName?.toLowerCase().includes(search.toLowerCase()))
   }
 
   return (

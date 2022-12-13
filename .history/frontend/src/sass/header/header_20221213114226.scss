@@ -1,4 +1,4 @@
-@import '../variables.scss';
+@import '../'
 $primaryColor: #000B49;
 
 header{
@@ -104,17 +104,11 @@ header{
             }
 
             .group-search{
-                width: 50%;
-                display: flex;
-                margin-right: 30px;
-                position: relative;
+                background: white;
+                padding: 10px 10px;
+                border-radius: 3px;
                 input{
-                    background-color: #f3f3f3;
-                    flex-grow: 1;
-                    padding: 11px 50px;
-                    border: 1px solid rgba($color: #000000, $alpha: 0.3);
-                    border-radius: 20px;
-                    width: 100%;
+                    width: 500px;
 
                 }
                 .search-product{
@@ -125,11 +119,11 @@ header{
                     background-color: white;
                     position: absolute;
                     box-shadow: 0 10px 10px rgba($color: #000000, $alpha: 0.3);
-                    transform: translate(1px,40px);
+                    transform: translate(0,43px);
                     // border: 1px solid rgba($color: #000000, $alpha: 0.3);
                     .item-search-product{
                         cursor: pointer;
-                        width: 100%;
+                        width: 99.6%;
                         display: flex;
                         position: relative;
                         padding-bottom: 10px;
@@ -138,14 +132,23 @@ header{
                         // background-color: rgba($color: $primary-color, $alpha: 0.5);
                         background-color: #A0E4CB;
                     }
-         
+                       
+                        // &:not(:first-child)::before{
+                        //     content: '';
+                        //     width: 100%;
+                        //     position: absolute;
+                        //     top: 0;
+                        //     left: 0;
+                        //     width: 100%;
+                        //     border: 1px solid rgba($color: #000000, $alpha: 0.2);
+                        // }
                        .flex{
                         display: flex;
                         margin-top: 10px;
                         margin-left: 20px;
                        }
                         .image{
-                            width: 60px;
+                            width: 40px;
                             height: 60px;
                             img{
                                 width: 100%;
