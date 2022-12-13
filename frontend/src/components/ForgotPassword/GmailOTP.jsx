@@ -36,7 +36,7 @@ const onHandleSubmit = (formData) => {
     
                     <div className="input-group">
                         <div className="input-OTP">
-                            <i class="fa-brands fa-codepen"></i>
+                            <i class="fa-brands fa-codepen ic"></i>
                             <input 
                                     type="text" 
                                     placeholder='Nhập mã OTP'
@@ -46,6 +46,35 @@ const onHandleSubmit = (formData) => {
                             
 
                         </div>
+
+
+                       
+                        <div className="input-password">
+                        <i class="fa-solid fa-lock ic"></i>
+                            <input 
+                                    type="password" 
+                                    placeholder='Nhập mật khẩu mới'
+                                    
+                                     />
+                          
+                            
+
+                        </div>
+                        
+                        <div className="input-password">
+                        <i class="fa-solid fa-lock ic"></i>
+                            <input 
+                                    type="password" 
+                                    placeholder='Nhập lại mật khẩu'
+                                    
+                                     />
+                          
+                            
+
+                        </div>
+
+                        {/* <Link to="/quen-mat-khau"><p><u>Quên mật khẩu</u></p></Link> */}
+             
                         
 
                         {/* <Link to="/quen-mat-khau"><p><u>Quên mật khẩu</u></p></Link> */}
