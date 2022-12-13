@@ -19,6 +19,7 @@ const initialState = {
     successSendOTP: false,
     successResetPassword: false,
     emailOtp: null,
+    myOrders: null
 }
 
 
@@ -156,6 +157,28 @@ export const resetPassword = createAsyncThunk('password/reset',
             }
         })
 
+// get al User
+export const myOrder = createAsyncThunk('user/getAll',
+        async(id, thunkAPI) => {
+            try {
+                const token = localStorage.getItem('token')
+                const config = {
+                    headers: {
+                        Authorization: 'Bearer ' + token
+                    }
+                }
+
+                const res = await axios.get('http://localhost:4000/api/v1/orders/me',config)
+                
+                return res.data.orders
+            
+
+            } catch (error) {
+                return thunkAPI.rejectWithValue('can not get user detail')
+            }
+        }
+)
+
 const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -207,6 +230,12 @@ const userSlice = createSlice({
        [resetPassword.rejected] : (state,action) => {
             state.errorResetPassword = true
             state.message = 'Mã OTP nhập không đúng hoặc đã hết hiệu lực'
+       },
+       [myOrder.fulfilled] : (state,action) => {
+           state.myOrders = action.payload
+       },
+       [myOrder.rejected] : (state,action) => {
+            
        },
 
     }
