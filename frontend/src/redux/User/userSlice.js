@@ -7,7 +7,6 @@ const initialState = {
 
     user : null,
     success: false,
-    success: true,
     loading: false,
     successRegister: false,
     successLogin: false,
@@ -15,6 +14,11 @@ const initialState = {
     message: null,
     currentUser: null,
     accessToken: null,
+    errRegister: false,
+    errorResetPassword: false,
+    successSendOTP: false,
+    successResetPassword: false,
+    emailOtp: null,
 }
 
 
@@ -33,11 +37,10 @@ export const registerUser = createAsyncThunk('user/register',
                 }
                 const res = await api.post('/api/v1/register',data,config)
                 
-                console.log(res.data)
                 return res.data
             }
-            catch(e){
-                return thunkAPI.rejectWithValue('Register Failed!')
+            catch(err){
+                return thunkAPI.rejectWithValue(err.message)
             }
         })
 
@@ -114,17 +117,72 @@ export const getAllUser = createAsyncThunk('user/getAll',
         }
 )
 
+
+// Forgot password 
+export const forgotPassword = createAsyncThunk('password/forgot', 
+        async(email,thunkAPI) => {
+            try{
+                const config = {
+                    headers:{
+                        "Content-Type": "application/json"
+                    }
+                }
+        
+                const res = await api.post('/api/v1/password/forgot',email,config)
+          
+                return res.data
+            }
+            catch(e){
+                return thunkAPI.rejectWithValue('logout Failed!')
+            }
+        })
+
+// Forgot password 
+export const resetPassword = createAsyncThunk('password/reset', 
+        async(data,thunkAPI) => {
+            try{
+                const config = {
+                    headers:{
+                        "Content-Type": "application/json"
+                    }
+                }
+                console.log(data);
+                const res = await api.put('/api/v1/password/reset',data,config)
+          
+                return res.data
+            }
+            catch(e){
+                return thunkAPI.rejectWithValue(e)
+            }
+        })
+
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        logout: (state,action) => {
-           
-        }
+        resetActionUser: (state,action) => {
+            state.message =''
+            state.successRegister = false
+            state.errorRegister = false
+            state.errorResetPassword = false
+            state.successSendOTP= false
+            state.successResetPassword= false
+          
+
+        },
+        sendEmail: (state,action) => {
+            state.emailOtp = action.payload
+        },
+       
     },
     extraReducers: {
         [registerUser.fulfilled]: (state,action) => {
             state.successRegister = true
+        },
+        [registerUser.rejected]: (state,action) => {
+            state.message = 'Email đã tồn tại!'
+            state.successRegister = false
+            state.errRegister = true
         },
         [loginUser.fulfilled]: (state,action) => {
             state.currentUser = action.payload
@@ -138,9 +196,21 @@ const userSlice = createSlice({
         },
        [logoutUser.fulfilled]: (state,action) => {
             state.currentUser = null
-       }
+       },
+       [forgotPassword.fulfilled] : (state,action) => {
+            state.successSendOTP = true
+       },
+       [resetPassword.fulfilled] : (state,action) => {
+            state.successResetPassword = true
+            state.errorResetPassword = false
+       },
+       [resetPassword.rejected] : (state,action) => {
+            state.errorResetPassword = true
+            state.message = 'Mã OTP nhập không đúng hoặc đã hết hiệu lực'
+       },
+
     }
 })
-export const { logout } = userSlice.actions
+export const { resetActionUser,sendEmail } = userSlice.actions
 
 export default userSlice.reducer

@@ -14,6 +14,7 @@ const { registerUser,
     getUserDetails, 
     updateUser, 
     refreshToken,
+    verifyOtp,
     deleteUser } = require('../controllers/authController')
 
 
@@ -22,8 +23,10 @@ const { isAuthenticatedUser , authorizeRoles} = require('../middlewares/auth')
 router.route('/register').post(registerUser)
 router.route('/login').post(loginUser)
 
-router.route('/password/forgot').post(isAuthenticatedUser,authorizeRoles('user'),forgotPassword)
-router.route('/password/reset/:token').put(isAuthenticatedUser,authorizeRoles('user'),resetPassword)
+router.route('/password/forgot').post(forgotPassword)
+router.route('/password/reset').put(resetPassword)
+
+router.route('/password/verify-otp').post(verifyOtp)
 
 router.route('/logout').get(isAuthenticatedUser,logout)
 

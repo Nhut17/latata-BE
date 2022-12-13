@@ -1,5 +1,4 @@
 const express = require('express')
-const uploadCloud = require('../utils/cloudinary')
 const router = express.Router()
 
 const { getProducts, 
@@ -9,15 +8,17 @@ const { getProducts,
     deleteProduct, 
     createProductReview, 
     getProductReviews,
+    uploadImg,
     deleteReview} = require('../controllers/productController')
 
 const { isAuthenticatedUser , authorizeRoles } = require('../middlewares/auth')
 
 
 router.route('/products').get(getProducts)
+router.route('/product/upload/image').post(uploadImg)
 router.route('/product/:id').get(getSingleProduct)
 
-router.route('/admin/product/new').post(isAuthenticatedUser,authorizeRoles('admin'),uploadCloud.single('images'),newProduct)
+router.route('/admin/product/new').post(isAuthenticatedUser,authorizeRoles('admin'),newProduct)
 
 router.route('/admin/product/:id')
                 .put(isAuthenticatedUser,authorizeRoles('admin'),updateProduct)

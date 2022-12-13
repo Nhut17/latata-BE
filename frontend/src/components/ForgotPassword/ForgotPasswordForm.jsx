@@ -3,40 +3,56 @@ import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import login from '../../assets/images/login.png'
-import { loginUser } from '../../redux/User/userSlice'
+import { forgotPassword, loginUser, sendEmail } from '../../redux/User/userSlice'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const ForgotPasswordForm = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    // const { user } = useSelector(state => state.user)
-
-    // useEffect(() => {
-    //     if(user)
-    //     {
-    //         if(user?.role === "ADMIN")
-    //         {
-    //             navigate('/admin')
-    //         } 
-    //         if(user?.role === "USER"){
-    //             navigate('/')
-    //         }
-            
-    //     }
-    // },[user])
-
+    const {successSendOTP } = useSelector(state => state.user)
+    
     const { 
         register,
         handleSubmit,
         formState: { errors }
     } = useForm()
 
+    useEffect(() => {
+        if(successSendOTP){
+          
+            toast('Gửi email thành công', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+            const time = setTimeout(() => {
+                navigate('/change-password')
+            },2000)
+
+            return () => {
+                clearTimeout(time)
+            }
+        }
+
+    },[successSendOTP])
+
     const onHandleSubmit = (formData) => {
-            dispatch(loginUser(formData))
-            // navigate('/')
+           
+        dispatch(forgotPassword(formData))
+        dispatch(sendEmail(formData))
     }
 
   return (
     <form className='login-form' onSubmit={handleSubmit(onHandleSubmit)}>
+        <ToastContainer />
+
         <div className="container">
             <div className='form'>
                 <div className="main-form">
@@ -69,6 +85,7 @@ const ForgotPasswordForm = () => {
                         </div>
 
 
+
                         {/* <div className="input-OTP">
                             <i class="fa-brands fa-codepen ic"></i>
                             <input 
@@ -83,13 +100,17 @@ const ForgotPasswordForm = () => {
                         
 
                         {/* <Link to="/quen-mat-khau"><p><u>Quên mật khẩu</u></p></Link> */}
+
                     </div>
                    
                     
-                   
+                    <button className='btn-sign-up'>TIẾP TỤC</button>
+
+
 
                     
-                    <Link to='/sendOTP'><button className='btn-sign-up'>TIẾP TỤC</button></Link>
+                    {/* <Link to='/sendOTP'><button className='btn-sign-up'>TIẾP TỤC</button></Link> */}
+
                 </div>
                 <div className="img">
                     <img src={login} alt="" />

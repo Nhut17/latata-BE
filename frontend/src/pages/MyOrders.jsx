@@ -5,13 +5,15 @@ import '../sass/Order/order.scss'
 const MyOrders = () => {
   return (
     <div className='order-list'>
-            <span className='title'>Đơn hàng của tôi</span>
-            <div className='my-order-list'>
-                {
-                    
-                        <OrderList/>
-                    
-                }
+            <div className="container">
+              <span className='title'>Đơn hàng của tôi</span>
+              <div className='my-order-list'>
+                  {
+                      
+                          <OrderList/>
+                      
+                  }
+              </div>
             </div>
 
         </div>
