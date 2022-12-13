@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment-timezone');
 
 const productSchema = new mongoose.Schema({
 
@@ -73,6 +74,17 @@ const productSchema = new mongoose.Schema({
             comment: {
                 type:String,
                 required:true,
+            },
+            avatar: {
+                url_id: String,
+                url: {
+                    type: String,
+                    required: true
+                },
+            },
+            commentAt: {
+                type: String,
+                default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:ma - d-MM-YYYY')
             }
 
         }
@@ -83,8 +95,8 @@ const productSchema = new mongoose.Schema({
     //     required: true
     // },
     createdAt: {
-        type:Date,
-        default: Date.now
+        type: String,
+        default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:ma - d-MM-YYYY')
     },
     
 

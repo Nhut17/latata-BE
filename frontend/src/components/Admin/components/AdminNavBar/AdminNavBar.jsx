@@ -12,8 +12,8 @@ const AdminNavBar = ({children}) => {
         <div className="nav-bar-content" style={{background: 'whitesmoke'}}>
           <div className="dashboard-top-content">
               <li className="dashboard-top-content-avatar">
-                <img src={currentUser?.user.avatar?.url}></img>
-                <span>{currentUser?.user.name}</span>
+                <img src={currentUser?.avatar?.url}></img>
+                <span>{currentUser?.name}</span>
               </li>
               <li className="dashboard-top-content-bell">
                 {/* <BellOutlined></BellOutlined> */}

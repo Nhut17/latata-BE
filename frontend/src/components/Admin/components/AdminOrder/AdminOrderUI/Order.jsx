@@ -123,7 +123,7 @@ function Order({data}) {
         opacity: 0.5
       }} >
  
-        <span className="action cancel"> Hủy đơn</span>
+        {/* <span className="action cancel"> Hủy đơn</span> */}
       </button>
 
       <button className="detail btn" onClick={handleClickOrderDetail}

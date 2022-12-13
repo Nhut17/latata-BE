@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const MainProfile = ({currentUser}) => {
 
+
   const [avatar,setAvatar] = useState('')
   const [avatarPreview,setAvatarPreview] = useState(null)
 
@@ -124,7 +125,6 @@ const MainProfile = ({currentUser}) => {
                     <input  {...register("phone")} defaultValue={currentUser?.phone}/>
 
 
-                    
 
                     <ChangePassword/>
 
@@ -138,7 +138,7 @@ const MainProfile = ({currentUser}) => {
                     <input type="password" {...register("comfirm-password")} /> */}
 
 
-                   
+                
                     {/* <input type='file' {...register("image")} value={data.email}/> */}
                     <button type='submit'>Lưu</button>
                 </form>

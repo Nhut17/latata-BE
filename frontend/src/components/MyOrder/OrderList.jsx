@@ -9,12 +9,9 @@ const OrderList = ({ data }) => {
     )
 
 
-   
-    // const dispatch = useDispatch()
-
-
     return (
         <div className='order-detail'>
+
 
              
             {/* <p className='summary-status-pending'><i class="fa-solid fa-circle icon"></i> PENDING</p> */}
@@ -34,13 +31,23 @@ const OrderList = ({ data }) => {
             {data?.status === 'DONE' &&
             <p className='summary-status-done'><i class="fa-solid fa-circle icon"></i> Giao hàng thành công</p>
             }
+            
+
+            {data?.status === 'DONE' &&
+                <p className='summary-status-done'><i class="fa-solid fa-circle icon"></i> Giao hàng thành công</p>
+            }
+            
             {
+
             data.orderItems.map(orders => (
 
                 <EachTransaction evaluated={evaluated}
-                                orders={orders} />
+                                orders={orders}
+                                 />
             ))
+
             }
+           
 
           
             <div className='summary-order flex j-between'>
@@ -58,13 +65,12 @@ const OrderList = ({ data }) => {
             </div> */}
 
             <div className="action flex ">
-                <div className='btn-action '>
+                <div className='btn-action ' hidden={data?.status === 'PENDING' ? false : true}>
                     <button>Hủy đơn hàng </button>
             </div>
 
-            <div className='btn-action '>
-                <button>Đánh giá</button>
-            </div>
+            
+
 
 
                 

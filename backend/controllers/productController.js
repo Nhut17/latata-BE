@@ -1,5 +1,5 @@
 const Product = require('../models/products')
-
+const User = require('../models/user')
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncError = require('../middlewares/catchAsyncErrors')
 const APIFeatures = require('../utils/apiFeatures')
@@ -159,14 +159,20 @@ exports.deleteProduct = catchAsyncError( async ( req, res, next) => {
 // Create new review => api/v1/review
 exports.createProductReview = catchAsyncError(async (req,res,next) => {
     const { rating, comment, productId} = req.body;
+    const user = await User.findById(req.user[0]._id)
+
+    const { avatar } = user
+
+    console.log(avatar)
 
     const review = {
         user: req.user[0]._id,
         name: req.user[0].name,
         rating: Number(rating),
-        comment
+        comment,
+        avatar: avatar
     }
-    console.log( review)
+   console.log(review)
 
     const product = await Product.findById(productId);
 
@@ -191,6 +197,7 @@ exports.createProductReview = catchAsyncError(async (req,res,next) => {
     product.ratings = product.reviews.reduce((acc,item) => item.rating + acc,0) / product.reviews.length
 
     await product.save({ validateBeforeSave: false});
+    console.log(product)
 
     res.status(200).json({
         success: true

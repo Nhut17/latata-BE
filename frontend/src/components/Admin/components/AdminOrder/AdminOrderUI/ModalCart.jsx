@@ -93,7 +93,7 @@ const ModalCart = ({ showOrderDetail, setShowOrderDetail, data }) => {
 
                                     </td>
                                     <td>
-                                        <p><b>Solid Color T-Shirt</b></p>
+                                        <p><b>Iphone 13</b></p>
                                         <span>46.000đ x 1</span>
                                     </td>
                                     <td>46.000đ</td>
