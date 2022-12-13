@@ -56,6 +56,15 @@
                     font-weight: bold;
                 }
                 .input-group{
+                    .input-OTP{
+                        input{
+                            &::value{
+                                font-size: 20px;
+                                letter-spacing: 5px;
+                                font-weight: bold;
+                            }
+                        }
+                    }
                     .instructions{
                         // width: 40%;
                         font-size: 13px;
