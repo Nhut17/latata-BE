@@ -138,7 +138,7 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
         })
 
         const date = new Date()
-        order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format('HH:mA d-MM-YYYY')
+        order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format('HH:ma d-MM-YYYY')
     }
    
 

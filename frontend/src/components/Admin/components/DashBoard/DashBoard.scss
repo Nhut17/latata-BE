@@ -68,11 +68,12 @@
 .dashboard-middle-statistic-content{
      width: 400px;
      padding: 1rem;
+    //  height: 200px;
 }
 
 .dashboard-middle-statistic li{
     background: white;
-    padding: 45px 0;
+    padding: 90px 0;
     border-radius: 20px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
@@ -100,7 +101,7 @@
     color: white;
 }
 .dashboard-middle-statistic-title .title{
-    font-size: 13px;
+    font-size: 20px;
     font-weight: 500;
     color: white;
 }

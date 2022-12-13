@@ -11,10 +11,6 @@ const RegisterForm = () => {
     const navigate = useNavigate()
     const {successRegister , message , errRegister} = useSelector(state => state.user)
 
-    // useEffect(() => {
-    //     dispatch(resetActionRegister())
-    // },[])
-
     useEffect(() => {
        if(successRegister)
         {

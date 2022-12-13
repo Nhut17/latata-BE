@@ -28,7 +28,7 @@ const BoxFilter = ({totalQuantity,childCate}) => {
       </div>
 
 
-                <div className="select">
+                <div className="select-sort">
                 <span>Xếp theo: </span>
                 <select name="" id="arrange" >
                     <option value="">Bán chạy</option>

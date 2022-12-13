@@ -69,7 +69,7 @@ const orderSchema = mongoose.Schema({
     },
     createAt: {
         type: String,
-        default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:mA d-MM-YYYY')
+        default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:ma - d-MM-YYYY')
     },
     user:{
         type: mongoose.Schema.Types.ObjectId,

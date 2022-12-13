@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { createOrder } from '../../redux/Order/orderSlice'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const InfoCustomer = ({totalPrice}) => {
 
@@ -12,19 +15,38 @@ const InfoCustomer = ({totalPrice}) => {
      } = useForm()
 
     const dispatch = useDispatch()
+    const {successOrder } = useSelector(state => state.order)
 
 
   const [changeStyleName,setChangeStyleName] = useState(false)
   const [changeStyleNumber,setChangeStyleNumber] = useState(false)
 
-  console.log(changeStyleName)
 
+  // toastify success order
+  useEffect(() => {
+    if(successOrder){
+        toast('Đặt hàng thành công!', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    }
+    
+  }, [successOrder]);
+
+  // create order
   const handleCreateOrder = (formData) =>{
         console.log(formData)
         dispatch(createOrder(formData))
   }
  
 
+  // handle style name and phone
   const handleOnChange = (e) => {
    
       if(e.target.value)
@@ -47,6 +69,8 @@ const InfoCustomer = ({totalPrice}) => {
 
   return (
     <div className='info-customer'>
+            <ToastContainer />
+
         <p>THÔNG TIN KHÁCH HÀNG</p>
 
         <form onSubmit={handleSubmit(handleCreateOrder)}>

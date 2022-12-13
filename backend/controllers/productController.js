@@ -1,5 +1,5 @@
 const Product = require('../models/products')
-
+const User = require('../models/user')
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncError = require('../middlewares/catchAsyncErrors')
 const APIFeatures = require('../utils/apiFeatures')
@@ -159,16 +159,22 @@ exports.deleteProduct = catchAsyncError( async ( req, res, next) => {
 // Create new review => api/v1/review
 exports.createProductReview = catchAsyncError(async (req,res,next) => {
     const { rating, comment, productId} = req.body;
+    const user = await User.findById(req.user[0]._id)
+
+    const { avatar } = user
+
+    console.log(avatar)
 
     const review = {
         user: req.user[0]._id,
         name: req.user[0].name,
         rating: Number(rating),
-        comment
+        comment,
+        avatar: avatar
     }
+   console.log(review)
 
     const product = await Product.findById(productId);
-
 
     const isReviewed = product.reviews.find(
         r => r.user?.toString() === req.user[0]._id.toString()
@@ -179,6 +185,7 @@ exports.createProductReview = catchAsyncError(async (req,res,next) => {
             if( review.user?.toString() === req.user[0]._id.toString() ){
                 review.comment = comment;
                 review.rating = rating;
+
             }
             })
     } else{
@@ -189,6 +196,7 @@ exports.createProductReview = catchAsyncError(async (req,res,next) => {
     product.ratings = product.reviews.reduce((acc,item) => item.rating + acc,0) / product.reviews.length
 
     await product.save({ validateBeforeSave: false});
+    console.log(product)
 
     res.status(200).json({
         success: true
@@ -199,8 +207,8 @@ exports.createProductReview = catchAsyncError(async (req,res,next) => {
 
 // Get Product Reviews => api/v1/reviews
 exports.getProductReviews = catchAsyncError( async(req, res, next) => {
-    const product = await Product.findById(req.query.id);
-
+    const product = await Product.findById(req.params.id);
+// console.log(req.query.id)
     res.status(200).json({
         success: true,
         reviews: product.reviews
