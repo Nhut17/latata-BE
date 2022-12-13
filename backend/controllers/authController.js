@@ -7,7 +7,7 @@ const sendToken = require('../utils/jwtToken')
 const sendEmail = require('../utils/sendEmail')
 const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
-const cloudinary = require('../utils/cloudinary')
+const cloudinary = require('cloudinary').v2
 
 
 // Register a user => /api/v1/register
@@ -41,7 +41,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
             phone,
             password,
             avatar: {
-                url: "https://images.unsplash.com/photo-1571757767119-68b8dbed8c97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                url: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
             }
         })
     
@@ -247,7 +247,7 @@ exports.getUserProfile = catchAsyncError(async (req, res, next) => {
 // Update / Change Password => api/v1/password/update
 exports.updatePassword = catchAsyncError(async (req, res, next) => {
 
-    const user = await User.findById(req.user.id).select('+password');
+    const user = await User.findById(req.user[0]._id).select('+password');
 
     // Check previous user password
     const isMatched = await user.comparePassword(req.body.oldPassword)
@@ -266,15 +266,26 @@ exports.updatePassword = catchAsyncError(async (req, res, next) => {
 // Update user profile => api/v1/profile/update
 exports.updateProfile = catchAsyncError(async (req, res, next) => {
 
+    const {avatar } = req.body
+    const ret = await cloudinary.uploader.upload(avatar,{
+        folder: 'images',
+        // width: 300,
+        // crop: "scale"
+    })
+
     const newUserData = {
         username: req.body.username,
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+        avatar: {
+            url_id: ret.public_id,
+            url: ret.secure_url
+        }
     }
 
     // Update avatar: TODO
 
-    const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+    const user = await User.findByIdAndUpdate(req.user[0]._id, newUserData, {
         new: true,
         runValidators: true,
         useFindAndModify: true

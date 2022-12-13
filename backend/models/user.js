@@ -34,10 +34,11 @@ const userSchema = new mongoose.Schema({
         select: false
     },
     avatar: {
+        url_id: String,
         url: {
             type: String,
             required: true
-        }
+        },
     },
     role: {
         type: String,
