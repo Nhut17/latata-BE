@@ -22,7 +22,6 @@ import { getProduct } from '../redux/Product/productSlice'
 import jwt_decode from 'jwt-decode'
 import { logoutUser, resetActionUser } from '../redux/User/userSlice'
 import axios from 'axios'
-import { resetActionOrder } from '../redux/Order/orderSlice'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -31,12 +30,16 @@ const Home = () => {
 
   const dispatch = useDispatch()
 
+
+
   useEffect(() => {
     dispatch(resetActionUser())
-    dispatch(resetActionOrder())
     
 },[])
-
+//   useEffect(() => {
+//     dispatch(resetAct())
+    
+// },[])
 
   // useEffect(() =>{
   //   if(success)

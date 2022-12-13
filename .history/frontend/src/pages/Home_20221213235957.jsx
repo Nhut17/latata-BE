@@ -21,6 +21,7 @@ import { useNavigate } from 'react-router-dom'
 import { getProduct } from '../redux/Product/productSlice'
 import jwt_decode from 'jwt-decode'
 import { logoutUser, resetActionUser } from '../redux/User/userSlice'
+// import {   } from '../redux/Order/orderSlice'
 import axios from 'axios'
 import { resetActionOrder } from '../redux/Order/orderSlice'
 
@@ -36,7 +37,10 @@ const Home = () => {
     dispatch(resetActionOrder())
     
 },[])
-
+//   useEffect(() => {
+//     dispatch(resetAct())
+    
+// },[])
 
   // useEffect(() =>{
   //   if(success)

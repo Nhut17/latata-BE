@@ -36,7 +36,7 @@ const Home = () => {
     dispatch(resetActionOrder())
     
 },[])
-
+/
 
   // useEffect(() =>{
   //   if(success)

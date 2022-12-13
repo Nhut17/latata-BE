@@ -14,6 +14,7 @@ import Tech24h from '../components/Home/Tech24h'
 import MenuOptions from '../components/Home/MenuOptions'
 import ListWatchesSeries from '../components/Home/ListWatchesSeries'
 import bannerGalaxy from '../assets/images/home/banner_galaxy.png'
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux'
@@ -22,7 +23,6 @@ import { getProduct } from '../redux/Product/productSlice'
 import jwt_decode from 'jwt-decode'
 import { logoutUser, resetActionUser } from '../redux/User/userSlice'
 import axios from 'axios'
-import { resetActionOrder } from '../redux/Order/orderSlice'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -31,12 +31,12 @@ const Home = () => {
 
   const dispatch = useDispatch()
 
+
+
   useEffect(() => {
     dispatch(resetActionUser())
-    dispatch(resetActionOrder())
     
 },[])
-
 
   // useEffect(() =>{
   //   if(success)

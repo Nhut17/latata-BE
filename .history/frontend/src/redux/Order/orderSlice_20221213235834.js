@@ -140,6 +140,6 @@ const orderSlice = createSlice({
     }
 })
 
-export const { resetActionOrder } = orderSlice.actions
+const { resetActionOrder } = orderSlice.actions
 
 export default orderSlice.reducer

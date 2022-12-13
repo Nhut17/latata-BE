@@ -84,7 +84,7 @@ const productSchema = new mongoose.Schema({
             },
             commentAt: {
                 type: String,
-                default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:ma - d-MM-YYYY')
+                default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')
             }
 
         }
@@ -96,7 +96,7 @@ const productSchema = new mongoose.Schema({
     // },
     createdAt: {
         type: String,
-        default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:ma - d-MM-YYYY')
+        default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')
     },
     
 
