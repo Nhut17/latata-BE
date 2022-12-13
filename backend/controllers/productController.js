@@ -14,19 +14,19 @@ exports.newProduct = catchAsyncError( async ( req, res, next ) => {
 
     const pro = req.body
     const { price,promotion, images} = req.body
-    console.log(images)
+    
     
     const priceDeal = promotion > 0 ? price - (price* (promotion/100)) : price
     
     try{
 
         const ret = await cloudinary.uploader.upload(images,{
-            folder: "Product",
+            folder: 'Product',
             // width: 300,
             // crop: "scale"
         })
 
-        console.log('ret: ' + ret)
+        console.log( ret)
         const product =  await Product.create({
             ...pro,
             priceDeal,
@@ -52,7 +52,7 @@ exports.newProduct = catchAsyncError( async ( req, res, next ) => {
 exports.uploadImg = catchAsyncError( async ( req, res, next ) => {
     
     try{
-        const {  images} = req.body
+        const {  images } = req.body
         console.log(images)
         const ret = await cloudinary.uploader.upload(images,{
             folder: "Product",
@@ -169,6 +169,7 @@ exports.createProductReview = catchAsyncError(async (req,res,next) => {
     console.log( review)
 
     const product = await Product.findById(productId);
+
 
     const isReviewed = product.reviews.find(
         r => r.user?.toString() === req.user[0]._id.toString()

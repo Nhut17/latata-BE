@@ -4,12 +4,21 @@ const cors = require('cors');
 const errorMiddleware = require('./middlewares/errors')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const fileupload = require('express-fileupload'); 
 
-
+app.use(fileupload({useTempFiles: true}))
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
+
+const cloudi = require('cloudinary')
+// setting up cloudinary config
+cloudi.config({
+    cloud_name: 'dbhjhvgcr',
+    api_key: '581993492829265',
+    api_secret: 'sYf15Luto58liArk2cN4klOahjA',
+})
 
 
 // import all routes

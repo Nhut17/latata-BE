@@ -8,37 +8,49 @@ const OrderList = ({ data }) => {
         data?.status === 'DONE' ? true : false
     )
 
+
    
     // const dispatch = useDispatch()
 
-    // const handleCancel = (id) => {
-    //     console.log(id)
-    //     dispatch(cancelByUser(id))
-    // }
+
     return (
         <div className='order-detail'>
+
              
-            <p className='summary-status-pending'><i class="fa-solid fa-circle icon"></i> PENDING</p>
+            {/* <p className='summary-status-pending'><i class="fa-solid fa-circle icon"></i> PENDING</p> */}
+
+
+            {data?.status === 'PENDING' &&
+                    <p className='summary-status-pending'><i class="fa-solid fa-circle icon"></i> {data?.status}</p>
+                }
+                
+                
+            {data?.status === 'CANCELED' &&
+                <p className='summary-status-cancel'><i class="fa-solid fa-circle icon"></i> {data?.status}</p>
+            } 
         
-            <EachTransaction evaluated={evaluated} />
-           
+            {/* <EachTransaction evaluated={evaluated} /> */}
+
+            {data?.status === 'DONE' &&
+            <p className='summary-status-done'><i class="fa-solid fa-circle icon"></i> Giao hàng thành công</p>
+            }
+            {
+            data.orderItems.map(orders => (
+
+                <EachTransaction evaluated={evaluated}
+                                orders={orders} />
+            ))
+            }
+
           
             <div className='summary-order flex j-between'>
                 
-                <p className='summary-address'>Địa chỉ: Long An</p>
-                <p className='summary-date'>10/12/2022</p>
-                <p className='summary-phone'>Số điện thoại: 0999999</p>
-                {/* {data?.status === 'PENDING' &&
-                    <p className='summary-status-pending'><i class="fa-solid fa-circle icon"></i> {data?.status}</p>
-                }
-                {data?.status === 'DONE' &&
-                    <p className='summary-status-done'><i class="fa-solid fa-circle icon"></i> {data?.status}</p>
-                }
-                {data?.status === 'CANCELED' &&
-                    <p className='summary-status-cancel'><i class="fa-solid fa-circle icon"></i> {data?.status}</p>
-                } */}
+                <p className='summary-address'>Địa chỉ:<b>{data.address}</b></p>
+                <p className='summary-date'>Ngày đặt: <b>{data.createAt}</b></p>
+                <p className='summary-phone'>Số điện thoại: <b>{data.phoneNo}</b></p>
+               
 
-                <p className='summary-total-price'>Tổng tiền: {'100000'.toString()
+                <p className='summary-total-price'>Tổng tiền: {data.totalPrice.toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}<span className='currency'>&#8363;</span></p>
             </div>
             {/* <div className='cancel-order' hidden={data?.status === 'PENDING' ? false : true}>
@@ -48,9 +60,15 @@ const OrderList = ({ data }) => {
             <div className="action flex ">
                 <div className='btn-action '>
                     <button>Hủy đơn hàng </button>
-                </div>
+            </div>
+
+            <div className='btn-action '>
+                <button>Đánh giá</button>
+            </div>
+
 
                 
+
             </div>
 
             
