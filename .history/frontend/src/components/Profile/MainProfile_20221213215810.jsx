@@ -86,12 +86,6 @@ const MainProfile = ({currentUser}) => {
         <div className="profile-avatar">
             <div className="avatar">
               <img src={ avatarPreview ? avatarPreview : currentUser?.avatar?.url} alt="" /> <br />
-              <div className="upload-avatar">
-                      <input 
-                        type="file"
-                        onChange={handleAvatar}
-                        accept="images/*" />
-                      </div>
             </div>
 
          

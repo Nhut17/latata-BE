@@ -10,6 +10,7 @@ const Profile = () => {
   // const { id } = useParams()
 
   const {currentUser} = useSelector(state => state.user)
+  console.log(currentUser)
 
   return (
     <MainProfile currentUser={currentUser}/>

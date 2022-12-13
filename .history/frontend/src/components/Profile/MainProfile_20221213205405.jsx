@@ -80,21 +80,18 @@ const MainProfile = ({currentUser}) => {
 
   return (
     <div className='bg-profile'>
-            <ToastContainer />
-
       <div className="container-profile">
         <div className="profile-avatar">
             <div className="avatar">
               <img src={ avatarPreview ? avatarPreview : currentUser?.avatar?.url} alt="" /> <br />
-              <div className="upload-avatar">
-                      <input 
-                        type="file"
-                        onChange={handleAvatar}
-                        accept="images/*" />
-                      </div>
             </div>
 
-         
+            <div className="upload-avatar">
+              <input 
+                type="file"
+                onChange={handleAvatar}
+                accept="images/*" />
+            </div>
             
         </div>
         <div className="profile-content">
@@ -110,7 +107,7 @@ const MainProfile = ({currentUser}) => {
                     <span>Tên đăng nhâp</span>
                     <input {...register("username")} value={currentUser?.username} disabled />
 
-                    
+
                     {/* <span>Tên</span>
                     <input {...register("name")}/> */}
 

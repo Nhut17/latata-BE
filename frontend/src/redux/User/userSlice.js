@@ -19,7 +19,9 @@ const initialState = {
     successSendOTP: false,
     successResetPassword: false,
     emailOtp: null,
-    myOrders: null
+    myOrders: null,
+    successUpdate: false,
+
 }
 
 
@@ -82,15 +84,17 @@ export const logoutUser = createAsyncThunk('user/logout',
 export const getUserDetail = createAsyncThunk('user/userDetail',
         async(id, thunkAPI) => {
             try {
+                const token = localStorage.getItem('token')
+                const config = {
+                    headers: {
+                        Authorization: 'Bearer ' + token
+                    }
+                }
 
-                const res = await axios.get(`http://localhost:4000/api/v1/admin/user/${id}`)
+                const res = await api.get(`/api/v1/profile`,config)
                 
                 return res.data.user
                 
-
-                // const res = await api.get(`/api/v1/user/${id}`)
-
-                // return res.data
 
             } catch (error) {
                 return thunkAPI.rejectWithValue('can not get user detail')
@@ -168,9 +172,34 @@ export const myOrder = createAsyncThunk('user/getAll',
                     }
                 }
 
-                const res = await axios.get('http://localhost:4000/api/v1/orders/me',config)
+                const res = await api.get('/api/v1/orders/me',config)
                 
                 return res.data.orders
+            
+
+            } catch (error) {
+                return thunkAPI.rejectWithValue('can not get user detail')
+            }
+        }
+)
+
+// update profile
+export const updateProfile = createAsyncThunk('user/update',
+        async(data, thunkAPI) => {
+            try {
+                const token = localStorage.getItem('token')
+                const config = {
+                    headers: {
+                        Authorization: 'Bearer ' + token
+                    }
+                }
+
+
+                const res = await api.put('/api/v1/profile/update',data,config)
+
+                thunkAPI.dispatch(getUserDetail())
+                
+                return res.data
             
 
             } catch (error) {
@@ -190,7 +219,7 @@ const userSlice = createSlice({
             state.errorResetPassword = false
             state.successSendOTP= false
             state.successResetPassword= false
-          
+            state.successUpdate = false
 
         },
         sendEmail: (state,action) => {
@@ -208,13 +237,13 @@ const userSlice = createSlice({
             state.errRegister = true
         },
         [loginUser.fulfilled]: (state,action) => {
-            state.currentUser = action.payload
+            state.currentUser = action.payload.user
             state.successLogin = true
             state.accessToken = action.payload.token
         },
         [getUserDetail.fulfilled] : (state, action) => {
             state.currentUser = action.payload
-            state.accessToken = action.payload.token
+            console.log(action.payload)
 
         },
        [logoutUser.fulfilled]: (state,action) => {
@@ -237,6 +266,9 @@ const userSlice = createSlice({
        [myOrder.rejected] : (state,action) => {
             
        },
+       [updateProfile.fulfilled] : (state,action) => {
+        state.successUpdate = true
+    },
 
     }
 })

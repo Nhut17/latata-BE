@@ -57,7 +57,7 @@ const Header = () => {
                    
 
                   </div>
-                  <p className="success-login" ><span>{currentUser?.name}</span></p> 
+                  <p className="success-login" ><span>{currentUser?.user.name}</span></p> 
                 </div>    
 
                 <div className="dropdown-profile">

@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import '../../sass/Profile/profile.scss'
-import {useNavigate, useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateProfile } from '../../redux/User/userSlice';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 const MainProfile = ({currentUser}) => {
 
   const [avatar,setAvatar] = useState('')
   const [avatarPreview,setAvatarPreview] = useState(null)
 
   const dispatch = useDispatch()
-  const { successUpdate } = useSelector(state => state.user)
-  const navigate = useNavigate()
 
   const { register, handleSubmit} = useForm();
 
@@ -31,33 +26,6 @@ const MainProfile = ({currentUser}) => {
     reader.readAsDataURL(e.target.files[0])
   }
 
-  useEffect(() => {
-    if(successUpdate)
-     {
-
-     toast('Update thành công', {
-         position: "top-right",
-         autoClose: 1000,
-         hideProgressBar: false,
-         closeOnClick: true,
-         pauseOnHover: false,
-         draggable: true,
-         progress: undefined,
-         theme: "light",
-         });
-
-     const time = setTimeout(() =>{
-         navigate('/')
-
-     },2000)
-
-     return () => {
-         clearTimeout(time)
-     }
-
-     }
-
- },[successUpdate])
 
   // handle update profile
   const handleChangeProfile = (formData) => {
@@ -80,21 +48,18 @@ const MainProfile = ({currentUser}) => {
 
   return (
     <div className='bg-profile'>
-            <ToastContainer />
-
       <div className="container-profile">
         <div className="profile-avatar">
             <div className="avatar">
               <img src={ avatarPreview ? avatarPreview : currentUser?.avatar?.url} alt="" /> <br />
-              <div className="upload-avatar">
-                      <input 
-                        type="file"
-                        onChange={handleAvatar}
-                        accept="images/*" />
-                      </div>
             </div>
 
-         
+            <div className="upload-avatar">
+              <input 
+                type="file"
+                onChange={handleAvatar}
+                accept="images/*" />
+            </div>
             
         </div>
         <div className="profile-content">
@@ -110,7 +75,7 @@ const MainProfile = ({currentUser}) => {
                     <span>Tên đăng nhâp</span>
                     <input {...register("username")} value={currentUser?.username} disabled />
 
-                    
+
                     {/* <span>Tên</span>
                     <input {...register("name")}/> */}
 
