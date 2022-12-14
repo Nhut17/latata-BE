@@ -13,7 +13,6 @@ import "./DashBoard.scss";
 import ChartDashBoard from "./ChartDashBoard";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUser } from "../../../../redux/Admin/adminSlice";
-import { getAllOrder } from "../../../../redux/Order/orderSlice";
 
 export default function DashBoard() {
 

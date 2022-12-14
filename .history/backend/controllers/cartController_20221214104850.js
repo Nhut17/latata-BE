@@ -47,7 +47,7 @@ exports.addToCart = catchAsyncError( async (req,res,next) => {
 
         if( indexId !== -1)
             {
-                if(product.stock - (productUpdate[indexId].quantity + quantity) < 0)
+                if(productUpdate.stock)
                 {
                     return next(new ErrorHandler('Product is stock', 404))
                 }
