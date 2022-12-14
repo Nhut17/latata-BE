@@ -4,9 +4,9 @@ const ListUserReview = ({data}) => {
   return (
     <div className="product-review-list flex">
                         <div className="review-detail flex">
-                            {/* <div className="review-avatar">
+                            <div className="review-avatar">
                                 <img src={data?.avatar?.url} alt="" />
-                            </div> */}
+                            </div>
                             <div className="review-content">
                                 <span>{data?.name}</span> <br />
                                 <StarRating rating={data?.rating}/> <br />

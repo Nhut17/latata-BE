@@ -10,16 +10,22 @@ import { useNavigate } from "react-router-dom";
 function AdminCreate(props) {
 
   
+    const {
+      register,
+      handleSubmit,
+      formState: { errors }
+    } = useForm()
+
   const [selectImage,setSelectImage] = useState('')
   const [previewImg,setPreviewImg] = useState('')
-  const { register, handleSubmit } = useForm({ defaultValues: {} });
+  // const { register, handleSubmit } = useForm({ defaultValues: {} });
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
 
 
-
+  
 // hanlde up image
   const handleImage = (e) => {
     const reader = new FileReader();
@@ -38,6 +44,7 @@ function AdminCreate(props) {
   // create product
   const handleOnSubmit = (formData) => {
 
+      
     const { name,category,price,promotion,stock, description } = formData
 
 
@@ -64,6 +71,8 @@ function AdminCreate(props) {
     dataS.set('stock', stock)
 
     dispatch(createProduct(dataS))
+
+    
     // toast.success('Thêm sản phẩm thành công', {
     //   position: "top-right",
     //   autoClose: 500,
@@ -89,15 +98,36 @@ function AdminCreate(props) {
         onSubmit={handleSubmit(handleOnSubmit)}
         encType='multipart/form-data'
       >
-        <span>Tên sản phẩm</span>
-        <input {...register("name")} />
+        <div className="input-group">
+          <span className="title">Tên sản phẩm</span>
+       
+          <input {...register("name",{
+            required : true
 
-        <span>Danh mục</span>
-        <input
-          {...register("category")}
-          placeholder=""
-          type="text"
-        />
+          })} />
+
+          {
+            errors.name?.type === 'required' &&
+            <span className='err-msg'>Mời bạn nhập Tên sản phẩm</span> 
+          }
+        </div>
+
+        <div className="input-group">
+          <span className="title">Danh mục</span>
+         
+          <input
+            {...register("category",{
+              required : true
+            })}
+            placeholder=""
+            type="text"
+          />
+
+{
+            errors.name?.type === 'required' &&
+            <span className='err-msg'>Mời bạn nhập Danh mục</span> 
+          }
+        </div>
 
         <span>Giá</span>
         <input

@@ -122,6 +122,30 @@
     font-weight: 600;
     color: #6b6b6b;
 }
+
+.input-group{
+    span{
+        display: block;
+    }
+    .title{
+        // display: inline-block;
+        margin-bottom: 10px;
+    }
+    input{
+        display: block;
+    }
+}
+
+.err-msg{
+    // height: 10px;
+    display: block;
+    // padding-left: 0px ;
+    // margin-top: 5px;
+    color: orangered;
+    font-size: 13px;
+    position: absolute;
+    font-style: italic;
+}
 .admin-create-product{
     display: flex;
     flex-direction: column;
