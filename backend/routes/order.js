@@ -15,7 +15,7 @@ router.route('/orders/me').get(isAuthenticatedUser,authorizeRoles('user') ,myOrd
 router.route('/admin/orders').get(isAuthenticatedUser, authorizeRoles('admin'), allOrders);
 
 router.route('/admin/order/:id')
-        .put(isAuthenticatedUser,authorizeRoles('admin'), updateOrder)
+        .put(isAuthenticatedUser, updateOrder)
         .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteOrder);
 
 router.route('/admin/order/cancel/:id').put(isAuthenticatedUser, cancelOrder);

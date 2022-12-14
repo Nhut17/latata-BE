@@ -35,7 +35,7 @@ function Product({data,stt}) {
         <DeleteOutlined />
       </td>
       <td className="update-product">
-        <Link to={`/admin/product/update/${'product._id'}`}>
+        <Link to='/admin/product/update/info'>
           <EditOutlined></EditOutlined>
         </Link>
       </td>

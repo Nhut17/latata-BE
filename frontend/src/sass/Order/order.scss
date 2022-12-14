@@ -9,6 +9,15 @@
     background-color: #fff;
     position: relative;
     // text-align: end;
+
+    .summary-status-cancel{
+        text-align: end;
+        margin-top: 10px;
+    }
+    .summary-status-done{
+        text-align: end;
+        margin-top: 10px;
+    }
     .title{
         display: block;
         font-weight: 600;
@@ -62,12 +71,14 @@
         .summary-status-done{
             color: #42d542;
             // margin-right: 20px;
+            text-align: end;
 
 
         }
         .summary-status-cancel{
             color: $red;
             font-weight: 500;
+            text-align: end;
 
         }
         
@@ -100,6 +111,21 @@
             border-radius: 10px;
             padding: 10px;
             margin-bottom: 20px;
+            // .summary-status-pending{
+            //     color: #ffa800;
+        
+            // }
+            .summary-status-cancel{
+                color: $red;
+       
+    
+            }
+            .summary-status-done{
+                color: #42d542;
+                // margin-right: 20px;
+    
+    
+            }
             .each-transaction{
                     background-color: white;
                     display: flex;

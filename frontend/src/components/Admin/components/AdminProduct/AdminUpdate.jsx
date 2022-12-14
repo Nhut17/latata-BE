@@ -19,52 +19,69 @@ function AdminUpdate(props) {
 
   return (
     <div className="admin-create">
-      <span>Update Product</span>
+      <span>Cập nhật sản phẩm</span>
       {detailProduct ? (
         <form
-          className="admin-create-product"
-          onSubmit={handleSubmit(onSubmit)}
-          encType="multipart/form-data"
-        >
-          <input
-            {...register("name")}
-            placeholder="Name"
-            defaultValue={detailProduct.name}
-          ></input>
-          <input
-            {...register("amount")}
-            placeholder="Amount"
-            type="number"
-            defaultValue={detailProduct.amount}
-          ></input>
-          <input
-            {...register("price")}
-            placeholder="Price"
-            type="number"
-            defaultValue={detailProduct.price}
-          ></input>
-          <input
-            {...register("salePrice")}
-            placeholder="SalePrice"
-            type="number"
-            defaultValue={detailProduct.salePrice}
-          ></input>
-          <div className="select-type">
-                  <select
-                    {...register(`${'item.property'}`)}
-                    defaultValue={detailProduct[`${'item.property'}`]}
-                  >
-                    <option value={'x'}>{'x'}</option>
-                  </select>
-                </div>
+        className="admin-create-product"
+        onSubmit
+        encType='multipart/form-data'
+      >
+        <span>Tên sản phẩm</span>
+        <input {...register("name")} />
 
-          <input
-            type="file"
-            {...register("image")}
+        <span>Danh mục</span>
+        <input
+          {...register("category")}
+          placeholder=""
+          type="text"
+        />
+
+        <span>Giá</span>
+        <input
+          {...register("price")}
+          placeholder=""
+          type="number"
+        />
+
+        <span>Giảm giá</span>
+        <input {...register("promotion")} placeholder="" type="number" />
+
+        <span>Số lượng</span>
+        <input {...register("stock")} placeholder="" type="number" />
+
+
+
+        <div className="filter-menu-firm">
+          {/* {
+            List ? (List.map((item) => MenuFirmProduct(item))) : ''
+          } */}
+        </div>
+
            
-          ></input>
-          <button type="submit">Update Product</button>
-        </form>
+        <span>Hình ảnh</span>
+        <img 
+          src
+          style={{
+            width: 100,
+            height: 100
+          }} 
+         />
+
+        <input
+          type="file"
+          {...register("images")}
+          onChange
+          accept="images/*"
+        />
+       
+
+          <span>Chi tiết sản phẩm</span>
+          <textarea name="" id="" cols="30" rows="10" 
+            {...register('description')} ></textarea>
+
+        <button type="submit">Cập nhật sản phẩm</button>
+      </form>
+  
       ) : (
         ""
       )}
