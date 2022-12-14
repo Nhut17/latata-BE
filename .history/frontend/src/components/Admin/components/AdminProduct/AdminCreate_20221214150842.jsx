@@ -20,25 +20,20 @@ function AdminCreate(props) {
 
   useEffect(() => {
     if(successCreate){
-      toast.success('Thêm sản phẩm thành công', {
-      position: "top-right",
-      autoClose: 500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      theme: "light",
-      });
+ // toast.success('Thêm sản phẩm thành công', {
+    //   position: "top-right",
+    //   autoClose: 500,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: false,
+    //   draggable: false,
+    //   progress: undefined,
+    //   theme: "light",
+    //   });
 
-    const time = setTimeout(() => {
-      navigate('/admin')
-    },1500)
-
-    return () => {
-      clearTimeout(time)
-    }
-
+    // setTimeout(() => {
+    //   navigate('/admin/product')
+    // },1500)
     }
   },[successCreate])
 

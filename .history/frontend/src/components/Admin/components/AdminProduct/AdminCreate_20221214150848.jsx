@@ -31,14 +31,9 @@ function AdminCreate(props) {
       theme: "light",
       });
 
-    const time = setTimeout(() => {
-      navigate('/admin')
+    setTimeout(() => {
+      navigate('/admin/product')
     },1500)
-
-    return () => {
-      clearTimeout(time)
-    }
-
     }
   },[successCreate])
 

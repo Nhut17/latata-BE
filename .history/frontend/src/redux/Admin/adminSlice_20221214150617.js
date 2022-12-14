@@ -6,7 +6,7 @@ import { getProduct } from "../Product/productSlice";
 
 const initialState = {
     listUser: [],
-    successCreate: false
+    success
 }
 
 
@@ -106,23 +106,18 @@ export const createProduct = createAsyncThunk('admin/product/create',
 const adminSlice = createSlice({
     name: "admin",
     initialState,
-    reducers:{
-        resetActionAdmin: (state,action) => {
-            state.successCreate = false
-        }
-    },
     extraReducers: {
         [getAllUser.fulfilled]: (state,action) => {
             state.listUser = action.payload
         },
         [createProduct.fulfilled]: (state,action) => {
-            state.successCreate = true
+            state.listUser = action.payload
         },
         [createProduct.rejected]: (state,action) => {
-            state.successCreate = false
+            state.listUser = action.payload
         },
     }
 })
 
-export const { resetActionAdmin } = adminSlice.actions
+
 export default adminSlice.reducer

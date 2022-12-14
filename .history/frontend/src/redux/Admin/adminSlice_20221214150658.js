@@ -107,9 +107,7 @@ const adminSlice = createSlice({
     name: "admin",
     initialState,
     reducers:{
-        resetActionAdmin: (state,action) => {
-            state.successCreate = false
-        }
+        resetActionAdmin: (state)
     },
     extraReducers: {
         [getAllUser.fulfilled]: (state,action) => {
@@ -124,5 +122,5 @@ const adminSlice = createSlice({
     }
 })
 
-export const { resetActionAdmin } = adminSlice.actions
+
 export default adminSlice.reducer

@@ -32,13 +32,8 @@ function AdminCreate(props) {
       });
 
     const time = setTimeout(() => {
-      navigate('/admin')
+      navigate('/admin/product')
     },1500)
-
-    return () => {
-      clearTimeout(time)
-    }
-
     }
   },[successCreate])
 

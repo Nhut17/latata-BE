@@ -124,5 +124,5 @@ const adminSlice = createSlice({
     }
 })
 
-export const { resetActionAdmin } = adminSlice.actions
+
 export default adminSlice.reducer

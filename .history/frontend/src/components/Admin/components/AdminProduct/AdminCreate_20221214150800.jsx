@@ -13,34 +13,12 @@ function AdminCreate(props) {
   const [selectImage,setSelectImage] = useState('')
   const [previewImg,setPreviewImg] = useState('')
   const { register, handleSubmit } = useForm({ defaultValues: {} });
-  const { successCreate } = useSelector(state => state.admin)
+  const { } = useSelector(state => state.admin)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if(successCreate){
-      toast.success('Thêm sản phẩm thành công', {
-      position: "top-right",
-      autoClose: 500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      theme: "light",
-      });
 
-    const time = setTimeout(() => {
-      navigate('/admin')
-    },1500)
-
-    return () => {
-      clearTimeout(time)
-    }
-
-    }
-  },[successCreate])
 
 
 // hanlde up image
@@ -87,7 +65,20 @@ function AdminCreate(props) {
     dataS.set('stock', stock)
 
     dispatch(createProduct(dataS))
-   
+    // toast.success('Thêm sản phẩm thành công', {
+    //   position: "top-right",
+    //   autoClose: 500,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: false,
+    //   draggable: false,
+    //   progress: undefined,
+    //   theme: "light",
+    //   });
+
+    // setTimeout(() => {
+    //   navigate('/admin/product')
+    // },1500)
   }
   
   return (

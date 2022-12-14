@@ -20,7 +20,7 @@ function AdminCreate(props) {
 
   useEffect(() => {
     if(successCreate){
-      toast.success('Thêm sản phẩm thành công', {
+ toast.success('Thêm sản phẩm thành công', {
       position: "top-right",
       autoClose: 500,
       hideProgressBar: false,
@@ -31,14 +31,9 @@ function AdminCreate(props) {
       theme: "light",
       });
 
-    const time = setTimeout(() => {
-      navigate('/admin')
+    setTimeout(() => {
+      navigate('/admin/product')
     },1500)
-
-    return () => {
-      clearTimeout(time)
-    }
-
     }
   },[successCreate])
 
