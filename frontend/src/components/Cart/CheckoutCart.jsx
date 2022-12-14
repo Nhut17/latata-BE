@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../sass/cart/checkoutCart.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import InfoCustomer from './InfoCustomer'
 import Voucher from './Voucher'
 import FinalTotal from './FinalTotal'
@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const CheckoutCart = () => {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { listCartUser } = useSelector(state => state.cart)
   const {successOrder } = useSelector(state => state.order)
 
@@ -23,7 +24,7 @@ const CheckoutCart = () => {
     if(successOrder){
         toast('Đặt hàng thành công!', {
             position: "top-right",
-            autoClose: 1000,
+            autoClose: 500,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
@@ -31,6 +32,14 @@ const CheckoutCart = () => {
             progress: undefined,
             theme: "light",
             });
+
+        const time = setTimeout(() => {
+          navigate('/')
+        },1500)
+
+        return () => {
+          clearTimeout(time)
+        }
     }
     
   }, [successOrder]);

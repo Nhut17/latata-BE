@@ -1,11 +1,12 @@
 const Order = require('../models/order');
 const Product = require('../models/products');
+const User = require('../models/user');
 
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const Cart = require('../models/cart');
 const moment = require('moment-timezone');
-
+const sendOrder = require('../utils/sendOrder')
 
 /// Create a new order => api/v1/order/new
 
@@ -122,6 +123,8 @@ exports.cancelOrder = catchAsyncErrors( async (req, res, next) => {
 // Update / Process orders - ADMIN  => api/v1/admin/order/:id
 exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
     const order = await Order.findById(req.params.id)
+
+    const user = await User.findById(order.user)
     
     if(order.status === 'DONE')
     {
@@ -139,6 +142,20 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
 
         const date = new Date()
         order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')
+        console.log(1)
+        try{
+
+            await sendOrder({
+                email: user.email,
+                subject: 'XÁC NHẬN ĐƠN HÀNG',
+                order: order,
+                message: 'Đơn hàng đã đặt'
+            })
+        }
+        catch(err){
+            console.log(err);
+        }
+
     }
    
 

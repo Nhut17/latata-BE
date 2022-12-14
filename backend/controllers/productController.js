@@ -21,9 +21,8 @@ exports.newProduct = catchAsyncError( async ( req, res, next ) => {
     try{
 
         const ret = await cloudinary.uploader.upload(images,{
-            folder: 'Product',
-            // width: 300,
-            // crop: "scale"
+            folder: 'products',
+ 
         })
 
         console.log( ret)
