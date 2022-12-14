@@ -22,16 +22,13 @@ exports.addToCart = catchAsyncError( async (req,res,next) => {
         runValidators: true,
         useFindAndModify: true
     }
+    console.log('productId: ' + productId)
 
 
     // cart is already
     const cartOld = await Cart.findOne({
         user: userId
     })
-
-    // find product
-    const product = await Product.findById(productId)
-    console.log(product)
 
 
     let updateQuantity = quantity ;
@@ -47,7 +44,7 @@ exports.addToCart = catchAsyncError( async (req,res,next) => {
 
         if( indexId !== -1)
             {
-                if(product.stock - (productUpdate[indexId].quantity + quantity) < 0)
+                if(productUpdate[indexId].quantity === 0)
                 {
                     return next(new ErrorHandler('Product is stock', 404))
                 }
