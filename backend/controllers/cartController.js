@@ -31,7 +31,7 @@ exports.addToCart = catchAsyncError( async (req,res,next) => {
 
     // find product
     const product = await Product.findById(productId)
-    console.log(product)
+    // console.log(product)
 
 
     let updateQuantity = quantity ;
@@ -47,6 +47,7 @@ exports.addToCart = catchAsyncError( async (req,res,next) => {
 
         if( indexId !== -1)
             {
+                console.log(product.stock - (productUpdate[indexId].quantity + quantity))
                 if(product.stock - (productUpdate[indexId].quantity + quantity) < 0)
                 {
                     return next(new ErrorHandler('Product is stock', 404))

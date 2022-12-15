@@ -14,17 +14,21 @@ import ChartDashBoard from "./ChartDashBoard";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUser } from "../../../../redux/Admin/adminSlice";
 import { getAllOrder } from "../../../../redux/Order/orderSlice";
-
+import { getCate } from "../../../../redux/Category/categorySlice";
 export default function DashBoard() {
 
   const dispatch  = useDispatch()
   const { listUser } = useSelector(state => state.admin)
   const { listProduct } = useSelector(state => state.product)
   const { listOrder } = useSelector(state => state.order)
+  const { listCate } = useSelector(state => state.category)
+
 
   useEffect(() => {
     dispatch(getAllUser())
     dispatch(getAllOrder())
+    dispatch(getCate())
+
 }, [])
 
   return (
@@ -65,7 +69,7 @@ export default function DashBoard() {
                   <SkinOutlined />
                 </div>
                 <div className="dashboard-middle-statistic-title">
-                  <span className="total">1208</span>
+                  <span className="total">{listCate?.length}</span>
                   <span className="title">Danh mục</span>
                 </div>
               </li>
