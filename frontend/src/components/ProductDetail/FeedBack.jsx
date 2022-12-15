@@ -47,7 +47,7 @@ const FeedBack = ({data}) => {
                         </div> */}
                         {
                             data.reviews &&
-                            data.reviews.slice(0,3).map(data => (
+                            data.reviews.slice(0,quantityShow).map(data => (
                                 <ListUserReview data={data} />
                             ))
                         }

@@ -1,4 +1,5 @@
-.admi-product-list{
+@import '../../../../sass/variables.scss';
+.admin-product-list{
     .image{
         width: 70px;
         height: 70px;
@@ -228,5 +229,24 @@
 .img-group{
     form{
         margin-right: 20px;
+    }
+}
+
+.btn-see-more{
+    text-align: center;
+    button{
+        margin-top: 50px;
+        // padding: 10px 30px;
+        padding: 15px 50px;
+        background-color: $btn-color;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;      
+        font-size: 18px; 
+        transition: all 0.4s;
+       
+        &:hover{
+            background-color: #3271ac;
+        }
     }
 }

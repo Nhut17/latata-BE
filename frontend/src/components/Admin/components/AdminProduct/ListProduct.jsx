@@ -1,11 +1,23 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { editCurrentPage, paginationProduct } from '../../../../actions/ProductAction';
 import Product from './Product';
 
 
 function ListProduct({listProduct}) {
-    
+    const [quantityShow,setQuantityShow] = useState(5)
+    const [totalQuantityShow,setTotalQuantityShow] = useState(0)
+
+    const handleShowMore = () => {
+        setQuantityShow( prev => prev + 5)
+        setTotalQuantityShow(prev => prev - 5)
+    }
+
+    useEffect(() => {
+
+        setTotalQuantityShow(listProduct.length - quantityShow)
+
+    },[listProduct])
 
     return (
        <div className="admin-product-list">
@@ -23,11 +35,21 @@ function ListProduct({listProduct}) {
                 </tr>
                 {
                     listProduct &&
-                    listProduct.map((data, index) => (
+                    listProduct.slice(0,quantityShow).map((data, index) => (
                         <Product data={data} stt={index} />
                     ))
                 }
+
+                
             </table>
+
+            <div className="btn-see-more">
+                {
+                
+                totalQuantityShow <=0  ? ('') :  <button onClick={handleShowMore}>Xem thêm {totalQuantityShow} sản phẩm</button>
+            
+                }
+                </div>
             
           
 
