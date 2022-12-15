@@ -4,7 +4,7 @@ const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncError = require('../middlewares/catchAsyncErrors')
 const APIFeatures = require('../utils/apiFeatures')
 const cloudinary = require('cloudinary')
-
+const Category = require('../models/category')
 
 //create new product => /api/v1/admin/product/new
 exports.newProduct = catchAsyncError( async ( req, res, next ) => {
@@ -238,5 +238,25 @@ exports.deleteReview = catchAsyncError( async(req, res, next) => {
 
     res.status(200).json({
         success: true
+    })
+})
+
+
+// get product by category => api/v1/product/category/:id
+exports.getProductByCate = catchAsyncError( async(req, res, next) => {
+
+    const category = await Category.findById(req.params.id);
+
+    console.log(category)
+
+    const products = await Product.find({
+        category: category.name
+    });
+
+    
+
+    res.status(200).json({
+        success: true,
+        products
     })
 })

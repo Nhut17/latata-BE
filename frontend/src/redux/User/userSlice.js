@@ -218,6 +218,7 @@ const userSlice = createSlice({
         resetActionUser: (state,action) => {
             state.message =''
             state.successRegister = false
+            state.successLogin = false
             state.errorRegister = false
             state.errorLogin = false
             state.errorResetPassword = false

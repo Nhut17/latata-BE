@@ -8,7 +8,7 @@ const Product = ({data}) =>{
 
   const [priceDeal,setPriceDeal] = useState(data.price - data.price*(data.promotion/100))
   
-
+  // const [isStock,setIsStock] = useState(data.stock)
 
     return (
 
@@ -52,7 +52,14 @@ const Product = ({data}) =>{
             </p>
 
         <StarRating rating={data.ratings} />
-
+            
+          {
+            data.stock === 1 && 
+            <p style={{
+              paddingTop: '10px',
+              color: 'red'
+            }}>Đã hết hàng</p>
+          }
         </div>
      </Link>
         
