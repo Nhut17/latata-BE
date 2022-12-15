@@ -12,7 +12,7 @@ import {
 import "./DashBoard.scss";
 import ChartDashBoard from "./ChartDashBoard";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUser } from "../../../../redux/Admin/adminSlice";
+import { getAllUser, resetActionAdmin } from "../../../../redux/Admin/adminSlice";
 import { getAllOrder } from "../../../../redux/Order/orderSlice";
 import { getCate } from "../../../../redux/Category/categorySlice";
 export default function DashBoard() {
@@ -28,6 +28,7 @@ export default function DashBoard() {
     dispatch(getAllUser())
     dispatch(getAllOrder())
     dispatch(getCate())
+    dispatch(resetActionAdmin())
 
 }, [])
 

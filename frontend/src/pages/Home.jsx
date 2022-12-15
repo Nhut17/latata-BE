@@ -105,11 +105,14 @@ const Home = () => {
           <Banner banner={banner_opt} />
         </div>
         <OptionPromote />
+
+        <RecommendToday/>
+
         
-        <FlashSale />
+        {/* <FlashSale /> */}
 
 
-        <ShoppingTrends/>
+        {/* <ShoppingTrends/> */}
         
         
 
@@ -119,7 +122,6 @@ const Home = () => {
           <Banner banner={bannerGalaxy} />
         </div>
         <GreatDeals/>
-        <RecommendToday/>
         <Tech24h/>
       </div>
 

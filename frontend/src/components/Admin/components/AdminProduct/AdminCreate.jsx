@@ -5,9 +5,11 @@ import { createProduct } from "../../../../redux/Admin/adminSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
+import {PlusOutlined} from "@ant-design/icons";
 
 
 function AdminCreate(props) {
+  const { listCate } = useSelector(state => state.category)
 
   
     const {
@@ -18,12 +20,39 @@ function AdminCreate(props) {
 
   const [selectImage,setSelectImage] = useState('')
   const [previewImg,setPreviewImg] = useState('')
+
   // const { register, handleSubmit } = useForm({ defaultValues: {} });
+
+
+  const { successCreate } = useSelector(state => state.admin)
+
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  useEffect(() => {
+    if(successCreate){
+      toast.success('Thêm sản phẩm thành công', {
+      position: "top-right",
+      autoClose: 500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+      });
 
+    const time = setTimeout(() => {
+      navigate('/admin')
+    },1500)
+
+    return () => {
+      clearTimeout(time)
+    }
+
+    }
+  },[successCreate])
 
   
 // hanlde up image
@@ -72,6 +101,7 @@ function AdminCreate(props) {
 
     dispatch(createProduct(dataS))
 
+
     
     // toast.success('Thêm sản phẩm thành công', {
     //   position: "top-right",
@@ -87,6 +117,8 @@ function AdminCreate(props) {
     // setTimeout(() => {
     //   navigate('/admin/product')
     // },1500)
+
+
   }
   
   return (
@@ -99,7 +131,7 @@ function AdminCreate(props) {
         encType='multipart/form-data'
       >
         <div className="input-group">
-          <span className="title">Tên sản phẩm</span>
+          <p className="title">Tên sản phẩm</p>
        
           <input {...register("name",{
             required : true
@@ -113,34 +145,63 @@ function AdminCreate(props) {
         </div>
 
         <div className="input-group">
-          <span className="title">Danh mục</span>
+          <p className="title">Danh mục</p>
          
-          <input
-            {...register("category",{
-              required : true
-            })}
-            placeholder=""
-            type="text"
-          />
+          <select
+            className="cate-select"
+            {...register('categoryId', {
+              required: true,
+            })}  >
+            {listCate.map(item => (
+              <option value={item?._id}>{item?.name}</option>
+            ))}
+          </select>
 
-{
+          {
             errors.name?.type === 'required' &&
             <span className='err-msg'>Mời bạn nhập Danh mục</span> 
           }
         </div>
 
-        <span>Giá</span>
-        <input
-          {...register("price")}
-          placeholder=""
-          type="number"
-        />
+        <div className="input-group">
+          <span className="title">Giá</span>
+          <input
+            {...register("price",{
+              required : true
+            })}
+            placeholder=""
+            type="number"
+          />
 
-        <span>Giảm giá</span>
-        <input {...register("promotion")} placeholder="" type="number" />
+          {
+            errors.name?.type === 'required' &&
+            <span className='err-msg'>Mời bạn nhập Giá sản phẩm</span> 
+          }
+        </div>
 
-        <span>Số lượng</span>
-        <input {...register("stock")} placeholder="" type="number" />
+        <div className="input-group">
+          <span className="title">Giảm giá</span>
+          <input {...register("promotion",{
+            required : true
+          })} placeholder="" type="number" />
+
+          {
+            errors.name?.type === 'required' &&
+            <span className='err-msg'>Mời bạn nhập Giá sản phẩm</span> 
+          }       
+        </div>
+
+        <div className="input-group">
+          <span className="title">Số lượng</span>
+          <input {...register("stock",{
+            required : true
+          })} placeholder="" type="number" />
+
+          {
+            errors.name?.type === 'required' &&
+            <span className='err-msg'>Mời bạn nhập Giá sản phẩm</span> 
+          } 
+        </div>
 
 
 
@@ -152,25 +213,85 @@ function AdminCreate(props) {
 
            
         <span>Hình ảnh</span>
-        <img 
+
+        <div className="img-group flex ">
+          <form>
+            <div class="image-upload">
+              <label for="file-input">
+                <div class="upload-icon">
+                  <img src={previewImg} alt="" 
+                
+                  
+                  />
+                  </div>
+              </label>
+              <input id="file-input" type="file"
+              {...register("images")}
+              onChange={handleImage}
+              accept="images/*"
+              />
+            </div>
+          </form>
+
+          {/* <form>
+            <div class="image-upload">
+              <label for="file-input">
+                <div class="upload-icon">
+                  <img src={previewImg} alt="" 
+                
+                  
+                  />
+                  </div>
+              </label>
+              <input id="file-input" type="file"
+              {...register("images")}
+              onChange={handleImage}
+              accept="images/*"
+              />
+            </div>
+          </form>
+
+          <form>
+            <div class="image-upload">
+              <label for="file-input">
+                <div class="upload-icon">
+                  <img src={previewImg} alt="" 
+                
+                  
+                  />
+                  </div>
+              </label>
+              <input id="file-input" type="file"
+              {...register("images")}
+              onChange={handleImage}
+              accept="images/*"
+              />
+            </div>
+          </form> */}
+        </div>
+        {/* <img 
           src={previewImg}
           style={{
             width: 100,
             height: 100
           }} 
-         />
+         /> */}
 
-        <input
+        {/* <input
           type="file"
           {...register("images")}
           onChange={handleImage}
           accept="images/*"
-        />
+        /> */}
+
+      
        
 
-          <span>Chi tiết sản phẩm</span>
-          <textarea name="" id="" cols="30" rows="10" 
-            {...register('description')} ></textarea>
+          <div className="input-group">
+            <span className="title">Chi tiết sản phẩm</span>
+            <textarea name="" id="" cols="30" rows="10" 
+              {...register('description')} ></textarea>
+          </div>
 
         <button type="submit">Add Product</button>
       </form>
