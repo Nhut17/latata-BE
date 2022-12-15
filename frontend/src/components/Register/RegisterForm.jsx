@@ -9,7 +9,7 @@ const RegisterForm = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {successRegister , message , errRegister} = useSelector(state => state.user)
+    const {successRegister , message , errorRegister} = useSelector(state => state.user)
 
     useEffect(() => {
        if(successRegister)
@@ -183,7 +183,7 @@ const RegisterForm = () => {
 
                         <button className='btn-sign-up'>ĐĂNG KÝ</button>
                         {
-                            errRegister && <span className='err-msg'>{message}</span>
+                            errorRegister && <span className='err-msg'>{message}</span>
                         }
 
                    </div>
