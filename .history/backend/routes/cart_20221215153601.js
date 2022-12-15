@@ -12,7 +12,7 @@ router.route('/cart/getCartUser').get(isAuthenticatedUser, authorizeRoles('user'
 
 // router.route('/cart/getAllCart').get(isAuthenticatedUser, authorizeRoles('admin') ,getCart)
 
-router.route('/cart/:id').put(isAuthenticatedUser,authorizeRoles('user'),deleteItemCart)
+router.route('/cart/:id').delete(isAuthenticatedUser,authorizeRoles('user'),deleteItemCart)
 
 router.route('/cart/decrease/:id').put(isAuthenticatedUser,authorizeRoles('user'),decreaseQuantity)
 router.route('/cart/increase/:id').put(isAuthenticatedUser,authorizeRoles('user'),increaseQuantity)

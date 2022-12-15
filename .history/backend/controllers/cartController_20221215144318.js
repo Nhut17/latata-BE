@@ -3,7 +3,7 @@ const Product = require('../models/products')
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncError = require('../middlewares/catchAsyncErrors')
 const APIFeatures = require('../utils/apiFeatures')
-
+const cart = require('../models/cart')
 
 
 // add to cart
@@ -170,31 +170,21 @@ exports.deleteItemCart = catchAsyncError( async (req, res, next) => {
     const getCart = await Cart.findOne({
         user: req.user[0]._id
     })
-
-    const config = {
-        new: true,
-        runValidators: true,
-        useFindAndModify: true
-    }
     
     const listItem = getCart.products
     const findItemCart = listItem.findIndex( item => item.productId == req.params.id)
 
+
     if(!getCart){
         return next(new ErrorHandler('Cart not found', 404))
     }
-
     if(findItemCart === -1){
         return next(new ErrorHandler('Item cart not found', 404))
     }
 
-    await listItem[findItemCart].remove()
-
-    getCart.totalPrice = listItem.reduce((acc,val) => {
-        return acc + (val.price * val.quantity)
-    },0)
-    console.log(getCart)
-    await Cart.findByIdAndUpdate(getCart._id,getCart,config)
+    console.log(getCart.products[findItemCart])
+    
+    await getCart.products[findItemCart].remove()
 
     res.status(201).json({
         success: true,

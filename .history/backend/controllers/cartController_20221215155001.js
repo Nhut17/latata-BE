@@ -193,7 +193,7 @@ exports.deleteItemCart = catchAsyncError( async (req, res, next) => {
     getCart.totalPrice = listItem.reduce((acc,val) => {
         return acc + (val.price * val.quantity)
     },0)
-    console.log(getCart)
+    console.log()
     await Cart.findByIdAndUpdate(getCart._id,getCart,config)
 
     res.status(201).json({

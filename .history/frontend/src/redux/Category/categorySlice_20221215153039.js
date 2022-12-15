@@ -32,7 +32,7 @@ export const createProduct = createAsyncThunk('cate/createCate',
                 }
             }
 
-            const res = await api.post(`/api/v1/category/create`,data,config)
+            const res = await axios.api(`http://localhost:4000/api/v1/category/create`,data,config)
 
             // thunkAPI.dispatch(getProduct())
             

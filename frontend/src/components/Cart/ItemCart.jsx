@@ -16,10 +16,7 @@ const ItemCart = ({data}) => {
 
     // decrease quantity
     const handleDecrease = () => {
-        // if(quantity === 0 )
-        // {
-        //     dispatch(deleteCart(data.productId))
-        // }
+
         setQuantity(prev => prev - 1)
         dispatch(decreaseQuantity(data.productId))
     }

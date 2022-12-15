@@ -69,7 +69,7 @@ export const deleteCart = createAsyncThunk('cart/delete',
 
                         const res = await api.put(`/api/v1/cart/${id}`,{},config)
 
-                        thunkAPI.dispatch(getCartUser())
+                        thunkAPI.disp
 
                         return res.data
 

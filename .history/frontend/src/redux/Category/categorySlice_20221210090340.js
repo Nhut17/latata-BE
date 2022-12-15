@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import api from "../../api/api";
 
 
 const initialState = {
@@ -13,7 +12,7 @@ const initialState = {
 export const getCate = createAsyncThunk('cate/getCate' , 
         async(data,thunkAPI) => {
             try{
-                const res = await api.get('/api/v1/categories') 
+                const res = await axios.get('http://localhost:4000/api/v1/categories') 
 
                 return res.data
             }
@@ -32,7 +31,7 @@ export const createProduct = createAsyncThunk('cate/createCate',
                 }
             }
 
-            const res = await api.post(`/api/v1/category/create`,data,config)
+            const res = await axios.post(`http://localhost:4000/api/v1/category/create`,data,config)
 
             // thunkAPI.dispatch(getProduct())
             
