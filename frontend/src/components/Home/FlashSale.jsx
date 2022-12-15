@@ -6,8 +6,9 @@ const FlashSale = () => {
 
   const {listProduct} = useSelector(state => state.product)
   
-  const [bestSeller,setBestSeller] = useState(listProduct.slice(0,10).sort((a,b) =>  b.sold - a.sold))
+  const [bestSeller,setBestSeller] = useState(listProduct.slice().sort((a,b) =>  b.sold - a.sold))
 
+  const listBestSeller = bestSeller.filter(val => val.stock >= 1)
 
   return (
     <div className='flash-sales'>
@@ -49,7 +50,7 @@ const FlashSale = () => {
         </div> */}
 
         <ListProduct quantity={10}
-                      list_product={bestSeller} />
+                      list_product={listBestSeller} />
 
     </div>
   )

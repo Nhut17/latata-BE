@@ -300,7 +300,7 @@ exports.increaseQuantity = catchAsyncError( async (req, res, next) => {
     const initialStock = product.stock
 
     listItem[findProduct].quantity += 1
-
+    product.stock -= 1
 
     if(initialStock - listItem[findProduct].quantity < 0)
     {
@@ -313,7 +313,7 @@ exports.increaseQuantity = catchAsyncError( async (req, res, next) => {
 
 
     await Cart.findByIdAndUpdate(cartOld._id,cartOld,config)
-   
+    await Product.findByIdAndUpdate(productId,product,config)
 
     res.status(201).json({
         success: true,

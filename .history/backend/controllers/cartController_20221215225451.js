@@ -31,7 +31,8 @@ exports.addToCart = catchAsyncError( async (req,res,next) => {
 
     // find product
     const product = await Product.findById(productId)
-    const initialStock = product.stock
+    console.log(product)
+
 
     let updateQuantity = quantity ;
 
@@ -46,24 +47,24 @@ exports.addToCart = catchAsyncError( async (req,res,next) => {
 
         if( indexId !== -1)
             {
-                if(initialStock - (productUpdate[indexId].quantity + quantity) < 0)
+                if(product.stock - (productUpdate[indexId].quantity + quantity) < 0)
                 {
                     return next(new ErrorHandler('Product is stock', 404))
                 }
 
                 productUpdate[indexId].quantity += quantity
-                product.stock -= quantity
             }
        
     }
-
+    // find product by id
+    const { name, images , priceDeal, price,promotion } = await Product.findById(productId)
 
     const products = {
-        name: product.name,
-        images: product.images,
-        price: product.price,
-        promotion: product.promotion,
-        priceDeal: product.priceDeal,
+        name: name,
+        images: images,
+        price: price,
+        promotion: promotion,
+        priceDeal: priceDeal,
         quantity: updateQuantity,
         productId: productId
     }
@@ -85,7 +86,6 @@ exports.addToCart = catchAsyncError( async (req,res,next) => {
                 user: userId
             }
             await Cart.findByIdAndUpdate(cartOld._id,updateCart,config)
-           
         }
         else 
         {
@@ -98,23 +98,23 @@ exports.addToCart = catchAsyncError( async (req,res,next) => {
             }
 
   
+
             await Cart.findByIdAndUpdate(cartOld._id,updateCart,config)
-         
+   
 
         }
             
             
     }
     else{
+       
          await Cart.create({
             products,
             totalPrice: products.priceDeal * products.quantity,
             user: userId
         })
-       
     }
 
-   
 
     res.status(201).json({
         success: true,
@@ -171,8 +171,6 @@ exports.deleteItemCart = catchAsyncError( async (req, res, next) => {
         user: req.user[0]._id
     })
 
-   
- 
     const config = {
         new: true,
         runValidators: true,
@@ -191,13 +189,12 @@ exports.deleteItemCart = catchAsyncError( async (req, res, next) => {
     }
 
     await listItem[findItemCart].remove()
-   
+
     getCart.totalPrice = listItem.reduce((acc,val) => {
         return acc + (val.priceDeal * val.quantity)
     },0)
  
     await Cart.findByIdAndUpdate(getCart._id,getCart,config)
-   
 
     res.status(201).json({
         success: true,
@@ -214,7 +211,6 @@ exports.decreaseQuantity = catchAsyncError( async (req, res, next) => {
         useFindAndModify: true
     }
 
-
     // get user current
     const  userId  = req.user[0]._id
 
@@ -229,8 +225,6 @@ exports.decreaseQuantity = catchAsyncError( async (req, res, next) => {
 
     const productId = req.params.id
     const listItem = cartOld.products
-
-   
 
      // update product quantity
     const findProduct = listItem.findIndex(val => val.productId == productId)
@@ -258,7 +252,6 @@ exports.decreaseQuantity = catchAsyncError( async (req, res, next) => {
     // console.log(updateItem)
 
     await Cart.findByIdAndUpdate(cartOld._id,cartOld,config)
-  
 
     res.status(201).json({
         success: true,
@@ -297,12 +290,9 @@ exports.increaseQuantity = catchAsyncError( async (req, res, next) => {
     if(!listItem[findProduct]){
         return next(new ErrorHandler('Cart not found', 404))
     }
-    const initialStock = product.stock
 
     listItem[findProduct].quantity += 1
-
-
-    if(initialStock - listItem[findProduct].quantity < 0)
+    if(product.stock - listItem[findProduct].quantity < 0)
     {
         return next(new ErrorHandler('Out of stock', 404))
     }
@@ -313,7 +303,6 @@ exports.increaseQuantity = catchAsyncError( async (req, res, next) => {
 
 
     await Cart.findByIdAndUpdate(cartOld._id,cartOld,config)
-   
 
     res.status(201).json({
         success: true,

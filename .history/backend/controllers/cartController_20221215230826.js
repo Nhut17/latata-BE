@@ -85,7 +85,6 @@ exports.addToCart = catchAsyncError( async (req,res,next) => {
                 user: userId
             }
             await Cart.findByIdAndUpdate(cartOld._id,updateCart,config)
-           
         }
         else 
         {
@@ -98,23 +97,23 @@ exports.addToCart = catchAsyncError( async (req,res,next) => {
             }
 
   
+
             await Cart.findByIdAndUpdate(cartOld._id,updateCart,config)
-         
+   
 
         }
             
             
     }
     else{
+        await Product.findByIdAndUpdate(productId,product,config)
          await Cart.create({
             products,
             totalPrice: products.priceDeal * products.quantity,
             user: userId
         })
-       
     }
 
-   
 
     res.status(201).json({
         success: true,
@@ -171,8 +170,6 @@ exports.deleteItemCart = catchAsyncError( async (req, res, next) => {
         user: req.user[0]._id
     })
 
-   
- 
     const config = {
         new: true,
         runValidators: true,
@@ -191,13 +188,12 @@ exports.deleteItemCart = catchAsyncError( async (req, res, next) => {
     }
 
     await listItem[findItemCart].remove()
-   
+
     getCart.totalPrice = listItem.reduce((acc,val) => {
         return acc + (val.priceDeal * val.quantity)
     },0)
  
     await Cart.findByIdAndUpdate(getCart._id,getCart,config)
-   
 
     res.status(201).json({
         success: true,
@@ -230,7 +226,7 @@ exports.decreaseQuantity = catchAsyncError( async (req, res, next) => {
     const productId = req.params.id
     const listItem = cartOld.products
 
-   
+    const product = await Product.findById(productId)
 
      // update product quantity
     const findProduct = listItem.findIndex(val => val.productId == productId)
@@ -241,7 +237,7 @@ exports.decreaseQuantity = catchAsyncError( async (req, res, next) => {
 
     
     listItem[findProduct].quantity -= 1
-   
+    productId.stock += 1
 
    
 
@@ -258,7 +254,7 @@ exports.decreaseQuantity = catchAsyncError( async (req, res, next) => {
     // console.log(updateItem)
 
     await Cart.findByIdAndUpdate(cartOld._id,cartOld,config)
-  
+    await Product.findByIdAndUpdate(productId,product,config)
 
     res.status(201).json({
         success: true,
@@ -300,7 +296,7 @@ exports.increaseQuantity = catchAsyncError( async (req, res, next) => {
     const initialStock = product.stock
 
     listItem[findProduct].quantity += 1
-
+    product.stock -= 1
 
     if(initialStock - listItem[findProduct].quantity < 0)
     {
@@ -313,7 +309,7 @@ exports.increaseQuantity = catchAsyncError( async (req, res, next) => {
 
 
     await Cart.findByIdAndUpdate(cartOld._id,cartOld,config)
-   
+    await Product.findByIdAndUpdate(productId,product,config)
 
     res.status(201).json({
         success: true,

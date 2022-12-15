@@ -300,7 +300,7 @@ exports.increaseQuantity = catchAsyncError( async (req, res, next) => {
     const initialStock = product.stock
 
     listItem[findProduct].quantity += 1
-
+    product.stock -= 1
 
     if(initialStock - listItem[findProduct].quantity < 0)
     {
