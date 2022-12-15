@@ -123,7 +123,7 @@ exports.cancelOrder = catchAsyncErrors( async (req, res, next) => {
 // Update / Process orders - ADMIN  => api/v1/admin/order/:id
 exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
     const order = await Order.findById(req.params.id)
-
+        
     const user = await User.findById(order.user)
     
     if(order.status === 'DONE')
@@ -142,7 +142,6 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
 
         const date = new Date()
         order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')
-        console.log(1)
         try{
 
             await sendOrder({
@@ -179,6 +178,8 @@ async function updateStock(id,quantity) {
     product.stock = product.stock - quantity ;
 
     console.log('stock: ' + product.stock)
+    product.sold += quantity
+    console.log('sold: ' + product.sold)
 
     await product.save({validateBeforeSave: false})
 }

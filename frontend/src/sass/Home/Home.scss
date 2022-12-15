@@ -87,11 +87,14 @@
                 align-items: center;
                 .title{
                     span{
-                        font-size: 50px;
+                        font-size: 30px;
                         color: #CE1212;
                         .icon{
                             font-weight: bold;
                         }
+                    }
+                    img{
+                        width: 30px;
                     }
                 }
                 .time-sale{

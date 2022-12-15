@@ -9,13 +9,15 @@ const { getProducts,
     createProductReview, 
     getProductReviews,
     uploadImg,
-    deleteReview} = require('../controllers/productController')
+    deleteReview,
+    getProductByCate } = require('../controllers/productController')
 
 const { isAuthenticatedUser , authorizeRoles } = require('../middlewares/auth')
 
 
 router.route('/products').get(getProducts)
 router.route('/product/upload/image').post(uploadImg)
+router.route('/product/category/:id').get(getProductByCate)
 router.route('/product/:id').get(getSingleProduct)
 
 router.route('/admin/product/new').post(isAuthenticatedUser,authorizeRoles('admin'),newProduct)

@@ -193,13 +193,15 @@
                                 border: none;
                                 border-radius: 5px;
                                 padding: 10px 0;
+                                background-color: $primary-color;
+                                color: white;
                             }
                             .active{
                                 transition: all .3s;
                                 border: 1px solid $primary-color;
                                 &:hover{
-                                    background-color: $primary-color;
-                                    color: white;
+                                    background: rgba($primary-color,0.8);
+                                    font-size: 15px;
                                 }
                             }
                         }

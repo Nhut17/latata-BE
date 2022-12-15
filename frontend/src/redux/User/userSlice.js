@@ -14,14 +14,14 @@ const initialState = {
     message: null,
     currentUser: null,
     accessToken: null,
-    errRegister: false,
+    errorRegister: false,
     errorResetPassword: false,
     successSendOTP: false,
     successResetPassword: false,
     emailOtp: null,
     myOrders: null,
     successUpdate: false,
-
+    errorLogin: false
 }
 
 
@@ -218,7 +218,9 @@ const userSlice = createSlice({
         resetActionUser: (state,action) => {
             state.message =''
             state.successRegister = false
+            state.successLogin = false
             state.errorRegister = false
+            state.errorLogin = false
             state.errorResetPassword = false
             state.successSendOTP= false
             state.successResetPassword= false
@@ -233,20 +235,24 @@ const userSlice = createSlice({
     extraReducers: {
         [registerUser.fulfilled]: (state,action) => {
             state.successRegister = true
+            state.errorRegister = false
         },
         [registerUser.rejected]: (state,action) => {
             state.message = 'Email đã tồn tại!'
             state.successRegister = false
-            state.errRegister = true
+            state.errorRegister = true
         },
         [loginUser.fulfilled]: (state,action) => {
             state.currentUser = action.payload.user
             state.successLogin = true
             state.accessToken = action.payload.token
+            state.errorLogin = false
+        },
+        [loginUser.rejected]: (state,action) => {
+            state.errorLogin = true
         },
         [getUserDetail.fulfilled] : (state, action) => {
             state.currentUser = action.payload
-            console.log(action.payload)
 
         },
        [logoutUser.fulfilled]: (state,action) => {

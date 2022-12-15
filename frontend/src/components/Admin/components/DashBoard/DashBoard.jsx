@@ -15,6 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUser, resetActionAdmin } from "../../../../redux/Admin/adminSlice";
 import { getAllOrder } from "../../../../redux/Order/orderSlice";
 import { getCate } from "../../../../redux/Category/categorySlice";
+import { getProduct } from "../../../../redux/Product/productSlice";
+
 export default function DashBoard() {
 
   const dispatch  = useDispatch()
@@ -26,8 +28,12 @@ export default function DashBoard() {
 
   useEffect(() => {
     dispatch(getAllUser())
+    dispatch(getProduct())
     dispatch(getAllOrder())
     dispatch(getCate())
+    dispatch(resetActionAdmin())
+
+
     dispatch(resetActionAdmin())
 
 }, [])

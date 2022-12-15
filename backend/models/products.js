@@ -89,11 +89,10 @@ const productSchema = new mongoose.Schema({
 
         }
     ],
-    // user: {
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: 'User',
-    //     required: true
-    // },
+    sold: {
+        type: Number,
+        default: 0
+    },
     createdAt: {
         type: String,
         default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')

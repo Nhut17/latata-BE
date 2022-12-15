@@ -27,32 +27,38 @@ import { resetActionOrder } from '../redux/Order/orderSlice'
 const Home = () => {
   const navigate = useNavigate()
   const success = useSelector(state => state.user.successLogin)
-  const { currentUser} = useSelector(state => state.user)
+  const { currentUser,successLogin} = useSelector(state => state.user)
 
   const dispatch = useDispatch()
 
+  useEffect(() =>{
+    if(successLogin)
+    {
+        toast(`Xin chào ${currentUser?.name}`, {
+          position: "top-right",
+          autoClose: 500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+    }
+  },[])
+
+
   useEffect(() => {
+   
     dispatch(resetActionUser())
     dispatch(resetActionOrder())
+
+   
     
 },[])
 
 
-  // useEffect(() =>{
-  //   if(success)
-  //   {
-  //       toast(`Xin chào ${user?.name}`, {
-  //         position: "top-right",
-  //         autoClose: 1000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: false,
-  //         draggable: true,
-  //         progress: undefined,
-  //         theme: "light",
-  //         });
-  //   }
-  // },[success])
+ 
 
 
   useEffect(() => {
@@ -92,6 +98,7 @@ const Home = () => {
 
   return (
     <div className="home">
+            <ToastContainer />
       
         
 

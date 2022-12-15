@@ -9,7 +9,7 @@ const RegisterForm = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {successRegister , message , errRegister} = useSelector(state => state.user)
+    const {successRegister , message , errorRegister} = useSelector(state => state.user)
 
     useEffect(() => {
        if(successRegister)
@@ -155,15 +155,15 @@ const RegisterForm = () => {
                                             const password = getValues('password')
                                             if(password !== value)
                                             {
-                                                return 'Nhập lại mật khẩu không đúng!'
+                                                return 'Nhập lại mật khẩu không khớp!'
                                             }
                                         }
                                     })}/>
                                      {
-                                        errors.rePasword?.type === 'required' &&  <span className='err-msg'>Mời bạn nhập lại mật khẩu</span>
+                                        errors.rePassword?.type === 'required' &&  <span className='err-msg'>Mời bạn nhập lại mật khẩu</span>
                                     }
                                      {
-                                        errors.rePasword?.type === 'pattern' &&  <span className='err-msg'>{errors.rePasword.message}</span>
+                                        errors.rePassword?.type !== 'pattern' &&  <span className='err-msg'>{errors.rePassword?.message}</span>
                                     }
                         </div>
 
@@ -183,7 +183,7 @@ const RegisterForm = () => {
 
                         <button className='btn-sign-up'>ĐĂNG KÝ</button>
                         {
-                            errRegister && <span className='err-msg'>{message}</span>
+                            errorRegister && <span className='err-msg'>{message}</span>
                         }
 
                    </div>

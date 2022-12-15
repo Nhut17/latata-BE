@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import ListProduct from '../ListProduct'
 
 const FlashSale = () => {
 
+  const {listProduct} = useSelector(state => state.product)
+  
+  const [bestSeller,setBestSeller] = useState(listProduct.slice(0,10).sort((a,b) =>  b.sold - a.sold))
 
 
   return (
     <div className='flash-sales'>
         <div className="title-flash">
             <div className="title">
-                <span>FL<i class="fa-solid fa-bolt icon"></i>SH SALE</span>
+                {/* <span>FL<i class="fa-solid fa-bolt icon"></i>SH SALE</span> */}
+                <span>Xu hướng mua sắm</span>
+                <img src="https://cdn-icons-png.flaticon.com/512/1942/1942070.png" alt="" />
             </div>
 
-            <div className="time-sale">
+            {/* <div className="time-sale">
                 <ul>
                   <li>
                     <p>Đang diễn ra</p>
@@ -27,11 +33,11 @@ const FlashSale = () => {
                     <p className='time-line'>20:00 - 22:00</p>
                   </li>
                 </ul>
-            </div>
+            </div> */}
 
         </div>
 
-        <div className="end-sale">
+        {/* <div className="end-sale">
             <p>Kết thúc:</p>
             <div className="count-down">
                 <span>24</span>
@@ -40,9 +46,10 @@ const FlashSale = () => {
                 :
                 <span>00</span>
             </div>
-        </div>
+        </div> */}
 
-        <ListProduct quantity={10} />
+        <ListProduct quantity={10}
+                      list_product={bestSeller} />
 
     </div>
   )
