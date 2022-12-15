@@ -147,10 +147,22 @@ function AdminCreate(props) {
         <div className="input-group">
           <p className="title">Danh mục</p>
          
+
           <input {...register("category",{
             required : true
 
           })} />
+
+          {/* <select
+            className="cate-select"
+            {...register('category', {
+              required: true,
+            })}  >
+            {listCate.map(item => (
+              <option value={item?.name}>{item?.name}</option>
+            ))}
+          </select> */}
+
 
           {
             errors.name?.type === 'required' &&

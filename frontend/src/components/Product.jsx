@@ -54,7 +54,7 @@ const Product = ({data}) =>{
         <StarRating rating={data.ratings} />
             
           {
-            data.stock === 1 && 
+            data.stock === 0 && 
             <p style={{
               paddingTop: '10px',
               color: 'red'
