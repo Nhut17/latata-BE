@@ -19,14 +19,14 @@ function AdminCate() {
 
     return (
         <div className="admin-cate">
-            <div className="admin-cate-link">
+            {/* <div className="admin-cate-link">
 
                 <Link to="/admin/category/create">
                     <button >
                         + Add Cate
                     </button>
                 </Link>
-            </div>
+            </div> */}
 
              {
                 listCate &&

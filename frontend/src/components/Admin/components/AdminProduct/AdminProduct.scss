@@ -122,6 +122,38 @@
     font-weight: 600;
     color: #6b6b6b;
 }
+
+.input-group{
+    // position: relative;
+    select{
+        padding: 7px 15px;
+    }
+    span{
+        display: block;
+    }
+    .title{
+        // display: inline-block;
+        margin: 10px auto;
+    }
+    input{
+        display: block;
+   
+    }
+
+    .err-msg{
+        // height: 10px;
+        display: block;
+        // padding-left: 0px ;
+        // margin-top: 5px;
+        color: orangered;
+        font-size: 13px;
+        // position: absolute;
+        font-style: italic;
+        transform: translateY(-15px);
+    }
+}
+
+
 .admin-create-product{
     display: flex;
     flex-direction: column;
@@ -170,4 +202,31 @@
 .admin-create-product .filter-menu-firm{
     margin-top: 0;
     margin-bottom: 1rem;
+}
+
+.image-upload > input
+{
+    display: none;
+}
+.upload-icon{
+	width: 100px;
+	height: 97px;
+	border: 2px solid #ced4da;
+	border-style: dotted;
+	border-radius: 18px;
+    img{
+        width: 100%;
+    }
+}
+.upload-icon img{
+	width: 60px;
+	height: 60px;
+	margin:19px;
+	cursor: pointer;
+}
+
+.img-group{
+    form{
+        margin-right: 20px;
+    }
 }

@@ -2,35 +2,20 @@ import { React, useState ,useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { updateOrder } from '../../redux/Order/orderSlice';
 // import { cancelByUser } from '../../redux/reducer/orderSlice'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import EachTransaction from './EachTransaction'
 const OrderList = ({ data }) => {
+
+    const dispatch = useDispatch()
     const [evaluated, setEvaluated] = useState(
         data?.status === 'DONE' ? true : false
     )
 
 
-    const dispatch= useDispatch()
-    const {successUpdateOrder} = useSelector(state => state.order)
+   
     
     // toastify success cancel order
-    useEffect(() => {
-      if(successUpdateOrder){
-          toast('Hủy đơn hàng thành công!', {
-              position: "top-right",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              });
-      }
-      
-    }, [successUpdateOrder]);
+    
 
 
     const cancelOrder = () => {
@@ -45,7 +30,7 @@ const OrderList = ({ data }) => {
 
     return (
         <div className='order-detail'>
-            <ToastContainer />
+            
 
             
             {data?.status === 'DONE' &&

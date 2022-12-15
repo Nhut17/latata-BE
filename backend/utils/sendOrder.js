@@ -17,52 +17,41 @@ const sendOrder = async options => {
 
     //   const listOrder = order.orderItems.map(data => )
 
-
+    console.log(order)
       const html = `
-      <div class="logo">
-          <img src="https://res.cloudinary.com/dx8xengfd/image/upload/v1670955574/avatars/logo_color_upyntn.png" alt="">
-          <h1>Thanks for your order</h1>
-      </div>
-      <div>
-          <button>XEM HÓA ĐƠN</button>
-  
-      </div>
-  
-      <div class="order-detail">
-          <div class="summary">
-              <h3>THÔNG TIN</h3>
-              <p>Mã đơn hàng : #${order._id} </p>
-              <p>Ngày đặt hàng : ${order.createAt} </p>
-              <p>Tổng hóa đơn : ${order.totalPrice.toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ </p>
-          </div>
-          <div class="address">
-              <h3>ĐỊA CHỈ</h3>
-              <p>${order.address}</p>
-          </div>
-      </div>
-  
-      <div class="list-order">
-          <table>
-              <tr>
-                  <th>ĐƠN HÀNG</th>
-                  <th>Số lượng</th>
-                  <th>Giá</th>
-              </tr>
-              <tr>
-                  <td>
-                      <div class="img">
-                          <img src="" alt="">
-                      </div>
-                      <p>Tên sản phẩm</p>
-                  </td>
-  
-                  <td>1</td>
-  
-                  <td>price</td>
-              </tr>
-          </table>
-      </div>
+        <html>
+            <body>
+                <div class="logo">
+                    <img src="https://res.cloudinary.com/dx8xengfd/image/upload/v1670955574/avatars/logo_color_upyntn.png" alt="">
+                    <h1>Thanks for your order</h1>
+                </div>
+                <div>
+                    <button>XEM HÓA ĐƠN</button>
+            
+                </div>
+    
+                <div class="order-detail">
+                    <div class="summary">
+                        <h3>THÔNG TIN</h3>
+                        <p>Mã đơn hàng : #${order._id} </p>
+                        <p>Ngày đặt hàng : ${order.createAt} </p>
+                        <p>Tổng hóa đơn : ${order.totalPrice.toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ </p>
+                        <p>Địa chỉ : ${order.address}</p>
+
+                    </div>
+                    
+                </div>
+        
+                <br/>
+        
+            
+                
+            
+            </body>
+
+            
+        </html>
   
   `
 
