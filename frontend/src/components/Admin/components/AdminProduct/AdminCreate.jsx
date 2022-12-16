@@ -148,12 +148,12 @@ function AdminCreate(props) {
           <p className="title">Danh mục</p>
          
 
-          <input {...register("category",{
+          {/* <input {...register("category",{
             required : true
 
-          })} />
+          })} /> */}
 
-          {/* <select
+          <select
             className="cate-select"
             {...register('category', {
               required: true,
@@ -161,7 +161,7 @@ function AdminCreate(props) {
             {listCate.map(item => (
               <option value={item?.name}>{item?.name}</option>
             ))}
-          </select> */}
+          </select>
 
 
           {
