@@ -2,7 +2,7 @@ import React,{useContext} from 'react'
 import BlockItemProduct from '../SubComponents/BlockItemProduct'
 import { AccessoryContext } from '../../context/accessoryContext'
 
-const ListBlockAccessories = () => {
+const ListBlockAccessories = ({listProduct}) => {
 
     const context = useContext(AccessoryContext)
 
@@ -15,6 +15,7 @@ const ListBlockAccessories = () => {
                 linkTo={'/'}
                 menuTop={context.menu_apple_accessories}
                 title={'APPLE'}
+                listProduct={listProduct}
             />
 
             <BlockItemProduct 
@@ -22,36 +23,42 @@ const ListBlockAccessories = () => {
                 linkTo={'/'}
                 menuTop={context.menu_battery}
                 title={'SẠC DỰ PHÒNG'}
+                listProduct={listProduct}
             />
             <BlockItemProduct 
                 banner={context.banner_block_product.banner_block_chargeCable}
                 linkTo={'/'}
                 menuTop={context.menu_chargeCable}
                 title={'CÁP SAC'}
+                listProduct={listProduct}
             />
             <BlockItemProduct 
                 banner={context.banner_block_product.banner_block_headphone}
                 linkTo={'/'}
                 menuTop={context.menu_headphone}
                 title={'TAI NGHE'}
+                listProduct={listProduct}
             />
             <BlockItemProduct 
                 banner={context.banner_block_product.banner_block_speaker}
                 linkTo={'/'}
                 menuTop={context.menu_speaker}
                 title={'LOA'}
+                listProduct={listProduct}
             />
             <BlockItemProduct 
                 banner={context.banner_block_product.banner_block_smartHome}
                 linkTo={'/'}
                 menuTop={context.menu_smartHome}
                 title={'THIẾT BỊ THÔNG MINH'}
+                listProduct={listProduct}
             />
             <BlockItemProduct 
                 banner={context.banner_block_product.banner_block_gaming}
                 linkTo={'/'}
                 menuTop={context.menu_gaming}
                 title={'PHỤ KIỆN GAMING'}
+                listProduct={listProduct}
             />
 
     </>

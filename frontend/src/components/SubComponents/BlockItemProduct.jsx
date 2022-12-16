@@ -4,7 +4,7 @@ import ListProduct from '../ListProduct'
 import { Link } from 'react-router-dom'
 import '../../sass/BlockProduct/blockItemProduct.scss'
 
-const BlockItemProduct = ({banner,menuTop,linkTo,title}) => {
+const BlockItemProduct = ({banner,menuTop,linkTo,title,listProduct}) => {
   return (
     <div className='block-item-product'>
         <div className="banner">
@@ -17,7 +17,8 @@ const BlockItemProduct = ({banner,menuTop,linkTo,title}) => {
 
         }
 
-        <ListProduct quantity={10} />
+        <ListProduct quantity={10}
+                      list_product={listProduct} />
 
         <button className='btnViewMore'><Link to={`${linkTo}`}>XEM TẤT CẢ CÁC {title} CHÍNH HÃNG</Link></button>
 

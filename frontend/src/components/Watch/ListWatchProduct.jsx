@@ -89,21 +89,21 @@ function ListWatchProduct({listProduct})
   return (
     <div className='list-watch-product'>
          <Slider {...settings}>
-                {listProduct.map(slide => (
-                    <div className='item' key={slide.id}>
-                        <img src={slide.url} alt="Slider"/>
+                {listProduct?.map(slide => (
+                    <div className='item' key={slide._id}>
+                        <img src={slide?.images[0]?.url} alt="Slider"/>
 
                         <div className="detail-product">
-                              <h3>{slide.catproduct}</h3>
+                              <h3>{slide?.category}</h3>
                               <p id='nameproduct'>{slide.nameproduct}</p>
                               <p className='price-old'>
-                                   <del>{slide.priceold
+                                   <del>{slide?.price
                                     .toString()
                                     .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}<span className='currency'>&#8363;</span> </del>
-                                  <span>-{slide.discount}%</span>
+                                  <span>-{slide?.promotion}%</span>
                               </p>
 
-                              <p className='price-new'> {slide?.pricenew
+                              <p className='price-new'> {slide?.priceDeal
                                     .toString()
                                     .replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span className='currency'>&#8363;</span>
                               

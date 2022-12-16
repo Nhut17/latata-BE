@@ -14,7 +14,7 @@ const Laptop = () => {
   
   useEffect(() => {
     dispatch(resetListCate())
-    dispatch(getProductCate('637e405835fb3150c0128f53'))
+    dispatch(getProductCate('63821a0708b0e4ab8b016c9f'))
   },[])
 
   return (
