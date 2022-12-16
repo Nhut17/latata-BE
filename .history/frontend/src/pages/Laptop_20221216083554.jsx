@@ -4,22 +4,23 @@ import { sliderTablet } from '../components/Tablet/dataTablet'
 import { bannerTablet } from '../components/Tablet/dataTablet'
 import { list_product } from '../components/data'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProduct, getProductCate, resetListCate } from '../redux/Product/productSlice'
+import { getProduct } from '../redux/Product/productSlice'
 
 const Laptop = () => {
 
-  const {listProductCate} = useSelector(state => state.product)
+import { getProductByCate } from '../../../backend/controllers/productController'
+const {} = useSelector(state => state.product)
   const dispatch = useDispatch()
 
   
   useEffect(() => {
-    dispatch(resetListCate())
-    dispatch(getProductCate('637e405835fb3150c0128f53'))
-  },[])
 
+    dispatch(getProduct())
+
+  },[])
   return (
     <div className='laptop'>
-      <MainSub  list_product={listProductCate}
+      <MainSub  list_product={state.listProduct}
                 parentCate={'Laptop'}
                 childCate={'Laptop'}
                 sliders={sliderTablet}

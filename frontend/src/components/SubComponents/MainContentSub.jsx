@@ -11,7 +11,7 @@ const MainContentSub = ({list_product,childCate}) => {
 
     useEffect(() => {
 
-        setTotalQuantityShow(list_product.length - quantityShow)
+        setTotalQuantityShow(list_product?.length - quantityShow)
 
     },[list_product])
     
@@ -25,7 +25,7 @@ const MainContentSub = ({list_product,childCate}) => {
     return (
     <div className='main-content-sub'>
        <div className="container">
-        <BoxFilter totalQuantity={list_product.length} childCate={childCate} />
+        <BoxFilter totalQuantity={list_product?.length} childCate={childCate} />
 
         <ListProduct  list_product={list_product} quantity={quantityShow} />
 

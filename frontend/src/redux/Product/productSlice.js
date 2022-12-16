@@ -9,6 +9,7 @@ const initialState = {
     loading: false,
     productDetail: {},
     priceDeal: 0,
+    listProductCate: null,
 }
 
 // Get All Product
@@ -18,6 +19,20 @@ export const getProduct = createAsyncThunk('product/getProduct' ,
                 const res = await api.get('/api/v1/products') 
 
                 // thunkAPI.dispatch(getCartUser())
+                return res.data?.products
+            }
+            catch (e){
+                return thunkAPI.rejectWithValue('Error with get product API')
+            }
+        })
+
+// Get All Product by category
+export const getProductCate = createAsyncThunk('product/getProductCate' , 
+        async(id,thunkAPI) => {
+            try{
+                const res = await api.get(`/api/v1/product/category/${id}`) 
+
+                
                 return res.data?.products
             }
             catch (e){
@@ -43,6 +58,11 @@ export const getProductDetail = createAsyncThunk('product/productDetail',
 const productReducer = createSlice({
     name: 'product',
     initialState,
+    reducers:{
+        resetListCate: (state,action) => {
+            state.listProductCate = null
+        }
+    },
     extraReducers: {
         [getProduct.pending]: (state,action) => {
             state.loading = true
@@ -50,6 +70,10 @@ const productReducer = createSlice({
         [getProduct.fulfilled]: (state,action) => {
             state.loading = false;
             state.listProduct = action.payload
+        },
+        [getProductCate.fulfilled]: (state,action) => {
+            state.loading = false;
+            state.listProductCate = action.payload
         },
         [getProduct.rejected]: (state,action) => {
 
@@ -63,5 +87,5 @@ const productReducer = createSlice({
 })
 
 
-
+export const { resetListCate } = productReducer.actions
 export default productReducer.reducer;

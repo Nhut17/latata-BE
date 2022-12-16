@@ -9,7 +9,7 @@ const MainSub = ({list_product,parentCate,childCate,sliders,banners}) => {
         
        <TopMainSub parentCate={parentCate} 
                    childCate={childCate} 
-                   totalProduct={list_product.length}
+                   totalProduct={list_product?.length}
                    sliders={sliders}
                    banners={banners} />
 

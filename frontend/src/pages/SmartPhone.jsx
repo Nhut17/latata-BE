@@ -5,17 +5,19 @@ import '../sass/SmartPhone/smartphone.scss'
 import MainSub from '../components/SubComponents/MainSub'
 import { list_product } from '../components/data'
 import { useDispatch,useSelector } from 'react-redux'
-import { getProduct } from '../redux/Product/productSlice'
+import { getProduct, getProductCate, resetListCate } from '../redux/Product/productSlice'
 
 const SmartPhone = () => {
 
-  const state = useSelector(state => state.product)
+  const {listProductCate} = useSelector(state => state.product)
   const dispatch = useDispatch()
 
+  console.log(listProductCate)
   
   useEffect(() => {
 
-    dispatch(getProduct())
+    dispatch(resetListCate())
+    dispatch(getProductCate('637e40260f52ec2c4eb8180b'))
 
   },[])
 
@@ -24,7 +26,7 @@ const SmartPhone = () => {
   return (
     <div className='smart-phone' >
        
-        <MainSub list_product={state.listProduct}
+        <MainSub list_product={listProductCate}
                  parentCate={'Điện thoại'}
                  childCate={'điện thoại'}
                  sliders={sliderTablet}
