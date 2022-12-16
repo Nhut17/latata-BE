@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Banner from '../../components/Home/Banner'
 import banner from '../../assets/images/smartWatch/banner_smartWatch.png'
 import MenuTopFixed from './MenuTopFixed'
 import ListBlockSmartWatch from './ListBlockSmartWatch' 
+import { useDispatch, useSelector } from 'react-redux'
+import { getProductCate, resetListCate } from '../../redux/Product/productSlice'
 
 
 const MainSmartWatch = () => {
+
+  const {listProductCate} = useSelector(state => state.product)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(resetListCate())
+    dispatch(getProductCate('63821a6008b0e4ab8b016cc6'))
+  },[])
+
   return (
     <div className='main-smart-watch'>
 
@@ -16,7 +27,7 @@ const MainSmartWatch = () => {
         <div className="container">
 
 
-        <ListBlockSmartWatch />
+        <ListBlockSmartWatch listProduct={listProductCate} />
 
         </div>
     </div>

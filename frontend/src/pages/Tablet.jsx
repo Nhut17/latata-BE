@@ -14,7 +14,7 @@ const Tablet = () => {
 
   useEffect(() => {
     dispatch(resetListCate())
-    dispatch(getProductCate('639b27d83ed8e52a21b6f214'))
+    dispatch(getProductCate('63821a5708b0e4ab8b016cc3'))
   },[])
 
   return (

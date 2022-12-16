@@ -14,7 +14,7 @@ const SmartTV = () => {
 
   useEffect(() => {
     dispatch(resetListCate())
-    dispatch(getProductCate('639b27fc3ed8e52a21b6f220'))
+    dispatch(getProductCate('63821a0d08b0e4ab8b016ca2'))
   },[])
 
 

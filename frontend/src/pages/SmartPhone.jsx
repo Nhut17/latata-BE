@@ -17,7 +17,7 @@ const SmartPhone = () => {
   useEffect(() => {
 
     dispatch(resetListCate())
-    dispatch(getProductCate('637e40260f52ec2c4eb8180b'))
+    dispatch(getProductCate('638219ff08b0e4ab8b016c9c'))
 
   },[])
 

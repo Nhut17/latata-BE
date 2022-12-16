@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Product from '../Product'
 import { list_product } from '../data'
 
-const BlockSaleProduct = () => {
+const BlockSaleProduct = ({listProduct}) => {
 
     const ButtonNext = (props) => {
 
@@ -81,7 +81,7 @@ const BlockSaleProduct = () => {
 
 
             {
-                list_product.map(data => (
+                listProduct?.map(data => (
                     <Product data={data} />
                 ))
             }

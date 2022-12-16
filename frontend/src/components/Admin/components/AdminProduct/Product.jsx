@@ -39,11 +39,11 @@ function Product({data,stt}) {
           <EditOutlined></EditOutlined>
         </Link>
       </td>
-      <td className="review-product">
+      {/* <td className="review-product">
         <Link to={`/admin/product/reviewProduct/${'product._id'}`} >
           <FormOutlined></FormOutlined>
         </Link>
-      </td> 
+      </td>  */}
     </tr>
   );
 }
