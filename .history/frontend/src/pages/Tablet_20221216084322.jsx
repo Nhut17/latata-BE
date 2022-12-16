@@ -14,13 +14,13 @@ const Tablet = () => {
 
   useEffect(() => {
     dispatch(resetListCate())
-    dispatch(getProductCate('639b27d83ed8e52a21b6f214'))
+    dispatch(getProductCate('637e405835fb3150c0128f53'))
   },[])
 
   return (
     <div className='tablet bd-bottom'>
        
-          <MainSub list_product={listProductCate}
+          <MainSub list_product={list_product}
                   parentCate={'Tablet'}
                   childCate={'Tablet'}
                   sliders={sliderTablet}

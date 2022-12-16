@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 const ListSearchProduct = ({data}) => {
   return (
-    <Link to={`/product/${data._id}`} reloadDocument>
-    <div className='item-search-product' key={data._id}>
+    <Link to={`/product-detail/${data._id}`} reloadDocument>
+    <div className='item-search-product' key={data.id}>
         <div className="flex">
 
       

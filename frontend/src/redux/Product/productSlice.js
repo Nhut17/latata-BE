@@ -9,7 +9,7 @@ const initialState = {
     loading: false,
     productDetail: {},
     priceDeal: 0,
-    listProductCate: null
+    listProductCate: null,
 }
 
 // Get All Product
@@ -58,6 +58,11 @@ export const getProductDetail = createAsyncThunk('product/productDetail',
 const productReducer = createSlice({
     name: 'product',
     initialState,
+    reducers:{
+        resetListCate: (state,action) => {
+            state.listProductCate = null
+        }
+    },
     extraReducers: {
         [getProduct.pending]: (state,action) => {
             state.loading = true
@@ -82,5 +87,5 @@ const productReducer = createSlice({
 })
 
 
-
+export const { resetListCate } = productReducer.actions
 export default productReducer.reducer;

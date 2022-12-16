@@ -20,7 +20,7 @@ const Tablet = () => {
   return (
     <div className='tablet bd-bottom'>
        
-          <MainSub list_product={listProductCate}
+          <MainSub list_product={list_product}
                   parentCate={'Tablet'}
                   childCate={'Tablet'}
                   sliders={sliderTablet}
