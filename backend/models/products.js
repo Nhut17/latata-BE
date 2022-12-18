@@ -42,6 +42,9 @@ const productSchema = new mongoose.Schema({
         required: [true, ' Please select category for this product'],
         ref: 'Category'
     },
+    subCate: {
+        type: String,
+    },
     priceDeal: {
         type: Number,
         default: 0.0

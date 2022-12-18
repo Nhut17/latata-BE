@@ -122,50 +122,70 @@ exports.cancelOrder = catchAsyncErrors( async (req, res, next) => {
 
 // Update / Process orders - ADMIN  => api/v1/admin/order/:id
 exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
-    const order = await Order.findById(req.params.id)
-        
-    const user = await User.findById(order.user)
+    const order = await Order.findById(req.params.id)   
+    const user = await User.findById(order.user)       
     
-    if(order.status === 'DONE')
+    if(order.status === 'DONE')                       
     {
-        return next(new ErrorHandler('You have already delivered this order',400))
+        return next(new ErrorHandler('You have already delivered this order',400))  
     }
 
-    if(order.status === 'CANCELLED'){
-        return next(new ErrorHandler('The order was cancelled',400))
+    if(order.status === 'CANCELLED')    
+    {
+        return next(new ErrorHandler('The order was cancelled',400))      
     }
 
-    if(order.status === 'DELIVERING'){
-        order.orderItems.forEach( async item => {
-            await updateStock(item.productId,item.quantity)
-        })
+    if(req.body.status === 'DELIVERING')   
+    {
+        const date = new Date()             
+        order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')            
 
-        const date = new Date()
-        order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')
-        try{
+        // send email confirm order
+        try{                   
 
-            await sendOrder({
+            await sendOrder({          
                 email: user.email,
-                subject: 'XÁC NHẬN ĐƠN HÀNG',
+                subject: 'Xác nhận đơn hàng',
                 order: order,
-                message: 'Đơn hàng đã đặt'
+                message: 'Đơn hàng đang được giao',
+                deliverAt: order.deliveredAt
             })
         }
-        catch(err){
-            console.log(err);
+        catch(err){         
+            console.log(err);   
         }
 
     }
-   
 
-    order.status = req.body.status,
-    
-    await order.save()
+    if(req.body.status === 'DONE'){
 
-    res.status(200).json({
+        
+
+        order.orderItems.forEach( async item => {               
+            await updateStock(item.productId,item.quantity)
+        })
+        try{                   
+
+            await sendOrder({          
+                email: user.email,
+                subject: 'Đơn hàng đã giao thành công',
+                order: order,
+                message: 'CẢM ƠN QUÝ KHÁCH ĐÃ MUA HÀNG',
+                deliverAt: order.deliveredAt
+            })
+        }
+        catch(err){         
+            console.log(err);   
+        }
+        
+    }
+    order.status = req.body.status,     
+    await order.save()                  
+    res.status(200).json({              // 13
         success:true,
         order
     })
+
 })
 
 async function updateStock(id,quantity) {

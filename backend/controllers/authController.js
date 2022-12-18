@@ -97,18 +97,18 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
 exports.forgotPassword = catchAsyncError(async (req, res, next) => {
     const user = await User.findOne({
         email: req.body.email
-    });
+    });                                 // 1
 
-    if (!user) {
-        return next(new ErrorHandler('User not found with this mail', 404))
+    if (!user) {                        // 2
+        return next(new ErrorHandler('User not found with this mail', 404)) // 3
     }
 
      // Get reset token
      const resetToken = user.getResetPasswordToken();
 
     // generate otp
-    const otp = Math.floor((Math.random() * 100000) + 1)
-    const optData = await OTP.create({
+    const otp = Math.floor((Math.random() * 100000) + 1)    // 4
+    const optData = await OTP.create({                      // 5
         email: req.body.email,
         otp: otp,
         resetToken: resetToken,
@@ -116,11 +116,11 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
     })
 
 
-    await user.save({
+    await user.save({                                       // 6
         validateBeforeSave: false
     })
 
-    try {
+    try {       // 7
         await sendEmail({
             email: user.email,
             subject: 'RESET PASSWORD',
@@ -129,9 +129,9 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: `Email sent to ${user.email}`
-        })
+        })              // 8
 
-    } catch (error) {
+    } catch (error) {   // 9
         user.resetPasswordToken = undefined;
         user.resetPasswordExpire = undefined;
 
@@ -139,7 +139,7 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
             validateBeforeSave: false
         });
 
-        return next(new ErrorHandler(error.message, 500))
+        return next(new ErrorHandler(error.message, 500))   // 10
     }
 })
 

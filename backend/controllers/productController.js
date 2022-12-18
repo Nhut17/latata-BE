@@ -162,7 +162,6 @@ exports.createProductReview = catchAsyncError(async (req,res,next) => {
 
     const { avatar } = user
 
-    console.log(avatar)
 
     const review = {
         user: req.user[0]._id,
@@ -171,16 +170,16 @@ exports.createProductReview = catchAsyncError(async (req,res,next) => {
         comment,
         avatar: avatar
     }
-   console.log(review)
+
 
     const product = await Product.findById(productId);
 
 
     const isReviewed = product.reviews.find(
         r => r.user?.toString() === req.user[0]._id.toString()
-    )
+    )                                                               
 
-    if( isReviewed ){
+    if( isReviewed ){                                   
         product.reviews.forEach( review => {
             if( review.user?.toString() === req.user[0]._id.toString() ){
                 review.comment = comment;
