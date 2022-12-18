@@ -21,7 +21,9 @@ const initialState = {
     emailOtp: null,
     myOrders: null,
     successUpdate: false,
-    errorLogin: false
+    errorLogin: false,
+    successUpdatePassword: false,
+    errorUpdatePassword: false,
 }
 
 
@@ -210,6 +212,38 @@ export const updateProfile = createAsyncThunk('user/update',
 
 
 
+// update password
+export const updatePassword = createAsyncThunk('user/updatePassword',
+        async(data, thunkAPI) => {
+            try {
+                const token = localStorage.getItem('token')
+                const config = {
+                    headers: {
+                        Authorization: 'Bearer ' + token
+                    }
+                }
+                const { password, oldPassword} = data
+                const update = {
+                    oldPassword,
+                    password
+                }
+
+
+                const res = await api.put('/api/v1/password/update',update,config)
+
+                
+                
+                return res.data
+            
+
+            } catch (error) {
+                return thunkAPI.rejectWithValue('can not get user detail')
+            }
+        }
+)
+
+
+
 
 const userSlice = createSlice({
     name: 'user',
@@ -225,6 +259,8 @@ const userSlice = createSlice({
             state.successSendOTP= false
             state.successResetPassword= false
             state.successUpdate = false
+            state.successUpdatePassword = false
+            state.errorUpdatePassword = false
 
         },
         sendEmail: (state,action) => {
@@ -277,6 +313,10 @@ const userSlice = createSlice({
        },
        [updateProfile.fulfilled] : (state,action) => {
         state.successUpdate = true
+    },
+       [updatePassword.fulfilled] : (state,action) => {
+            state.successUpdatePassword = false
+            state.errorUpdatePassword = false
     },
 
     }

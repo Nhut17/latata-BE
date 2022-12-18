@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import '../../sass/Profile/profile.scss'
-import {useNavigate, useParams} from 'react-router-dom'
+import {useNavigate, useParams, Link} from 'react-router-dom'
 import { useForm } from "react-hook-form";
-import ChangePassword from './ChangePassword';
+import ChangePassword from './ResetPassword';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateProfile } from '../../redux/User/userSlice';
 import { ToastContainer, toast } from 'react-toastify';
@@ -123,6 +123,10 @@ const MainProfile = ({currentUser}) => {
 
                     <span>Số điện thoại</span>
                     <input  {...register("phone")} defaultValue={currentUser?.phone}/>
+
+                    <Link to='/reset-password'>
+                    <p className='change-pass'><u>Đổi mật khẩu</u></p>
+                    </Link>
 
                     <button type='submit'>Lưu</button>
                 </form>

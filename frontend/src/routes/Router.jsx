@@ -37,6 +37,7 @@ import ForgotPassword from "../pages/ForgotPassword";
 import GmailOTP from "../components/ForgotPassword/GmailOTP";
 import ChangePassword from "../components/ForgotPassword/ChangePassword";
 import Thankyou from "../pages/Thankyou";
+import ResetPassword from "../components/Profile/ResetPassword";
 // import Orders from "../components/Admin/Orders/Orders"
 
 
@@ -54,6 +55,7 @@ const Router = () => {
       <Route path='/change-password'  element={<ChangePassword />}/>
 
 
+      <Route path='/reset-password'  element={<ResetPassword />}/>
 
 
       <Route path='/profile'  element={<Profile />}/>

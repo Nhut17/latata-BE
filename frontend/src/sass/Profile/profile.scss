@@ -12,6 +12,44 @@
         padding: 40px;
         border: 1px solid rgba(#333, 0.1);
         border-radius: 20px;
+        .reset-pass{
+            width: auto;
+            h3{
+                color:$primary-color;
+                margin: 20px auto;
+                font-size: 22px;
+            }
+            .input-group{
+                span{
+                    display: block;
+                }
+                input{
+                    border: 1px solid #ced4da;
+                    border-radius: 4px;
+                    padding: 10px 15px;
+                    width: 500px;
+                    display: block;
+                    margin: 10px 0;
+                    font-size: 16px;
+                }
+            }
+            button{
+                background: $primary-color;
+                color: white;
+                padding: 10px 25px;
+                font-size: 17px;
+                border-radius: 3px;
+                margin-top: 10px;
+                transition: all .3s;
+                &:hover{
+                    background: rgba($primary-color, 0.8);
+                }
+            }
+        }
+        .change-pass{
+            color: orangered;
+            margin: 20px auto;
+        }
 
         .profile-avatar{
             .upload-avatar{
