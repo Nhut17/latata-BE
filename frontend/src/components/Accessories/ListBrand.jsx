@@ -18,9 +18,9 @@ const ListBrand = () => {
     <h2>THƯƠNG HIỆU HÀNG ĐẦU</h2>
     <div className="listBrand">
       {list_brand.slice(0, viewMore).map((brand) => (
-        <Link key={brand.id} to='' className='item'>
+        <div key={brand.id}  className='item'>
           <img src={brand.url} />
-        </Link>
+        </div>
       ))}
 
       {invisible && (

@@ -134,10 +134,7 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
     {
         return next(new ErrorHandler('The order was cancelled',400))      
     }
-    // if(order.status === 'DELIVERING')    
-    // {
-    //     return next(new ErrorHandler('The order is delivering',400))      
-    // }
+   
 
     if(req.body.status === 'DELIVERING')   
     {
@@ -162,8 +159,6 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
     }
 
     if(req.body.status === 'DONE'){
-
-        
 
         order.orderItems.forEach( async item => {               
             await updateStock(item.productId,item.quantity)

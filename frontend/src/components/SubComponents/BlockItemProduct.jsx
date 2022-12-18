@@ -11,16 +11,16 @@ const BlockItemProduct = ({banner,menuTop,linkTo,title,listProduct}) => {
             <img src={banner} alt="" />
         </div>
 
-        {
+        {/* {
           menuTop.length > 0 &&
           <MenuTopBlock menuTop={menuTop} />
 
-        }
+        } */}
 
         <ListProduct quantity={10}
                       list_product={listProduct} />
 
-        <button className='btnViewMore'><Link to={`${linkTo}`}>XEM TẤT CẢ CÁC {title} CHÍNH HÃNG</Link></button>
+        {/* <button className='btnViewMore'><Link to={`${linkTo}`}>XEM TẤT CẢ CÁC {title} CHÍNH HÃNG</Link></button> */}
 
     </div>
   )

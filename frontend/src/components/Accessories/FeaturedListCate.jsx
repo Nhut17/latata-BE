@@ -10,10 +10,10 @@ const FeaturedListCate = () => {
         <div className="wrapper-group-cate">
                 {feature_list_cate.map((cate,index) => (
                     <div className="wrapper"  key={index}>
-                        <Link to={`${cate.link}`} >
+                        
                             <img src={cate.url} alt={cate.title} className={cate.name} />
                             <p className="content">{cate.title}</p>
-                        </Link>
+                        
                     </div>
                 ))}
             </div>
