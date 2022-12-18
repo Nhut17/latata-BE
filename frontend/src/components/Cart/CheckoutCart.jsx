@@ -22,24 +22,25 @@ const CheckoutCart = () => {
   // toastify success order
   useEffect(() => {
     if(successOrder){
-        toast('Đặt hàng thành công!', {
-            position: "top-right",
-            autoClose: 500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });
+      navigate('/thanks')
+        // toast('Đặt hàng thành công!', {
+        //     position: "top-right",
+        //     autoClose: 500,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: false,
+        //     draggable: true,
+        //     progress: undefined,
+        //     theme: "light",
+        //     });
 
-        const time = setTimeout(() => {
-          navigate('/')
-        },1500)
+        // const time = setTimeout(() => {
+        //   navigate('/')
+        // },1500)
 
-        return () => {
-          clearTimeout(time)
-        }
+        // return () => {
+        //   clearTimeout(time)
+        // }
     }
     
   }, [successOrder]);

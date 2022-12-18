@@ -127,7 +127,7 @@ exports.updateProduct = catchAsyncError( async ( req, res, next) => {
         new: true,
         runValidators: true,
         useFindAndModify: false,
-    }).populate('category')
+    })
 
     res.status(200).json({
         success: true,
@@ -259,3 +259,24 @@ exports.getProductByCate = catchAsyncError( async(req, res, next) => {
         products
     })
 })
+
+
+
+// // get product by sub category => api/v1/product/sub-cate/:id
+// exports.getProductBySubCate = catchAsyncError( async(req, res, next) => {
+
+//     const category = await Category.findById(req.params.id);
+
+//     console.log(category)
+
+//     const products = await Product.find({
+//         category: category.name
+//     });
+
+    
+
+//     res.status(200).json({
+//         success: true,
+//         products
+//     })
+// })
