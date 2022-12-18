@@ -6,15 +6,16 @@ import MainSub from '../components/SubComponents/MainSub'
 import { list_product } from '../components/data'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductCate, resetListCate } from '../redux/Product/productSlice'
+import { useParams } from 'react-router-dom'
 
 const SmartTV = () => {
 
   const {listProductCate} = useSelector(state => state.product)
   const dispatch = useDispatch()
-
+  const {id} = useParams()
   useEffect(() => {
     dispatch(resetListCate())
-    dispatch(getProductCate('63821a0d08b0e4ab8b016ca2'))
+    dispatch(getProductCate(id))
   },[])
 
 

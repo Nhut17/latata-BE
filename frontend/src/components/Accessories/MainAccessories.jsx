@@ -8,6 +8,7 @@ import ListBlockAccessories from './ListBlockAccessories'
 import BlockSaleProduct from '../SubComponents/BlockSaleProduct'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductCate, resetListCate } from '../../redux/Product/productSlice'
+import { useParams } from 'react-router-dom'
 
 
 const MainAccessories = () => {
@@ -15,10 +16,10 @@ const MainAccessories = () => {
     const context = useContext(AccessoryContext)
     const {listProductCate} = useSelector(state => state.product)
   const dispatch = useDispatch()
-
+  const {id} = useParams()
   useEffect(() => {
     dispatch(resetListCate())
-    dispatch(getProductCate('639bc8b151232c76dfe2ddc2'))
+    dispatch(getProductCate(id))
   },[])
 
   return (

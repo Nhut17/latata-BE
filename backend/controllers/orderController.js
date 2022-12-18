@@ -134,6 +134,10 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
     {
         return next(new ErrorHandler('The order was cancelled',400))      
     }
+    // if(order.status === 'DELIVERING')    
+    // {
+    //     return next(new ErrorHandler('The order is delivering',400))      
+    // }
 
     if(req.body.status === 'DELIVERING')   
     {

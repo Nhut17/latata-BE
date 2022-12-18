@@ -5,16 +5,18 @@ import MenuTopFixed from './MenuTopFixed'
 import ListBlockSmartWatch from './ListBlockSmartWatch' 
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductCate, resetListCate } from '../../redux/Product/productSlice'
+import { useParams } from 'react-router-dom'
 
 
 const MainSmartWatch = () => {
 
   const {listProductCate} = useSelector(state => state.product)
   const dispatch = useDispatch()
+  const {id} = useParams()
 
   useEffect(() => {
     dispatch(resetListCate())
-    dispatch(getProductCate('63821a6008b0e4ab8b016cc6'))
+    dispatch(getProductCate(id))
   },[])
 
   return (

@@ -6,18 +6,18 @@ import MainSub from '../components/SubComponents/MainSub'
 import { list_product } from '../components/data'
 import { useDispatch,useSelector } from 'react-redux'
 import { getProduct, getProductCate, resetListCate } from '../redux/Product/productSlice'
+import { useParams } from 'react-router-dom'
 
 const SmartPhone = () => {
 
   const {listProductCate} = useSelector(state => state.product)
   const dispatch = useDispatch()
-
-  console.log(listProductCate)
+  const { id} = useParams()
   
   useEffect(() => {
 
     dispatch(resetListCate())
-    dispatch(getProductCate('638219ff08b0e4ab8b016c9c'))
+    dispatch(getProductCate(id))
 
   },[])
 

@@ -124,24 +124,24 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
         await sendEmail({
             email: user.email,
             subject: 'RESET PASSWORD',
-            message: otp
+            message: otp                     // 8
         })
         res.status(200).json({
             success: true,
             message: `Email sent to ${user.email}`
-        })              // 8
+        })              // 9
 
-    } catch (error) {   // 9
+    } catch (error) {   // 10
         user.resetPasswordToken = undefined;
         user.resetPasswordExpire = undefined;
 
         await user.save({
             validateBeforeSave: false
         });
-
-        return next(new ErrorHandler(error.message, 500))   // 10
-    }
-})
+      
+        return next(new ErrorHandler(error.message, 500))   // 11
+    }   
+})  // 12
 
 exports.verifyOtp = catchAsyncError(async (req, res, next) => {
 
