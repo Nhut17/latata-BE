@@ -33,8 +33,11 @@ const EachTransaction = ({  evaluated, orders }) => {
                         </div>
                         
                         <div className="price-product">
-                            <span className='product-price'>Giá: {orders.price.toString()
+                            <span className='product-price'>Giá: {orders?.priceDeal?.toString()
                                 .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}<span className='currency'>&#8363;</span></span>
+                                {/* <br /> */}
+
+                            {/* <span>Giảm : {orders?.promotion}</span> */}
                         </div>
                     </div>
                     <div className='down'>

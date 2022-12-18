@@ -16,6 +16,10 @@ const orderSchema = mongoose.Schema({
         price: {
             type: Number
         },
+
+        priceDeal :{
+            type : Number
+        },
         images:[
             {
                 url: {
