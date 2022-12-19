@@ -8,6 +8,10 @@ const ListBlockSmartWatch = ({listProduct}) => {
 
     const context = useContext(SmartWatchContext)
 
+    const renderSubProduct = (list_product, sub) => {
+      return list_product.filter(val => val.subCate?.includes(sub))
+    }
+
   return (
     <>
 

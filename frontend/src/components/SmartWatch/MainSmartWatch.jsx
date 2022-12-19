@@ -24,7 +24,7 @@ const MainSmartWatch = () => {
 
         <Banner banner={banner} />
 
-        <MenuTopFixed />
+        {/* <MenuTopFixed /> */}
 
         <div className="container">
 
