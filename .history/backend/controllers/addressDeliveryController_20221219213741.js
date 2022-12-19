@@ -47,57 +47,46 @@ exports.addAddress = catchAsyncError( async (req,res,next) => {
 
 
 
+// get default  address
+exports.getDefaultAddress = catchAsyncError( async (req,res,next) => {
 
-
-// get   address
-exports.getAddress = catchAsyncError( async (req,res,next) => {
-
-    const id = req.params.id
-    
+    const {name,phone,address} = req.body
     const userId = req.user[0]._id
   
     const addressModel = await Address.findOne({userId: userId})
 
-    if(!addressModel)
+    if(addressModel.addresses.length === 0)
     {
         return next(new ErrorHandler('Address is empty'))
     }
 
-    const address = addressModel.addresses.filter(val => val._id == id)
+    const defaultAddress = addressModel.addresses.filter(val => val.address_default == 1)
+
 
     res.status(201).json({      
         success: true,
-        address: address
+        address: defaultAddress
     })
   })
 
+// get   address
+exports.getDefaultAddress = catchAsyncError( async (req,res,next) => {
 
-  // update default address options
-exports.updateDefault = catchAsyncError( async (req,res,next) => {
-
-    const id = req.params.id
-    
+    const {name,phone,address} = req.body
     const userId = req.user[0]._id
   
     const addressModel = await Address.findOne({userId: userId})
 
-    // if(!addressModel)
-    // {
-    //     return next(new ErrorHandler('Address is empty'))
-    // }
+    if(addressModel.addresses.length === 0)
+    {
+        return next(new ErrorHandler('Address is empty'))
+    }
 
-    // remove default address
-    const addressIndex = addressModel.addresses.findIndex(val => val.address_default == 1)
-    addressModel.addresses[addressIndex].address_default = 0
+    const defaultAddress = addressModel.addresses.filter(val => val.address_default == 1)
 
-    // update new default address
-    const updateIndex = addressModel.addresses.findIndex(val => val._id == id)
-    addressModel.addresses[updateIndex].address_default = 1
-
-    await addressModel.save()
 
     res.status(201).json({      
         success: true,
-        address: addressModel
+        address: defaultAddress
     })
   })

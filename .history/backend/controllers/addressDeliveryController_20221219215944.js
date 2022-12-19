@@ -89,10 +89,12 @@ exports.updateDefault = catchAsyncError( async (req,res,next) => {
     // remove default address
     const addressIndex = addressModel.addresses.findIndex(val => val.address_default == 1)
     addressModel.addresses[addressIndex].address_default = 0
+    console.log(addressModel.addresses[addressIndex])
 
     // update new default address
     const updateIndex = addressModel.addresses.findIndex(val => val._id == id)
     addressModel.addresses[updateIndex].address_default = 1
+    console.log(addressModel.addresses[updateIndex])
 
     await addressModel.save()
 

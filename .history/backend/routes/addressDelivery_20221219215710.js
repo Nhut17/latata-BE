@@ -8,7 +8,7 @@ router.route('/address/add').post(isAuthenticatedUser, authorizeRoles('user'),ad
 
 router.route('/address/:id')
                         .get(isAuthenticatedUser, authorizeRoles('user'),getAddress)
-                        .put(isAuthenticatedUser, authorizeRoles('user'),updateDefault)
+                        .p
 
 
 

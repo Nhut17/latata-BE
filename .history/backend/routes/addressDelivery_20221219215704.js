@@ -7,8 +7,7 @@ const { addAddress, updateDefault, getAddress } = require('../controllers/addres
 router.route('/address/add').post(isAuthenticatedUser, authorizeRoles('user'),addAddress)
 
 router.route('/address/:id')
-                        .get(isAuthenticatedUser, authorizeRoles('user'),getAddress)
-                        .put(isAuthenticatedUser, authorizeRoles('user'),updateDefault)
+                        get(isAuthenticatedUser, authorizeRoles('user'),getAddress)
 
 
 

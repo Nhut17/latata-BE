@@ -86,13 +86,13 @@ exports.updateDefault = catchAsyncError( async (req,res,next) => {
     //     return next(new ErrorHandler('Address is empty'))
     // }
 
-    // remove default address
     const addressIndex = addressModel.addresses.findIndex(val => val.address_default == 1)
     addressModel.addresses[addressIndex].address_default = 0
-
-    // update new default address
+    console.log(addressModel.addresses[addressIndex])
+    
     const updateIndex = addressModel.addresses.findIndex(val => val._id == id)
     addressModel.addresses[updateIndex].address_default = 1
+    console.log(addressModel.addresses[updateIndex])
 
     await addressModel.save()
 
