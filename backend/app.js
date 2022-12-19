@@ -27,8 +27,7 @@ const auth = require('./routes/auth')
 const order = require('./routes/order')
 const category = require('./routes/category')
 const cart = require('./routes/cart')
-const subCategory = require('./routes/subCategory')
-const cloudinary = require('./routes/cloudinary')
+const address = require('./routes/addressDelivery')
 
 
 
@@ -37,8 +36,7 @@ app.use('/api/v1',auth)
 app.use('/api/v1',order)
 app.use('/api/v1',category)
 app.use('/api/v1',cart)
-app.use('/api/v1',subCategory)
-app.use('/api/v1',cloudinary)
+app.use('/api/v1',address)
 
 
 // Middleware to handle errors
