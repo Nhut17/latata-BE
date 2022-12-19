@@ -48,7 +48,7 @@ exports.updateCategory =  async (req, res) => {
   
       const result = await Category.findByIdAndUpdate(id, updatedData, options);
   
-      res.status(201).json({result});
+      res.status(500).json(result);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
