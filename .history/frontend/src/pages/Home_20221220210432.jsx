@@ -58,25 +58,8 @@ const Home = () => {
     
 },[])
 
-// scroll
-useEffect(() =>{
 
-  const scrollTo = () => {
-    if(window.scrollY > 200)
-    {
-      setVisible(true)
-    }
-    else{
-      setVisible(false)
-    }
-  }
-
-  document.addEventListener('scroll', scrollTo)
-
-  return () => {
-    document.removeEventListener('scroll', scrollTo)
-  }
-},[])
+ 
 
 
   useEffect(() => {
@@ -116,10 +99,7 @@ useEffect(() =>{
   return (
     <div className="home">
             <ToastContainer />
-            {
-                visible &&
-            <ScrollToTop />
-            }
+            <ScrollToTop></ScrollToTop>
         
 
       <div className="big-banner">

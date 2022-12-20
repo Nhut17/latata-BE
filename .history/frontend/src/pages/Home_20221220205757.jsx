@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import '../sass/Home/Home.scss'
 import BigBanner from '../components/Home/BigBanner'
 import FlashSale from '../components/Home/FlashSale'
@@ -29,7 +29,7 @@ const Home = () => {
   const navigate = useNavigate()
   const success = useSelector(state => state.user.successLogin)
   const { currentUser,successLogin} = useSelector(state => state.user)
-  const [visible,setVisible] = useState(false)
+
   const dispatch = useDispatch()
 
   useEffect(() =>{
@@ -58,25 +58,8 @@ const Home = () => {
     
 },[])
 
-// scroll
-useEffect(() =>{
 
-  const scrollTo = () => {
-    if(window.scrollY > 200)
-    {
-      setVisible(true)
-    }
-    else{
-      setVisible(false)
-    }
-  }
-
-  document.addEventListener('scroll', scrollTo)
-
-  return () => {
-    document.removeEventListener('scroll', scrollTo)
-  }
-},[])
+ 
 
 
   useEffect(() => {
@@ -116,10 +99,7 @@ useEffect(() =>{
   return (
     <div className="home">
             <ToastContainer />
-            {
-                visible &&
-            <ScrollToTop />
-            }
+            <ScrollToTop></ScrollToTop>
         
 
       <div className="big-banner">

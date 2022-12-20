@@ -2,7 +2,6 @@ import React from 'react'
 import Product from './Product'
 
 const ListProduct = ({list_product,quantity}) => {
-  console.log(list_product)
   return (
     <div className="list-product">
       {
