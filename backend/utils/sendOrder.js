@@ -23,7 +23,7 @@ const sendOrder = async options => {
             <body>
                 <div class="logo">
                     <img src="https://res.cloudinary.com/dx8xengfd/image/upload/v1670955574/avatars/logo_color_upyntn.png" alt="">
-                    <h1>Thanks for your order</h1>
+                    <h1 style="color: #000b49;">Thanks for your order</h1>
                 </div>
                 <div>
                     <button>XEM HÓA ĐƠN</button>
@@ -32,19 +32,19 @@ const sendOrder = async options => {
     
                 <div class="order-detail">
                     <div class="summary">
-                        <h3>THÔNG TIN</h3>
+                        <h3 style="color: black;">THÔNG TIN</h3>
                         <p>Mã đơn hàng : #${order._id} </p>
                         <p>Ngày đặt hàng : ${order.createAt} </p>
                         <p>Ngày vận chuyển : ${options.deliverAt} </p>
-                        <p>Tổng hóa đơn : ${order.totalPrice.toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ </p>
+                        <p><b>Tổng hóa đơn : ${order.totalPrice.toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ</b></p>
                         <p>Địa chỉ : ${order.address}</p>
 
                     </div>
                     
                 </div>
 
-                <p>${options.message}</p>
+                <p style="color: orange;">${options.message}</p>
         
                 <br/>
         

@@ -38,6 +38,7 @@ import GmailOTP from "../components/ForgotPassword/GmailOTP";
 import ChangePassword from "../components/ForgotPassword/ChangePassword";
 import Thankyou from "../pages/Thankyou";
 import ResetPassword from "../components/Profile/ResetPassword";
+import ModalAddress from "../components/Cart/ModalAddress";
 // import Orders from "../components/Admin/Orders/Orders"
 
 
@@ -133,7 +134,7 @@ const Router = () => {
 
       <Route path="/thanks" element={<Thankyou />} />
       
-
+      {/* <Route path="/them-dia-chi" element={<ModalAddress/>}/> */}
 
 
 
