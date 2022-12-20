@@ -50,125 +50,63 @@ const Router = () => {
   return (
     <Routes>
       {/* HOME */}
-      <Route path='/'  element={
-        <ProtectedRoute>
-          <Home />
-        </ProtectedRoute>
-      } />
+      <Route path='/'  element={<Home />} />
 
       {/* LOGIN */}
-      <Route path='/dang-nhap'  element={
-        <ProtectedRoute>
-        <Login />
-      </ProtectedRoute>
-      }/>
-
-      <Route path='/quen-mat-khau'  element={
-        <ProtectedRoute>
-          <ForgotPassword />
-      </ProtectedRoute>
-      }/>
-      <Route path='/sendOTP'  element={
-      <ProtectedRoute>
-      <GmailOTP />
-    </ProtectedRoute>}/>
-
-      <Route path='/change-password'  element={<ProtectedRoute>
-      <ChangePassword />
-    </ProtectedRoute>}/>
+      <Route path='/dang-nhap'  element={<Login />}/>
+      <Route path='/quen-mat-khau'  element={<ForgotPassword />}/>
+      <Route path='/sendOTP'  element={<GmailOTP />}/>
+      <Route path='/change-password'  element={<ChangePassword />}/>
 
 
-      <Route path='/reset-password'  element={
-        <ProtectedRoute>
-        <ResetPassword />
-      </ProtectedRoute>
-      }/>
+      <Route path='/reset-password'  element={<ResetPassword />}/>
 
 
-      <Route path='/profile'  element={
-        <ProtectedRoute>
-        <Profile />
-      </ProtectedRoute>
-      }/>
+      <Route path='/profile'  element={<Profile />}/>
 
 
       {/* TABLET */}
-      <Route path='/Tablet/:id'  element={
-        <ProtectedRoute>
-        <Tablet />
-      </ProtectedRoute>
-      } />
+      <Route path='/Tablet/:id'  element={<Tablet />} />
 
-      <Route path='/dang-ky'  element={<ProtectedRoute>
-      <Register />
-    </ProtectedRoute>} />
+      <Route path='/dang-ky'  element={<Register />} />
       
       {/* WATCHES */}
-      <Route path='/Đồng hồ/:id'  element={
-        <ProtectedRoute>
-        <Watch />
-      </ProtectedRoute>
-      } />
+      <Route path='/Đồng hồ/:id'  element={<Watch />} />
 
-      <Route path='/empty-cart'  element={
-        <ProtectedRoute>
-        <EmptyCart />
-      </ProtectedRoute>
-      } />
+      <Route path='/empty-cart'  element={} />
      
 
       {/* SMART PHONE */}
-      <Route path='/Điện thoại/:id'  element={<ProtectedRoute>
-      <SmartPhone />
-    </ProtectedRoute>} />
+      <Route path='/Điện thoại/:id'  element={<SmartPhone />} />
 
       {/* SMART TV */}
-      <Route path='/Tivi/:id'  element={<ProtectedRoute>
-      <SmartTV />
-    </ProtectedRoute>} />
+      <Route path='/Tivi/:id'  element={<SmartTV />} />
 
 
       {/* ACCESSORIES  */}
-      <Route path='/Phụ kiện/:id'  element={
-      <ProtectedRoute>
-      <Acessories />
-    </ProtectedRoute>} />
+      <Route path='/Phụ kiện/:id'  element={<Acessories />} />
 
 
       {/* SMART WATCH  */}
-      <Route path='/Smartwatch/:id'  element={<ProtectedRoute>
-      <SmartWatch />
-    </ProtectedRoute>} />
+      <Route path='/Smartwatch/:id'  element={<SmartWatch />} />
 
       {/* CART */}
-      <Route path='/cart'  element={
-       <ProtectedRoute>
-          <CheckoutCart />
-     </ProtectedRoute>
-    } />
+      <Route path='/cart'  element={<CheckoutCart />} />
 
       {/* LAPTOP */}
 
-      <Route path='/Laptop/:id'  element={<ProtectedRoute>
-      <Laptop />
-    </ProtectedRoute>} />
+      <Route path='/Laptop/:id'  element={<Laptop />} />
 
       {/* SMARTHOME */}
-      <Route path='/Nhà thông minh/:id'  element={<ProtectedRoute>
-      <SmartHome />
-    </ProtectedRoute>} />
+      <Route path='/Nhà thông minh/:id'  element={<SmartHome />} />
       
 
       {/* PRODUCT DETAIL */}
-      <Route path='/product/:id'  element={<ProtectedRoute>
-      <ProductDetail />
-    </ProtectedRoute>} />
+      <Route path='/product/:id'  element={<ProductDetail />} />
 
       {/* ORDER */}
 
-      <Route path='/myOrder' element={<ProtectedRoute>
-      <MyOrders />
-    </ProtectedRoute>}/>
+      <Route path='/myOrder' element={<MyOrders/>}/>
        
 
 
@@ -197,9 +135,7 @@ const Router = () => {
       <Route path="*" element={<Navigate to="/" />} />
 
 
-      <Route path="/thanks" element={<ProtectedRoute>
-      <Thankyou />
-    </ProtectedRoute>} />
+      <Route path="/thanks" element={<Thankyou />} />
       
       {/* <Route path="/them-dia-chi" element={<ModalAddress/>}/> */}
 

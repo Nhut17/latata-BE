@@ -10,7 +10,6 @@ const ListWatchesSeries = () => {
 
     const listProduct = useSelector(state => state.product.listProduct)
     const listWatch = listProduct.filter(item => item.category === 'Smartwatch')
-    console.log(listWatch)
   return (
     <div className='list-watches'>
         <div className="banner">

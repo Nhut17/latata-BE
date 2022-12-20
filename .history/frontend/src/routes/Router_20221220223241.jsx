@@ -110,35 +110,22 @@ const Router = () => {
       </ProtectedRoute>
       } />
 
-      <Route path='/empty-cart'  element={
-        <ProtectedRoute>
-        <EmptyCart />
-      </ProtectedRoute>
-      } />
+      <Route path='/empty-cart'  element={<EmptyCart />} />
      
 
       {/* SMART PHONE */}
-      <Route path='/Điện thoại/:id'  element={<ProtectedRoute>
-      <SmartPhone />
-    </ProtectedRoute>} />
+      <Route path='/Điện thoại/:id'  element={<SmartPhone />} />
 
       {/* SMART TV */}
-      <Route path='/Tivi/:id'  element={<ProtectedRoute>
-      <SmartTV />
-    </ProtectedRoute>} />
+      <Route path='/Tivi/:id'  element={<SmartTV />} />
 
 
       {/* ACCESSORIES  */}
-      <Route path='/Phụ kiện/:id'  element={
-      <ProtectedRoute>
-      <Acessories />
-    </ProtectedRoute>} />
+      <Route path='/Phụ kiện/:id'  element={<Acessories />} />
 
 
       {/* SMART WATCH  */}
-      <Route path='/Smartwatch/:id'  element={<ProtectedRoute>
-      <SmartWatch />
-    </ProtectedRoute>} />
+      <Route path='/Smartwatch/:id'  element={<SmartWatch />} />
 
       {/* CART */}
       <Route path='/cart'  element={
@@ -149,26 +136,18 @@ const Router = () => {
 
       {/* LAPTOP */}
 
-      <Route path='/Laptop/:id'  element={<ProtectedRoute>
-      <Laptop />
-    </ProtectedRoute>} />
+      <Route path='/Laptop/:id'  element={<Laptop />} />
 
       {/* SMARTHOME */}
-      <Route path='/Nhà thông minh/:id'  element={<ProtectedRoute>
-      <SmartHome />
-    </ProtectedRoute>} />
+      <Route path='/Nhà thông minh/:id'  element={<SmartHome />} />
       
 
       {/* PRODUCT DETAIL */}
-      <Route path='/product/:id'  element={<ProtectedRoute>
-      <ProductDetail />
-    </ProtectedRoute>} />
+      <Route path='/product/:id'  element={<ProductDetail />} />
 
       {/* ORDER */}
 
-      <Route path='/myOrder' element={<ProtectedRoute>
-      <MyOrders />
-    </ProtectedRoute>}/>
+      <Route path='/myOrder' element={<MyOrders/>}/>
        
 
 
@@ -197,9 +176,7 @@ const Router = () => {
       <Route path="*" element={<Navigate to="/" />} />
 
 
-      <Route path="/thanks" element={<ProtectedRoute>
-      <Thankyou />
-    </ProtectedRoute>} />
+      <Route path="/thanks" element={<Thankyou />} />
       
       {/* <Route path="/them-dia-chi" element={<ModalAddress/>}/> */}
 
