@@ -22,9 +22,10 @@ const MainAccessories = () => {
     dispatch(getProductCate(id))
   },[])
 
-  const listSale = (list_product) => {
-      return list_product.filter(val => val.promotion >= 50)
-  }
+  // const listSale = listProductCate.filter(val => val.promotion >= 50)
+  console.log(listProductCate)
+
+  
 
   return (
     <div className='main-accessories'>

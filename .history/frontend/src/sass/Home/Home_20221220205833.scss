@@ -2,7 +2,6 @@
 @import '../variables.scss';
 .home{
     background-color: $second-color;
-    
     .big-banner{
         height: 450px;
         .banner{
@@ -375,27 +374,7 @@
 
 
 .scroll-to-top{
-    height: 45px;
-    width: 45px;
-    border: 1px solid $primary-color;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 100;
-    transition: all 0.2s;
-    cursor: pointer;
-    .ic{
-        color: $primary-color;
-    }
-    &:hover{
-        background-color: $primary-color;
-        .ic{
-            color: white;
-        }
-    }
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
 }

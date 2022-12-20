@@ -118,8 +118,8 @@ useEffect(() =>{
             <ToastContainer />
             {
                 visible &&
-            <ScrollToTop />
             }
+            <ScrollToTop></ScrollToTop>
         
 
       <div className="big-banner">

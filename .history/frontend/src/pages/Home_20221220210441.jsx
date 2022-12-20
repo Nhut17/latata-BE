@@ -58,7 +58,7 @@ const Home = () => {
     
 },[])
 
-// scroll
+
 useEffect(() =>{
 
   const scrollTo = () => {
@@ -116,10 +116,7 @@ useEffect(() =>{
   return (
     <div className="home">
             <ToastContainer />
-            {
-                visible &&
-            <ScrollToTop />
-            }
+            <ScrollToTop></ScrollToTop>
         
 
       <div className="big-banner">

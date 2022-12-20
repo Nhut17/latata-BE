@@ -118,7 +118,7 @@ useEffect(() =>{
             <ToastContainer />
             {
                 visible &&
-            <ScrollToTop />
+            <ScrollToTop></ScrollToTop>
             }
         
 

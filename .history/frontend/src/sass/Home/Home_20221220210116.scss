@@ -2,7 +2,6 @@
 @import '../variables.scss';
 .home{
     background-color: $second-color;
-    
     .big-banner{
         height: 450px;
         .banner{
@@ -387,13 +386,10 @@
     right: 20px;
     bottom: 20px;
     z-index: 100;
-    transition: all 0.2s;
-    cursor: pointer;
     .ic{
         color: $primary-color;
     }
     &:hover{
-        background-color: $primary-color;
         .ic{
             color: white;
         }
