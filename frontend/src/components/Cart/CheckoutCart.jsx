@@ -11,6 +11,7 @@ import EmptyCart from './EmptyCart'
 import { getCartUser } from '../../redux/Cart/cartSlice'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getAddress } from '../../redux/address/addressSlice'
 
 const CheckoutCart = () => {
 
@@ -23,31 +24,14 @@ const CheckoutCart = () => {
   useEffect(() => {
     if(successOrder){
       navigate('/thanks')
-        // toast('Đặt hàng thành công!', {
-        //     position: "top-right",
-        //     autoClose: 500,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: false,
-        //     draggable: true,
-        //     progress: undefined,
-        //     theme: "light",
-        //     });
-
-        // const time = setTimeout(() => {
-        //   navigate('/')
-        // },1500)
-
-        // return () => {
-        //   clearTimeout(time)
-        // }
+      
     }
     
   }, [successOrder]);
 
   useEffect(() => {
     dispatch(getCartUser())
-
+  
   },[])
 
   return (

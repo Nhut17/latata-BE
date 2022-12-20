@@ -15,9 +15,10 @@ const InfoCustomer = ({totalPrice}) => {
 
     const dispatch = useDispatch()
 
+    const { listAddress , addressCurrent} = useSelector(state => state.address)
 
-  const [changeStyleName,setChangeStyleName] = useState(false)
-  const [changeStyleNumber,setChangeStyleNumber] = useState(false)
+   
+
 
 
   const handleClickOrderDetail = () => {
@@ -28,31 +29,16 @@ const InfoCustomer = ({totalPrice}) => {
 
   // create order
   const handleCreateOrder = (formData) =>{
-        console.log(formData)
-        dispatch(createOrder(formData))
+    const data = {
+        ...formData,
+        address: addressCurrent[0]?.address
+    }
+        console.log(data)
+        dispatch(createOrder(data))
   }
  
 
-  // handle style name and phone
-  const handleOnChange = (e) => {
-   
-      if(e.target.value)
-      {
-          setChangeStyleName(true)   
-          
-      } else{
-          setChangeStyleName(false)
-      }
-  }
-  const handleOnChangeNumber = (e) => {
-      setChangeStyleNumber(true)
-   
-      if(e.target.value === '')
-      {
-          setChangeStyleNumber(false)   
-          
-      }
-  }
+
 
   return (
     <>
@@ -66,19 +52,11 @@ const InfoCustomer = ({totalPrice}) => {
             <div className="name input"  >
                 <input 
                     type="text" 
-                    onChange={handleOnChange}
+                    defaultValue={addressCurrent ? addressCurrent[0]?.name : ''}
+            
                     {...register('name',{
                         required: true,
-                        onChange: (e) => {
-                            if(e.target.value)
-                            {
-                                setChangeStyleName(true)   
-                                
-                            } else{
-                                setChangeStyleName(false)
-                            }
-                        }
-                        
+                       
                     })}
                     />
 
@@ -88,27 +66,19 @@ const InfoCustomer = ({totalPrice}) => {
                 }
 
                 
-                <span className='style-change' htmlFor='name' style={changeStyleName ? {
+                <span className='style-change' htmlFor='name' style={ {
                                                             transform: 'translate(15px,-15px)',
                                                         fontSize: 14,
                                                         backgroundColor:'white',
-                                                        padding: '0 3px' } : {}}>Họ và Tên</span>
+                                                        padding: '0 3px' }}>Họ và Tên</span>
             </div>
             <div className="number input">
                 <input 
                     type="text"  
-                    onChange={handleOnChangeNumber}
+                    defaultValue={addressCurrent ? addressCurrent[0]?.phone : ''}
                     {...register('phoneNo',{
                         required: true,
-                        onChange: (e) => {
-                            setChangeStyleNumber(true)
-
-                            if(e.target.value === '')
-                            {
-                                setChangeStyleNumber(false)   
-                                
-                            }
-                        },
+                       
                         pattern: {
                             message: 'Số điện thoại không phù hợp',
                             value: /^\d+$/,
@@ -116,10 +86,13 @@ const InfoCustomer = ({totalPrice}) => {
                         }
                     })}
                     />
-                    <span className='style-change' htmlFor='number' style={changeStyleNumber ? {transform: 'translate(15px,-15px)',
-                    fontSize: 14,
-                    backgroundColor:'white',
-                    padding: '0 3px' } : {}}>Số điện thoại</span>
+                    <span className='style-change' htmlFor='number' 
+                    style={{
+                        transform: 'translate(15px,-15px)',
+                        fontSize: 14,
+                        backgroundColor:'white',
+                        padding: '0 3px'
+                    }}>Số điện thoại</span>
 
                     {
                         errors.phoneNo?.type === 'required' &&
@@ -138,8 +111,8 @@ const InfoCustomer = ({totalPrice}) => {
                            fontWeight: 'bold' }}>Địa chỉ:</p>
                     <br />
                 
-                    <div className="address-detail">
-                        Số 10 đường số 3 hẻm 613 Lê Văn Việt, Phường Tân Phú, Thành Phố Thủ Đức, TP. Hồ Chí Minh
+                    <div className="address-detail" >
+                       {addressCurrent ? addressCurrent[0]?.address : 'Mời bạn thêm địa chỉ'}
                     </div>
                     <br />
                     <u className='change' onClick={handleClickOrderDetail}>Thay đổi</u>
@@ -178,7 +151,8 @@ const InfoCustomer = ({totalPrice}) => {
 
             showOrderDetail && 
             <ModalListAddress  showAddress={showOrderDetail} 
-            setShowAddress={setShowOrderDetail} 
+                                setShowAddress={setShowOrderDetail} 
+                                listAddress={listAddress}
              />
  
         }

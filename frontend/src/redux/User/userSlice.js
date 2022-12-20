@@ -244,7 +244,6 @@ export const updatePassword = createAsyncThunk('user/updatePassword',
 
 
 
-
 const userSlice = createSlice({
     name: 'user',
     initialState,

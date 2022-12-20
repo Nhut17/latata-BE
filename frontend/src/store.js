@@ -19,6 +19,7 @@ import cartSlice from './redux/Cart/cartSlice'
 import adminSlice from './redux/Admin/adminSlice'
 import categorySlice from './redux/Category/categorySlice'
 import orderSlice from './redux/Order/orderSlice'
+import addressSlice from './redux/address/addressSlice'
 
 
   const persistConfig = {
@@ -35,7 +36,7 @@ const rootReducer = combineReducers({
     admin: adminSlice,
     category: categorySlice,
     order: orderSlice,
-  
+    address: addressSlice
 
   })
 

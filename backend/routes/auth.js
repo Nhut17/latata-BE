@@ -28,7 +28,7 @@ router.route('/password/reset').put(resetPassword)
 
 router.route('/password/verify-otp').post(verifyOtp)
 
-router.route('/logout').get(isAuthenticatedUser,logout)
+router.route('/logout').get(logout)
 
 router.route('/profile').get(isAuthenticatedUser,authorizeRoles('user'),getUserProfile)
 router.route('/password/update').put(isAuthenticatedUser,authorizeRoles('user'),updatePassword)
