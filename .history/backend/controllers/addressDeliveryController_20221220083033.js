@@ -72,7 +72,7 @@ exports.getAddress = catchAsyncError( async (req,res,next) => {
   })
 
 
-// update default address options
+  // update default address options
 exports.updateDefault = catchAsyncError( async (req,res,next) => {
 
     const id = req.params.id
@@ -101,34 +101,32 @@ exports.updateDefault = catchAsyncError( async (req,res,next) => {
         address: addressModel
     })
   })
+  // update default address options
+exports.updateDefault = catchAsyncError( async (req,res,next) => {
 
-
-//   // update default address options
-// exports.updateDefault = catchAsyncError( async (req,res,next) => {
-
-//     const id = req.params.id
+    const id = req.params.id
     
-//     const userId = req.user[0]._id
+    const userId = req.user[0]._id
   
-//     const addressModel = await Address.findOne({userId: userId})
+    const addressModel = await Address.findOne({userId: userId})
 
-//     // if(!addressModel)
-//     // {
-//     //     return next(new ErrorHandler('Address is empty'))
-//     // }
+    // if(!addressModel)
+    // {
+    //     return next(new ErrorHandler('Address is empty'))
+    // }
 
-//     // remove default address
-//     const addressIndex = addressModel.addresses.findIndex(val => val.address_default == 1)
-//     addressModel.addresses[addressIndex].address_default = 0
+    // remove default address
+    const addressIndex = addressModel.addresses.findIndex(val => val.address_default == 1)
+    addressModel.addresses[addressIndex].address_default = 0
 
-//     // update new default address
-//     const updateIndex = addressModel.addresses.findIndex(val => val._id == id)
-//     addressModel.addresses[updateIndex].address_default = 1
+    // update new default address
+    const updateIndex = addressModel.addresses.findIndex(val => val._id == id)
+    addressModel.addresses[updateIndex].address_default = 1
 
-//     await addressModel.save()
+    await addressModel.save()
 
-//     res.status(201).json({      
-//         success: true,
-//         address: addressModel
-//     })
-//   })
+    res.status(201).json({      
+        success: true,
+        address: addressModel
+    })
+  })

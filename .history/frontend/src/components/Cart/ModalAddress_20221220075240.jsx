@@ -28,16 +28,9 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
         selectedDistrict,
         selectedWard
       } = state;
-
-    // console.log(selectedCity)
     
-      const handleOnSubmit = (e) =>{
-            e.preventDefault()
-            console.log(selectedCity.label)
-            console.log(selectedDistrict.label)
-            console.log(selectedWard.label)
-            console.log(e.target.address.value)
-
+      const handleOnSubmit = (formData) =>{
+            console.log()
       }
 
       return (
@@ -52,18 +45,10 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
 
             <div className="form-address">
                 <form
-                    onSubmit={handleOnSubmit}
+                    onSubmit={handleSubmit(handleOnSubmit)}
                     
                     >
                     <div className="select-group">
-
-                    <input name='name' type="text" placeholder='Nhập họ tên' />
-                    <input 
-                            style={{
-                                marginBottom: '20px'
-                            }}
-                            name='address' type="text" placeholder='Nhập số điện thoại' />
-
                         <Select
                         name="cityId"
                         key={`cityId_${selectedCity?.value}`}
@@ -72,6 +57,7 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
                         onChange={(option) => onCitySelect(option)}
                         placeholder="Tỉnh/Thành"
                         defaultValue={selectedCity}
+                        {...register('ward')}
                         />
 
                         <br />
@@ -96,11 +82,12 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
                         defaultValue={selectedWard}
                         />
 
-                        <input name='address' type="text" placeholder='Nhập địa chỉ cụ thể' />
+                        <input type="text" placeholder='Nhập địa chỉ cụ thể' />
                     </div>
 
                     <button
                         type="submit"
+                        
                     >
                         Xác nhận
                     </button>

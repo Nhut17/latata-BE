@@ -37,7 +37,6 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
             console.log(selectedDistrict.label)
             console.log(selectedWard.label)
             console.log(e.target.address.value)
-
       }
 
       return (
@@ -72,6 +71,7 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
                         onChange={(option) => onCitySelect(option)}
                         placeholder="Tỉnh/Thành"
                         defaultValue={selectedCity}
+                        
                         />
 
                         <br />
@@ -101,6 +101,7 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
 
                     <button
                         type="submit"
+                        style={{}}
                     >
                         Xác nhận
                     </button>

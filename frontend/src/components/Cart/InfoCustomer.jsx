@@ -134,20 +134,10 @@ const InfoCustomer = ({totalPrice}) => {
             </div>
 
             <div className='address'>
-                <p>Địa chỉ</p>
+                <p style={{
+                           fontWeight: 'bold' }}>Địa chỉ:</p>
                     <br />
-                {/* <input 
-                        className='input-address'
-                        {...register('address', {
-                            required:true
-                        })} />
-                        {
-                            errors.address?.type === 'required' &&
-                            <span className='err-msg' style={{
-                                transform: 'translate(0px,75px)',
-                            }}>Mời bạn nhập địa chỉ</span> 
-                        } */}
-
+                
                     <div className="address-detail">
                         Số 10 đường số 3 hẻm 613 Lê Văn Việt, Phường Tân Phú, Thành Phố Thủ Đức, TP. Hồ Chí Minh
                     </div>

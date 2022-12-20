@@ -72,6 +72,7 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
                         onChange={(option) => onCitySelect(option)}
                         placeholder="Tỉnh/Thành"
                         defaultValue={selectedCity}
+                        {...register('city')}
                         />
 
                         <br />

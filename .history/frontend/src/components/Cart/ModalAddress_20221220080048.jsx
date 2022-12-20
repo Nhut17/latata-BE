@@ -28,16 +28,13 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
         selectedDistrict,
         selectedWard
       } = state;
-
-    // console.log(selectedCity)
     
       const handleOnSubmit = (e) =>{
             e.preventDefault()
-            console.log(selectedCity.label)
-            console.log(selectedDistrict.label)
-            console.log(selectedWard.label)
+            console.log(e.target.cityId.value)
+            console.log(e.target.districtId.value)
+            console.log(e.target.wardId.value)
             console.log(e.target.address.value)
-
       }
 
       return (
@@ -56,14 +53,6 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
                     
                     >
                     <div className="select-group">
-
-                    <input name='name' type="text" placeholder='Nhập họ tên' />
-                    <input 
-                            style={{
-                                marginBottom: '20px'
-                            }}
-                            name='address' type="text" placeholder='Nhập số điện thoại' />
-
                         <Select
                         name="cityId"
                         key={`cityId_${selectedCity?.value}`}
@@ -72,6 +61,7 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
                         onChange={(option) => onCitySelect(option)}
                         placeholder="Tỉnh/Thành"
                         defaultValue={selectedCity}
+                        
                         />
 
                         <br />
@@ -101,6 +91,7 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
 
                     <button
                         type="submit"
+                        
                     >
                         Xác nhận
                     </button>
