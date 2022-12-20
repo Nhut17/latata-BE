@@ -20,6 +20,14 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
 
     const { handleSubmit, register } = useForm()
 
+    const [validateForm, setvalidateForm] = useState({
+        name: "",
+        phone: "",
+        city: "",
+        district : "",
+        ward : "",
+        street: ""
+      });
     const {
         state,
         onCitySelect,
@@ -55,6 +63,8 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
 
             dispatch(addAddress(data))
             setShowAddressItem(false)
+
+           
       }
 
       return (
@@ -75,13 +85,14 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
                     <div className="select-group">
 
                     <input name='name' type="text" placeholder='Nhập họ tên'
-                            onChange={(e) => setName(e.target.value)}     />
+                            onChange={(e) => setName(e.target.value)} required    />
+
                     <input 
                             style={{
                                 marginBottom: '20px'
                             }}
                             name='phone' type="text" placeholder='Nhập số điện thoại'
-                            onChange={(e) => setPhone(e.target.value)}  />
+                            onChange={(e) => setPhone(e.target.value)} required  />
 
                         <Select
                         name="cityId"
@@ -91,6 +102,7 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
                         onChange={(option) => onCitySelect(option)}
                         placeholder="Tỉnh/Thành"
                         defaultValue={selectedCity}
+                        required
                         />
 
                         <br />
@@ -103,6 +115,7 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
                         onChange={(option) => onDistrictSelect(option)}
                         placeholder="Quận/Huyện"
                         defaultValue={selectedDistrict}
+                        required
                         />
                         <br />
                         <Select
@@ -113,10 +126,11 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
                         placeholder="Phường/Xã"
                         onChange={(option) => onWardSelect(option)}
                         defaultValue={selectedWard}
+                        required
                         />
 
                         <input name='address' type="text" placeholder='Nhập địa chỉ cụ thể'
-                            onChange={(e) => setAddress(e.target.value)}  />
+                            onChange={(e) => setAddress(e.target.value)}  required/>
                     </div>
 
                     <button
