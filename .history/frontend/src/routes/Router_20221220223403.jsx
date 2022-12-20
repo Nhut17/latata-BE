@@ -197,9 +197,7 @@ const Router = () => {
       <Route path="*" element={<Navigate to="/" />} />
 
 
-      <Route path="/thanks" element={<ProtectedRoute>
-      <Thankyou />
-    </ProtectedRoute>} />
+      <Route path="/thanks" element={<Thankyou />} />
       
       {/* <Route path="/them-dia-chi" element={<ModalAddress/>}/> */}
 

@@ -155,20 +155,16 @@ const Router = () => {
 
       {/* SMARTHOME */}
       <Route path='/Nhà thông minh/:id'  element={<ProtectedRoute>
-      <SmartHome />
+      <S />
     </ProtectedRoute>} />
       
 
       {/* PRODUCT DETAIL */}
-      <Route path='/product/:id'  element={<ProtectedRoute>
-      <ProductDetail />
-    </ProtectedRoute>} />
+      <Route path='/product/:id'  element={<ProductDetail />} />
 
       {/* ORDER */}
 
-      <Route path='/myOrder' element={<ProtectedRoute>
-      <MyOrders />
-    </ProtectedRoute>}/>
+      <Route path='/myOrder' element={<MyOrders/>}/>
        
 
 
@@ -197,9 +193,7 @@ const Router = () => {
       <Route path="*" element={<Navigate to="/" />} />
 
 
-      <Route path="/thanks" element={<ProtectedRoute>
-      <Thankyou />
-    </ProtectedRoute>} />
+      <Route path="/thanks" element={<Thankyou />} />
       
       {/* <Route path="/them-dia-chi" element={<ModalAddress/>}/> */}
 

@@ -10,7 +10,6 @@ const FlashSale = () => {
 
   const listBestSeller = bestSeller.filter(val => val.stock >= 1)
 
-  console.log(listBestSeller)
 
   return (
     <div className='flash-sales'>

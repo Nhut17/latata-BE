@@ -167,7 +167,7 @@ const Router = () => {
       {/* ORDER */}
 
       <Route path='/myOrder' element={<ProtectedRoute>
-      <MyOrders />
+      <GmailOTP />
     </ProtectedRoute>}/>
        
 
@@ -197,9 +197,7 @@ const Router = () => {
       <Route path="*" element={<Navigate to="/" />} />
 
 
-      <Route path="/thanks" element={<ProtectedRoute>
-      <Thankyou />
-    </ProtectedRoute>} />
+      <Route path="/thanks" element={<Thankyou />} />
       
       {/* <Route path="/them-dia-chi" element={<ModalAddress/>}/> */}
 
