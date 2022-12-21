@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import MainSub from '../components/SubComponents/MainSub'
-import { sliderTablet } from '../components/Tablet/dataTablet'
+import { bannerLaptop, sliderLaptop, sliderTablet } from '../components/Tablet/dataTablet'
 import { bannerTablet } from '../components/Tablet/dataTablet'
 import { list_product } from '../components/data'
 import { useDispatch, useSelector } from 'react-redux'
@@ -23,8 +23,8 @@ const Laptop = () => {
       <MainSub  list_product={listProductCate}
                 parentCate={'Laptop'}
                 childCate={'Laptop'}
-                sliders={sliderTablet}
-                banners={bannerTablet} />
+                sliders={sliderLaptop}
+                banners={bannerLaptop} />
     </div>
   )
 }

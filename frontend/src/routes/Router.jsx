@@ -42,6 +42,7 @@ import ModalAddress from "../components/Cart/ModalAddress";
 // import Orders from "../components/Admin/Orders/Orders"
 import ProtectedRoute from "./ProtectedRoute";
 import { useSelector } from "react-redux";
+import { ViewListWatch } from "../components/Watch/ChildPage/ViewListWatch";
 
 const Router = () => {
   
@@ -109,6 +110,8 @@ const Router = () => {
         <Watch />
       </ProtectedRoute>
       } />
+
+      <Route path="/xem-them-dong-ho" element={ViewListWatch}/>
 
       <Route path='/empty-cart'  element={
         <ProtectedRoute>

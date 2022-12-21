@@ -1,43 +1,47 @@
 export const sliderWatch = [
     {
-        id:1,
-        title: 'Lorem',
-        url: 'https://cdn.tgdd.vn/2022/09/banner/800-200-800x200-6.png'
-    
+        id: 1,
+        url: 'https://cdn.tgdd.vn/2022/08/banner/800-200-800x200-17.png'
     },
     {
-        id:2,
-        title: 'Lorem',
-        url: 'https://cdn.tgdd.vn/2022/09/banner/800-200-800x200-28.png'
-    
+        id: 2,
+        url: 'https://cdn.tgdd.vn/2022/08/banner/800-200-800x200-16.png'
     },
     {
-        id:3,
-        title: 'Lorem',
-        url: 'https://cdn.tgdd.vn/2022/09/banner/800-200-800x200-72.png'
-    
+        id: 3,
+        url: 'https://cdn.tgdd.vn/2022/07/banner/800-200-800x200-166.png'
     },
     {
-        id:4,
-        title: 'Lorem',
-        url: 'https://cdn.tgdd.vn/2022/08/banner/800-200-800x200-125.png'
-    
+        id: 4,
+        url: 'https://cdn.tgdd.vn/2022/08/banner/800-200-800x200-28.png'
     },
+    {
+        id: 5,
+        url: 'https://cdn.tgdd.vn/2022/08/banner/800-200-800x200-29.png'
+    },
+    {
+        id: 6,
+        url: 'https://cdn.tgdd.vn/2022/08/banner/Layer-3-800x200.png'
+    },
+    {
+        id: 6,
+        url: 'https://cdn.tgdd.vn/2022/08/banner/Layer-1-800x200-1.png'
+    }
+
+]
   
     
    
-]
 
-export const bannerWatch =[
+
+export const bannerWatch = [
     {
-        id:1,
-        title:'lorem',
-        url:'https://cdn.tgdd.vn/2022/09/banner/huawei--1--390x97.png'
+        id: 1,
+        url: 'https://cdn.tgdd.vn/2022/06/banner/2-390x97.png'
     },
     {
-        id:2,
-        title:'lorem',
-        url:'https://cdn.tgdd.vn/2022/09/banner/ipad9390-97-copy-390x97.png'
+        id: 2,
+        url: 'https://cdn.tgdd.vn/2022/06/banner/3-390x97.png'
     }
 ]
 

@@ -7,9 +7,9 @@ import '../../sass/cart/checkoutCart.scss'
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { addAddress } from '../../redux/address/addressSlice';
-const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
+const ModalUpdateAddress = ({ showUpdateAddressItem, setShowUpdateAddressItem }) => {
     const handleClickAddressItem = () => {
-        setShowAddressItem(false)
+        setShowUpdateAddressItem(false)
     }
 
     const [name,setName] = useState('')
@@ -62,14 +62,14 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
             console.log(data)
 
             dispatch(addAddress(data))
-            setShowAddressItem(false)
+            setShowUpdateAddressItem(false)
 
            
       }
 
       return (
         <Modal
-            open={showAddressItem}
+            open={showUpdateAddressItem}
             onClose={handleClickAddressItem}
             classNames={{
                 overlay: 'customOverlay',
@@ -82,7 +82,7 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
                     onSubmit={handleOnSubmit}
                     
                     >
-                    <h3>Thêm địa chỉ mới</h3>
+                    <h3>Cập nhật địa chỉ</h3>
 
                     <div className="select-group">
 
@@ -151,4 +151,4 @@ const ModalAddress = ({ showAddressItem, setShowAddressItem }) => {
       )
 }
 
-export default ModalAddress
+export default ModalUpdateAddress

@@ -92,7 +92,13 @@ button{
   }
   .name-product{
     padding: 15px 0px;
-    font-size: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    margin-top: 5px;
+    line-height: 1.5;
   }
   .price-old {
 
@@ -268,7 +274,7 @@ button{
 }
 
 .breadcrumb {
-  padding: 20px 0px;
+  padding: 15px 0 10px 0;
   ul {
     display: flex;
 

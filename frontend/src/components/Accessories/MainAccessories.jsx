@@ -32,7 +32,7 @@ const MainAccessories = () => {
 
         <div className="bg-slider">
             <div className="container">
-                <TopSlider sliders={context.sliderTablet} banners={context.bannerTablet} />
+                <TopSlider sliders={context.sliderAccessories} banners={context.bannerAccessories} />
             </div>
         </div>
 

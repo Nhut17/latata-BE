@@ -2,25 +2,25 @@ export const sliderTablet = [
     {
         id:1,
         title: 'Lorem',
-        url: 'https://cdn.tgdd.vn/2022/09/banner/800-200-800x200-6.png'
+        url: 'https://cdn.tgdd.vn/2022/12/banner/tabchung-800-200-800x200.webp'
     
     },
     {
         id:2,
         title: 'Lorem',
-        url: 'https://cdn.tgdd.vn/2022/09/banner/800-200-800x200-28.png'
+        url: 'https://cdn.tgdd.vn/2022/12/banner/800-200-800x200-166.webp'
     
     },
     {
         id:3,
         title: 'Lorem',
-        url: 'https://cdn.tgdd.vn/2022/09/banner/800-200-800x200-72.png'
+        url: 'https://cdn.tgdd.vn/2022/12/banner/800-200-800x200-162.webp'
     
     },
     {
         id:4,
         title: 'Lorem',
-        url: 'https://cdn.tgdd.vn/2022/08/banner/800-200-800x200-125.png'
+        url: 'https://cdn.tgdd.vn/2022/12/banner/800-200-800x200-25.png'
     
     },
   
@@ -32,12 +32,186 @@ export const bannerTablet =[
     {
         id:1,
         title:'lorem',
-        url:'https://cdn.tgdd.vn/2022/09/banner/huawei--1--390x97.png'
+        url:'https://cdn.tgdd.vn/2022/10/banner/sticky-taba8-390x97.png'
     },
     {
         id:2,
         title:'lorem',
-        url:'https://cdn.tgdd.vn/2022/09/banner/ipad9390-97-copy-390x97.png'
+        url:'https://cdn.tgdd.vn/2022/11/banner/ipad-9390-97-copy-390x97.png'
+    }
+]
+
+
+export const sliderAccessories = [
+    {
+        id:1,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/12/banner/800-200-800x200-168.webp'
+    
+    },
+    {
+        id:2,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/11/banner/800-200-800x200-103.png'
+    
+    },
+    {
+        id:3,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/12/banner/800-200-800x200-141.webp'
+    
+    },
+    {
+        id:4,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/10/banner/800-200-800x200-86.png'
+    
+    },
+  
+    
+   
+]
+
+export const bannerAccessories =[
+    {
+        id:1,
+        title:'lorem',
+        url:'https://cdn.tgdd.vn/2022/11/banner/390x97--3--390x97.png'
+    },
+    {
+        id:2,
+        title:'lorem',
+        url:'https://cdn.tgdd.vn/2022/12/banner/Sticky-Flash-sale2-390x97.webp'
+    }
+]
+
+export const sliderTV = [
+    {
+        id:1,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/12/banner/800-200-800x200-83.webp'
+    
+    },
+    {
+        id:2,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/10/banner/800x200-800x200-19.png'
+    
+    },
+    {
+        id:3,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/12/banner/800-200-800x200.webp'
+    
+    },
+    {
+        id:4,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/12/banner/800-200-800x200-144.webp'
+    
+    },
+  
+    
+   
+]
+
+export const bannerTV =[
+    {
+        id:1,
+        title:'lorem',
+        url:'https://cdn.tgdd.vn/2022/06/banner/TraGop390-97-390x97-2-390x97-2.png'
+    },
+    {
+        id:2,
+        title:'lorem',
+        url:'https://cdn.tgdd.vn/2022/07/banner/TV-Trung-bay-390x97-1.png'
+    }
+]
+
+export const sliderPhone = [
+    {
+        id:1,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/12/banner/800-200-800x200-102.webp'
+    
+    },
+    {
+        id:2,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/12/banner/A96-tet-800-200-800x200.webp'
+    
+    },
+    {
+        id:3,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/12/banner/800-200-800x200-113.webp'
+    
+    },
+    {
+        id:4,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/12/banner/vivo-tet800-200-800x200.webp'
+    
+    },
+  
+    
+   
+]
+
+export const bannerPhone =[
+    {
+        id:1,
+        title:'lorem',
+        url:'https://cdn.tgdd.vn/2022/12/banner/sticky-mseri3-copy2-390x97.webp'
+    },
+    {
+        id:2,
+        title:'lorem',
+        url:'https://cdn.tgdd.vn/2022/12/banner/sticky-a57-copy-390x97-2.webp'
+    }
+]
+
+
+export const sliderLaptop = [
+    {
+        id:1,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/12/banner/800-200-800x200-98.webp'
+    
+    },
+    {
+        id:2,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/12/banner/800-200-800x200-97.webp'
+    
+    },
+    {
+        id:3,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/11/banner/800-200-800x200-182.png'
+    
+    },
+    {
+        id:4,
+        title: 'Lorem',
+        url: 'https://cdn.tgdd.vn/2022/12/banner/laphp-800-200-800x200.webp'
+    
+    },
+  
+    
+   
+]
+
+export const bannerLaptop =[
+    {
+        id:1,
+        title:'lorem',
+        url:'https://cdn.tgdd.vn/2022/10/banner/sticky-intel12-390x97.png'
+    },
+    {
+        id:2,
+        title:'lorem',
+        url:'https://cdn.tgdd.vn/2022/12/banner/Sticky-laptop-tet-390x97.webp'
     }
 ]
 

@@ -20,6 +20,8 @@ const ModalListAddress = ({ showAddress, setShowAddress, listAddress }) => {
         setShowAddressItem(true)
     }
 
+  
+
     const addressDefault = listAddress ? listAddress?.filter(val => val?.address_default == 1 ) : ''
     const [selectedAddress, setSelectedAddress] = useState(addressDefault[0]?._id)
 

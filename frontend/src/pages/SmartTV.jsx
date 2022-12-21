@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { sliderTablet } from '../components/Tablet/dataTablet'
+import { bannerTV, sliderTablet, sliderTV } from '../components/Tablet/dataTablet'
 import { bannerTablet } from '../components/Tablet/dataTablet'
 import '../sass/SmartPhone/smartphone.scss'
 import MainSub from '../components/SubComponents/MainSub'
@@ -24,8 +24,8 @@ const SmartTV = () => {
         <MainSub list_product={listProductCate}
                  parentCate={'Tivi'}
                  childCate={'Tivi'}
-                 sliders={sliderTablet}
-                 banners={bannerTablet} />
+                 sliders={sliderTV}
+                 banners={bannerTV} />
     </div>
   )
 }

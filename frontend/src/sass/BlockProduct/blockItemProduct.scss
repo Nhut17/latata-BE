@@ -33,12 +33,18 @@
         display: flex;  
         flex-wrap: wrap;
         justify-content: space-between;
+        // background: rgba(#06283d, 0.3);
         .item-product{
+            border: 1px solid #f3f3f3;
             width: 240px;
             height: 440px;
             // margin: 10px;
-            background-color: white;
+            background-color: #fff;
             margin-bottom: 25px;
+            transition: all .3s;
+            &:hover{
+              box-shadow: 0 2px 12px rgba(#333, 0.3);
+            }
         }
       }
 
