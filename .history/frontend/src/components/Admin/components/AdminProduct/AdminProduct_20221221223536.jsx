@@ -16,9 +16,7 @@ const AdminProduct = () => {
     dispatch(getProduct())
   },[])
 
-  const searchProduct =  (list_product) => {
-      return list_product.filter(val => val.name?.toLowerCase().includes(search.toLowerCase()))
-  }
+  // const searchProduct =  
   
 
   return (
@@ -39,7 +37,7 @@ const AdminProduct = () => {
       </div>
       
       
-      <ListProduct listProduct={searchProduct(listProduct)} />
+      <ListProduct listProduct={listProduct} />
       
     </div>
   );

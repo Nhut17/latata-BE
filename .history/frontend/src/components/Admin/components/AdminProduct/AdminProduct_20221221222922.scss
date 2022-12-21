@@ -20,7 +20,16 @@
     }
 }
 
-
+.admin-product{
+    
+    .input-search{
+        input{
+            padding: 8px 15px;
+            border-radius: 8px;
+            background-color: white;
+        }
+    }
+}
 
 
 .admin-product .add-product{
@@ -35,26 +44,8 @@
 }
 .admin-product-link{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: end;
     margin-right: 6.5%;
-    .input-search{
-        margin-left: 20px;
-        position: relative;
-        .ic{
-            position: absolute;
-            font-size: 15px;
-            transform: translateY(50%);
-            bottom: 50%;
-            left: 15px;
-        }
-        input{
-            padding: 10px 40px;
-            border-radius: 8px;
-            background-color: white;
-            width: 500px;
-        }
-    }
     button{
         display: flex;
         align-items: center;
@@ -65,7 +56,6 @@
         font-weight: 400;
         margin: 20px 0;
         border-radius: 6px;
-        margin-right: 40px;
     }
 
 }

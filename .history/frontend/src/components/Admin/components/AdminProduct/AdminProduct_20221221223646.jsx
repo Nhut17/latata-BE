@@ -17,7 +17,7 @@ const AdminProduct = () => {
   },[])
 
   const searchProduct =  (list_product) => {
-      return list_product.filter(val => val.name?.toLowerCase().includes(search.toLowerCase()))
+      return list_product.filter(val => val.name.includes)
   }
   
 
@@ -39,7 +39,7 @@ const AdminProduct = () => {
       </div>
       
       
-      <ListProduct listProduct={searchProduct(listProduct)} />
+      <ListProduct listProduct={listProduct} />
       
     </div>
   );

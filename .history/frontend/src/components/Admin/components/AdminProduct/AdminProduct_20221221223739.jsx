@@ -39,7 +39,7 @@ const AdminProduct = () => {
       </div>
       
       
-      <ListProduct listProduct={searchProduct(listProduct)} />
+      <ListProduct listProduct={searchProduct()} />
       
     </div>
   );

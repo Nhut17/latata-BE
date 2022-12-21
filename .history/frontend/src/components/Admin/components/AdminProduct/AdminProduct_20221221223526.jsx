@@ -16,9 +16,7 @@ const AdminProduct = () => {
     dispatch(getProduct())
   },[])
 
-  const searchProduct =  (list_product) => {
-      return list_product.filter(val => val.name?.toLowerCase().includes(search.toLowerCase()))
-  }
+  // const searchProduct =  
   
 
   return (
@@ -29,7 +27,7 @@ const AdminProduct = () => {
       <div className="admin-product-link">
         <div className="input-search">
         <i class="fa-solid fa-magnifying-glass ic"></i>
-          <input type="text" placeholder="Tìm kiếm thông tin sản phẩm" onChange={(e) => setSearch(e.target.value)}/>
+          <input type="text" placeholder="Tìm kiếm thông tin sản phẩm" onChange={(e)}/>
         </div>
         <Link to="/admin/product/create"> 
           <button >
@@ -39,7 +37,7 @@ const AdminProduct = () => {
       </div>
       
       
-      <ListProduct listProduct={searchProduct(listProduct)} />
+      <ListProduct listProduct={listProduct} />
       
     </div>
   );

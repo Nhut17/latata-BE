@@ -44,15 +44,13 @@
         .ic{
             position: absolute;
             font-size: 15px;
-            transform: translateY(50%);
-            bottom: 50%;
-            left: 15px;
+            transform: tran;
         }
         input{
-            padding: 10px 40px;
+            padding: 8px 30px;
             border-radius: 8px;
             background-color: white;
-            width: 500px;
+            width: 300px;
         }
     }
     button{

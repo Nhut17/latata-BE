@@ -40,19 +40,15 @@
     margin-right: 6.5%;
     .input-search{
         margin-left: 20px;
-        position: relative;
         .ic{
             position: absolute;
-            font-size: 15px;
-            transform: translateY(50%);
-            bottom: 50%;
-            left: 15px;
+            fs
         }
         input{
-            padding: 10px 40px;
+            padding: 8px 15px;
             border-radius: 8px;
             background-color: white;
-            width: 500px;
+            width: 300px;
         }
     }
     button{

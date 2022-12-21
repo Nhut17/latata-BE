@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ListProduct from "./ListProduct";
@@ -10,15 +10,9 @@ const AdminProduct = () => {
   const dispatch = useDispatch();
   const { listProduct } = useSelector(state => state.product)
 
-  const [search,setSearch] = useState('')
-
   useEffect(()=> {
     dispatch(getProduct())
   },[])
-
-  const searchProduct =  (list_product) => {
-      return list_product.filter(val => val.name?.toLowerCase().includes(search.toLowerCase()))
-  }
   
 
   return (
@@ -29,7 +23,7 @@ const AdminProduct = () => {
       <div className="admin-product-link">
         <div className="input-search">
         <i class="fa-solid fa-magnifying-glass ic"></i>
-          <input type="text" placeholder="Tìm kiếm thông tin sản phẩm" onChange={(e) => setSearch(e.target.value)}/>
+          <input type="text"  />
         </div>
         <Link to="/admin/product/create"> 
           <button >
@@ -39,7 +33,7 @@ const AdminProduct = () => {
       </div>
       
       
-      <ListProduct listProduct={searchProduct(listProduct)} />
+      <ListProduct listProduct={listProduct} />
       
     </div>
   );

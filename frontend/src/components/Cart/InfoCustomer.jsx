@@ -126,13 +126,15 @@ const InfoCustomer = ({totalPrice}) => {
                     {...register('note')}  ></textarea>
             </div>
 
-            <div className='voucher'>
+            {/* <div className='voucher'>
             <i class="fa-solid fa-tag ic"></i>
             <div className="input">
             <input type="text" placeholder='Sử dụng mã giảm giá' />
             </div>
 
-            </div>
+            </div> */}
+
+
             <div className='final-total'>
             <div className="total">
             <span className="tt-price">Tổng tiền:</span>
