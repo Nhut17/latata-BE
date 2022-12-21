@@ -38,6 +38,7 @@
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.2",
+    "react-hash-scroll": "^1.4.7",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.40.0",
     "react-icons": "^4.6.0",

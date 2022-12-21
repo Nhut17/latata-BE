@@ -5,12 +5,12 @@ import Product from './Product';
 
 
 function ListProduct({listProduct}) {
-    const [quantityShow,setQuantityShow] = useState(5)
+    const [quantityShow,setQuantityShow] = useState(40)
     const [totalQuantityShow,setTotalQuantityShow] = useState(0)
 
     const handleShowMore = () => {
-        setQuantityShow( prev => prev + 5)
-        setTotalQuantityShow(prev => prev - 5)
+        setQuantityShow( prev => prev + 10)
+        setTotalQuantityShow(prev => prev - 10)
     }
 
     useEffect(() => {

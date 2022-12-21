@@ -70,19 +70,23 @@ export const sliders_home = [
 export const list_icon_opt_home = [
     {
         url: iconOpt_1,
-        content: 'Giảm Online'
+        content: 'Giảm Online',
+        link : 'giam-online'
     },
     {
         url: iconOpt_2,
-        content: 'Top Deal'
+        content: 'Top Deal',
+        link : 'top-deal'
     },
     {
         url: iconOpt_3,
-        content: 'Bão sale đồng hồ'
+        content: 'Bão sale đồng hồ',
+        link : 'bao-sale-dong-ho'
     },
     {
         url: iconOpt_4,
-        content: '24h Công nghệ'
+        content: '24h Công nghệ',
+        link : '24h-cong-nghe'
     },
 ]
 

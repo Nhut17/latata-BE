@@ -43,6 +43,9 @@ import ModalAddress from "../components/Cart/ModalAddress";
 import ProtectedRoute from "./ProtectedRoute";
 import { useSelector } from "react-redux";
 import { ViewListWatch } from "../components/Watch/ChildPage/ViewListWatch";
+import News24h from "../components/Tech24h/News24h";
+import Hoidap from "../components/Tech24h/Hoidap";
+import Gameapp from "../components/Tech24h/Gameapp";
 
 const Router = () => {
   
@@ -206,6 +209,11 @@ const Router = () => {
       
       {/* <Route path="/them-dia-chi" element={<ModalAddress/>}/> */}
 
+      {/* TECH24H */}
+
+      <Route path="/news24h" element={<News24h/>}/>
+      <Route path="/hoidap" element={<Hoidap/>}/>
+      <Route path="/gameApp" element={<Gameapp/>}/>
 
 
     </Routes>
