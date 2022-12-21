@@ -25,7 +25,7 @@ exports.newProduct = catchAsyncError( async ( req, res, next ) => {
  
         })
 
-        console.log( ret)
+        console.log('ret: '+ ret)
         const product =  await Product.create({
             ...pro,
             priceDeal,
