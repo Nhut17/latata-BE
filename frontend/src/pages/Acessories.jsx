@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../sass/Accessories/accessories.scss'
 import MainAccessories from '../components/Accessories/MainAccessories'
 import { AccessoryContext } from '../context/accessoryContext'
@@ -15,6 +15,13 @@ import { menu_speaker } from '../components/data'
 
 
 const Acessories = () => {
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+  })
+  }, [])
     
     const context = {
         sliderAccessories,

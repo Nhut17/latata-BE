@@ -42,7 +42,7 @@ const ModalCart = ({ showOrderDetail, setShowOrderDetail, data }) => {
                             <li className="data-in-modal status done">{data?.status}</li>
                         }
                         {
-                            data?.status === 'CANCELED' &&
+                            data?.status === 'CANCELLED' &&
                             <li className="data-in-modal status cancel">{data?.status}</li>
                         }
                         <li className='data-in-modal'>{data.totalPrice?.toString()

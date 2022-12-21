@@ -16,7 +16,8 @@ const ButtonNext = (props) => {
                             alignItems: 'center',
                             justifyContent: 'center',
                             transform: 'translate(-12px,-20px)',
-                            opacity:0.7
+                            opacity:0.7,
+                            zIndex : 5
                             }} ><i class="fa-solid fa-angle-right" style={{color: 'black',
                                                                             position: 'absolute',
                                                                             fontWeight: 'bold',

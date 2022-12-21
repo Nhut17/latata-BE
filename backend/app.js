@@ -15,9 +15,9 @@ app.use(cors());
 const cloudi = require('cloudinary')
 // setting up cloudinary config
 cloudi.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
+    cloud_name: 'dbhjhvgcr',
+    api_key: '581993492829265',
+    api_secret: 'sYf15Luto58liArk2cN4klOahjA',
 })
 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import MainSmartWatch from '../components/SmartWatch/MainSmartWatch'
 import '../sass/SmartWatch/smartWatch.scss'
 import { SmartWatchContext } from '../context/smartWatchContext'
@@ -18,6 +18,13 @@ const SmartWatch = () => {
     menu_watch_chain,
 
   }
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+  })
+  }, [])
 
   return (
     <div className='smart-watch'>

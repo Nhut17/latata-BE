@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { sliders_home } from '../data';
+import ButtonPrev from '../SlickSlider/ButtonPrev';
+import ButtonNext from '../SlickSlider/ButtonNext';
 
 
 const BigBanner = () => {
@@ -15,6 +17,8 @@ const BigBanner = () => {
         slidesToShow: 2,
         slidesToScroll: 1,
         autoplay: true,
+        prevArrow: <ButtonPrev />,
+        nextArrow: <ButtonNext />
       };
 
     

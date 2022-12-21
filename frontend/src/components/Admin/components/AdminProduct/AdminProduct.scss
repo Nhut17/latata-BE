@@ -1,16 +1,13 @@
 @import '../../../../sass/variables.scss';
 .admin-product-list{
     .image-product{
-        // padding-left: 50px;
-        width: 80px;
-        height: 70px;
-        position: relative;
-       
+      
+      
         img{
-            position: absolute;
-            left: 60px;
-            width: 100%;
-            height: 100%;
+            
+            width: 100px;
+            height: 70px;
+           
         }
     }
     .name-product{

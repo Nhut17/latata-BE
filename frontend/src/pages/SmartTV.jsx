@@ -18,6 +18,12 @@ const SmartTV = () => {
     dispatch(getProductCate(id))
   },[])
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+  })
+  }, [])
 
   return (
     <div className='smart-tv'>
