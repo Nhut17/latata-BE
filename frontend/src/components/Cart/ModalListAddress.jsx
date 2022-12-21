@@ -58,16 +58,19 @@ const ModalListAddress = ({ showAddress, setShowAddress, listAddress }) => {
                 
               
             </div>
+            
+            <div className='submit-address'>
+                <button  style={{
+                    padding: '8px 15px',
+                    marginTop: 15,
+                    borderRadius: 5  
+                }}
+                    onClick={handleSubmit}
+                >XÁC NHẬN</button>
 
+            </div>
 
-            <button style={{
-                padding: '8px 15px',
-                marginTop: 15,
-                backgroundColor: '#e4e4e4',
-                borderRadius: 8  
-            }}
-                onClick={handleSubmit}
-            >XÁC NHẬN</button>
+            
 
     </Modal >
 

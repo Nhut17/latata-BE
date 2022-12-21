@@ -128,7 +128,7 @@ const Introduce = ({data}) => {
             </div>
 
             <div className="product-detail-content">
-                <div className="product-option">
+                {/* <div className="product-option">
                       {option.map(val => (
                         <button
                         id={val.id}
@@ -141,7 +141,7 @@ const Introduce = ({data}) => {
                         }
                         >{val.ram}GB</button>
                       ))}
-                </div>
+                </div> */}
 
                 <div className="product-price-location">
                     <div className="location">

@@ -46,7 +46,8 @@ const Header = () => {
   }
 
   return (
-    <header>
+    <div className="header">
+      <header>
       <div className="container">
         <div className="top-header">
           {
@@ -56,23 +57,26 @@ const Header = () => {
             <Link>
             <div className="profile">
               <div className="login-complete">
-                <div className="avatar">
+                <div className="avatar flex">
 
                     <img src={currentUser?.avatar?.url} alt="" />
-
+                    <span className="success-login">{currentUser?.name}</span>
                    
 
                   </div>
-                  <p className="success-login" ><span>{currentUser?.name}</span></p> 
+                  {/* <p className="success-login" ><span>{currentUser?.name}</span></p>  */}
+
+
+                    <div className="dropdown-profile">
+                    <ul>
+                      <Link to='/profile'><li>Thông tin cá nhân</li></Link>
+                      <Link to='/myOrder'><li>Đơn hàng của tôi</li></Link>           
+                      <li onClick={handleLogout}>Đăng xuất</li>
+                    </ul>  
+                  </div>  
                 </div>    
 
-                <div className="dropdown-profile">
-                  <ul>
-                    <Link to='/profile'><li>Thông tin cá nhân</li></Link>
-                    <Link to='/myOrder'><li>Lịch sử mua hàng</li></Link>           
-                    <li onClick={handleLogout}>Đăng xuất</li>
-                  </ul>  
-                </div>  
+                
             </div>      
             </Link>
 
@@ -143,6 +147,7 @@ const Header = () => {
         </div>
       </div>
     </header>
+    </div>
   )
 }
 
