@@ -24,7 +24,6 @@ import { logoutUser, resetActionUser } from '../redux/User/userSlice'
 import axios from 'axios'
 import { resetActionOrder } from '../redux/Order/orderSlice'
 import ScrollToTop from '../components/Home/ScrollToTop'
-import ListPhone from '../components/Home/ListPhone'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -156,7 +155,7 @@ useEffect(() =>{
           <Banner banner={bannerGalaxy} />
         </div>
 
-        <ListPhone />
+        <ListPhone
 
         <GreatDeals/>
         <Tech24h/>

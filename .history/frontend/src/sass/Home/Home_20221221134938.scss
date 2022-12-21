@@ -266,21 +266,6 @@
 
         .list-phone{
             height: auto;
-            .title{
-                display: flex;
-                align-items: center;
-                .img{
-                    width: 50px;
-                    padding-right: 15px;
-                    img{
-                        width: 100%;
-                    }
-                }
-                h3{
-                    font-size: 28px;
-                    color: #F49D1A;
-                }
-            }
             .list-product{
                 padding-top: 30px;
                 display: flex;
@@ -295,9 +280,6 @@
                     background: white;
                     border-radius: 4px;
                     padding: 30px;
-                    .name-product{
-                        width: 200px;
-                    }
                     .image{
                         img{
                             width: 100%;
@@ -356,20 +338,9 @@
 
         .recommend-today{
             margin: 30px auto;
-            .title{
-                display: flex;
-                align-items: center;
-                .img{
-                    width: 40px;
-                    img{
-                        width: 100%;
-                    }
-                }
-
-                h3{
-                    padding-right: 10px;
-                    font-size: 28px;
-                }
+            h3{
+                font-size: 28px;
+               // margin-bottom: 10px;
             }
             
             .list-product{

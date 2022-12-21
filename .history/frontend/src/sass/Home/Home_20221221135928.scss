@@ -276,10 +276,6 @@
                         width: 100%;
                     }
                 }
-                h3{
-                    font-size: 28px;
-                    color: #F49D1A;
-                }
             }
             .list-product{
                 padding-top: 30px;
@@ -295,9 +291,6 @@
                     background: white;
                     border-radius: 4px;
                     padding: 30px;
-                    .name-product{
-                        width: 200px;
-                    }
                     .image{
                         img{
                             width: 100%;
@@ -360,14 +353,13 @@
                 display: flex;
                 align-items: center;
                 .img{
-                    width: 40px;
+                    width: 30px;
                     img{
                         width: 100%;
                     }
                 }
 
                 h3{
-                    padding-right: 10px;
                     font-size: 28px;
                 }
             }

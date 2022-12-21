@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import ListProduct from '../ListProduct'
-import icon from '../../assets/images/flash-sale.png'
+import icon from '../../assets/images/'
 const RecommendToday = () => {
 
   const {listProduct} = useSelector(state => state.product)
@@ -15,10 +15,8 @@ const RecommendToday = () => {
   return (
     <div className='recommend-today'>
       <div className="title">
-        <h3>TOP DEAL</h3> 
-        <div className="img">
-          <img src={icon} alt="" />
-        </div>
+
+        <h3>TOP DEAL</h3>
       </div>
         
         <ListProduct quantity={10}

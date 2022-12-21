@@ -15,6 +15,7 @@ const RecommendToday = () => {
   return (
     <div className='recommend-today'>
       <div className="title">
+       
         <h3>TOP DEAL</h3> 
         <div className="img">
           <img src={icon} alt="" />
