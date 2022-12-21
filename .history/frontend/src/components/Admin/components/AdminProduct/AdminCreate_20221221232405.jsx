@@ -109,7 +109,7 @@ function AdminCreate(props) {
     dataS.set('subCate', subCate)
     dataS.set('stock', stock)
 
-    dispatch(createProduct(dataS))
+    // dispatch(createProduct(dataS))
 
 
 
@@ -200,7 +200,13 @@ function AdminCreate(props) {
           <input {...register("promotion",{
             required : true,
             max: 100,
-           
+            validate: () => {
+              const value = getValues('promotion')
+              if(value >= 100)
+              {
+                return 'Giảm giá vượt giới hạn'
+              }
+            }
           })} placeholder="" type="number" />
 
           {
@@ -210,9 +216,12 @@ function AdminCreate(props) {
 
           {
             errors.promotion?.type === 'max' &&
-            <span className='err-msg'>Giảm giá vượt giới hạn</span> 
+            <span className='err-msg'>Giảm </span> 
           }       
-               
+          {
+            errors.promotion?.type === 'pattern' &&
+            <span className='err-msg'>{errors.promotion?.message}</span> 
+          }       
         </div>
 
         <div className="input-group">

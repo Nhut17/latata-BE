@@ -109,7 +109,7 @@ function AdminCreate(props) {
     dataS.set('subCate', subCate)
     dataS.set('stock', stock)
 
-    dispatch(createProduct(dataS))
+    // dispatch(createProduct(dataS))
 
 
 

@@ -109,7 +109,7 @@ function AdminCreate(props) {
     dataS.set('subCate', subCate)
     dataS.set('stock', stock)
 
-    dispatch(createProduct(dataS))
+    // dispatch(createProduct(dataS))
 
 
 
@@ -212,7 +212,10 @@ function AdminCreate(props) {
             errors.promotion?.type === 'max' &&
             <span className='err-msg'>Giảm giá vượt giới hạn</span> 
           }       
-               
+          {
+            errors.promotion?.type === 'pattern' &&
+            <span className='err-msg'>{errors.promotion?.message}</span> 
+          }       
         </div>
 
         <div className="input-group">

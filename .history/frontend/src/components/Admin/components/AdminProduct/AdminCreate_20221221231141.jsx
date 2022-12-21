@@ -15,7 +15,7 @@ function AdminCreate(props) {
     const {
       register,
       handleSubmit,
-      getValues,
+      getValues
       formState: { errors }
     } = useForm()
 
@@ -133,8 +133,7 @@ function AdminCreate(props) {
           <p className="title">Tên sản phẩm</p>
        
           <input {...register("name",{
-            required : true,
-            
+            required : true
 
           })} />
 
@@ -190,29 +189,21 @@ function AdminCreate(props) {
           />
 
           {
-            errors.price?.type === 'required' &&
-            <span className='err-msg'>Mời bạn nhập giá sản phẩm</span> 
+            errors.name?.type === 'required' &&
+            <span className='err-msg'>Mời bạn nhập Giá sản phẩm</span> 
           }
         </div>
 
         <div className="input-group">
           <span className="title">Giảm giá</span>
           <input {...register("promotion",{
-            required : true,
-            max: 100,
-           
+            required : true
           })} placeholder="" type="number" />
 
           {
-            errors.promotion?.type === 'required' &&
-            <span className='err-msg'>Mời bạn nhập  giảm giá sản phẩm</span> 
+            errors.name?.type === 'required' &&
+            <span className='err-msg'>Mời bạn nhập Giá sản phẩm</span> 
           }       
-
-          {
-            errors.promotion?.type === 'max' &&
-            <span className='err-msg'>Giảm giá vượt giới hạn</span> 
-          }       
-               
         </div>
 
         <div className="input-group">
@@ -222,8 +213,8 @@ function AdminCreate(props) {
           })} placeholder="" type="number" />
 
           {
-            errors.stock?.type === 'required' &&
-            <span className='err-msg'>Mời bạn nhập số lượng sản phẩm</span> 
+            errors.name?.type === 'required' &&
+            <span className='err-msg'>Mời bạn nhập Giá sản phẩm</span> 
           } 
         </div>
 

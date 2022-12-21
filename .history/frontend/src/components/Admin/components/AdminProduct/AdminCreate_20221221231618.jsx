@@ -133,8 +133,7 @@ function AdminCreate(props) {
           <p className="title">Tên sản phẩm</p>
        
           <input {...register("name",{
-            required : true,
-            
+            required : true
 
           })} />
 
@@ -199,20 +198,23 @@ function AdminCreate(props) {
           <span className="title">Giảm giá</span>
           <input {...register("promotion",{
             required : true,
-            max: 100,
-           
+            validate: () => {
+              const value = getValues('promotion')
+              if(value >= 100)
+              {
+                return 'Giảm giá vượt giới hạn'
+              }
+            }
           })} placeholder="" type="number" />
 
           {
             errors.promotion?.type === 'required' &&
             <span className='err-msg'>Mời bạn nhập  giảm giá sản phẩm</span> 
           }       
-
           {
-            errors.promotion?.type === 'max' &&
-            <span className='err-msg'>Giảm giá vượt giới hạn</span> 
+            errors.promotion?.type === 'pattern' &&
+            <span className='err-msg'>{errors}</span> 
           }       
-               
         </div>
 
         <div className="input-group">
