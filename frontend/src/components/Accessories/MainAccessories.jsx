@@ -22,8 +22,7 @@ const MainAccessories = () => {
     dispatch(getProductCate(id))
   },[])
 
-  // const listSale = listProductCate.filter(val => val.promotion >= 50)
-  console.log(listProductCate)
+  const listSale = listProductCate?.filter(val => val.promotion >= 50)
 
   
 
@@ -42,7 +41,7 @@ const MainAccessories = () => {
             <FeaturedListCate />
             <ListBrand />
 
-            <BlockSaleProduct listProduct={listProductCate} />
+            <BlockSaleProduct listProduct={listSale} />
 
            <ListBlockAccessories listProduct={listProductCate} />
 

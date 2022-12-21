@@ -418,6 +418,11 @@
         }
         .update-address{
             color: #08f;
+           span{
+                &:hover{
+                    text-decoration: underline;
+            }
+           }
             
         }
         .gray{
