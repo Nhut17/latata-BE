@@ -4,6 +4,7 @@ import '../../sass/MainSub/MainSub.scss'
 import MainContentSub from './MainContentSub'
 
 const MainSub = ({list_product,parentCate,childCate,sliders,banners}) => {
+  
   return (
     <div className='main-sub'>
         

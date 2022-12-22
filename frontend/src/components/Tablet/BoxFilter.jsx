@@ -2,7 +2,7 @@ import React from 'react'
 import flash from '../../assets/images/flash.png'
 
 
-const BoxFilter = ({totalQuantity,childCate}) => {
+const BoxFilter = ({totalQuantity,childCate, functions}) => {
   return (
     <div className='box-filter'>
 
@@ -30,8 +30,7 @@ const BoxFilter = ({totalQuantity,childCate}) => {
 
                 <div className="select-sort">
                 <span>Xếp theo: </span>
-                <select name="" id="arrange" >
-                    <option value="">Bán chạy</option>
+                <select name="" id="arrange"  >
                     <option value="percent_increase">% Giảm</option>
                     <option value="decrease">Giá cao đến thấp</option>
                     <option value="increase">Giá thấp đến cao</option>

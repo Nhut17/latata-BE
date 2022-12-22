@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../sass/Home/Home.scss'
 import BigBanner from '../components/Home/BigBanner'
 import FlashSale from '../components/Home/FlashSale'
@@ -121,6 +121,8 @@ useEffect(() =>{
     dispatch(getProduct())
 },[])
 
+const shoppingTrendsRef = useRef()
+
   return (
     <div className="home">
             <ToastContainer />
@@ -139,7 +141,7 @@ useEffect(() =>{
 
           <Banner banner={banner_opt} />
         </div>
-        <OptionPromote />
+        <OptionPromote  />
 
         <RecommendToday/>
         
@@ -158,7 +160,7 @@ useEffect(() =>{
 
         <ListPhone />
 
-        <GreatDeals/>
+        {/* <GreatDeals/> */}
         <Tech24h/>
       </div>
 

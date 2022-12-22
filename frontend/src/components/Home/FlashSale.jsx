@@ -12,7 +12,7 @@ const FlashSale = () => {
 
 
   return (
-    <div className='flash-sales'>
+    <div className='flash-sales' id='shoppingtrends'>
         <div className="title-flash">
             <div className="title">
                 {/* <span>FL<i class="fa-solid fa-bolt icon"></i>SH SALE</span> */}

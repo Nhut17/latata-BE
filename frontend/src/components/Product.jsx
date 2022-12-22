@@ -29,29 +29,29 @@ const Product = ({data}) =>{
         </div>
 
         <div className="name-product">
-          <p>{data.name}</p>
+          <p>{data?.name}</p>
         </div>
 
         <div className="price-old">
         {
-                data.promotion > 0 ? (
+                data?.promotion > 0 ? (
                   <div className="">
                         <span className='initialPrice'>
-                  {data.price
+                  {data?.price
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span className='currency'>&#8363;</span>
                 </span>
-                  <span className='discount' >-{data.promotion}%</span>
+                  <span className='discount' >-{data?.promotion}%</span>
                   </div>
                 ) : ('')
               }
         </div>
 
-        <p className='priceDeal'>{priceDeal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+        <p className='priceDeal'>{priceDeal?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
               <span className='currency'>&#8363;</span>
             </p>
 
-        <StarRating rating={data.ratings} />
+        <StarRating rating={data?.ratings} />
             
           {
             data.stock === 0 && 
