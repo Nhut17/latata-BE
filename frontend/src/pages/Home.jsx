@@ -40,6 +40,13 @@ const Home = () => {
   })
   }, [])
 
+  useEffect(() => {
+   
+    dispatch(resetActionUser())
+    dispatch(resetActionOrder())
+    
+},[])
+
   useEffect(() =>{
     if(successLogin)
     {
@@ -57,14 +64,7 @@ const Home = () => {
   },[])
 
 
-  useEffect(() => {
-   
-    dispatch(resetActionUser())
-    dispatch(resetActionOrder())
 
-   
-    
-},[])
 
 // scroll
 useEffect(() =>{

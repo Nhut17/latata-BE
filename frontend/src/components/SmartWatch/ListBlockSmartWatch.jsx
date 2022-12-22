@@ -8,9 +8,9 @@ const ListBlockSmartWatch = ({listProduct}) => {
 
     const context = useContext(SmartWatchContext)
 
-    const renderSubProduct = (list_product, sub) => {
-      return list_product.filter(val => val.subCate?.includes(sub))
-    }
+    const subProduct = (list_product, sub) => {
+      return list_product?.filter(val => val.subCate?.toLowerCase().includes(sub.toLowerCase()))
+  }
 
   return (
     <>
@@ -19,36 +19,41 @@ const ListBlockSmartWatch = ({listProduct}) => {
         banner={context.banner_block_product_smart_watch.banner_fashion}
         linkTo={'/'}
         menuTop={context.menu_fashion}
-        title={'ĐỒNG HỒ THỜI TRANG'}
-        listProduct={listProduct}
+        title={'Thời trang sành điệu'}
+        listProduct={subProduct(listProduct,'Thời trang sành điệu')}
+        category={'Smartwatch'}
          />
     <BlockItemProduct 
         banner={context.banner_block_product_smart_watch.banner_utility}
         linkTo={'/'}
         menuTop={context.menu_utility}
-        title={'ĐA TỆN ÍCH'}
-        listProduct={listProduct}
+        title={'Đa tiện ích'}
+        listProduct={subProduct(listProduct,'Đa tiện ích')}
+        category={'Smartwatch'}
          />
     <BlockItemProduct 
         banner={context.banner_block_product_smart_watch.banner_sport}
         linkTo={'/'}
         menuTop={context.menu_sport}
-        title={'THỂ THAO'}
-        listProduct={listProduct}
+        title={'Thể thao chuyên nghiệp'}
+        listProduct={subProduct(listProduct,'Thể thao chuyên nghiệp')}
+        category={'Smartwatch'}
          />
     <BlockItemProduct 
         banner={context.banner_block_product_smart_watch.banner_children}
         linkTo={'/'}
         menuTop={[]}
-        title={'ĐỒNG HỒ TRẺ EM'}
-        listProduct={listProduct}
+        title={'Đồng hành cùng bé'}
+        listProduct={subProduct(listProduct,'Đồng hành cùng bé')}
+        category={'Smartwatch'}
          />
     <BlockItemProduct 
         banner={context.banner_block_product_smart_watch.banner_watch_chain}
         linkTo={'/'}
         menuTop={context.menu_watch_chain}
-        title={'DÂY ĐỒNG HỒ'}
-        listProduct={listProduct}
+        title={'Dây đồng hồ'}
+        listProduct={subProduct(listProduct,'Đây đồng hồ')}
+        category={'Smartwatch'}
          />
 
     </>

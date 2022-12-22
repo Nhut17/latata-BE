@@ -3,8 +3,16 @@ import MenuTopBlock from './MenuTopBlock'
 import ListProduct from '../ListProduct'
 import { Link } from 'react-router-dom'
 import '../../sass/BlockProduct/blockItemProduct.scss'
+import { useSelector } from 'react-redux'
 
-const BlockItemProduct = ({banner,menuTop,linkTo,title,listProduct}) => {
+const BlockItemProduct = ({banner,menuTop,linkTo,title,listProduct,category}) => {
+
+  const { listCate } = useSelector(state => state.category)
+
+  const cate = listCate.filter(val => val.name?.toLowerCase() === category?.toLowerCase())
+
+  const id = cate[0]?._id
+
   return (
     <div className='block-item-product'>
         <div className="banner">
@@ -20,7 +28,11 @@ const BlockItemProduct = ({banner,menuTop,linkTo,title,listProduct}) => {
         <ListProduct quantity={10}
                       list_product={listProduct} />
 
-        {/* <button className='btnViewMore'><Link to={`${linkTo}`}>XEM TẤT CẢ CÁC {title} CHÍNH HÃNG</Link></button> */}
+        
+        {
+          title !== 'Phụ kiện gaming' &&
+        <button className='btnViewMore'><Link to={`/${category}/${title}/${id}`}>XEM TẤT CẢ CÁC {title?.toUpperCase()} CHÍNH HÃNG</Link></button>
+        }
 
     </div>
   )
