@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import '../../sass/Profile/profile.scss'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { resetPassword, updatePassword } from '../../redux/User/userSlice';
 const ResetPassword = () => {
     const {   register,
         handleSubmit,
@@ -43,14 +42,9 @@ const ResetPassword = () => {
          }
  
      },[successUpdatePassword])
-     
-     useEffect(() => {
-        dispatch(resetPassword())
-     },[])
 
     const onHandleSubmit = (formData) => {
-        console.log(formData)
-        dispatch(updatePassword(formData))
+        // dispatch(formData)
     }
 
     return (

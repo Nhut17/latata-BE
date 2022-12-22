@@ -213,7 +213,7 @@ export const updateProfile = createAsyncThunk('user/update',
 
 
 // update password
-export const updatePassword = createAsyncThunk('user/updatePassword',
+export const updatePassword = createAsyncThunk('user/password/update',
         async(data, thunkAPI) => {
             try {
                 const token = localStorage.getItem('token')
@@ -228,7 +228,7 @@ export const updatePassword = createAsyncThunk('user/updatePassword',
                     password
                 }
 
-
+                console.log(update)
                 const res = await api.put('/api/v1/password/update',update,config)
 
                 
@@ -314,8 +314,12 @@ const userSlice = createSlice({
         state.successUpdate = true
     },
        [updatePassword.fulfilled] : (state,action) => {
-            state.successUpdatePassword = false
+            state.successUpdatePassword = true
             state.errorUpdatePassword = false
+    },
+       [updatePassword.rejected] : (state,action) => {
+            state.successUpdatePassword = false
+            state.errorUpdatePassword = true
     },
 
     }
