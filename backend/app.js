@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
-if(process.env.NODE_ENV !== 'PRODUCTION') require('dotenv').dotenv.config({path: 'backend/config/config.env'})
+require('dotenv').config()
 
 const cloudi = require('cloudinary')
 // setting up cloudinary config
@@ -21,6 +21,7 @@ cloudi.config({
     api_key: '581993492829265',
     api_secret: 'sYf15Luto58liArk2cN4klOahjA',
 })
+
 
 
 // import all routes
