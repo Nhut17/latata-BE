@@ -12,6 +12,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
+require('dotenv').config()
+
 const cloudi = require('cloudinary')
 // setting up cloudinary config
 cloudi.config({
@@ -37,6 +39,16 @@ app.use('/api/v1',order)
 app.use('/api/v1',category)
 app.use('/api/v1',cart)
 app.use('/api/v1',address)
+
+const path = require('path')
+
+// if(process.env.NODE_ENV === 'PRODUCTION'){
+//     app.use(express.static(path.join(__dirname,'../frontend/build')))
+
+//     app.get('*',(req, res) =>{
+//         res.sendFile(path.resolve(__dirname,'../frontend/build/index.html'))
+//     })
+// }
 
 
 // Middleware to handle errors
