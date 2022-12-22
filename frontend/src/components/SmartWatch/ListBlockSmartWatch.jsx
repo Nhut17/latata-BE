@@ -52,7 +52,7 @@ const ListBlockSmartWatch = ({listProduct}) => {
         linkTo={'/'}
         menuTop={context.menu_watch_chain}
         title={'Dây đồng hồ'}
-        listProduct={subProduct(listProduct,'Đây đồng hồ')}
+        listProduct={subProduct(listProduct,'Dây đồng hồ')}
         category={'Smartwatch'}
          />
 
