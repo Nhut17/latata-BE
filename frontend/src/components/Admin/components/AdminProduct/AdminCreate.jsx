@@ -205,11 +205,11 @@ function AdminCreate(props) {
 
           {
             errors.promotion?.type === 'required' &&
-            <span className='err-msg'>Mời bạn nhập  giảm giá sản phẩm</span> 
+            <span className='err-msg'>Mời bạn nhập giảm giá sản phẩm</span> 
           }       
 
           {
-            errors.promotion?.type === 'max' &&
+            errors.promotion?.type >= 'max' &&
             <span className='err-msg'>Giảm giá vượt giới hạn</span> 
           }       
                
