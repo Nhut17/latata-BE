@@ -7,12 +7,12 @@ const LineStrap = ({linestrap, listProduct,category,sub}) => {
       <div className='line-strap flex'>
       <div className="width-line-strap flex">
         <h4>Dây da đồng hồ</h4>
-        <ul className='flex'>
+        {/* <ul className='flex'>
             <span>Bề rộng dây:</span>
             {linestrap.map(width => (
                 <li className='blue'>{width}<span>mm</span></li>
             ))}
-        </ul>
+        </ul> */}
       </div>
       <Link 
         to={`/${category}/${sub}/5`} className="view-more blue">
@@ -22,7 +22,7 @@ const LineStrap = ({linestrap, listProduct,category,sub}) => {
 
       <div className="product-line-strap flex">
           {listProduct.map(item =>(
-            <div className="product">
+            <div className="product" style={{textAlign : 'center'}}>
               <img src={item?.images[0]?.url} alt="" />
               <p>{item.name}</p>
             </div>

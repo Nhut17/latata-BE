@@ -8,7 +8,13 @@ const Tech24h = () => {
 
   return (
     <div className='tech24h' id='tech24hs'>
-        <h3>24H Công Nghệ</h3>
+      <div className="title flex">
+        <img src="https://res.cloudinary.com/dx8xengfd/image/upload/v1671690572/alarm-clock-icon-vector-illustration_618588-82_1-removebg-preview_ku6qux.png" alt="" style={{
+          width : 30,
+          height: 30,
+        }} />
+        <h3 style={{color : '#E6B325'}}>24H Công Nghệ</h3>
+      </div>
       <div className="list-news flex j-between">
         <Link to='/news24h' className="news">
             <img src='https://cdn.tgdd.vn/Files/2021/10/20/1392281/dienthoaivivototnhat20222_800x450-600x400.jpg' alt="" />

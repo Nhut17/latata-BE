@@ -94,8 +94,8 @@ function ListWatchProduct({listProduct})
                         <img src={slide?.images[0]?.url} alt="Slider"/>
 
                         <div className="detail-product">
-                              <h3>{slide?.category}</h3>
-                              <p id='nameproduct'>{slide.nameproduct}</p>
+                              <h3>{slide?.name}</h3>
+                              {/* <p id='nameproduct'>{slide.nameproduct}</p> */}
                               <p className='price-old'>
                                    <del>{slide?.price
                                     .toString()

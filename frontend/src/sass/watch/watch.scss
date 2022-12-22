@@ -301,6 +301,13 @@
             .detail-product {
                 text-align: center;
                 margin-top: 30px;
+                h3{
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    margin: auto 10px 10px 10px ;
+                }
 
                 #nameproduct {
                     margin: 5px auto;
@@ -373,6 +380,8 @@
         p {
             margin-top: 10px;
             text-align: center;
+            font-size: 17px;
+            font-weight: bold;
         }
 
         padding-right: 30px;

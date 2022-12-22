@@ -54,9 +54,9 @@ const OrderList = ({ data }) => {
           
             <div className='summary-order flex j-between'>
                 
-                <p className='summary-address'>Địa chỉ:<b>{data.address}</b></p>
-                <p className='summary-date'>Ngày đặt: <b>{data.createAt}</b></p>
-                <p className='summary-phone'>Số điện thoại: <b>{data.phoneNo}</b></p>
+                <p className='summary-address'>Địa chỉ:{data.address}</p>
+                <p className='summary-date'>Ngày đặt: {data.createAt}</p>
+                <p className='summary-phone'>Số điện thoại:{data.phoneNo}</p>
                
 
                 <p className='summary-total-price'>Tổng tiền: {data.totalPrice.toString()
