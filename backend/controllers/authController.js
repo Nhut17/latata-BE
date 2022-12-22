@@ -97,18 +97,18 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
 exports.forgotPassword = catchAsyncError(async (req, res, next) => {
     const user = await User.findOne({
         email: req.body.email
-    });                                 // 1
+    });                               
 
-    if (!user) {                        // 2
-        return next(new ErrorHandler('User not found with this mail', 404)) // 3
+    if (!user) {                       
+        return next(new ErrorHandler('User not found with this mail', 404)) 
     }
 
      // Get reset token
      const resetToken = user.getResetPasswordToken();
 
     // generate otp
-    const otp = Math.floor((Math.random() * 100000) + 1)    // 4
-    const optData = await OTP.create({                      // 5
+    const otp = Math.floor((Math.random() * 100000) + 1)    
+    const optData = await OTP.create({                      
         email: req.body.email,
         otp: otp,
         resetToken: resetToken,
@@ -116,22 +116,23 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
     })
 
 
-    await user.save({                                       // 6
+    await user.save({                                       
         validateBeforeSave: false
     })
 
-    try {       // 7
+    try {       
         await sendEmail({
             email: user.email,
             subject: 'RESET PASSWORD',
-            message: otp                     // 8
+            message: otp                     
         })
+
         res.status(200).json({
             success: true,
             message: `Email sent to ${user.email}`
-        })              // 9
+        })              
 
-    } catch (error) {   // 10
+    } catch (error) {   
         user.resetPasswordToken = undefined;
         user.resetPasswordExpire = undefined;
 
@@ -139,9 +140,9 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
             validateBeforeSave: false
         });
       
-        return next(new ErrorHandler(error.message, 500))   // 11
+        return next(new ErrorHandler(error.message, 500))   
     }   
-})  // 12
+})  
 
 exports.verifyOtp = catchAsyncError(async (req, res, next) => {
 
