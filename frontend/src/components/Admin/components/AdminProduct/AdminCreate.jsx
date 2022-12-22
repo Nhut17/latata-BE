@@ -199,7 +199,7 @@ function AdminCreate(props) {
           <span className="title">Giảm giá</span>
           <input {...register("promotion",{
             required : true,
-            max: 100,
+            maxPromotion : (val) => parseFloat(val) >= 100
            
           })} placeholder="" type="number" />
 
@@ -209,7 +209,7 @@ function AdminCreate(props) {
           }       
 
           {
-            errors.promotion?.type >= 'max' &&
+            errors.promotion  && errors.promotion?.type === 'maxPromotion' &&
             <span className='err-msg'>Giảm giá vượt giới hạn</span> 
           }       
                
