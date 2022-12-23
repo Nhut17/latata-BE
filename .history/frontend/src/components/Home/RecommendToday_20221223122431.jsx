@@ -12,7 +12,7 @@ const RecommendToday = () => {
 
   const topDeal = listProduct.slice().sort((a,b) =>  b.promotion - a.promotion)
 
-  // console.log(topDeal)
+  console.log(topDeal)
 
   // const listDeal = topDeal.filter(val => val.promotion >= 1)
 

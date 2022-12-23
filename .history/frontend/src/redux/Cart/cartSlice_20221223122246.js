@@ -23,7 +23,7 @@ export const addCart = createAsyncThunk('cart/add',
 
                         const res = await api.post('/api/v1/cart/add',data,config)
                       
-                        thunkAPI.dispatch(getCartUser())
+                        thunkAPI.dispatch(getCart)
 
                         return res.data
 
