@@ -61,13 +61,7 @@ const Home = () => {
           theme: "light",
           });
 
-          const timer = setTimeout(() => {
-            dispatch(resetActionUser())
-          },1500)
-
-          return () => {
-            clearTimeout(timer)
-          }
+          const timer = setTime
     }
   },[])
 

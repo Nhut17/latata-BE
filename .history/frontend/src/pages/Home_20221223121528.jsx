@@ -62,12 +62,8 @@ const Home = () => {
           });
 
           const timer = setTimeout(() => {
-            dispatch(resetActionUser())
-          },1500)
 
-          return () => {
-            clearTimeout(timer)
-          }
+          },[])
     }
   },[])
 
