@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors({
-    origin: ["http://localhost:3000","https://latata.onrender.com/"],
+    origin: ["http://localhost:3000","https://latata-fe-vert.vercel.app/"],
 }));
 
 require('dotenv').config()
