@@ -101,7 +101,7 @@ const productSchema = new mongoose.Schema({
             },
             commentAt: {
                 type: String,
-                default: moment.tz(date.getTime(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')
+                default: moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)
             }
 
         }
@@ -112,7 +112,7 @@ const productSchema = new mongoose.Schema({
     },
     createdAt: {
         type: String,
-        default: moment.tz(date.getTime(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')
+        default: moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)
     },
     
 

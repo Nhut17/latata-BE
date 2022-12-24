@@ -141,7 +141,9 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
     if(req.body.status === 'DELIVERING')   
     {
         const date = new Date()             
-        order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')            
+        order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)
+        
+        console.log(order.deliveredAt)
 
         // send email confirm order
         try{                   
