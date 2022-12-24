@@ -136,18 +136,12 @@ export const decreaseQuantity = createAsyncThunk('cart/delete',
 const cartSlice = createSlice({
     name: "cart",
     initialState,
-    reducers:{
-        resetCart: (state,action) => {
-            state.listCartUser = null
-        }
-    },
+    reducers:
     extraReducers:{
         [getCartUser.fulfilled] : (state,action) =>{
             state.listCartUser = action.payload
         }
     }
 })
-
-export const { resetCart} = cartSlice.actions
 
 export default cartSlice.reducer

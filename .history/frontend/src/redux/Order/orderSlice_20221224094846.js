@@ -124,8 +124,10 @@ const orderSlice = createSlice({
              state.successReview = false
              state.successOrder = false
              state.successUpdateOrder = false
+        },
+        resetCart: (state,action) => {
+            state
         }
-       
     },
     extraReducers: {
         [createOrder.fulfilled] : (state,action) =>{

@@ -45,7 +45,7 @@ const Home = () => {
    
     
     dispatch(resetActionOrder())
-    // dispatch(getCartUser())
+    dispatch(getCartUser())
     
 },[])
 

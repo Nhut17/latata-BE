@@ -48,7 +48,9 @@ exports.newOrder = catchAsyncErrors( async(req, res, next) => {
     })
 
 
+    console.log(cart)
     await cart.remove()
+    console.log(cart)
     res.status(201).json({
         success: true,
         order

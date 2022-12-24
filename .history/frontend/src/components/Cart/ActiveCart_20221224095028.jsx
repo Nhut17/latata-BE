@@ -8,7 +8,6 @@ import FinalTotal from './FinalTotal'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getAddress } from '../../redux/address/addressSlice'
-import { resetCart } from '../../redux/Cart/cartSlice'
 
 const ActiveCart = ({listCartUser}) => {
 
@@ -20,7 +19,7 @@ const ActiveCart = ({listCartUser}) => {
   // toastify success order
   useEffect(() => {
     if(successOrder){
-      dispatch(resetCart())
+      dispatch(reset)
       navigate('/thanks')
       
     }

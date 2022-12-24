@@ -148,6 +148,4 @@ const cartSlice = createSlice({
     }
 })
 
-export const { resetCart} = cartSlice.actions
-
 export default cartSlice.reducer

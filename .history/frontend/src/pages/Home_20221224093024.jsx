@@ -25,7 +25,6 @@ import axios from 'axios'
 import { resetActionOrder } from '../redux/Order/orderSlice'
 import ScrollToTop from '../components/Home/ScrollToTop'
 import ListPhone from '../components/Home/ListPhone'
-import { getCartUser } from '../redux/Cart/cartSlice'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -45,7 +44,7 @@ const Home = () => {
    
     
     dispatch(resetActionOrder())
-    // dispatch(getCartUser())
+    dis
     
 },[])
 

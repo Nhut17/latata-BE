@@ -125,7 +125,6 @@ const orderSlice = createSlice({
              state.successOrder = false
              state.successUpdateOrder = false
         }
-       
     },
     extraReducers: {
         [createOrder.fulfilled] : (state,action) =>{

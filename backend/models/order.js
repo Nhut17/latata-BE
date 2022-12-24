@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const moment = require('moment-timezone');
 
 const { ObjectId } = mongoose.Schema
-
+const date = new Date()
 
 const orderSchema = mongoose.Schema({
     
@@ -72,7 +72,7 @@ const orderSchema = mongoose.Schema({
     },
     createAt: {
         type: String,
-        default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')
+        default: moment.tz(date.getTime(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')
     },
     user:{
         type: mongoose.Schema.Types.ObjectId,
