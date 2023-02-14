@@ -5,9 +5,7 @@ const { ObjectId } = mongoose.Schema
 const date = new Date()
 
 const timer = moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)
-// console.log('timer: ' + timer)
-// console.log('getTime: ' + date.getDate())
-// // console.log('nme: ' + moment.tz.names())
+
 
 const orderSchema = mongoose.Schema({
     
