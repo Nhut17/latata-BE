@@ -20,6 +20,9 @@ const productSchema = new mongoose.Schema({
         required: [true,  'Please enter product description'],
       
     },
+    information: {
+        type: String,
+    },
     promotion: {
         type: Number,
         default: 0
