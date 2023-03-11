@@ -48,20 +48,6 @@ const productSchema = new mongoose.Schema({
     subCate: {
         type: String,
     },
-    info_tech: [{
-        memory:{
-            type: String,
-        },
-        screenSize:{
-            type: String,
-        },
-        operating_system:{
-            type: String,
-        },
-        brand:{
-            type: String,
-        },
-    }],
     priceDeal: {
         type: Number,
         default: 0.0

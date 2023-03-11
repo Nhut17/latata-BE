@@ -16,7 +16,6 @@ exports.addBrand = async(req,res) => {
             logo: 'ret.secure_url'
         })
 
-        console.log('success')
 
         res.status(201).json({
             success: true,
@@ -30,5 +29,73 @@ exports.addBrand = async(req,res) => {
 
     // const brand = await Brand.
 
+
+}
+
+// delete brand
+exports.deleteBrand = async (req,res) => {
+
+    const { id } = req.params
+
+    const brand = await Brand.findById(id)
+
+    if(!brand){
+        res.status(401).json({
+            success: false,
+            message: 'ID not found',
+        }) 
+    }
+
+    try {
+        await brand.remove()
+        res.status(200).json({
+            success: true,
+            message: 'Brand removed successfully'
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
+
+
+}
+
+// update brand
+exports.updateBrand = async (req,res) => {
+    const { id } = req.params
+    
+    const idBrand = await Brand.findById(id)
+
+    if(!idBrand){
+        res.status(401).json({
+            success: false,
+            message: 'Invalid id'
+        })
+
+        return ;
+    }
+
+    const brand = await Brand.findByIdAndUpdate(id, req.body, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+    })
+
+    res.status(200).json({
+        success: true,
+        brand
+    })
+
+}
+
+
+// get brands
+exports.getBrand = async (req,res) => {
+
+    const brand = await Brand.find()
+
+    res.status(200).json({
+        brand
+    })
 
 }

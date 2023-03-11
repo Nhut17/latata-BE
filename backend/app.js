@@ -32,6 +32,7 @@ const category = require('./routes/category')
 const cart = require('./routes/cart')
 const address = require('./routes/addressDelivery')
 const brand = require('./routes/brand')
+const info_tech = require('./routes/infoTech')
 
 
 app.use('/api/v1',products)
@@ -41,6 +42,7 @@ app.use('/api/v1',category)
 app.use('/api/v1',cart)
 app.use('/api/v1',address)
 app.use('/api/v1',brand)
+app.use('/api/v1',info_tech)
 
 const path = require('path')
 
