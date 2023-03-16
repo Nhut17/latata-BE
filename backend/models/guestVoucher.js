@@ -1,10 +1,9 @@
 const mongoose = require('mongoose')
-
+const validator = require('validator');
 
 const guestVoucherSchema = mongoose.Schema({
     phone: {
-        type: Number,
-        unique: true
+        type: String,
     },
     email: {
         type: String,

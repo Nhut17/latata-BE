@@ -9,7 +9,8 @@ const voucherSchema = mongoose.Schema({
         type: String
     },
     sales: {
-        type: Number
+        type: Number,
+        
     },
     createAt: {
         type: Date,

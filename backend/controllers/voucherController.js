@@ -1,10 +1,10 @@
-const Voucher = require('../models/voucher')
+const Voucher = require('../models/Voucher')
 const moment = require('moment-timezone')
 
 // add voucher by admin
 exports.addVoucher = async (req,res) => {
 
-    // const {voucher,sales, createAt, expiredIn} = req.body
+    const {voucher,sales} = req.body
 
     const date = new Date()
 
@@ -29,37 +29,31 @@ exports.addVoucher = async (req,res) => {
     
 
     // check voucher exist ?
-    // const existedVoucher = await Voucher.findOne({
-    //     voucher: voucher?.toUpperCase()
-    // })
+    const existedVoucher = await Voucher.findOne({
+        voucher: voucher?.toUpperCase()
+    })
 
-    // if(existedVoucher)
-    // {
-    //     res.status(401).json({
-    //         success: false,
-    //         mess: 'Voucher is existed!'
-    //     })
-    //     return ;
-    // }
+    if(existedVoucher)
+    {
+        res.status(401).json({
+            success: false,
+            mess: 'Voucher is existed!'
+        })
+        return ;
+    }
 
-    // console.log('create: ', create)
-    // console.log('expire: ', expire)
 
     // create voucher db
-    // const vou = await Voucher.create({
-    //     voucher: voucher?.toUpperCase(),
-    //     sales,
-    //     createAt: create,
-    //     expiredIn: expire
-    // })
+    const vou = await Voucher.create({
+        voucher: voucher?.toUpperCase(),
+        sales,
+        createAt,
+        expiredIn
+    })
 
     res.status(201).json({
         success: true,
-        voucher: {
-            createAt,
-            expiredIn,
-            expiredTime: expiredIn.getTime() - date.getTime()
-        }
+        vou
     })
 }
 
@@ -69,7 +63,29 @@ exports.addVoucher = async (req,res) => {
 // remove voucher
 exports.removeVoucher = async (req,res) => {
 
+    const {id} = req.params
+
+    // check voucher exist
+    const succ = await Voucher.findByIdAndDelete(id)
 
 
+    res.status(201).json({
+        success: true,
+        mess: 'Deleted successfully!'
+    })
 
 }
+
+
+// get vouchers
+exports.getVouchers = async (req,res) => {
+
+    const voucher = await Voucher.find()
+
+    res.status(201).json({
+        success: true,
+        voucher
+    })
+
+}
+

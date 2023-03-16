@@ -34,6 +34,7 @@ const address = require('./routes/addressDelivery')
 const brand = require('./routes/brand')
 const info_tech = require('./routes/infoTech')
 const voucher = require('./routes/voucher')
+const guestVoucher = require('./routes/guestVoucher')
 
 
 app.use('/api/v1',products)
@@ -45,6 +46,7 @@ app.use('/api/v1',address)
 app.use('/api/v1',brand)
 app.use('/api/v1',info_tech)
 app.use('/api/v1',voucher)
+app.use('/api/v1',guestVoucher)
 
 const path = require('path')
 
