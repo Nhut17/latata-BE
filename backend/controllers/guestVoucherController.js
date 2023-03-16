@@ -5,11 +5,11 @@ const Voucher = require('../models/Voucher')
 
 exports.useVoucher = async (req,res) => {
 
-    const { voucher } = req.body
+    const { voucher,phone,email } = req.body
 
     // const phone = req.user[0].phone
     // const email = req.user[0].email
-    const email = "test@gmail.com"
+    // const email = "test@gmail.com"
 
 
     // check voucher exist ?
@@ -26,41 +26,92 @@ exports.useVoucher = async (req,res) => {
         return
     }
 
+
     // check user use initial voucher ?
     const userVoucher = await guestVoucher.findOne({
         email
     })
 
-    // console.log('initial: ', useInitialVoucher)
-    console.log('user voucher: ', userVoucher)
 
     if( !userVoucher )
     {
 
         let listVoucher = []
         listVoucher.push(voucher)
-        console.log('listVoucher: ', listVoucher)
 
-            const addUserVoucher = await guestVoucher.create({
-                phone: "037523489" ,
+        const addUserVoucher = await guestVoucher.create({
+                phone: phone ,
                 email: email,
                 listVoucher: listVoucher 
             })
+
+
+        updateQuantityVoucher(hasVoucher._id,hasVoucher)
             
 
-            res.status(201).json({
+        res.status(201).json({
                 success: true,
                 voucher: addUserVoucher
             })
-        }
-     
-    
+    } else // user use diff voucher
+    {
+        let listVoucher = userVoucher.listVoucher
 
-    // res.status(201).json({
-    //     success: true
-    // })
+        if(listVoucher.includes(voucher))
+        {
+            res.status(401).json({
+                mess:'Voucher đã được sử dụng'
+            })
+            return
+        }
+
+        // push list voucher
+        listVoucher.push(voucher)
+
+        // id user voucher
+        const id = userVoucher._id
+
+        // update
+        const update = await guestVoucher.findByIdAndUpdate(id,
+            {
+                listVoucher: listVoucher,
+            },
+            {
+                new: true,
+                runValidators: true,
+                useFindAndModify: false,
+            }
+        )
+
+        updateQuantityVoucher(hasVoucher._id,hasVoucher)
+
+        res.status(201).json({
+            success: true,
+            voucher: update
+        })
+
+    }
 
 
 }
 
+const updateQuantityVoucher = async(id,has_voucher) => {
+
+    const updateQuantity = has_voucher.quantity - 1
+
+    if(updateQuantity === 0)
+    {
+        await Voucher.findByIdAndDelete(id)
+    }
+
+    const update = await Voucher.findByIdAndUpdate(id,{
+        quantity: updateQuantity
+   
+    },{
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+    })
+
+}
 

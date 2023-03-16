@@ -1,8 +1,5 @@
 const mongoose = require('mongoose')
 
-const moment = require('moment-timezone');
-const date = new Date()
-
 
 const voucherSchema = mongoose.Schema({
     voucher: {
@@ -11,6 +8,9 @@ const voucherSchema = mongoose.Schema({
     sales: {
         type: Number,
         
+    },
+    quantity: {
+        type: Number,
     },
     createAt: {
         type: Date,

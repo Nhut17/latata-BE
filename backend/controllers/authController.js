@@ -26,9 +26,17 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
         email: email
     })
 
+    const checkPhone = await User.findOne({
+        phone: phone
+    })
+
 
     if(checkAccount){
         return next(new ErrorHandler('Email đã tồn tại', 404))
+    }
+
+    if(checkPhone){
+        return next(new ErrorHandler('Số điện thoại đã tồn tại', 404))
     }
 
     try{

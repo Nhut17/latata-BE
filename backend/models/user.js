@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
+        unique: true,
         required: [true, 'Please enter your phone ']
     },
     password:{

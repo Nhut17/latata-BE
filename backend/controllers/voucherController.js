@@ -4,7 +4,7 @@ const moment = require('moment-timezone')
 // add voucher by admin
 exports.addVoucher = async (req,res) => {
 
-    const {voucher,sales} = req.body
+    const {voucher,sales,quantity} = req.body
 
     const date = new Date()
 
@@ -47,6 +47,7 @@ exports.addVoucher = async (req,res) => {
     const vou = await Voucher.create({
         voucher: voucher?.toUpperCase(),
         sales,
+        quantity,
         createAt,
         expiredIn
     })
