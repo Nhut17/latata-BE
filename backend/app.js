@@ -33,6 +33,7 @@ const cart = require('./routes/cart')
 const address = require('./routes/addressDelivery')
 const brand = require('./routes/brand')
 const info_tech = require('./routes/infoTech')
+const voucher = require('./routes/voucher')
 
 
 app.use('/api/v1',products)
@@ -43,6 +44,7 @@ app.use('/api/v1',cart)
 app.use('/api/v1',address)
 app.use('/api/v1',brand)
 app.use('/api/v1',info_tech)
+app.use('/api/v1',voucher)
 
 const path = require('path')
 

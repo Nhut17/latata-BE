@@ -18,6 +18,7 @@ const voucherSchema = mongoose.Schema({
     expiredIn: {
         type: Date
     }
+   
 })
 
 module.exports = mongoose.model('Voucher', voucherSchema )
