@@ -53,12 +53,16 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
             }
         })
     
-       
+       console.log('ok')
         
-        sendToken(user, 200, res);
+        // sendToken(user, 200, res);
+        res.status(201).json({
+            success: true,
+            user
+        })
     }
     catch(e){
-
+        console.log(e)
     }
  
 
@@ -444,3 +448,29 @@ exports.refreshToken = catchAsyncError(async (req, res, next) => {
         refreshToken
     })
 })
+
+
+// permission staff
+exports.permissionStaff = async (req,res) => {
+
+    const { id } = req.params
+
+    // check account admin
+    // const checkAccountAdmin = await check 
+
+    const permission = await User.findByIdAndUpdate(id, {
+        role: 'staff'
+    },
+    {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+    })
+
+
+    res.status(200).json({
+        success: true,
+        user: permission
+    })
+
+}

@@ -1,5 +1,6 @@
 const Voucher = require('../models/Voucher')
 const moment = require('moment-timezone')
+const User = require('../models/user')
 
 // add voucher by admin
 exports.addVoucher = async (req,res) => {
@@ -59,8 +60,6 @@ exports.addVoucher = async (req,res) => {
 }
 
 
-
-
 // remove voucher
 exports.removeVoucher = async (req,res) => {
 
@@ -90,3 +89,16 @@ exports.getVouchers = async (req,res) => {
 
 }
 
+
+// // voucher for staff
+// exports.staffVoucher = async (req,res) => {
+
+//     const staff  = req.user[0]?.role
+
+//     if(staff === 'staff')
+//     {
+        
+//     }
+
+
+// }

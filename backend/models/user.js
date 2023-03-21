@@ -28,6 +28,9 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: [true, 'Please enter your phone ']
     },
+    birthday: {
+        type: Date
+    },
     password:{
         type: String,
         required: [true, 'Please enter your password '],
@@ -49,11 +52,12 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    wallet: {
+        type: Number,
+        default: 0
+    },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
-   
-
-
 })
 
 // Encrypting password before saving user

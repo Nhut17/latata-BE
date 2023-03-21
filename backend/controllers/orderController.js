@@ -48,9 +48,9 @@ exports.newOrder = catchAsyncErrors( async(req, res, next) => {
     })
 
 
-    console.log(cart)
+
     await cart.remove()
-    console.log(cart)
+
     res.status(201).json({
         success: true,
         order
@@ -143,7 +143,7 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
         const date = new Date()             
         order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)
         
-        console.log(order.deliveredAt)
+      
 
         // send email confirm order
         try{                   
@@ -167,6 +167,11 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
         order.orderItems.forEach( async item => {               
             await updateStock(item.productId,item.quantity)
         })
+
+        // update wallet of user
+       user.wallet += order.totalPrice
+       user.save()
+
         try{                   
 
             await sendOrder({          

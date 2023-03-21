@@ -1,7 +1,8 @@
 const guestVoucher = require('../models/guestVoucher')
 const Voucher = require('../models/Voucher')
+const User = require('../models/user')
 
-
+const schedule = require('node-schedule')
 
 exports.useVoucher = async (req,res) => {
 
@@ -115,3 +116,25 @@ const updateQuantityVoucher = async(id,has_voucher) => {
 
 }
 
+const birthdayNotification = schedule.scheduleJob({ hour: 8  }, async () => {
+
+    // list user
+    // const listUser = await User.find({
+    //     phone: '0363300308'
+    // })
+    
+    // console.log(listUser)
+
+
+})
+
+
+// const job = schedule.scheduleJob('1 * * * *', function(){
+//     console.log('The answer to life, the universe, and everything!');
+//   });
+
+// const startTime = new Date(Date.now() + 5000);
+// const endTime = new Date(startTime.getTime() + 5000);
+// const jobs = schedule.scheduleJob({ start: startTime, end: endTime, rule: '*/1 * * * * *' }, function(){
+//   console.log('Time for tea!');
+// });
