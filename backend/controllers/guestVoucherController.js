@@ -129,9 +129,9 @@ const birthdayNotification = schedule.scheduleJob({ hour: 8  }, async () => {
 })
 
 
-// const job = schedule.scheduleJob('1 * * * *', function(){
-//     console.log('The answer to life, the universe, and everything!');
-//   });
+const job = schedule.scheduleJob({minute: 17}, function(){
+    console.log('The answer to life, the universe, and everything!');
+  });
 
 // const startTime = new Date(Date.now() + 5000);
 // const endTime = new Date(startTime.getTime() + 5000);

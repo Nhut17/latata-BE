@@ -6,7 +6,12 @@ const saleFigures = require('../models/saleFigures')
 // top customer of month
 exports.topCustomer = async (req,res) => {
 
-    
+    const top_customer = await saleFigures.find()
+
+    res.status(201).json({
+        success: true,
+        top_customer
+    })
 
 }
 
@@ -20,7 +25,7 @@ const test_cron = {
 
 // lấy test_cron thay vào cronExpress_topCustomer
 
-const topCustomer = schedule.scheduleJob(cronExpress_topCustomer, async function(){
+const topCustomer = schedule.scheduleJob({minute: 29}, async function(){
 
     const list_user = await User.find()
    
@@ -37,7 +42,6 @@ const topCustomer = schedule.scheduleJob(cronExpress_topCustomer, async function
         top_customer: top_customer
     })
 
-    //check create successfully
-    console.log(saleFigure)
 
 })
+
