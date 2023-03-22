@@ -35,6 +35,7 @@ const brand = require('./routes/brand')
 const info_tech = require('./routes/infoTech')
 const voucher = require('./routes/voucher')
 const guestVoucher = require('./routes/guestVoucher')
+const saleFigure = require('./routes/saleFigures')
 
 
 app.use('/api/v1',products)
@@ -47,6 +48,7 @@ app.use('/api/v1',brand)
 app.use('/api/v1',info_tech)
 app.use('/api/v1',voucher)
 app.use('/api/v1',guestVoucher)
+app.use('/api/v1',saleFigure)
 
 const path = require('path')
 
