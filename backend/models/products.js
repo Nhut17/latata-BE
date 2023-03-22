@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const moment = require('moment-timezone');
-
+const date = new Date()
 const productSchema = new mongoose.Schema({
 
     name: {
@@ -20,6 +20,9 @@ const productSchema = new mongoose.Schema({
         required: [true,  'Please enter product description'],
       
     },
+    information: [{
+        type: String,
+    }],
     promotion: {
         type: Number,
         default: 0
@@ -45,20 +48,6 @@ const productSchema = new mongoose.Schema({
     subCate: {
         type: String,
     },
-    info_tech: [{
-        memory:{
-            type: String,
-        },
-        screenSize:{
-            type: String,
-        },
-        operating_system:{
-            type: String,
-        },
-        brand:{
-            type: String,
-        },
-    }],
     priceDeal: {
         type: Number,
         default: 0.0
@@ -101,7 +90,7 @@ const productSchema = new mongoose.Schema({
             },
             commentAt: {
                 type: String,
-                default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')
+                default: moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)
             }
 
         }
@@ -112,7 +101,7 @@ const productSchema = new mongoose.Schema({
     },
     createdAt: {
         type: String,
-        default: moment.tz(Date.now(),'Asia/Bangkok').format('HH:ma | d-MM-YYYY')
+        default: moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)
     },
     
 

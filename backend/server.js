@@ -20,7 +20,7 @@ process.on('UncaughtException', err => {
 })
 
 // setting up config file
-dotenv.config({path: 'backend/config/config.env'})
+require('dotenv').config({path: 'backend/config/config.env'})
 
 
 

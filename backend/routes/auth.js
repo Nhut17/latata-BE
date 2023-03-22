@@ -15,7 +15,8 @@ const { registerUser,
     updateUser, 
     refreshToken,
     verifyOtp,
-    deleteUser } = require('../controllers/authController')
+    deleteUser,
+    permissionStaff } = require('../controllers/authController')
 
 
 const { isAuthenticatedUser , authorizeRoles} = require('../middlewares/auth')
@@ -44,5 +45,7 @@ router.route('/admin/user/:id')
 
 
 router.route('/refresh-token').post(refreshToken)
+
+router.route('/admin/permission/:id').put(permissionStaff)
 
 module.exports = router;

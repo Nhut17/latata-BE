@@ -23,6 +23,7 @@ cloudi.config({
 })
 
 
+
 // import all routes
 const products = require('./routes/product')
 const auth = require('./routes/auth')
@@ -30,7 +31,10 @@ const order = require('./routes/order')
 const category = require('./routes/category')
 const cart = require('./routes/cart')
 const address = require('./routes/addressDelivery')
-
+const brand = require('./routes/brand')
+const info_tech = require('./routes/infoTech')
+const voucher = require('./routes/voucher')
+const guestVoucher = require('./routes/guestVoucher')
 
 
 app.use('/api/v1',products)
@@ -39,16 +43,20 @@ app.use('/api/v1',order)
 app.use('/api/v1',category)
 app.use('/api/v1',cart)
 app.use('/api/v1',address)
+app.use('/api/v1',brand)
+app.use('/api/v1',info_tech)
+app.use('/api/v1',voucher)
+app.use('/api/v1',guestVoucher)
 
 const path = require('path')
 
-// if(process.env.NODE_ENV === 'PRODUCTION'){
-//     app.use(express.static(path.join(__dirname,'../frontend/build')))
+if(process.env.NODE_ENV === 'PRODUCTION'){
+    app.use(express.static(path.join(__dirname,'../frontend/build')))
 
-//     app.get('*',(req, res) =>{
-//         res.sendFile(path.resolve(__dirname,'../frontend/build/index.html'))
-//     })
-// }
+    app.get('*',(req, res) =>{
+        res.sendFile(path.resolve(__dirname,'../frontend/build/index.html'))
+    })
+}
 
 
 // Middleware to handle errors

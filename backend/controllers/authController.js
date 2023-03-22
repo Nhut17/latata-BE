@@ -18,6 +18,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
         name,
         email,
         phone,
+        birthday,
         password,
         avatar
     } = req.body;
@@ -26,9 +27,17 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
         email: email
     })
 
+    const checkPhone = await User.findOne({
+        phone: phone
+    })
+
 
     if(checkAccount){
         return next(new ErrorHandler('Email đã tồn tại', 404))
+    }
+
+    if(checkPhone){
+        return next(new ErrorHandler('Số điện thoại đã tồn tại', 404))
     }
 
     try{
@@ -39,18 +48,23 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
             name,
             email,
             phone,
+            birthday,
             password,
             avatar: {
                 url: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
             }
         })
     
-       
+       console.log('ok')
         
-        sendToken(user, 200, res);
+        // sendToken(user, 200, res);
+        res.status(201).json({
+            success: true,
+            user
+        })
     }
     catch(e){
-
+        console.log(e)
     }
  
 
@@ -436,3 +450,29 @@ exports.refreshToken = catchAsyncError(async (req, res, next) => {
         refreshToken
     })
 })
+
+
+// permission staff
+exports.permissionStaff = async (req,res) => {
+
+    const { id } = req.params
+
+    // check account admin
+    // const checkAccountAdmin = await check 
+
+    const permission = await User.findByIdAndUpdate(id, {
+        role: 'staff'
+    },
+    {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+    })
+
+
+    res.status(200).json({
+        success: true,
+        user: permission
+    })
+
+}
