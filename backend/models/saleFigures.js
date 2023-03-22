@@ -17,3 +17,5 @@ const saleFigures = mongoose.Schema({
         type:Number
     }
 })
+
+module.exports = mongoose.model('Sale Figures', saleFigures)
