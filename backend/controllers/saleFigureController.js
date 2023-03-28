@@ -1,16 +1,16 @@
-const SaleFiure = require('../models/saleFigures')
+const SaleFigure = require('../models/saleFigures')
 const schedule = require('node-schedule')
 const User = require('../models/user')
-const saleFigures = require('../models/saleFigures')
+// const saleFigures = require('../models/saleFigures')
 
-// top customer of month
-exports.topCustomer = async (req,res) => {
+// get sale figures
+exports.saleFigure = async (req,res) => {
 
-    const top_customer = await saleFigures.find()
+    const sale_figure = await SaleFigure.find()
 
     res.status(201).json({
         success: true,
-        top_customer
+        sale_figure
     })
 
 }
