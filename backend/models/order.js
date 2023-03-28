@@ -2,9 +2,13 @@ const mongoose = require('mongoose');
 const moment = require('moment-timezone');
 
 const { ObjectId } = mongoose.Schema
-const date = new Date()
+const date = new Date().getTime()
 
-const timer = moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)
+const time = new Date(date)
+
+const timer = time.toLocaleTimeString + ' - ' + time.toLocaleDateString()
+
+// const timer = moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)
 
 
 const orderSchema = mongoose.Schema({

@@ -1,9 +1,11 @@
 const express  = require('express');
 const router = express.Router()
 
-const { topCustomer } = require('../controllers/saleFigureController')
+const { saleFigure } = require('../controllers/saleFigureController')
 
-router.route('/top-customer').get(topCustomer)
+router.route('/sale-figures').get(saleFigure)
+
+
 
 
 module.exports = router
