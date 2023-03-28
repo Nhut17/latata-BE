@@ -25,7 +25,7 @@ const test_cron = {
 
 // lấy test_cron thay vào cronExpress_topCustomer
 
-const topCustomer = schedule.scheduleJob({minute: 29}, async function(){
+const topCustomer = schedule.scheduleJob({minute: 44}, async function(){
 
     const list_user = await User.find()
    
