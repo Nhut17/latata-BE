@@ -2,20 +2,20 @@ const mongoose = require('mongoose');
 
 
 const saleFigures = mongoose.Schema({
-    top_customer:[
-        {
-            type:String
-        }
-    ],
-    top_sales_week:{
+   order_date: {
+        type:String
+   },
+   sales: {
         type: Number
-    },
-    top_sales_month: {
+   },
+   quantity: {
         type: Number
-    },
-    top_sales_year:{
-        type:Number
-    }
+   },
+   total_order: {
+        type: Number,
+        default: 1
+   }
+
 })
 
 module.exports = mongoose.model('Sale Figures', saleFigures)

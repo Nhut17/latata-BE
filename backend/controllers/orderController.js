@@ -8,6 +8,8 @@ const Cart = require('../models/cart');
 const moment = require('moment-timezone');
 const sendOrder = require('../utils/sendOrder')
 
+const Sale_Figure = require('../models/saleFigures')
+
 /// Create a new order => api/v1/order/new
 
 exports.newOrder = catchAsyncErrors( async(req, res, next) => {
@@ -140,8 +142,13 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
 
     if(req.body.status === 'DELIVERING')   
     {
-        const date = new Date()             
-        order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)
+        const date = new Date().getTime()  
+        
+        const order_times = new Date(date)
+
+        order.deliveredAt = order_times.toLocaleTimeString() + ' - ' + order_times.toLocaleDateString()
+
+        // order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)
         
       
 
@@ -164,9 +171,46 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
 
     if(req.body.status === 'DONE'){
 
+
+
         order.orderItems.forEach( async item => {               
             await updateStock(item.productId,item.quantity)
         })
+
+        const date_time = new Date().getTime()
+        const time = new Date(date_time)
+
+        const check_sale_figure = await Sale_Figure.findOne({
+                order_date: time.toLocaleDateString()
+        })
+
+        // check existing sale figure follow day
+        if(!check_sale_figure)
+        {
+            try{
+
+                    await check_sale_figure.create({
+                        order_date: time.toLocaleDateString(),
+                        sales: order.totalPrice,
+                        quantity: order.quantity, 
+                    })
+            }
+            catch(e)
+            {
+                console.log(e)
+            }
+        }
+        else{
+           
+            // update sale figure follow order
+            check_sale_figure.sales += order.totalPrice
+            check_sale_figure.quantity += order.quantity
+            check_sale_figure.total_order += 1
+
+            await check_sale_figure.save()
+
+        }
+
 
         // update wallet of user
        user.wallet += order.totalPrice
