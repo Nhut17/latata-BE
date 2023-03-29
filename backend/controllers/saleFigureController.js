@@ -15,6 +15,34 @@ exports.saleFigure = async (req,res) => {
 
 }
 
+// select statistics from calendar
+exports.selectSales = async(req,res) => {
+
+    const { select_date } = req.body
+
+    const sale_figure  = await SaleFigure.findOne({
+        order_date: select_date
+    })
+
+
+    //check sales has been statistic
+    if(!sale_figure)
+    {
+        res.status(401).json({
+            success: false,
+            mess: 'Không có thông số thống kê'
+         })
+         return
+    }
+
+    res.status(201).json({
+        success:true,
+        sale_figure
+    })
+
+
+}
+
 // 8am first day of month will reset top customer
 // const cronExpress_topCustomer = '0 0 8 1 * *'
 
