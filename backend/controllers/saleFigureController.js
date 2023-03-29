@@ -26,7 +26,7 @@ exports.saleFigure = async (req,res) => {
 // lấy test_cron thay vào cronExpress_topCustomer
 
 
-const topCustomer = schedule.scheduleJob({minute: 44}, async function(){
+const topCustomer = schedule.scheduleJob({minute: 24}, async function(){
 
 // const topCustomer = schedule.scheduleJob({minute: 4}, async function(){
 
