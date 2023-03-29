@@ -188,12 +188,14 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
                 order_date: time.toLocaleDateString()
         })
 
+        console.log('check sale: ', check_sale_figure)
+
         // check existing sale figure follow day
         if(!check_sale_figure)
         {
             try{
 
-                    await check_sale_figure.create({
+                    await Sale_Figure.create({
                         order_date: time.toLocaleDateString(),
                         sales: order.totalPrice,
                         quantity: order.quantity, 
@@ -253,9 +255,7 @@ async function updateStock(id,quantity) {
     }
     product.stock = product.stock - quantity ;
 
-    console.log('stock: ' + product.stock)
     product.sold += quantity
-    console.log('sold: ' + product.sold)
 
     await product.save({validateBeforeSave: false})
 }
