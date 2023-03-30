@@ -15,6 +15,43 @@ exports.saleFigure = async (req,res) => {
 
 }
 
+// select statistics from calendar
+exports.selectSales = async(req,res) => {
+
+    const { date_start,date_end } = req.body
+
+    const sale_figure  = await SaleFigure.find()
+
+    if(!sale_figure)
+    {
+        res.status(401).json({
+            success: false,
+            mess: 'Không có dữ liệu thống kê'
+        })
+        return
+    }
+
+
+    // filter sales date start to end
+    const list_filter = sale_figure.filter( el => {
+        // const time = new Date(el.split('/').reverse().join('/'))
+        const time = new Date(el.order_date)
+        if(time.getTime() >= (date_start.getTime() - 3600*24*1000) && time.getTime() <= date_end.getTime())
+        {
+            return true
+        }
+
+    } )
+
+    
+   res.status(201).json({
+    success : true,
+    sale_figures: list_filter
+   })
+
+
+}
+
 // 8am first day of month will reset top customer
 // const cronExpress_topCustomer = '0 0 8 1 * *'
 
