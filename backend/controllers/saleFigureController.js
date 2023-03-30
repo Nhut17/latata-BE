@@ -18,27 +18,36 @@ exports.saleFigure = async (req,res) => {
 // select statistics from calendar
 exports.selectSales = async(req,res) => {
 
-    const { select_date } = req.body
+    const { date_start,date_end } = req.body
 
-    const sale_figure  = await SaleFigure.findOne({
-        order_date: select_date
-    })
+    const sale_figure  = await SaleFigure.find()
 
-
-    //check sales has been statistic
     if(!sale_figure)
     {
         res.status(401).json({
             success: false,
-            mess: 'Không có thông số thống kê'
-         })
-         return
+            mess: 'Không có dữ liệu thống kê'
+        })
+        return
     }
 
-    res.status(201).json({
-        success:true,
-        sale_figure
-    })
+
+    // filter sales date start to end
+    const list_filter = sale_figure.filter( el => {
+        // const time = new Date(el.split('/').reverse().join('/'))
+        const time = new Date(el.order_date)
+        if(time.getTime() >= (date_start.getTime() - 3600*24*1000) && time.getTime() <= date_end.getTime())
+        {
+            return true
+        }
+
+    } )
+
+    
+   res.status(201).json({
+    success : true,
+    sale_figures: list_filter
+   })
 
 
 }
