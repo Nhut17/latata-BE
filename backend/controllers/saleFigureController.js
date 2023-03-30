@@ -26,33 +26,33 @@ exports.saleFigure = async (req,res) => {
 // lấy test_cron thay vào cronExpress_topCustomer
 
 
-const topCustomer = schedule.scheduleJob({minute: 24}, async function(){
+// const topCustomer = schedule.scheduleJob({minute: 24}, async function(){
 
-// const topCustomer = schedule.scheduleJob({minute: 4}, async function(){
+// // const topCustomer = schedule.scheduleJob({minute: 4}, async function(){
 
 
-//     const list_user = await User.find()
+// //     const list_user = await User.find()
    
-//     const saleFigure  = await SaleFiure.find()
+// //     const saleFigure  = await SaleFiure.find()
 
-//     console.log('sale figure: ', saleFigure)
+// //     console.log('sale figure: ', saleFigure)
 
-//     // top sale products from week
+// //     // top sale products from week
 
 
-//     const sorting_list  = list_user.sort((a,b) => b.wallet - a.wallet )
-//     // console.log(sorting_list)
+// //     const sorting_list  = list_user.sort((a,b) => b.wallet - a.wallet )
+// //     // console.log(sorting_list)
 
-//     // top 10 loyal customers
-//     const top_customer = sorting_list.slice(0,10)
-//     // console.log(top_customer)
+// //     // top 10 loyal customers
+// //     const top_customer = sorting_list.slice(0,10)
+// //     // console.log(top_customer)
 
-//     // const saleFigure = await SaleFiure.create({
-//     //     top_customer: top_customer
-//     // })
+// //     // const saleFigure = await SaleFiure.create({
+// //     //     top_customer: top_customer
+// //     // })
 
-//     // console.log('sale: ', saleFigure)
+// //     // console.log('sale: ', saleFigure)
+
+// // })
 
 // })
-
-})
