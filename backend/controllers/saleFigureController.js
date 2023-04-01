@@ -20,6 +20,9 @@ exports.selectSales = async(req,res) => {
 
     const { date_start,date_end } = req.body
 
+    const start = new Date(date_start)
+    const end = new Date(date_end)
+
     const sale_figure  = await SaleFigure.find()
 
     if(!sale_figure)
@@ -36,7 +39,7 @@ exports.selectSales = async(req,res) => {
     const list_filter = sale_figure.filter( el => {
         // const time = new Date(el.split('/').reverse().join('/'))
         const time = new Date(el.order_date)
-        if(time.getTime() >= (date_start.getTime() - 3600*24*1000) && time.getTime() <= date_end.getTime())
+        if(time.getTime() >= (start.getTime() - 3600*24*1000) && time.getTime() <= end.getTime())
         {
             return true
         }
