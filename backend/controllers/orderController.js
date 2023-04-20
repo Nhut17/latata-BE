@@ -9,7 +9,7 @@ const moment = require('moment-timezone');
 const sendOrder = require('../utils/sendOrder')
 
 const Sale_Figure = require('../models/saleFigures')
-
+const SalesCate = require('../models/salesCategory')
 /// Create a new order => api/v1/order/new
 
 exports.newOrder = catchAsyncErrors( async(req, res, next) => {
@@ -175,43 +175,11 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
 
         order.orderItems.forEach( async item => {               
             await updateStock(item.productId,item.quantity)
+            await createSalesCategory(item)
         })
 
-        const date_time = new Date().getTime()
-        const time = new Date(date_time)
-
-        const check_sale_figure = await Sale_Figure.findOne({
-                order_date: time.toLocaleDateString()
-        })
-
-        console.log('check sale: ', check_sale_figure)
-
-        // check existing sale figure follow day
-        if(!check_sale_figure)
-        {
-            try{
-
-                    await Sale_Figure.create({
-                        order_date: time.toLocaleDateString(),
-                        sales: order.totalPrice,
-                        quantity: order.quantity, 
-                    })
-            }
-            catch(e)
-            {
-                console.log(e)
-            }
-        }
-        else{
-           
-            // update sale figure follow order
-            check_sale_figure.sales += order.totalPrice
-            check_sale_figure.quantity += order.quantity
-            check_sale_figure.total_order += 1
-
-            await check_sale_figure.save()
-
-        }
+        // create a sales figures
+        await createSaleFigures(order)
 
 
         // update wallet of user
@@ -273,3 +241,119 @@ exports.deleteOrder = catchAsyncErrors( async (req, res, next) => {
         success:true
     })
 })
+
+// sales figures
+async function createSaleFigures (order)
+{
+    const date_time = new Date().getTime()
+    const time = new Date(date_time)
+
+    const check_sale_figure = await Sale_Figure.findOne({
+            order_date: time.toLocaleDateString()
+    })
+
+    console.log('check sale: ', check_sale_figure)
+
+    // check existing sale figure follow day
+    if(!check_sale_figure)
+    {
+        try{
+
+                await Sale_Figure.create({
+                    order_date: time.toLocaleDateString(),
+                    sales: order.totalPrice,
+                    quantity: order.quantity, 
+                })
+        }
+        catch(e)
+        {
+            console.log(e)
+        }
+    }
+    else{
+       
+        // update sale figure follow order
+        check_sale_figure.sales += order.totalPrice
+        check_sale_figure.quantity += order.quantity
+        check_sale_figure.total_order += 1
+
+        await check_sale_figure.save()
+
+    }
+}
+
+
+// sales categories
+async function createSalesCategory (orderItem) {
+
+    const current_time = new Date()
+    const month = current_time.getMonth() + 1
+    const year = current_time.getFullYear()
+
+    console.log('month: ' + month + ' year: ' + year)
+
+
+    const product = await Product.findById(orderItem.productId)
+
+    const cate = product.category
+    const quantity = orderItem.quantity
+    const sales_cate = orderItem.priceDeal
+
+    const check_sale_cate = await SalesCate.findOne({
+        month: month,
+        year: year
+    })
+    
+    // sale cate hasn't 
+    if(!check_sale_cate)
+    {
+        const list_sale_cate = [
+            {
+                cate,
+                sales_cate,
+                quantity
+            }
+        ]
+
+        await SalesCate.create({
+            categories: list_sale_cate,
+            year,
+            month
+        })
+    
+    } 
+    else{
+
+    // if sale cate have
+   const cates = check_sale_cate.categories
+   const indx = cates?.findIndex(el => el.cate.toLowerCase() == cate.toLowerCase())
+
+    if(indx >= 0)
+    {
+        // update sales and quantities
+        cates[indx].quantity += quantity
+        cates[indx].sales_cate += sales_cate
+    }
+    else {
+        // create new category
+        const new_cate = {
+            cate,
+            sales_cate,
+            quantity
+        }
+    cates.push(new_cate)
+    }
+        await SalesCate.findByIdAndUpdate(check_sale_cate._id,{
+           categories: cates
+        },{
+            new: true,
+            runValidators: true,
+            useFindAndModify: true
+        })
+
+        
+
+       
+
+    }
+}

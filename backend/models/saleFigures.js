@@ -15,7 +15,6 @@ const saleFigures = mongoose.Schema({
         type: Number,
         default: 1
    }
-
 })
 
 module.exports = mongoose.model('Sale Figures', saleFigures)

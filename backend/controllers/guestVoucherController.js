@@ -6,13 +6,13 @@ const schedule = require('node-schedule')
 
 exports.useVoucher = async (req,res) => {
 
-    const { voucher,phone,email } = req.body
+    const { voucher} = req.body
 
-    // const phone = req.user[0].phone
-    // const email = req.user[0].email
-    // const email = "test@gmail.com"
+    const phone = req.user[0].phone
+    const email = req.user[0].email
+    
 
-
+ 
     // check voucher exist ?
     const hasVoucher = await Voucher.findOne({
        voucher
@@ -40,6 +40,10 @@ exports.useVoucher = async (req,res) => {
         let listVoucher = []
         listVoucher.push(voucher)
 
+        // list used
+        let list_used = []
+        list_used.push(email)
+
         const addUserVoucher = await guestVoucher.create({
                 phone: phone ,
                 email: email,
@@ -47,7 +51,6 @@ exports.useVoucher = async (req,res) => {
             })
 
 
-        updateQuantityVoucher(hasVoucher._id,hasVoucher)
             
 
         res.status(201).json({
@@ -84,7 +87,6 @@ exports.useVoucher = async (req,res) => {
             }
         )
 
-        updateQuantityVoucher(hasVoucher._id,hasVoucher)
 
         res.status(201).json({
             success: true,
@@ -96,25 +98,6 @@ exports.useVoucher = async (req,res) => {
 
 }
 
-const updateQuantityVoucher = async(id,has_voucher) => {
-
-    const updateQuantity = has_voucher.quantity - 1
-
-    if(updateQuantity === 0)
-    {
-        await Voucher.findByIdAndDelete(id)
-    }
-
-    const update = await Voucher.findByIdAndUpdate(id,{
-        quantity: updateQuantity
-   
-    },{
-        new: true,
-        runValidators: true,
-        useFindAndModify: false,
-    })
-
-}
 
 const birthdayNotification = schedule.scheduleJob({ hour: 8  }, async () => {
 

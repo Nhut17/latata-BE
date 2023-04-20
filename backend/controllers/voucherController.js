@@ -5,7 +5,7 @@ const User = require('../models/user')
 // add voucher by admin
 exports.addVoucher = async (req,res) => {
 
-    const {voucher,sales,quantity} = req.body
+    const {voucher,sales} = req.body
 
     const date = new Date()
 
@@ -48,7 +48,6 @@ exports.addVoucher = async (req,res) => {
     const vou = await Voucher.create({
         voucher: voucher?.toUpperCase(),
         sales,
-        quantity,
         createAt,
         expiredIn
     })
@@ -90,15 +89,3 @@ exports.getVouchers = async (req,res) => {
 }
 
 
-// // voucher for staff
-// exports.staffVoucher = async (req,res) => {
-
-//     const staff  = req.user[0]?.role
-
-//     if(staff === 'staff')
-//     {
-        
-//     }
-
-
-// }
