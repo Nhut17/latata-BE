@@ -82,12 +82,14 @@ exports.addSaleCate = async ( req,res) => {
 
 exports.salesCate = async ( req, res) => {
 
-    const { month ,year} = req.body
+    const { year} = req.body
 
 
-    const sales_cate = await SalesCate.findOne({
+    const sales_cate = await SalesCate.find({
         year: year
     })
+
+    // console.log('get sale: ', sales_cate)
 
     res.status(201).json({
         success: true,
@@ -95,3 +97,5 @@ exports.salesCate = async ( req, res) => {
     })
 
 }
+
+
