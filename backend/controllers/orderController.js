@@ -252,7 +252,6 @@ async function createSaleFigures (order)
             order_date: time.toLocaleDateString()
     })
 
-    console.log('check sale: ', check_sale_figure)
 
     // check existing sale figure follow day
     if(!check_sale_figure)
@@ -290,19 +289,21 @@ async function createSalesCategory (orderItem) {
     const month = current_time.getMonth() + 1
     const year = current_time.getFullYear()
 
-    console.log('month: ' + month + ' year: ' + year)
 
 
     const product = await Product.findById(orderItem.productId)
+
 
     const cate = product.category
     const quantity = orderItem.quantity
     const sales_cate = orderItem.priceDeal
 
+
     const check_sale_cate = await SalesCate.findOne({
         month: month,
         year: year
     })
+
     
     // sale cate hasn't 
     if(!check_sale_cate)
@@ -314,6 +315,7 @@ async function createSalesCategory (orderItem) {
                 quantity
             }
         ]
+
 
         await SalesCate.create({
             categories: list_sale_cate,
@@ -327,6 +329,7 @@ async function createSalesCategory (orderItem) {
     // if sale cate have
    const cates = check_sale_cate.categories
    const indx = cates?.findIndex(el => el.cate.toLowerCase() == cate.toLowerCase())
+
 
     if(indx >= 0)
     {
