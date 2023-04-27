@@ -10,6 +10,7 @@ const sendOrder = require('../utils/sendOrder')
 
 const Sale_Figure = require('../models/saleFigures')
 const SalesCate = require('../models/salesCategory')
+const SumSalesFigure = require('../models/sumSalesFigure')
 /// Create a new order => api/v1/order/new
 
 exports.newOrder = catchAsyncErrors( async(req, res, next) => {
@@ -185,6 +186,9 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
         // create a sales figures
         await createSaleFigures(order)
 
+        // create a sum sales figure
+        await createSummarySalesFigure(order.totalPrice,order.quantity)
+
 
         // update wallet of user
        user.wallet += order.totalPrice
@@ -246,6 +250,72 @@ exports.deleteOrder = catchAsyncErrors( async (req, res, next) => {
     })
 })
 
+
+// create summary sales figure
+async function createSummarySalesFigure(sales,quantity_product)
+{
+
+    const date_time = new Date()
+
+    const year = date_time.getFullYear()
+    const month = date_time.getMonth() + 1
+
+    const check_sum  = await SumSalesFigure.findOne({
+        year:year
+    })
+
+
+    // if sum sales is not exist
+    if(!check_sum)
+    {
+        const new_list_month = [
+            {
+                month,
+                sales,
+                quantity_product
+            }
+        ]
+
+        await SumSalesFigure.create({
+            year,
+            months: new_list_month
+        })
+        return
+    }
+
+    // if sum sales is exist and month hasn't exist
+    const months = check_sum.months
+    const indx = months.findIndex(el => el.month == month)
+
+    const list_month_sale = {
+        month,
+        sales,
+        quantity_product
+    }
+
+    
+    // index <=  -1
+    if(indx <= -1)
+    {
+         months.push(list_month_sale)
+
+         // update months
+         await SumSalesFigure.findByIdAndUpdate(check_sum._id,{
+            months: months
+         })
+    }
+    else{
+        months[indx].sales += sales
+        months[indx].quantity_product += quantity_product
+
+        // update sales
+        await SumSalesFigure.findByIdAndUpdate(check_sum._id,{
+            months: months  })
+    }
+
+}
+
+
 // sales figures
 async function createSaleFigures (order)
 {
@@ -256,7 +326,6 @@ async function createSaleFigures (order)
             order_date: time.toLocaleDateString()
     })
 
-    console.log('check sale: ', check_sale_figure)
 
     // check existing sale figure follow day
     if(!check_sale_figure)
@@ -294,19 +363,21 @@ async function createSalesCategory (orderItem) {
     const month = current_time.getMonth() + 1
     const year = current_time.getFullYear()
 
-    console.log('month: ' + month + ' year: ' + year)
 
 
     const product = await Product.findById(orderItem.productId)
+
 
     const cate = product.category
     const quantity = orderItem.quantity
     const sales_cate = orderItem.priceDeal
 
+
     const check_sale_cate = await SalesCate.findOne({
         month: month,
         year: year
     })
+
     
     // sale cate hasn't 
     if(!check_sale_cate)
@@ -318,6 +389,7 @@ async function createSalesCategory (orderItem) {
                 quantity
             }
         ]
+
 
         await SalesCate.create({
             categories: list_sale_cate,
@@ -332,6 +404,7 @@ async function createSalesCategory (orderItem) {
    const cates = check_sale_cate.categories
    const indx = cates?.findIndex(el => el.cate.toLowerCase() == cate.toLowerCase())
 
+
     if(indx >= 0)
     {
         // update sales and quantities
@@ -345,7 +418,7 @@ async function createSalesCategory (orderItem) {
             sales_cate,
             quantity
         }
-    cates.push(new_cate)
+        cates.push(new_cate)
     }
         await SalesCate.findByIdAndUpdate(check_sale_cate._id,{
            categories: cates

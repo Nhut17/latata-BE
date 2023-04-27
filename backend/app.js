@@ -37,6 +37,7 @@ const voucher = require('./routes/voucher')
 const guestVoucher = require('./routes/guestVoucher')
 const saleFigure = require('./routes/saleFigures')
 const salesCate = require('./routes/salesCategory')
+const sumSales = require('./routes/sumSalesFigure')
 
 
 app.use('/api/v1',products)
@@ -51,6 +52,7 @@ app.use('/api/v1',voucher)
 app.use('/api/v1',guestVoucher)
 app.use('/api/v1',saleFigure)
 app.use('/api/v1',salesCate)
+app.use('/api/v1',sumSales)
 
 const path = require('path')
 

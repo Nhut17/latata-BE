@@ -76,7 +76,6 @@ exports.addSaleCate = async ( req,res) => {
 
         }
         
-        
 }
 
 
