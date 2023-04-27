@@ -9,17 +9,18 @@ const voucherSchema = mongoose.Schema({
         type: Number,
         
     },
-    quantity: {
-        type: Number,
-    },
     createAt: {
         type: Date,
 
     },
+    list_used:[
+        {
+        type: String,
+        }
+    ],
     expiredIn: {
         type: Date
     }
-   
 })
 
 module.exports = mongoose.model('Voucher', voucherSchema )

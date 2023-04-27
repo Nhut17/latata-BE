@@ -11,8 +11,9 @@ const guestVoucherSchema = mongoose.Schema({
         validate: [validator.isEmail, 'Please enter valid email address']
     },
     listVoucher: [
-        {
-            type:String
+        {  
+            type: String
+              
         }
     ]
 })

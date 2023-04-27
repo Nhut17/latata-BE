@@ -19,9 +19,10 @@ exports.saleFigure = async (req,res) => {
 exports.selectSales = async(req,res) => {
 
     const { date_start,date_end } = req.body
-
     const start = new Date(date_start)
     const end = new Date(date_end)
+
+    
 
     const sale_figure  = await SaleFigure.find()
 
@@ -55,44 +56,36 @@ exports.selectSales = async(req,res) => {
 
 }
 
-// 8am first day of month will reset top customer
-// const cronExpress_topCustomer = '0 0 8 1 * *'
 
-// đến phút thứ 4 thì nó chạy => vd: 9:03 thì 9:04 func sẽ hđ
-// const test_cron = {
-//     minute: 4
-// }
+// add
+exports.addSaleFigure = async (req,res) => {
 
-// lấy test_cron thay vào cronExpress_topCustomer
+    const {order_date, sales, quantity, total_order} = req.body
 
 
-// const topCustomer = schedule.scheduleJob({minute: 24}, async function(){
 
-// // const topCustomer = schedule.scheduleJob({minute: 4}, async function(){
+    const sale_figure = await SaleFigure.create({
+        order_date,
+        sales,
+        quantity
+    })
+
+    res.status(201).json({
+        success: true,
+        sale_figure
+    })
+
+}
 
 
-// //     const list_user = await User.find()
-   
-// //     const saleFigure  = await SaleFiure.find()
+// sales year
+exports.salesYear = async (req,res) => {
 
-// //     console.log('sale figure: ', saleFigure)
+    const { year } = req.body
 
-// //     // top sale products from week
+    const sale_firgure = await SaleFigure.find()
+
+    
 
 
-// //     const sorting_list  = list_user.sort((a,b) => b.wallet - a.wallet )
-// //     // console.log(sorting_list)
-
-// //     // top 10 loyal customers
-// //     const top_customer = sorting_list.slice(0,10)
-// //     // console.log(top_customer)
-
-// //     // const saleFigure = await SaleFiure.create({
-// //     //     top_customer: top_customer
-// //     // })
-
-// //     // console.log('sale: ', saleFigure)
-
-// // })
-
-// })
+}
