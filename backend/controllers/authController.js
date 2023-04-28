@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const OTP = require('../models/otp')
+const SumSaleFigure = require('../models/sumSalesFigure')
 
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncError = require('../middlewares/catchAsyncErrors');
@@ -52,8 +53,8 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
                 url: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
             }
         })
-    
-       console.log('ok')
+        
+        await createSaleUser()
         
         // sendToken(user, 200, res);
         res.status(201).json({
@@ -67,6 +68,57 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
  
 
 })
+
+async function createSaleUser () 
+{
+    const date_time = new Date()
+
+    const year = date_time.getFullYear()
+    const month = date_time.getMonth() + 1
+
+    const check_sum_sale = await SumSaleFigure.findOne({
+        year: year
+    })
+
+    if(!check_sum_sale)
+    {
+        await SumSaleFigure.create({
+            year: year,
+            months: [
+                {
+                    month,
+                    users: 1
+                }
+            ]
+        })
+        return 
+    }
+
+    const months_sum = check_sum_sale.months
+    const indx = months_sum.findIndex(el => el.month == month)
+
+    if( indx <= -1 )
+    {
+        const users = {
+            month,
+            users: 1
+        }
+
+        months_sum.push(users)
+        await SumSaleFigure.findByIdAndUpdate(check_sum_sale._id,{
+            months: months_sum
+        })
+    }
+    else {
+
+        months_sum[indx].users += 1
+        await SumSaleFigure.findByIdAndUpdate(check_sum_sale._id,{
+            months: months_sum
+        })
+
+    }
+
+}
 
 
 // Login User => /a[i/v1/login
