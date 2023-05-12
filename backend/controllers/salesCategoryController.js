@@ -1,3 +1,4 @@
+const salesCategory = require('../models/salesCategory')
 const SalesCate = require('../models/salesCategory')
 
 
@@ -93,6 +94,36 @@ exports.salesCate = async ( req, res) => {
     res.status(201).json({
         success: true,
         sales_cate
+    })
+
+}
+
+
+exports.selectSalesCate = async (req,res) => {
+
+    const { year, month} = req.body
+
+    const sale_cates = await salesCategory.findOne({
+        year,
+        month
+    })
+
+    
+
+    if(!sale_cates)
+    {
+        res.status(401).json({
+            success:false,
+            message: 'Could not find sales category'
+        })
+
+        return 
+    }
+
+
+    res.status(201).json({
+        success: true,
+        sale_cates
     })
 
 }
