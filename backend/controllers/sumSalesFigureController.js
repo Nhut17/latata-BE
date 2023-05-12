@@ -5,19 +5,61 @@ const SumSalesFigure = require('../models/sumSalesFigure')
 
 exports.sumSales  = async (req,res) => {
 
-    const { year, month, sales } = req.body
+    const { year, month, sales, quantity_product } = req.body
 
-    const list_month = [
-        {
-            month,
-            sales
-        }
-    ]
-    
-    const check_sum = await SumSalesFigure.create({
-        year,
-        months: list_month
+    const check_sum  = await SumSalesFigure.findOne({
+        year:year
     })
+
+    
+
+    // if sum sales is not exist
+    if(!check_sum)
+    {
+        const new_list_month = [
+            {
+                month,
+                sales,
+                quantity_product
+            }
+        ]
+
+        await SumSalesFigure.create({
+            year,
+            months: new_list_month
+        })
+        return
+    }
+
+    // if sum sales is exist and month hasn't exist
+    const months = check_sum.months
+    const indx = months.findIndex(el => el.month == month)
+
+    const list_month_sale = {
+        month,
+        sales,
+        quantity_product
+    }
+
+    
+    // index <=  -1
+    if(indx <= -1)
+    {
+         months.push(list_month_sale)
+
+         // update months
+         await SumSalesFigure.findByIdAndUpdate(check_sum._id,{
+            months: months
+         })
+    }
+    else{
+        months[indx].sales += sales
+        months[indx].quantity_product += quantity_product
+
+        // update sales
+        await SumSalesFigure.findByIdAndUpdate(check_sum._id,{
+            months: months  })
+    }
 
     res.status(201).json({
         success: true,
