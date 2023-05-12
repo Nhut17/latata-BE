@@ -5,12 +5,18 @@ const sumSalesFigure = mongoose.Schema({
     months: [
         {
             month: Number,
-            sales: Number,
+            sales: {
+                type: Number,
+                default: 0
+            },
             users: {
                 type: Number,
                 default: 0
             },
-            quantity_product: Number
+            quantity_product: {
+                type: Number,
+                default: 0
+            }
         }
     ]
 })

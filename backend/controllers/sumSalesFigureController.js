@@ -40,3 +40,27 @@ exports.getSummarySales = async (req,res) => {
 
 
 }
+
+exports.selectSumSales = async (req, res) => {
+
+    const { year} = req.body
+
+    const sum_sales = await SumSalesFigure.findOne({
+        year: year
+    })
+
+    if(!sum_sales)
+    {
+        res.status(401).json({
+            success: false,
+            message: 'Select sales is not exist'
+        })
+        return 
+    }
+
+    res.status(201).json({
+        success: true,
+        sum_sales
+    })
+
+}
