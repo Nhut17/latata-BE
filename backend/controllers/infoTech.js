@@ -3,17 +3,25 @@ const infoTech = require('../models/infoTech')
 
 exports.addInfoTech = async (req,res) => {
 
-    const {id_cate,info_tech} = req.body
+    const {id_cate,title} = req.body
 
     const find_id_cate = await infoTech.findOne({
         id_cate:id_cate
     })
 
- 
+
 
     if(!find_id_cate)
     {
-        const info = await infoTech.create(req.body)
+        const info = await infoTech.create({
+            id_cate,
+            info_tech: [
+                {
+                    title
+                }
+            ]
+            
+        })
 
         res.status(201).json({
             success: true,
@@ -22,36 +30,43 @@ exports.addInfoTech = async (req,res) => {
     }
     else{
         const arr_tech = find_id_cate.info_tech
-      
-        
-        if(arr_tech?.includes(info_tech))
+
+        const indx = arr_tech.findIndex(el => el.title.toLowerCase() == title.toLowerCase())
+
+        if(indx >=0 )
         {
-    
             res.status(400).json({
-                mess: 'Info technical existed!'
+                mess: 'Thông tin kỹ thuật đã tồn tại!'
             })
-
-            return;
+            return
         }
+        else{
+            
+            const update = [...arr_tech,{
+                title
+            }]
 
-        const update_tech = await infoTech.findOneAndUpdate(
-            {
-                id_cate: id_cate
-            },
-            {
-                info_tech: arr_tech?.concat(info_tech)
-            }, 
-            {
-                new: true,
-                runValidators: true,
-                useFindAndModify: false,
-            }
-            )
-
-            res.status(201).json({
-                success: true,
-                info_tech: update_tech
-            })
+            const update_tech = await infoTech.findOneAndUpdate(
+                {
+                    id_cate: id_cate
+                },
+                {
+                    info_tech: update
+                }, 
+                {
+                    new: true,
+                    runValidators: true,
+                    useFindAndModify: false,
+                }
+                )
+    
+                res.status(201).json({
+                    success: true,
+                    info_tech: update_tech
+                })
+    
+        }
+      
 
     }
 
@@ -60,30 +75,28 @@ exports.addInfoTech = async (req,res) => {
 // delete
 exports.deleteInfoTech = async (req, res) => {
 
-    const { id_cate, info_tech } = req.body
+    const {  id_info_tech } = req.body
 
-    const info = await infoTech.findOne({
-        id_cate: id_cate
-    })
+    const {id} = req.params
 
+    const info = await infoTech.findById(id)
 
 
     if(!info)
     {
         res.status(401).json({
             success: false,
-            message: 'id_cate not found',
+            message: 'id not found',
         }) 
         return;
     }
 
     try{
 
-        const arr_tech = info.info_tech;
-
-
-        const idx_tech = arr_tech.indexOf(info_tech)
-
+        let arr_tech = info.info_tech;
+    
+        const idx_tech = arr_tech.findIndex(val => val._id == id_info_tech)
+        
 
         if(idx_tech === -1) 
         {
@@ -91,19 +104,21 @@ exports.deleteInfoTech = async (req, res) => {
             success: false,
             message: 'Invalid'
             })
+            return
         }
 
-       
+     
+        arr_tech.splice(idx_tech, 1)
 
         const update =  {
-            info_tech: arr_tech?.splice(idx_tech,1)
+            info_tech: arr_tech
         }
 
- 
+      
 
         await infoTech.findOneAndUpdate(
             {
-                id_cate:id_cate
+                _id: id
             },
             update,
             {
@@ -114,7 +129,7 @@ exports.deleteInfoTech = async (req, res) => {
             )
         res.status(200).json({
             success: true,
-            message: ' Removed successfully'
+            mess: 'Removed successfully'
         })
     }
     catch(err){
@@ -126,10 +141,13 @@ exports.deleteInfoTech = async (req, res) => {
 // get all
 exports.getInfoTech  = async (req,res) => {
 
-    const { id_cate } = req.body
+
+    const { id } = req.params
+
+  
 
     const info_tech = await infoTech.findOne({
-        id_cate: id_cate
+        id_cate: id
     })
 
     if(!info_tech)
@@ -143,7 +161,7 @@ exports.getInfoTech  = async (req,res) => {
 
     res.status(201).json({
         success: true,
-        info: info_tech.info_tech
+        info_tech
     })
 
 }

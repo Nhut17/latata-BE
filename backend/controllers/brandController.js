@@ -7,13 +7,15 @@ exports.addBrand = async(req,res) => {
     const {name, logo} = req.body
 
     try{
-        // const ret = await cloudinary.uploader.upload(logo, {
-        //     folder: 'brand'
-        // })
+        const ret = await cloudinary.uploader.upload(logo, {
+            folder: 'logo_brand'
+        })
+
+        console.log(ret)
 
         const brand = await Brand.create({
             name,
-            logo: 'ret.secure_url'
+            logo: ret.secure_url
         })
 
 
@@ -27,7 +29,7 @@ exports.addBrand = async(req,res) => {
         console.log(err)
     }
 
-    // const brand = await Brand.
+    
 
 
 }
