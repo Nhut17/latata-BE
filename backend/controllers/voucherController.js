@@ -1,6 +1,7 @@
 const Voucher = require('../models/Voucher')
 const moment = require('moment-timezone')
 const User = require('../models/user')
+const sendVoucher = require('../utils/sendVoucher')
 
 // add voucher by admin
 exports.addVoucher = async (req,res) => {
@@ -88,4 +89,31 @@ exports.getVouchers = async (req,res) => {
 
 }
 
+// send voucher for all
+exports.sendVoucherAll = async(req,res) => {
 
+    const {voucher, startDate, endDate} = req.body
+
+    const list_user = await User.find()
+
+
+   
+
+    try{
+        // let list_mail = []
+         list_user.forEach(async val  => {
+            await sendVoucher({
+                email: val.email,
+                subject: 'Mã voucher khuyến mãi',
+                voucher,
+                 
+            })
+        })
+    }
+    catch(e)
+    {
+
+    }
+    
+
+}
