@@ -6,7 +6,13 @@ const infoTechSchema = mongoose.Schema({
     },
     info_tech: [
         {
-            type:String,
+            title: {
+                type:String
+            },
+            content: {
+                type:String,
+                default: ''
+            }
             
         }
     ]

@@ -59,7 +59,7 @@ exports.uploadImg = catchAsyncError( async ( req, res, next ) => {
             crop: "scale"
         })
 
-        console.log('ret: ' + ret)
+       
     
         res.status(201).json({
             success: true,

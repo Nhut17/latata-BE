@@ -20,8 +20,13 @@ const productSchema = new mongoose.Schema({
         required: [true,  'Please enter product description'],
       
     },
-    information: [{
-        type: String,
+    info_tech: [{
+        title: {
+            type: String,
+        },
+        content: {
+            type: String
+        }
     }],
     promotion: {
         type: Number,
