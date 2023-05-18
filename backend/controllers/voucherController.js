@@ -3,10 +3,11 @@ const moment = require('moment-timezone')
 const User = require('../models/user')
 const sendVoucher = require('../utils/sendVoucher')
 
+
 // add voucher by admin
 exports.addVoucher = async (req,res) => {
 
-    const {voucher,sales} = req.body
+    const {voucher,sales,content} = req.body
 
     const date = new Date()
 
@@ -49,6 +50,7 @@ exports.addVoucher = async (req,res) => {
     const vou = await Voucher.create({
         voucher: voucher?.toUpperCase(),
         sales,
+        content,
         createAt,
         expiredIn
     })
@@ -77,15 +79,21 @@ exports.removeVoucher = async (req,res) => {
 }
 
 
+ 
 // get vouchers
 exports.getVouchers = async (req,res) => {
 
     const voucher = await Voucher.find()
 
+
+    await removeExpiredVoucher(voucher)
+
+  
     res.status(201).json({
         success: true,
         voucher
     })
+    
 
 }
 
@@ -96,8 +104,6 @@ exports.sendVoucherAll = async(req,res) => {
 
     const list_user = await User.find()
 
-
-   
 
     try{
         // let list_mail = []
@@ -120,3 +126,29 @@ exports.sendVoucherAll = async(req,res) => {
     })
 
 }
+
+
+async function removeExpiredVoucher  (voucher)
+{
+    const current_time = new Date()
+
+    await voucher.forEach(async (vou,indx) => {
+    
+        const expired_date = new Date(vou.expiredIn)
+         
+
+        if( expired_date.getTime() - current_time.getTime() <=0 )
+        {
+             voucher.splice(indx, 1)
+            await Voucher.findByIdAndRemove(vou._id)
+          
+            
+        }
+
+    
+    })
+   
+     console.log('voucher: ', voucher)
+   
+}
+

@@ -10,4 +10,6 @@ router.route('/voucher/:id').delete(removeVoucher)
 router.route('/voucher/send-all').post(sendVoucherAll)
 router.route('/voucher').get(getVouchers)
 
+
+
 module.exports = router
