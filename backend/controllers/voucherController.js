@@ -112,8 +112,11 @@ exports.sendVoucherAll = async(req,res) => {
     }
     catch(e)
     {
-
+        console.log(e)
     }
     
+    res.status(201).json({
+        success: true,
+    })
 
 }
