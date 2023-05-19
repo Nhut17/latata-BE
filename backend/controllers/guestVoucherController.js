@@ -27,6 +27,21 @@ exports.useVoucher = async (req,res) => {
         return
     }
 
+    // check voucher expired
+    const end_date = new Date(hasVoucher.expiredIn)
+    const currrent_time = new Date()
+
+    if(end_date.getTime() - currrent_time.getTime() <= 0)
+    {
+        await Voucher.findByIdAndRemove(hasVoucher._id)
+
+        res.status(201).json({
+            message: 'Voucher đã hết hạn sử dụng'
+        })
+        return 
+    }
+
+
 
     // check user use initial voucher ?
     const userVoucher = await guestVoucher.findOne({
@@ -64,7 +79,7 @@ exports.useVoucher = async (req,res) => {
         if(listVoucher.includes(voucher))
         {
             res.status(401).json({
-                mess:'Voucher đã được sử dụng'
+                mess:'Bạn đã sử dụng voucher này'
             })
             return
         }

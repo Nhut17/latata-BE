@@ -13,11 +13,11 @@ const voucherSchema = mongoose.Schema({
         type: Date,
 
     },
-    list_used:[
+    content:
         {
-        type: String,
+            type: String,
         }
-    ],
+    ,
     expiredIn: {
         type: Date
     }
