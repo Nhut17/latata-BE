@@ -1,4 +1,4 @@
-const Voucher = require('../models/Voucher')
+const Voucher = require('../models/voucher')
 const moment = require('moment-timezone')
 const User = require('../models/user')
 const sendVoucher = require('../utils/sendVoucher')

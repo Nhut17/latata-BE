@@ -1,5 +1,5 @@
 const guestVoucher = require('../models/guestVoucher')
-const Voucher = require('../models/Voucher')
+const Voucher = require('../models/voucher')
 const User = require('../models/user')
 
 const schedule = require('node-schedule')
