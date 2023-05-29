@@ -424,9 +424,6 @@ async function createSalesCategory (orderItem) {
             useFindAndModify: true
         })
 
-        
-
-       
 
     }
 }
