@@ -4,7 +4,20 @@ const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncError = require('../middlewares/catchAsyncErrors')
 const APIFeatures = require('../utils/apiFeatures')
 
+//  update Stock
+async function updateStock(id,quantity) {
+    const product = await Product.findById(id);
 
+    if(product.stock <= 0)
+    {
+        return next(new ErrorHandler('Product is out of stock',400))
+    }
+    product.stock = product.stock - quantity ;
+
+    product.sold += quantity
+
+    await product.save({validateBeforeSave: false})
+}
 
 // add to cart
 exports.addToCart = catchAsyncError( async (req,res,next) => {
@@ -50,7 +63,9 @@ exports.addToCart = catchAsyncError( async (req,res,next) => {
                 }
 
                 productUpdate[indexId].quantity += quantity
-                product.stock -= quantity                                       // 7
+                product.stock -= quantity     
+                product.sold += quantity  
+                await product.save({validateBeforeSave: false})                                
             }
        
     }
@@ -182,8 +197,14 @@ exports.deleteItemCart = catchAsyncError( async (req, res, next) => {
         return next(new ErrorHandler('Item cart not found', 404))       // 7
     }
 
-    await listItem[findItemCart].remove()       // 8
-   
+    await listItem[findItemCart].remove()  
+    const product = await Product.findById(listItem.productId)
+    product.stock = product.stock + quantity ;
+
+    product.sold -= quantity
+
+    await product.save({validateBeforeSave: false})
+    
     getCart.totalPrice = listItem.reduce((acc,val) => {         // 9
         return acc + (val.priceDeal * val.quantity)
     },0)
@@ -228,6 +249,13 @@ exports.decreaseQuantity = catchAsyncError( async (req, res, next) => {
     }
     
     listItem[findProduct].quantity -= 1                         // 8
+
+    const product = await Product.findById(listItem.productId)
+    product.stock = product.stock + quantity ;
+
+    product.sold -= quantity
+
+    await product.save({validateBeforeSave: false})
    
     if(listItem[findProduct].quantity === 0){                   // 9
         await listItem[findProduct].remove()                    // 10
@@ -266,10 +294,6 @@ exports.increaseQuantity = catchAsyncError( async (req, res, next) => {
         return next(new ErrorHandler('Cart not found', 404))    // 4
     }
 
-    const productId = req.params.id
-    const product = await Product.findById(productId)
-    const listItem = cartOld.products
-
      // update product quantity
     const findProduct = listItem.findIndex(val => val.productId == productId)   // 5
 
@@ -280,6 +304,12 @@ exports.increaseQuantity = catchAsyncError( async (req, res, next) => {
 
     listItem[findProduct].quantity += 1             // 8
 
+    const product = await Product.findById(listItem.productId)
+    product.stock = product.stock - quantity ;
+
+    product.sold += quantity
+
+    await product.save({validateBeforeSave: false})
 
     if(initialStock - listItem[findProduct].quantity < 0)   // 9
     {
