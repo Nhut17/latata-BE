@@ -33,18 +33,7 @@ exports.createEventBanner = async (req,res) => {
 }
 
 
-const uploadImageToCloudinary = async image => {
 
-    const ret = await cloudinary.uploader.upload(image,{
-        folder:'events'
-    })
-
-    return {
-        url_id: ret.public_id,
-        url: ret.secure_url
-    }
-
-}
 
 exports.uploadEventBanner = async (req,res) => {
 
@@ -84,13 +73,25 @@ exports.uploadEventBanner = async (req,res) => {
 
     }
 
+    if(!check_event)
+    {
+        const create_event = await EventBanner.create({
+            name,
+            images: imagesLinks
+        })
+    }
+    else{
+        const update = await EventBanner.findByIdAndUpdate(check_event._id,{
+            images: imagesLinks
+        })
+    }
 
-    const update = await EventBanner.findByIdAndUpdate(check_event._id,{
-        images: imagesLinks
-    })
+
+   
 
     res.status(200).json({
         success: true,
+        message: 'Successfully!'
     })
 
 }
