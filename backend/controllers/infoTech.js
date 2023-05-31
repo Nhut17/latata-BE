@@ -75,12 +75,15 @@ exports.addInfoTech = async (req,res) => {
 // delete
 exports.deleteInfoTech = async (req, res) => {
 
-    const {  id_info_tech } = req.body
 
-    const {id} = req.params
+    // id cate
+    const {id,id_info_tech } = req.params
 
-    const info = await infoTech.findById(id)
+    const info = await infoTech.findOne({
+        id_cate: id
+    })
 
+   
 
     if(!info)
     {
@@ -91,12 +94,17 @@ exports.deleteInfoTech = async (req, res) => {
         return;
     }
 
+
     try{
 
         let arr_tech = info.info_tech;
+
+        console.log(arr_tech)
+        console.log(id_info_tech)
     
         const idx_tech = arr_tech.findIndex(val => val._id == id_info_tech)
         
+        console.log(idx_tech)
 
         if(idx_tech === -1) 
         {
@@ -114,12 +122,10 @@ exports.deleteInfoTech = async (req, res) => {
             info_tech: arr_tech
         }
 
-      
+        console.log('update')
 
-        await infoTech.findOneAndUpdate(
-            {
-                _id: id
-            },
+        await infoTech.findByIdAndUpdate(
+            info._id,
             update,
             {
                 new: true,
@@ -133,6 +139,7 @@ exports.deleteInfoTech = async (req, res) => {
         })
     }
     catch(err){
+        console.log('err')
         console.log(err)
     }
 
@@ -152,8 +159,8 @@ exports.getInfoTech  = async (req,res) => {
 
     if(!info_tech)
     {
-        res.status(400).json({
-            mess: 'Invalid info tech!'
+        res.status(201).json({
+            mess: 'Invalid info tech!',
         })
 
         return;

@@ -78,6 +78,7 @@ exports.addSaleFigure = async (req,res) => {
 }
 
 
+
 // sales year
 exports.salesYear = async (req,res) => {
 
@@ -89,3 +90,4 @@ exports.salesYear = async (req,res) => {
 
 
 }
+

@@ -106,3 +106,18 @@ exports.selectSumSales = async (req, res) => {
     })
 
 }
+
+
+exports.getYearsSummary = async (req,res) => {
+
+    const sum_sales = await SumSalesFigure.find()
+
+    let list_year = []
+
+    sum_sales.forEach(year => list_year.push(year.year))
+
+    res.status(201).json({
+        list_year
+    })
+
+}

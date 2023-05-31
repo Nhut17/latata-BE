@@ -6,7 +6,6 @@ const date = new Date().getTime()
 
 const time = new Date(date)
 
-
 const timer = time.toLocaleTimeString() + '  ' + time.toLocaleDateString()
 
 // const timer = moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)

@@ -6,11 +6,13 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const fileupload = require('express-fileupload'); 
 
+
 app.use(fileupload({useTempFiles: true}))
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
+app.use(bodyParser.json());
 
 require('dotenv').config()
 
@@ -39,6 +41,8 @@ const saleFigure = require('./routes/saleFigures')
 const salesCate = require('./routes/salesCategory')
 const sumSales = require('./routes/sumSalesFigure')
 const payment = require('./routes/Payment')
+const event_banner = require('./routes/eventBanner')
+const top_sales_user = require('./routes/topSalesUser')
 
 app.use('/api/v1',products)
 app.use('/api/v1',auth)
@@ -54,6 +58,8 @@ app.use('/api/v1',saleFigure)
 app.use('/api/v1',salesCate)
 app.use('/api/v1',sumSales)
 app.use('/api/v1',payment)
+app.use('/api/v1',event_banner)
+app.use('/api/v1',top_sales_user)
 
 const path = require('path')
 
