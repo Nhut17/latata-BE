@@ -1,6 +1,7 @@
 const app = require('./app')
 const connectDatabase = require('./config/database')
 const cors = require('cors');
+
 // const corsOptions ={
 //     origin:'http://localhost:3000', 
 //     credentials:true,            

@@ -5,7 +5,21 @@ const errorMiddleware = require('./middlewares/errors')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const fileupload = require('express-fileupload'); 
+const passport = require('passport');
+const cookieSession = require('cookie-session')
 
+
+
+app.use(
+    cookieSession({
+        name: 'session',
+        keys: ["cyberwolve"],
+        maxAge: 24*60*60*100,
+    })
+)
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(fileupload({useTempFiles: true}))
 app.use(express.json());
@@ -43,7 +57,11 @@ const sumSales = require('./routes/sumSalesFigure')
 const payment = require('./routes/Payment')
 const event_banner = require('./routes/eventBanner')
 const top_sales_user = require('./routes/topSalesUser')
+const passportSetup = require('./utils/passport')
+const googleAuth = require('./routes/googleAuth')
 
+
+app.use('/api/v1',googleAuth)
 app.use('/api/v1',products)
 app.use('/api/v1',auth)
 app.use('/api/v1',order)
@@ -60,6 +78,7 @@ app.use('/api/v1',sumSales)
 app.use('/api/v1',payment)
 app.use('/api/v1',event_banner)
 app.use('/api/v1',top_sales_user)
+
 
 const path = require('path')
 
