@@ -214,20 +214,6 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
 
 })
 
-async function updateStock(id,quantity) {
-    const product = await Product.findById(id);
-
-    if(product.stock <= 0)
-    {
-        return next(new ErrorHandler('Product is out of stock',400))
-    }
-    product.stock = product.stock - quantity ;
-
-    product.sold += quantity
-
-    await product.save({validateBeforeSave: false})
-}
-
 
 // Delete order => api/v1/admin/order/:id
 exports.deleteOrder = catchAsyncErrors( async (req, res, next) => {
@@ -248,7 +234,7 @@ exports.deleteOrder = catchAsyncErrors( async (req, res, next) => {
 
 
 // create summary sales figure
-async function createSummarySalesFigure(sales,quantity_product)
+ async function createSummarySalesFigure(sales,quantity_product)
 {
 
     const date_time = new Date()
@@ -309,6 +295,22 @@ async function createSummarySalesFigure(sales,quantity_product)
             months: months  })
     }
 
+}
+
+
+//  update Stock
+async function updateStock(id,quantity) {
+    const product = await Product.findById(id);
+
+    if(product.stock <= 0)
+    {
+        return next(new ErrorHandler('Product is out of stock',400))
+    }
+    product.stock = product.stock - quantity ;
+
+    product.sold += quantity
+
+    await product.save({validateBeforeSave: false})
 }
 
 
@@ -424,10 +426,8 @@ async function createSalesCategory (orderItem) {
             useFindAndModify: true
         })
 
-        
-
-       
 
     }
 }
+
 

@@ -14,13 +14,14 @@ exports.addVoucher = async (req,res) => {
     const createAt = new Date(req.body.createAt)
     const expiredIn = new Date(req.body.expiredIn)
 
+   
+
     // // create day 
     // const create = moment.tz(createAt.getTime(),'Asia/Bangkok').format(`${createAt.getDate()}-MM-YYYY`)
     
     // // // expire day
     // const expire = moment.tz(expiredIn.getTime(),'Asia/Bangkok').format(`${expiredIn.getDate()}-MM-YYYY`)
 
-   
     // invalid input expired time
         if(expiredIn.getTime() - createAt.getTime() < 3600000)
         {
@@ -45,10 +46,11 @@ exports.addVoucher = async (req,res) => {
         return ;
     }
 
+    console.log(sales)
 
     // create voucher db
     const vou = await Voucher.create({
-        voucher: voucher?.toUpperCase(),
+        voucher,
         sales,
         content,
         createAt,
@@ -85,7 +87,6 @@ exports.getVouchers = async (req,res) => {
 
     const voucher = await Voucher.find()
 
-
     await removeExpiredVoucher(voucher)
 
   
@@ -100,7 +101,7 @@ exports.getVouchers = async (req,res) => {
 // send voucher for all
 exports.sendVoucherAll = async(req,res) => {
 
-    const {voucher, startDate, endDate} = req.body
+    const {voucher} = req.body
 
     const list_user = await User.find()
 
@@ -128,6 +129,8 @@ exports.sendVoucherAll = async(req,res) => {
 }
 
 
+
+
 async function removeExpiredVoucher  (voucher)
 {
     const current_time = new Date()
@@ -140,15 +143,9 @@ async function removeExpiredVoucher  (voucher)
         if( expired_date.getTime() - current_time.getTime() <=0 )
         {
              voucher.splice(indx, 1)
-            await Voucher.findByIdAndRemove(vou._id)
-          
-            
+            await Voucher.findByIdAndRemove(vou._id)   
         }
-
-    
     })
-   
-     console.log('voucher: ', voucher)
    
 }
 

@@ -52,7 +52,7 @@ exports.uploadImg = catchAsyncError( async ( req, res, next ) => {
     
     try{
         const {  images } = req.body
-        console.log(images)
+        
         const ret = await cloudinary.uploader.upload(images,{
             folder: "products",
             width: 200,

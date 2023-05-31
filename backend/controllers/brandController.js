@@ -101,3 +101,5 @@ exports.getBrand = async (req,res) => {
     })
 
 }
+
+// exports.delete

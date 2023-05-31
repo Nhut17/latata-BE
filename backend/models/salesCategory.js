@@ -3,8 +3,12 @@ const mongoose = require('mongoose')
 const salesCategory = mongoose.Schema({
     categories: [
         {
-            cate: String,
-            sales_cate : Number,
+            cate: {
+                type: String,
+            },
+            sales_cate : {
+                type: Number,
+            },
             quantity: Number,
         }
     ],

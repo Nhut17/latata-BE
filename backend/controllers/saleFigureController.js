@@ -76,14 +76,3 @@ exports.addSaleFigure = async (req,res) => {
 }
 
 
-// sales year
-exports.salesYear = async (req,res) => {
-
-    const { year } = req.body
-
-    const sale_firgure = await SaleFigure.find()
-
-    
-
-
-}

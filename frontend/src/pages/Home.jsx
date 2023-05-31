@@ -41,13 +41,16 @@ const Home = () => {
   })
   }, [])
 
+  
+
   useEffect(() => {
    
+    if(currentUser)
+    {
+      dispatch(getCartUser())
+    }
     
-    dispatch(resetActionOrder())
-    // dispatch(getCartUser())
-    
-},[])
+},[currentUser])
 
   useEffect(() =>{
     if(successLogin)

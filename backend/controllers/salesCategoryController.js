@@ -89,11 +89,31 @@ exports.salesCate = async ( req, res) => {
         year: year
     })
 
-    // console.log('get sale: ', sales_cate)
+    let new_categories = []
+
+    sales_cate.forEach(element => {
+        
+        element.categories.forEach(category => {
+            
+            const find_index = new_categories.findIndex(el => el.cate.toLowerCase() === category.cate.toLowerCase());
+           
+            if(find_index > -1)
+            {
+                new_categories[find_index].sales_cate += category.sales_cate
+            }
+            else{
+                new_categories.push(category)
+            }
+                 
+        
+        })
+
+    });
+
 
     res.status(201).json({
         success: true,
-        sales_cate
+        sales_cates_year: new_categories
     })
 
 }
