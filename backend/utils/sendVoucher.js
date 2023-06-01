@@ -22,18 +22,23 @@ const sendVoucher = async options => {
             <body>
                 <div class="logo">
                     <img src="https://res.cloudinary.com/dx8xengfd/image/upload/v1670955574/avatars/logo_color_upyntn.png" alt="">
-                    <h1 style="color: #000b49;">Thanks for your order</h1>
+                    <h4 style="color: #000b49;">Kính chào quý khách hàng</h4>
                 </div>
                 
     
                 <div class="order-detail">
+                    <p>Lời trước tiên, LATATA xin gửi lời cảm ơn sâu sắc nhất đến ANH/CHỊ vì đã tin tưởng và sử dụng sản phẩm của chúng tôi trong thời gian qua. Đây là yếu tố quan trọng quyết định đến sự thành công và phát triển của LATATA.</p>
+                    <p>Thay lời cảm ơn, LATATA xin phép gởi đến ANH/CHỊ voucher giảm giá ${sales}% cho tất cả các dịch vụ.</p>
                     <div class="summary">
-                        <h3 style="color: black;">THÔNG TIN</h3>
-                        <p>Mã voucher : #${voucher} </p>
+                        <h3 style="color: black;">THÔNG TIN:</h3>
+                        <p>Mã voucher : <b>${voucher}</b> </p>
+                        <p>Thời hạn sử dụng : ${createAt} đến ${expiredIn}</p>
                      
                     </div>
                     
                 </div>
+
+                <p>TRÂN TRỌNG.</p>
             </body>
 
             

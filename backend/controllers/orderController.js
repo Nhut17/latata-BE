@@ -125,6 +125,7 @@ exports.cancelOrder = catchAsyncErrors( async (req, res, next) => {
     })
 })
 
+
 // Update / Process orders - ADMIN  => api/v1/admin/order/:id
 exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
     const order = await Order.findById(req.params.id)   
@@ -143,6 +144,7 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
 
     if(req.body.status === 'DELIVERING')   
     {
+
         const date = new Date().getTime()  
         
         const order_times = new Date(date)
@@ -150,8 +152,10 @@ exports.updateOrder = catchAsyncErrors( async (req, res, next) => {
         order.deliveredAt = order_times.toLocaleTimeString() + ' - ' + order_times.toLocaleDateString()
 
         // order.deliveredAt = moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)
+
         
       
+
 
         // send email confirm order
         try{                   

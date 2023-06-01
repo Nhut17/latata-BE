@@ -62,6 +62,8 @@ exports.addSaleFigure = async (req,res) => {
 
     const {order_date, sales, quantity, total_order} = req.body
 
+
+
     const sale_figure = await SaleFigure.create({
         order_date,
         sales,
@@ -75,4 +77,17 @@ exports.addSaleFigure = async (req,res) => {
 
 }
 
+
+
+// sales year
+exports.salesYear = async (req,res) => {
+
+    const { year } = req.body
+
+    const sale_firgure = await SaleFigure.find()
+
+    
+
+
+}
 

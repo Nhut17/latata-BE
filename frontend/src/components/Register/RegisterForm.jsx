@@ -55,10 +55,10 @@ const RegisterForm = () => {
             name :  name,
             email: email,
             phone: phone,
+            birthday : birthday,
             password: password
        }
         dispatch(registerUser(data)) 
-       
 
      }
 
