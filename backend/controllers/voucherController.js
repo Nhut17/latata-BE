@@ -98,6 +98,8 @@ exports.getVouchers = async (req,res) => {
 
 }
 
+
+
 // send voucher for all
 exports.sendVoucherAll = async(req,res) => {
 
