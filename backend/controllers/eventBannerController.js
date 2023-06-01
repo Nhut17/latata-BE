@@ -96,3 +96,27 @@ exports.uploadEventBanner = async (req,res) => {
 
 }
 
+
+// get one event banner
+exports.getOneEventBanner = async (req,res) => {
+
+    const {name} = req.body
+
+    const find_one = await EventBanner.findOne({name})
+
+
+    if(!find_one)
+    {
+        res.status(404).json({
+            success: false,
+            message: "Can't get one event banner"
+        })
+    }
+
+    res.status(201).json({
+        success: true,
+        eventBanner: find_one 
+    })
+
+
+}
