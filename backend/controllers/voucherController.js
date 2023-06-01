@@ -103,10 +103,10 @@ exports.getVouchers = async (req,res) => {
 // send voucher for all
 exports.sendVoucherAll = async(req,res) => {
 
-    const {voucher} = req.body
+    const {voucher,sales,createAt,expiredIn} = req.body
 
     const list_user = await User.find()
-
+   
 
     try{
         // let list_mail = []
@@ -115,7 +115,9 @@ exports.sendVoucherAll = async(req,res) => {
                 email: val.email,
                 subject: 'Mã voucher khuyến mãi',
                 voucher,
-                 
+                sales,
+                createAt,
+                expiredIn
             })
         })
     }
