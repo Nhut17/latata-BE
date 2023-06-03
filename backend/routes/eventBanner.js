@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router()
 
-const { createEventBanner, uploadEventBanner, getOneEventBanner } = require('../controllers/eventBannerController')
+const { createEventBanner, uploadEventBanner, getOneEventBanner, getAllBanner } = require('../controllers/eventBannerController')
 
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
@@ -10,5 +10,6 @@ router.route('/event-banner').post(isAuthenticatedUser, authorizeRoles('admin'),
 
 
 router.route('/event-banner/get-one').post(getOneEventBanner)
+router.route('/event-banner').get(getAllBanner)
 
 module.exports = router
