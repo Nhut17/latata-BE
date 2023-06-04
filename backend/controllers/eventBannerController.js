@@ -33,8 +33,6 @@ exports.createEventBanner = async (req,res) => {
 }
 
 
-
-
 exports.uploadEventBanner = async (req,res) => {
 
     const {name} = req.body
@@ -59,8 +57,10 @@ exports.uploadEventBanner = async (req,res) => {
 
 
     let imagesLinks = []
+    console.log('images: ', images)
+    console.log('imagesLinks: ', imagesLinks)
 
-    for(let i =0; i < images.length; i++)
+    for(let i = 0; i < images?.length; i++)
     {
         const result = await cloudinary.uploader.upload(images[i],{
             folder: 'events'
@@ -73,17 +73,35 @@ exports.uploadEventBanner = async (req,res) => {
 
     }
 
+    console.log('imagesLinks after: ', imagesLinks)
+    console.log('check : ', check_event)
     if(!check_event)
     {
+        try{
+
         const create_event = await EventBanner.create({
             name,
             images: imagesLinks
         })
+        console.log('create success')
+        }
+        catch(e)
+        {
+            console.log(e)
+        }
     }
     else{
-        const update = await EventBanner.findByIdAndUpdate(check_event._id,{
-            images: imagesLinks
-        })
+        try{
+            const update = await EventBanner.findByIdAndUpdate(check_event._id,{
+                images: imagesLinks
+            })
+             console.log('update success')
+            
+        }
+        catch(e)
+        {
+            console.log(e)
+        }
     }
 
 
@@ -119,4 +137,15 @@ exports.getOneEventBanner = async (req,res) => {
     })
 
 
+}
+
+
+// get all banner
+exports.getAllBanner = async (req,res) => {
+    const find_banner = await EventBanner.find()
+
+    res.status(201).json({
+        success: true,
+        event_banner: find_banner
+    })
 }

@@ -89,13 +89,10 @@ exports.getVouchers = async (req,res) => {
 
     await removeExpiredVoucher(voucher)
 
-  
     res.status(201).json({
         success: true,
         voucher
     })
-    
-
 }
 
 

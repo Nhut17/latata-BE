@@ -41,8 +41,6 @@ exports.useVoucher = async (req,res) => {
         return 
     }
 
-
-
     // check user use initial voucher ?
     const userVoucher = await guestVoucher.findOne({
         email
