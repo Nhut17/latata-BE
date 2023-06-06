@@ -6,18 +6,25 @@ const schedule = require('node-schedule')
 
 exports.useVoucher = async (req,res) => {
 
-    const { voucher} = req.body
+    const { voucher } = req.body
 
     const phone = req.user[0].phone
     const email = req.user[0].email
     
+    console.log('phone: ', phone)
+    console.log('email: ', email)
 
- 
+    const upperCase = voucher?.toUpperCase()
+    console.log('upperCase: ', upperCase)
+
+    console.log(Voucher)
+
     // check voucher exist ?
     const hasVoucher = await Voucher.findOne({
-       voucher
+       voucher: upperCase
     })
 
+    console.log('hasVoucher: ', hasVoucher)
     if(!hasVoucher)
     {
         res.status(401).json({
@@ -108,6 +115,23 @@ exports.useVoucher = async (req,res) => {
 
     }
 
+
+}
+
+exports.getUserVoucher = async (req,res) => {
+
+    const phone = req.user[0].phone
+    const email = req.user[0].email
+    
+
+    const userVoucher = await guestVoucher.findOne({
+        email
+    })
+
+    res.status(200).json({
+        success:true,
+        userVoucher
+    })
 
 }
 

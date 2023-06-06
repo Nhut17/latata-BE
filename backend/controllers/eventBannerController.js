@@ -37,7 +37,7 @@ exports.uploadEventBanner = async (req,res) => {
 
     const {name} = req.body
 
-    const check_event = await EventBanner.findOne({name: name.toLowerCase()})
+    const check_event = await EventBanner.findOne({name})
 
     if(!check_event)
     {
@@ -57,7 +57,7 @@ exports.uploadEventBanner = async (req,res) => {
 
 
     let imagesLinks = []
-    console.log('images: ', images)
+    // console.log('images: ', images)
     console.log('imagesLinks: ', imagesLinks)
 
     for(let i = 0; i < images?.length; i++)
@@ -72,7 +72,6 @@ exports.uploadEventBanner = async (req,res) => {
         })
 
     }
-
     console.log('imagesLinks after: ', imagesLinks)
     console.log('check : ', check_event)
     if(!check_event)
@@ -85,23 +84,25 @@ exports.uploadEventBanner = async (req,res) => {
         })
         console.log('create success')
         }
-        catch(e)
+        catch(err)
         {
-            console.log(e)
+            console.log('err')
+            console.log(err)
         }
+       
     }
     else{
-        try{
+            try{
+
             const update = await EventBanner.findByIdAndUpdate(check_event._id,{
                 images: imagesLinks
             })
              console.log('update success')
-            
-        }
-        catch(e)
-        {
-            console.log(e)
-        }
+            }
+            catch(err)
+            {
+                console.log(err)
+            }
     }
 
 
