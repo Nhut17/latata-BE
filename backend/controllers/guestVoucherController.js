@@ -112,22 +112,22 @@ exports.useVoucher = async (req,res) => {
 }
 
 
-const birthdayNotification = schedule.scheduleJob({ hour: 8  }, async () => {
+// const birthdayNotification = schedule.scheduleJob({ hour: 8  }, async () => {
 
-    // list user
-    // const listUser = await User.find({
-    //     phone: '0363300308'
-    // })
+//     // list user
+//     // const listUser = await User.find({
+//     //     phone: '0363300308'
+//     // })
     
-    // console.log(listUser)
+//     // console.log(listUser)
 
 
-})
+// })
 
 
-const job = schedule.scheduleJob({minute: 17}, function(){
-    console.log('The answer to life, the universe, and everything!');
-  });
+// const job = schedule.scheduleJob({minute: 17}, function(){
+//     console.log('The answer to life, the universe, and everything!');
+//   });
 
 // const startTime = new Date(Date.now() + 5000);
 // const endTime = new Date(startTime.getTime() + 5000);
