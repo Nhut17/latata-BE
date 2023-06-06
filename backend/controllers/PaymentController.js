@@ -2,75 +2,66 @@ require('dotenv').config();
 
 const moment = require('moment');
 
+
+// const queryString = require('qs');
+// const dataFormat = require('dateformat')
+const crypto = require('crypto')
+
+const tmnCode = process.env.VNP_TMN_CODE;
+const secretKey = process.env.VNP_HASH_SECRET;
+const url = process.env.VNP_URL;
+const returnUrl = process.env.VNP_RETURN_URL;
+
 exports.createPayment = async(req,res) => {
-
-
-    process.env.TZ = 'Asia/Ho_Chi_Minh'
-
-    const date = new Date()
-
-    let createDate = moment(date).format('YYYYMMDDHHmmss');
     
-    let ipAddr = req.headers['x-forwarded-for'] ||
-        req.connection.remoteAddress ||
-        req.socket.remoteAddress ||
-        req.connection.socket.remoteAddress;
+//   console.log('createPayment')
+//   let ipAddr =
+//     req.headers["x-forwarded-for"] ||
+//     req.connection.remoteAddress ||
+//     req.socket.remoteAddress ||
+//     req.connection.socket.remoteAddress;
 
   
+//   let vnpUrl = url;
+//   const date = new Date();
 
-    let tmnCode = process.env.VNP_TMM_CODE
-    let secretKey = process.env.VNP_HASH_SECRET
-    let vnpUrl = process.env.VNP_URL
-    let returnUrl = req.protocol + "://" + req.get('host') + "/api/v1/vnpay-return"
-    // let returnUrl = process.env.VNP_RETURN_URL
-    let orderId = moment(date).format('DDHHmmss');
+//   const createDate = dateFormat(date, "yyyymmddHHmmss");
+//     let orderId = moment(date).format('DDHHmmss');
+//   // var orderId = dateFormat(date, 'HHmmss');
 
-    console.log(returnUrl)
-    // console.log(typeof tmnCode)
+//   var locale = "vn";
+//   var currCode = "VND";
+//   var vnp_Params = {};
+//   vnp_Params["vnp_Version"] = "2.1.0";
+//   vnp_Params["vnp_Command"] = "pay";
+//   vnp_Params["vnp_TmnCode"] = tmnCode;
 
-    // post req body
-    let  amount = req.params.money;
+//   vnp_Params["vnp_Locale"] = locale;
+//   vnp_Params["vnp_CurrCode"] = currCode;
+//   vnp_Params["vnp_TxnRef"] = orderId;
+//   vnp_Params["vnp_OrderInfo"] = "DEMO";
+//   vnp_Params["vnp_OrderType"] = "billpayment";
+//   vnp_Params["vnp_Amount"] = 10000000;
+//   vnp_Params["vnp_ReturnUrl"] = returnUrl;
+//   vnp_Params["vnp_IpAddr"] = ipAddr;
+//   vnp_Params["vnp_CreateDate"] = createDate;
+//   vnp_Params["vnp_BankCode"] = "NCB";
 
-   
-    // let bankCode = req.body.bankCode;
-    let locale = req.body.language;
 
-    if(locale === null || locale === ''){
-        locale = 'vn';
-    }
-    let currCode = 'VND';
-    let vnp_Params = {};
+//   vnp_Params = sortObject(vnp_Params);
 
-    vnp_Params['vnp_Version'] = '2.1.0';
-    vnp_Params['vnp_Command'] = 'pay';
-    vnp_Params['vnp_TmnCode'] = tmnCode;
-    vnp_Params['vnp_Locale'] = locale;
-    vnp_Params['vnp_CurrCode'] = currCode;
-    vnp_Params['vnp_TxnRef'] = orderId;
-    vnp_Params['vnp_OrderInfo'] = 'Thanh toán cho mã giao dịch: ' + orderId;
-    vnp_Params['vnp_OrderType'] = 'other';
-    vnp_Params['vnp_Amount'] = amount * 100;
-    vnp_Params['vnp_ReturnUrl'] = returnUrl;
-    vnp_Params['vnp_IpAddr'] = ipAddr;
-    vnp_Params['vnp_CreateDate'] = createDate;
-    // if(bankCode !== null && bankCode !== ''){
-    //     vnp_Params['vnp_BankCode'] = bankCode;
-    // }
+//   var signData =
+//     secretKey + querystring.stringify(vnp_Params, { encode: false });
 
-    vnp_Params = sortObject(vnp_Params);
 
-    let querystring = require('qs');
-    let signData = querystring.stringify(vnp_Params, { encode: false });
-    let crypto = require("crypto");     
-    let hmac = crypto.createHmac("sha512", secretKey);
-    let signed = hmac.update(new Buffer(signData, 'utf-8')).digest("hex"); 
-    vnp_Params['vnp_SecureHash'] = signed;
-    vnpUrl += '?' + querystring.stringify(vnp_Params, { encode: false });
+//    var hmac = crypto.createHmac("sha512", secretKey);
 
-    return res.redirect(vnpUrl)
-    // res.status(200).json({
-    //     vnpUrl
-    // })
+//   vnp_Params["vnp_SecureHashType"] = "SHA256";
+//   vnp_Params["vnp_SecureHash"] = secureHash;
+//   vnpUrl += "?" + querystring.stringify(vnp_Params, { encode: false });
+//   console.log({ code: "00", data: vnpUrl })
+
+//   res.status(200).json({ code: "00", data: vnpUrl });
 }
 
 

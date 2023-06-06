@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const sendVoucher = async options => {
 
-    const { voucher } = options
+    const { voucher,sales,createAt, expiredIn } = options
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
