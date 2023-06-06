@@ -104,6 +104,9 @@ const productSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    brand: {
+        type: String
+    },
     createdAt: {
         type: String,
         default: moment.tz(date.getTime(),'Asia/Bangkok').format(`HH:ma | ${date.getDate()}-MM-YYYY`)

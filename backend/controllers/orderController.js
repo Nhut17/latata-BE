@@ -20,7 +20,7 @@ exports.newOrder = catchAsyncErrors( async(req, res, next) => {
     const cart = await Cart.findOne({userId: userId})
 
     const orderItems = cart.products
-    const totalPrice = cart.totalPrice
+    const totalPrice = req.body.totalPrice
 
     const {
         name,
@@ -306,7 +306,7 @@ exports.deleteOrder = catchAsyncErrors( async (req, res, next) => {
 async function updateStock(id,quantity) {
     const product = await Product.findById(id);
 
-    if(product.stock <= 0)
+    if(product.stock < 0)
     {
         return next(new ErrorHandler('Product is out of stock',400))
     }
