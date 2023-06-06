@@ -1,3 +1,5 @@
+
+
 require('dotenv').config();
 
 const moment = require('moment');
@@ -19,7 +21,7 @@ exports.createPayment = async(req,res) => {
   
 
     let tmnCode = process.env.VNP_TMM_CODE
-    let secretKey = process.env.VNP_HASH_SECRET
+    let secretKey = process.env.VNP_HASH_SECRET;
     let vnpUrl = process.env.VNP_URL
     let returnUrl = req.protocol + "://" + req.get('host') + "/api/v1/vnpay-return"
     // let returnUrl = process.env.VNP_RETURN_URL
@@ -29,7 +31,7 @@ exports.createPayment = async(req,res) => {
     // console.log(typeof tmnCode)
 
     // post req body
-    let  amount = req.params.money;
+    let  amount = 1000;
 
    
     // let bankCode = req.body.bankCode;
@@ -59,6 +61,7 @@ exports.createPayment = async(req,res) => {
 
     vnp_Params = sortObject(vnp_Params);
 
+ 
     let querystring = require('qs');
     let signData = querystring.stringify(vnp_Params, { encode: false });
     let crypto = require("crypto");     
@@ -66,7 +69,7 @@ exports.createPayment = async(req,res) => {
     let signed = hmac.update(new Buffer(signData, 'utf-8')).digest("hex"); 
     vnp_Params['vnp_SecureHash'] = signed;
     vnpUrl += '?' + querystring.stringify(vnp_Params, { encode: false });
-
+    console.log('url'+ vnpUrl)
     return res.redirect(vnpUrl)
     // res.status(200).json({
     //     vnpUrl
