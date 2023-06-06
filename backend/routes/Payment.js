@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
-const { createPayment, returnPayment, vnpayIpn, queryDr } = require('../controllers/PaymentController')
+const { createPayment, returnPayment, vnpayIpn } = require('../controllers/PaymentController')
 
-router.route('/create-payment/:money').get(createPayment)
-router.route('/vnpay-return').get(returnPayment)
-router.route('/vnpay-ipn').get(vnpayIpn)
-router.route('/querydr').post(queryDr)
+router.route('/create_payment').post(createPayment)
+router.route('/vnpay_return').get(returnPayment)
+router.route('/vnpay_ipn').get(vnpayIpn)
+
 
 module.exports = router

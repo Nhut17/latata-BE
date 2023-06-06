@@ -60,7 +60,6 @@ exports.uploadImg = catchAsyncError( async ( req, res, next ) => {
         })
 
        
-    
         res.status(201).json({
             success: true,
             ret
@@ -119,11 +118,27 @@ exports.updateProduct = catchAsyncError( async ( req, res, next) => {
 
     let product = await Product.findById(req.params.id)
 
+    const { images } = req.body
+    const pro = req.body
+
+    try{
+
+    const ret = await cloudinary.uploader.upload(images,{
+            folder: 'products',
+ 
+        })
+
     if(!product){
         return next(new ErrorHandler('Product not found', 404))
     }
 
-    product = await Product.findByIdAndUpdate(req.params.id, req.body,{
+    product = await Product.findByIdAndUpdate(req.params.id, {
+        ...pro,
+        images: [{
+                url_id: ret.public_id,
+                url: ret.secure_url
+        }]
+    } ,{
         new: true,
         runValidators: true,
         useFindAndModify: false,
@@ -133,6 +148,12 @@ exports.updateProduct = catchAsyncError( async ( req, res, next) => {
         success: true,
         product
     })
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
+
 
 })
 
